@@ -16,3 +16,20 @@ it easier to search and find your ideal property match.
 - Dharshan Gopaul (u21637386)
 - Emilee da Cruz (u21494577)
 - Liam Prinsloo (u20572337)
+
+## Tech Stack
+
+#### Frontend
+- Ionic and Angular
+
+#### Backend
+- Django
+
+#### Web-Scraper
+- Scrapy
+
+#### AI
+- Tensorflow
+
+#### Database
+- TBC (Any NoSQL Database)
