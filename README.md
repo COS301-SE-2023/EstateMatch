@@ -9,10 +9,10 @@ it easier to search and find your ideal property match.
 - teamblue.cos301@gmail.com
 
 #### Project Manager
-- Daniël van Zyl
+- Daniël van Zyl (u21446459)
 
 #### Developers
-- Adam Osborne
-- Dharshan Gopaul
-- Emilee da Cruz
-- Liam Prinsloo
+- Adam Osborne (u21529583)
+- Dharshan Gopaul (u21637386)
+- Emilee da Cruz (u21494577)
+- Liam Prinsloo (u20572337)
