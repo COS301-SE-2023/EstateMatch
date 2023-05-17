@@ -4,7 +4,7 @@ on:
 
 jobs:
   test:
-    runs-on: macos-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 19
@@ -15,4 +15,4 @@ jobs:
       - uses: mskelton/setup-yarn@v1
         with:
           node-version: '19.x'
-      - run: yarn jest
+      - run: nx run api:test
