@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@estate-match/app/core/data-access": [
+        "libs/app/core/data-access/src/index.ts"
+      ],
+      "@estate-match/app/core/feature": ["libs/app/core/feature/src/index.ts"],
+      "@estate-match/app/core/util": ["libs/app/core/util/src/index.ts"],
+      "@estate-match/app/home/feature": ["libs/app/home/feature/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
