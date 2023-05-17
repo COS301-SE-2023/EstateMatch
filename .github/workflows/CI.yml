@@ -12,4 +12,7 @@ jobs:
         with:
           node-version: "19.x"
           cache: 'npm'
+      - uses: mskelton/setup-yarn@v1
+        with:
+          node-version: '19.x'
       - run: nx run api:test
