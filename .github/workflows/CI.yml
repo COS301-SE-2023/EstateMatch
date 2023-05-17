@@ -10,4 +10,5 @@ jobs:
         with:
           fetch-depth: 0
       - uses: nrwl/nx-set-shas@v3
+      - run: yarn install
       - run: nx run api:test
