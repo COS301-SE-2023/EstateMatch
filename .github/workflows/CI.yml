@@ -10,5 +10,4 @@ jobs:
         with:
           fetch-depth: 0
       - uses: nrwl/nx-set-shas@v3
-      - run: npm install
-      - run: nx run api:test
+      - run: yarn nx run api:test
