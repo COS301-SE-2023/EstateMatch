@@ -4,10 +4,6 @@ name: MainTests
 on:
  [push]
 
-env:
-  PURELORABUILD: ${{ github.event.inputs.build }}
-
-
 jobs:
   test:
     timeout-minutes: 45
@@ -23,10 +19,10 @@ jobs:
           fetch-depth: 0
 
       #Install node.js
-      - name: Use Node.js 16
+      - name: Use Node.js 18
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '18'
         
       #Install yarn
       - name: Install yarn
@@ -43,10 +39,3 @@ jobs:
           yarn nx run-many --target=build --all --skip-nx-cacahe --parallel
           yarn nx run-many --target=lint --all --skip-nx-cache --parallel
           yarn nx run-many --target=e2e --all --skip-nx-cache --parallel --coverage
-          
-
-      - name: Codecov
-        uses: codecov/codecov-action@v3.1.0
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./master/coverage/
