@@ -2,18 +2,7 @@ name: MainTests
 
 # Controls when the workflow will run
 on:
-  push:
-    branches: [ main, development ]
-  pull_request:
-    branches: [ main, development ]
-
-  # Allows running this workflow manually
-  workflow_dispatch:
-    inputs:
-      test_live:
-        description: 'test build ("DEV"|"")'     
-        required: false
-        default: ''
+ [push]
 
 env:
   PURELORABUILD: ${{ github.event.inputs.build }}
@@ -49,7 +38,6 @@ jobs:
 
       #Run tests on the entire repository
       - name: Test
-        working-directory: ./main/
         run: |
           yarn nx run-many --target=test --all --skip-nx-cache --parallel --coverage
           yarn nx run-many --target=build --all --skip-nx-cacahe --parallel
