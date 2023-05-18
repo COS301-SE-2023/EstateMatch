@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@estate-match/api/core/feature": ["libs/api/core/feature/src/index.ts"],
       "@estate-match/api/prefrences/data-access": [
         "libs/api/prefrences/data-access/src/index.ts"
       ],
