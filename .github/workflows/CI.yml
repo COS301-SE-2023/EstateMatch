@@ -43,11 +43,6 @@ jobs:
       - name: Install yarn
         run: npm install yarn -g
 
-      #Install required packages
-      - name: Install packages
-        working-directory: ./main/
-        run: yarn install --frozen-lockfile
-
       # - name: Wait for containers startup
       #   run: sleep 2m
       #   shell: bash
