@@ -22,6 +22,9 @@
       "@estate-match/api/prefrences/feature": [
         "libs/api/prefrences/feature/src/index.ts"
       ],
+      "@estate-match/api/prefrences/schema": [
+        "libs/api/prefrences/schema/src/index.ts"
+      ],
       "@estate-match/api/prefrences/util": [
         "libs/api/prefrences/util/src/index.ts"
       ],
