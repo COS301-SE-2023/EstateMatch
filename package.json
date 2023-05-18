@@ -38,6 +38,7 @@
     "@angular/cli": "~16.0.0",
     "@angular/compiler-cli": "~16.0.0",
     "@angular/language-service": "~16.0.0",
+    "@nestjs/cqrs": "^9.0.3",
     "@nestjs/schematics": "^9.1.0",
     "@nestjs/testing": "^9.1.1",
     "@nx/cypress": "16.1.0",
