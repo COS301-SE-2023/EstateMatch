@@ -4,11 +4,13 @@ import { PreferenceService } from './preferences.service';
 import { CqrsModule } from '@nestjs/cqrs';
 
 import {
-  GetPreferencesHandler
+  GetPreferencesHandler,
+  SetPreferencesHandler,
 } from './commands';
 
 export const CommandHandlers = [
-  GetPreferencesHandler
+  GetPreferencesHandler,
+  SetPreferencesHandler,
 ];
 
 @Module({

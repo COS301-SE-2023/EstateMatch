@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { PreferenceService } from './preferences.service';
-import { IGetPreferencesRequest, IPreference } from '@estate-match/api/prefrences/util';
+import { IGetPreferencesRequest, ISetPreferencesRequest } from '@estate-match/api/prefrences/util';
 
 
 @Controller()
@@ -12,8 +12,7 @@ export class PreferenceController {
     }
 
     @Post('/setPreferences')
-    async postData(@Body() preferences: IPreference){
-        const myTest = {id: 1, body: preferences};
-        return myTest;
+    async postData(@Body() preferences: ISetPreferencesRequest){
+        return await this.service.setPreferences(preferences);
     }
 }
