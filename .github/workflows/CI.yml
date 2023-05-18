@@ -27,6 +27,9 @@ jobs:
       #Install yarn
       - name: Install yarn
         run: npm install yarn -g
+        
+      - name: Install packages
+        run: yarn install
 
       # - name: Wait for containers startup
       #   run: sleep 2m
