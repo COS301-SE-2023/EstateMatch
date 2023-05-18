@@ -19,13 +19,15 @@
     "@ionic/angular": "^7.0.6",
     "@nestjs/common": "^9.1.1",
     "@nestjs/core": "^9.1.1",
+    "@nestjs/mongoose": "^9.2.2",
     "@nestjs/platform-express": "^9.1.1",
     "@nx/angular": "16.1.0",
     "@nxtend/ionic-angular": "^13.1.0",
     "axios": "^1.0.0",
+    "mongoose": "^7.1.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
+    "tslib": "^2.5.1",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
