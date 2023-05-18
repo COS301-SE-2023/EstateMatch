@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AppService } from '@estate-match/api/core/feature';
 
 @Module({
   imports: [],
