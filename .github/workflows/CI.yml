@@ -33,12 +33,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      # run docker
-      - name: Start containers
-        working-directory: ./main/
-        # run: yarn nx run docker
-        run: docker compose -f libs/docker/docker-compose.yml up -d
-
       #Install node.js
       - name: Use Node.js 16
         uses: actions/setup-node@v2
@@ -67,10 +61,6 @@ jobs:
           yarn nx run-many --target=lint --all --skip-nx-cache --parallel
           yarn nx run-many --target=e2e --all --skip-nx-cache --parallel --coverage
           
-      - name: Kill containers
-        working-directory: ./main/
-        if: always()
-        run: docker compose -f libs/docker/docker-compose.yml down
 
       - name: Codecov
         uses: codecov/codecov-action@v3.1.0
