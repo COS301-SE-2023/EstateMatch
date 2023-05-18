@@ -17,6 +17,10 @@ it easier to search and find your ideal property match.
 - Emilee da Cruz (u21494577)
 - Liam Prinsloo (u20572337)
 
+## Documentation
+#### SRS
+
+
 ## Tech Stack
 
 #### Frontend
@@ -34,9 +38,7 @@ it easier to search and find your ideal property match.
 #### Database
 - MongoDB
 
-## Getting Started
-Run `yarn` to install all dependencies.
-
-## To Run the Stack
+## Setup
+- Run `yarn` to install all dependencies.
 - Run `yarn start:app:dev` to start the development APP.
 - Run `yarn start:api:dev` to start the development API.
