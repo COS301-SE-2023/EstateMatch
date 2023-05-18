@@ -1,1 +1,2 @@
-export * from './lib/api-prefrences-feature';
+export * from './preferences.controller';
+export * from './preferences.module';
