@@ -1,1 +1,1 @@
-export * from './lib/api-prefrences-schema';
+export * from './prefrences.schema'
