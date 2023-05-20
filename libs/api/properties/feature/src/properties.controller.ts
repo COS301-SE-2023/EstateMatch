@@ -1,13 +1,14 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
-import { PropertyLikesService } from './properties.service';
+import { PropertiesService } from './properties.service';
+import { IDislikePropertyRequest } from '@estate-match/api/properties/util';
 
-@Controller('PropertyLikes')
-export class PropertyLikesController {
-  constructor(private readonly propertyLikesService: PropertyLikesService) {}
+@Controller()
+export class PropertiesController {
+  constructor(private readonly propertiesService: PropertiesService) {}
 
   @Get()
   getData() {
-    return this.propertyLikesService.getData();
+    return this.propertiesService.getData();
   }
 
   /*@Post(':cardId/swipe')
@@ -17,4 +18,9 @@ export class PropertyLikesController {
   ): Promise<void> {
     await this.cardService.swipeCard(userId, cardId, action);
   }*/
+
+  @Post('/dislike')
+  async dislikeProperty(@Body() property: IDislikePropertyRequest){
+    return await this.propertiesService.dislikeProperty(property);
+  }
 }

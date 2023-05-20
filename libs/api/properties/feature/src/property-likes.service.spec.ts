@@ -1,21 +1,21 @@
 import {Test, TestingModule} from '@nestjs/testing';
 
-import {PropertyLikesController} from './properties.controller';
-import {PropertyLikesService} from './properties.service';
+import {PropertiesController} from './properties.controller';
+import {PropertiesService} from './properties.service';
 
-describe('PropertyLikesController', () => {
+describe('PropertiesController', () => {
     let app: TestingModule;
   
     beforeAll(async () => {
       app = await Test.createTestingModule({
-        controllers: [PropertyLikesController],
-        providers: [PropertyLikesService],
+        controllers: [PropertiesController],
+        providers: [PropertiesService],
       }).compile();
     });
   
     describe('getData', () => {
       it('should return "Likes and dislikes api"', () => {
-        const appController = app.get<PropertyLikesController>(PropertyLikesController);
+        const appController = app.get<PropertiesController>(PropertiesController);
         expect(appController.getData()).toEqual({ message: 'Likes and dislikes api' });
       });
     });
