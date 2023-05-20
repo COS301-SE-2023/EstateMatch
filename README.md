@@ -28,7 +28,7 @@ Documentation can be found in the following locations:
         - Use Case Diagrams   
     -  Requirements
         - Functional Requirements 
-        - Non-Functional Requirements 
+        - Non-Functional Requirements   
     - Service Contracts
         - Authentication
         - Profile
