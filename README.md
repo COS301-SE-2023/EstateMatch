@@ -22,7 +22,7 @@ Documentation can be found in the following locations:
 - GitHub Wiki:
     - Home
         - Introduction
-        - User Stories
+        - User Stories 
     - Diagrams 
         - Class Diagram
         - Use Case Diagrams
