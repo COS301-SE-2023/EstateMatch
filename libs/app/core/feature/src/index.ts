@@ -1,1 +1,3 @@
-export * from './lib/app-core-feature';
+export * from './core.module';
+export * from './core.routing';
+export * from './core.shell';

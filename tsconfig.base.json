@@ -22,14 +22,34 @@
         "libs/api/properties/feature/src/index.ts"
       ],
       "@estate-match/api/properties/util": [
-        "libs/api/properties/util/src/index.ts"
+        "libs/api/properties/util/src/index.ts"],
+      "@estate-match/api/core/feature": ["libs/api/core/feature/src/index.ts"],
+      "@estate-match/api/prefrences/data-access": [
+        "libs/api/prefrences/data-access/src/index.ts"
+      ],
+      "@estate-match/api/prefrences/feature": [
+        "libs/api/prefrences/feature/src/index.ts"
+      ],
+      "@estate-match/api/prefrences/schema": [
+        "libs/api/prefrences/schema/src/index.ts"
+      ],
+      "@estate-match/api/prefrences/util": [
+        "libs/api/prefrences/util/src/index.ts"
       ],
       "@estate-match/app/core/data-access": [
         "libs/app/core/data-access/src/index.ts"
       ],
       "@estate-match/app/core/feature": ["libs/app/core/feature/src/index.ts"],
       "@estate-match/app/core/util": ["libs/app/core/util/src/index.ts"],
-      "@estate-match/app/home/feature": ["libs/app/home/feature/src/index.ts"]
+      "@estate-match/app/home/feature": ["libs/app/home/feature/src/index.ts"],
+      "@estate-match/app/preferences/feature": [
+        "libs/app/preferences/feature/src/index.ts" ],
+      "@estate-match/app/home/data-access": [
+        "libs/app/home/data-access/src/index.ts"
+      ],
+      "@estate-match/app/home/util--unit-test-runner=jest": [
+        "libs/app/home/util--unit-test-runner=jest/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
