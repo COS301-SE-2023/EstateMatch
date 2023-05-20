@@ -41,7 +41,7 @@ Documentation can be found in the following locations:
 
 - Google Drive:
     - https://drive.google.com/drive/folders/0AFkVXjghMVvDUk9PVA
-    - This is where any documents that are not in the repository will be stored.
+        - This is where any documents that are not in the repository will be stored.
         
 
 ## Tech Stack
