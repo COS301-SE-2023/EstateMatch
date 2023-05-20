@@ -11,6 +11,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('@estate-match/app/home/feature').then((m) => m.HomeModule),
   },
+  {
+    path: 'preferences',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/preferences/feature').then((m) => m.PreferencesModule),
+  },
 ];
 
 @NgModule({
