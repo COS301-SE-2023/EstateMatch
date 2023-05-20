@@ -17,7 +17,7 @@ it easier to search and find your ideal property match.
 - Emilee da Cruz (u21494577)
 - Liam Prinsloo (u20572337)
 
-### Google Drive Link 
+## Documentation - Google Drive Link 
 This is where any documents that are not in the repository will be stored.
 - https://drive.google.com/drive/folders/0AFkVXjghMVvDUk9PVA
 
