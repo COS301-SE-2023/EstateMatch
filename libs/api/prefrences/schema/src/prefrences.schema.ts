@@ -1,7 +1,6 @@
 import * as mongoose from 'mongoose';
 
 export const PrefrencesSchema = new mongoose.Schema({
-    id : String,
     user : {type: String, required: true},
     budget : Number,
     location : String,
@@ -13,7 +12,6 @@ export const PrefrencesSchema = new mongoose.Schema({
 
 //our model
 export interface PrefrencesModel  {
-    id : string;
     user : string;
     budget : number;
     location : string;

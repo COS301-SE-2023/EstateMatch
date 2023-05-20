@@ -12,7 +12,7 @@ export class PreferencesRepository {
    }
 
     async findOne(id : string) : Promise<PrefrencesModel | null> {
-        const result = await this.prefrencesModel.findById(id).exec();
+        const result = await this.prefrencesModel.findOne({user: id});
         return result ? result.toObject() : null;
     }
 
