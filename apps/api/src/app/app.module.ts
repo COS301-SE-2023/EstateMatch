@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { CoreModule } from '@estate-match/api/core/feature';
 
 @Module({
   imports: [],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [CoreModule],
 })
 export class AppModule {}

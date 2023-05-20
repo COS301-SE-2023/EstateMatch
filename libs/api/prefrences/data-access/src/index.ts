@@ -1,1 +1,2 @@
-export * from './lib/api-prefrences-data-access';
+export * from './preferences.module';
+export * from './preferences.repository';

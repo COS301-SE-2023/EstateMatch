@@ -15,11 +15,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@estate-match/api/core/feature": ["libs/api/core/feature/src/index.ts"],
       "@estate-match/api/prefrences/data-access": [
         "libs/api/prefrences/data-access/src/index.ts"
       ],
       "@estate-match/api/prefrences/feature": [
         "libs/api/prefrences/feature/src/index.ts"
+      ],
+      "@estate-match/api/prefrences/schema": [
+        "libs/api/prefrences/schema/src/index.ts"
       ],
       "@estate-match/api/prefrences/util": [
         "libs/api/prefrences/util/src/index.ts"
