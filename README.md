@@ -27,7 +27,7 @@ This is where any documents that are not in the repository will be stored.
 - Ionic and Angular
 
 #### Backend
-
+- NestJS
 #### Web-Scraper
 - Scrapy
 
