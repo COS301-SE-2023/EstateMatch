@@ -25,9 +25,9 @@ Documentation can be found in the following locations:
         - User Stories 
     - Diagrams 
         - Class Diagram
-        - Use Case Diagrams 
+        - Use Case Diagrams   
     -  Requirements
-        - Functional Requirements
+        - Functional Requirements 
         - Non-Functional Requirements
     - Service Contracts
         - Authentication
