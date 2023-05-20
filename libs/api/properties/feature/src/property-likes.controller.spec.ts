@@ -1,7 +1,7 @@
 import {Test, TestingModule} from '@nestjs/testing';
 
-import {PropertyLikesController} from './property-likes.controller';
-import {PropertyLikesService} from './property-likes.service';
+import {PropertyLikesController} from './properties.controller';
+import {PropertyLikesService} from './properties.service';
 
 describe('PropertyLikesController', () => {
     let app: TestingModule;

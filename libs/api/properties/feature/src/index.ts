@@ -1,3 +1,3 @@
-export * from './property-likes.controller';
-export * from './property-likes.service';
+export * from './properties.controller';
+export * from './properties.service';
 

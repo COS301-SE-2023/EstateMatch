@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
-import { PropertyLikesService } from './property-likes.service';
+import { PropertyLikesService } from './properties.service';
 
 @Controller('PropertyLikes')
 export class PropertyLikesController {
