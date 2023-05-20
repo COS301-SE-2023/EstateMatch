@@ -18,8 +18,8 @@ it easier to search and find your ideal property match.
 - Liam Prinsloo (u20572337)
 
 ### Google Drive Link 
-https://drive.google.com/drive/folders/0AFkVXjghMVvDUk9PVA
 This is where any documents that are not in the repository will be stored.
+- https://drive.google.com/drive/folders/0AFkVXjghMVvDUk9PVA
 
 ## Tech Stack
 
