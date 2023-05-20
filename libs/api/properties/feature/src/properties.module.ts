@@ -3,19 +3,17 @@ import { PropertiesController } from './properties.controller';
 import { PropertiesService } from './properties.service';
 import { CqrsModule } from '@nestjs/cqrs';
 
-// import {
-//   GetPreferencesHandler,
-//   SetPreferencesHandler,
-// } from './commands';
+import {
+    DislikePropertyHandler
+} from './commands';
 
-// export const CommandHandlers = [
-//   GetPreferencesHandler,
-//   SetPreferencesHandler,
-// ];
+export const CommandHandlers = [
+    DislikePropertyHandler
+];
 
 @Module({
   imports: [CqrsModule],
-  providers: [PropertiesService],
+  providers: [PropertiesService, ...CommandHandlers],
   controllers: [PropertiesController],
   exports: [PropertiesService]
 })
