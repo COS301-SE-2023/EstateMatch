@@ -15,6 +15,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@estate-match/api/properties/data-access": [
+        "libs/api/properties/data-access/src/index.ts"
+      ],
+      "@estate-match/api/properties/feature": [
+        "libs/api/properties/feature/src/index.ts"
+      ],
+      "@estate-match/api/properties/util": [
+        "libs/api/properties/util/src/index.ts"
+      ],
       "@estate-match/app/core/data-access": [
         "libs/app/core/data-access/src/index.ts"
       ],
