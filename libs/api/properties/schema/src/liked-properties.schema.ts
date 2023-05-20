@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 
 export const LikedPropertiesSchema = new mongoose.Schema({
-    address: String,
+    address: {type: String, required: true},
     price: Number,
     bedrooms: Number,
     bathrooms: Number,
@@ -9,7 +9,7 @@ export const LikedPropertiesSchema = new mongoose.Schema({
     amenities: [String],
     liked: Boolean
 });
-
+ 
 //our model 
 export interface LikedProperties {
     address: string,
@@ -19,7 +19,7 @@ export interface LikedProperties {
     garages: number,
     amenities: string[],
     liked: boolean
-    
+
 }
 
 
