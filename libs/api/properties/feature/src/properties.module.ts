@@ -17,4 +17,4 @@ export const CommandHandlers = [
   controllers: [PropertiesController],
   exports: [PropertiesService]
 })
-export class PreferenceModule {}
+export class PropertiesModule {}
