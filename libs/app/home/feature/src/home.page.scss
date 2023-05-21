@@ -1,16 +1,16 @@
-ion-card[name="DisplayCard"] {
+div[name="DisplayCard"] {
     height: 450px;
     border-radius: 10%;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
 }
 img[name="HouseImage"]{
-    max-height: 50%;
-    object-fit: cover;
+    max-height: 200px;
+    object-fit: contain;
     object-position: center;
 }
 
-ion-header[name="TopHeader"] {
-    height:5rem;
+p[name="Area"] {
+    font-size: 15px;
 }
 ion-toolbar[name="TopToolBar"] {
     height:min-content;

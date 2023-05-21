@@ -6,13 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage {
-  async LikeHouse(){
-    alert('Dislike button clicked');
+  LikeHouse(){
+    alert('like button clicked');
   }
   DislikeHouse(){
-    alert('Dislike button clicked');
-  }
-  ngOnInit(){
     alert('Dislike button clicked');
   }
 }
