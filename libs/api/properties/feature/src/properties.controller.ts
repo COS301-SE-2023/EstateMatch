@@ -1,6 +1,7 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
 import { PropertiesService } from './properties.service';
 import { IDislikePropertyRequest } from '@estate-match/api/properties/util';
+import { ILikePropertyRequest } from '@estate-match/api/properties/util';
 
 @Controller()
 export class PropertiesController {
@@ -22,5 +23,11 @@ export class PropertiesController {
   @Post('/dislike')
   async dislikeProperty(@Body() property: IDislikePropertyRequest){
     return await this.propertiesService.dislikeProperty(property);
+  }
+
+  @Post('/like')
+  async likeProperty(@Body() property: ILikePropertyRequest)
+  {
+    return await this.propertiesService.likeProperty(property);
   }
 }

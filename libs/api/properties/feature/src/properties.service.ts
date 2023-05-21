@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { DislikePropertyCommand, IDislikePropertyRequest, IDislikePropertyResponse } from '@estate-match/api/properties/util';
+import { LikePropertyCommand, ILikePropertyRequest, ILikePropertyResponse } from '@estate-match/api/properties/util';
 import { CommandBus } from '@nestjs/cqrs';
+
 //import { InjectModel } from '@nestjs/mongoose';
 //import { Model } from 'mongoose';
 //import { Card } from './card.schema';
@@ -45,4 +47,15 @@ export class PropertiesService
           IDislikePropertyResponse
       >(new DislikePropertyCommand(request));
   }
+
+  async likeProperty(
+    request: ILikePropertyRequest
+  ): Promise<ILikePropertyResponse> {
+      return await this.commandBus.execute<
+          LikePropertyCommand,
+          ILikePropertyResponse
+      >(new LikePropertyCommand(request));
+  }
+
+
 }

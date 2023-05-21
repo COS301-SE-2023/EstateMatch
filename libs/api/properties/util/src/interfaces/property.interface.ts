@@ -1,4 +1,5 @@
 export interface IProperty{
+    user: string,
     address: string,
     price: number,
     bedrooms: number,
