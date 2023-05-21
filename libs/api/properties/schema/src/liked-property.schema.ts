@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-export const LikedPropertiesSchema = new mongoose.Schema({
+export const LikedPropertySchema = new mongoose.Schema({
     address: {type: String, required: true},
     price: Number,
     bedrooms: Number,
@@ -11,7 +11,7 @@ export const LikedPropertiesSchema = new mongoose.Schema({
 });
  
 //our model 
-export interface LikedProperties {
+export interface LikedPropertyModel {
     address: string,
     price: number,
     bedrooms: number,
