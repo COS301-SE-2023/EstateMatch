@@ -5,31 +5,32 @@
     <link rel="stylesheet" href="home.page.scss">
   </head>
 
-<body>  
-<ion-header collapse="condense">
+  <header>
     <ion-toolbar>
       <ion-title>Estate Match</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </header>
 
-    <ion-card name="DisplayCard">
-        <img name="HouseImage" src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg" />
-        <ion-card-header>
-          <ion-card-title>Ballito, KZN</ion-card-title>
-        </ion-card-header>
-      
-        <ion-card-content>
-          Here's a small text description for the card content. Nothing more, nothing less.
-        </ion-card-content>
-      </ion-card>
-    <div id="button-container" style="margin: 0 auto; text-align:center;">
-      <button style="background-color:#67C390; height:50px; border-color: #67C390;border-radius: 100%; width:50px;">
-        <span style="font-size: 1.5em; color:white">
+<body>  
+
+  <div name="OwnCard">
+  <div name="CardImageholder">
+    <img name="HouseMainImage" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.thehousedesigners.com%2Fmodern-house-plans%2F&psig=AOvVaw1nIAho9779NQpxWxv2n-kY&ust=1684771644173000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPjC5czlhv8CFQAAAAAdAAAAABAI">
+  </div>
+  <div name="CardTextHolder">
+    text here
+  </div>
+  </div>
+
+    <div id="button-container" style="text-align:center;">
+      <button onClick="LikeHouse" style="background-color:#67C390; height:60px; border-color: #67C390;border-radius: 100%; width:60px;">
+        <span style="font-size: 1.7em; color:white">
         <i class="fas fa-heart"></i>
       </span>
-      </button> 
-      <button style="background-color:#F0422A; height:50px; border-color:#F0422A ;border-radius: 100%; width:50px;">
-        <span style="font-size: 1.5em; color:white">
+      </button>
+      &nbsp;
+      <button onClick="DislikeHouse" style="background-color:#F0422A; height:60px; border-color:#F0422A ;border-radius: 100%; width:60px;">
+        <span style="font-size: 1.7em; color:white">
           <i class="fas fa-times"></i>
       </span>
       </button>
@@ -40,23 +41,39 @@
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="tab1">
+        <span style="font-size: 1.3em; color:rgb(118, 148, 238)">
         <i class="fas fa-home fa-lg"></i>
+        </span>
+        <span style="font-size:1.5em; color:rgb(118, 148, 238)">
         <ion-label>Home</ion-label>
+      </span>
       </ion-tab-button>
   
       <ion-tab-button tab="tab2">
-        <i class="fas fa-search fa-lg"></i>
-        <ion-label>Search</ion-label>
+        <span style="font-size: 1.3em;">
+          <i class="fas fa-search fa-lg"></i>
+          </span>
+          <span style="font-size:1.5em;">
+          <ion-label>Search</ion-label>
+        </span>
       </ion-tab-button>
   
       <ion-tab-button tab="tab3">
-        <i class="fas fa-star fa-lg"></i>
-        <ion-label>Liked</ion-label>
+        <span style="font-size: 1.3em;">
+          <i class="fas fa-star fa-lg"></i>
+          </span>
+          <span style="font-size:1.5em;">
+          <ion-label>Liked</ion-label>
+        </span>
       </ion-tab-button>
   
       <ion-tab-button tab="tab4">
-        <i class="fas fa-user fa-lg"></i>
-        <ion-label>Profile</ion-label>
+        <span style="font-size: 1.3em;">
+          <i class="fas fa-user fa-lg"></i>
+          </span>
+          <span style="font-size:1.5em;">
+          <ion-label>Profile</ion-label>
+          </span>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs> 
