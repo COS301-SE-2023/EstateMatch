@@ -1,13 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 
-import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
   @Get()
-  getData() {
-    return this.appService.getData();
+  getData(){
+    return 'Hello EstateMatch...';
   }
+  // constructor(private readonly appService: AppService) {}
+
+  // @Get()
+  // getData() {
+  //   const response = { preference:  setPreference('My initial preference'), updatePreference: updatePreference('My updated preference') };
+  //   return response;
+  // }
 }
