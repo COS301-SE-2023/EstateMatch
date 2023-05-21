@@ -18,7 +18,7 @@
   <div style="padding-left: 50px;border-style: solid; border-radius: 10px;width: 750px;">
       <ion-grid>
           <ion-row>            
-            <ion-input label="Areas:" type="number" placeholder="Enter area here"></ion-input>                             
+            <ion-input label="Area:" type="text" [(ngModel)]="area" placeholder="Enter area here"></ion-input>                             
           </ion-row>               
       </ion-grid>
   </div>
@@ -31,7 +31,7 @@
             <ion-list>
               <ion-list>
                 <ion-item>
-                  <ion-input label="Budget: R" type="number" placeholder="0.00"></ion-input>
+                  <ion-input label="Budget: R" type="number" placeholder="0.00" [(ngModel)]="budget"></ion-input>
                 </ion-item>               
               </ion-list>
             </ion-list>
@@ -46,15 +46,15 @@
       <ion-grid>
           <ion-row>
           
-             <ion-col> <ion-input class="input" label="Bedrooms: " type="number" placeholder="0.00"></ion-input></ion-col>
-             <ion-col><ion-input label="Bathroom: " type="number" placeholder="0.00"></ion-input></ion-col>
-             <ion-col><ion-input label="Garage: " type="text" placeholder="Enter text here"></ion-input></ion-col>
+             <ion-col> <ion-input class="input" label="Bedrooms: " type="number" placeholder="0" [(ngModel)]="bedrooms"></ion-input></ion-col>
+             <ion-col><ion-input label="Bathroom: " type="number" placeholder="0" [(ngModel)]="bathrooms"></ion-input></ion-col>
+             <ion-col><ion-input label="Garage: " type="number" placeholder="0" [(ngModel)]="garages"></ion-input></ion-col>
           
           </ion-row>
 
           <ion-row>
-            <ion-col><ion-input label="Pet-Friendly: " type="text" placeholder="Enter text here"></ion-input></ion-col>
-            <ion-col><ion-input label="Extra: " type="text" placeholder="Enter text here"></ion-input></ion-col>
+            <!-- <ion-col><ion-input label="Pet-Friendly: " type="text" placeholder="Enter text here"></ion-input></ion-col> -->
+            <ion-col><ion-input label="Extra: " type="text" placeholder="Enter text here" [(ngModel)]="extras"></ion-input></ion-col>
             <ion-col></ion-col>
           </ion-row>
           
@@ -63,7 +63,7 @@
   </div>
 </div>
 
-<ion-button class="buttons" color="dark" fill="outline" style="padding-left: 42%;">Set Preferences</ion-button>
+<ion-button (click)="setPreferences()" class="buttons" color="dark" fill="outline" style="padding-left: 42%;">Set Preferences</ion-button>
 
 
 
