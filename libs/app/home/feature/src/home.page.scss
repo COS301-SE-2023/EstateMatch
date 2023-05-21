@@ -1,10 +1,10 @@
 ion-card[name="DisplayCard"] {
-    height: 65%;
+    height: 450px;
     border-radius: 10%;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
 }
-
 img[name="HouseImage"]{
-    height: 70%;
+    max-height: 50%;
     object-fit: cover;
     object-position: center;
 }
@@ -15,3 +15,23 @@ ion-header[name="TopHeader"] {
 ion-toolbar[name="TopToolBar"] {
     height:min-content;
 }
+button[name="Like"]{
+    padding-right: 10%;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color:#67C390;
+    border-color: #67C390;
+}
+button[name="Dislike"]{
+    border-color: #F0422A;
+    padding-left: 15px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #F0422A;
+}
+ion-label{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+
