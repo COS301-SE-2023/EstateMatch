@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head><link rel="stylesheet" href="home.page.scss"></head>
+  <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="home.page.scss">
+  </head>
 
 <body>  
 <ion-header collapse="condense">
@@ -20,8 +23,16 @@
         </ion-card-content>
       </ion-card>
     <div id="button-container" style="margin: 0 auto; text-align:center;">
-      <button name = "Like" id = "Like"></button> 
-      <button name = "Dislike" id = "Dislike"></button>
+      <button style="background-color:#67C390; height:50px; border-color: #67C390;border-radius: 100%; width:50px;">
+        <span style="font-size: 1.5em; color:white">
+        <i class="fas fa-heart"></i>
+      </span>
+      </button> 
+      <button style="background-color:#F0422A; height:50px; border-color:#F0422A ;border-radius: 100%; width:50px;">
+        <span style="font-size: 1.5em; color:white">
+          <i class="fas fa-times"></i>
+      </span>
+      </button>
     </div> 
   </body>
 
@@ -29,22 +40,22 @@
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="tab1">
-        <ion-icon aria-hidden="true" name="home"></ion-icon>
+        <i class="fas fa-home fa-lg"></i>
         <ion-label>Home</ion-label>
       </ion-tab-button>
   
       <ion-tab-button tab="tab2">
-        <ion-icon aria-hidden="true" name="search"></ion-icon>
+        <i class="fas fa-search fa-lg"></i>
         <ion-label>Search</ion-label>
       </ion-tab-button>
   
       <ion-tab-button tab="tab3">
-        <ion-icon aria-hidden="true" name="bookmark"></ion-icon>
+        <i class="fas fa-star fa-lg"></i>
         <ion-label>Liked</ion-label>
       </ion-tab-button>
   
       <ion-tab-button tab="tab4">
-        <ion-icon aria-hidden="true" name="person"></ion-icon>
+        <i class="fas fa-user fa-lg"></i>
         <ion-label>Profile</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
