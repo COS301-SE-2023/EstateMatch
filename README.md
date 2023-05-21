@@ -32,7 +32,7 @@ Documentation can be found in the following locations:
     - Service Contracts
         - Authentication
         - Profile
-        - Preferences
+        - Preferences  
         - Property
         - Liked Properties
     - Subsystems
