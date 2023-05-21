@@ -1,0 +1,17 @@
+ion-card[name="DisplayCard"] {
+    height: 65%;
+    border-radius: 10%;
+}
+
+img[name="HouseImage"]{
+    height: 70%;
+    object-fit: cover;
+    object-position: center;
+}
+
+ion-header[name="TopHeader"] {
+    height:5rem;
+}
+ion-toolbar[name="TopToolBar"] {
+    height:min-content;
+}
