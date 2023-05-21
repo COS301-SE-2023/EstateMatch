@@ -4,6 +4,8 @@ name: MainTests
 on:
  push:
   branches: [ main, development ]
+ pull_request:
+  branches: [ main, development ]
 
 jobs:
   test:
@@ -43,5 +45,5 @@ jobs:
         uses: codecov/codecov-action@v3.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./main/coverage/
+        
         
