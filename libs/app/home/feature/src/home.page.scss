@@ -1,18 +1,12 @@
-div[name="OwnCard"]{
+ion-card[name="DisplayCard"] {
     height: 450px;
-    width: 90%;
     border-radius: 10%;
-    border-color: black;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
 }
-div[name="CardImageholder"]{
-    height:300px;
+img[name="HouseImage"]{
+    max-height: 50%;
     object-fit: cover;
     object-position: center;
-}
-
-div[name="CardTextHolder"] {
-    max-height: 50px; 
 }
 
 ion-header[name="TopHeader"] {

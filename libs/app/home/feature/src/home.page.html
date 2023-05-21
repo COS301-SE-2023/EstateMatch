@@ -13,28 +13,38 @@
 
 <body>  
 
-  <div name="OwnCard">
-  <div name="CardImageholder">
-    <img name="HouseMainImage" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.thehousedesigners.com%2Fmodern-house-plans%2F&psig=AOvVaw1nIAho9779NQpxWxv2n-kY&ust=1684771644173000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPjC5czlhv8CFQAAAAAdAAAAABAI">
-  </div>
-  <div name="CardTextHolder">
-    text here
-  </div>
-  </div>
-
+    <ion-card name="DisplayCard">
+        <img name="HouseImage" src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg" />
+        <ion-card-header>
+          <ion-card-title>Ballito, KZN</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content name="CardDescription">
+          Here's a small text description for the card content. Nothing more, nothing less.
+        </ion-card-content>
+      </ion-card>
     <div id="button-container" style="text-align:center;">
-      <button onClick="LikeHouse" style="background-color:#67C390; height:60px; border-color: #67C390;border-radius: 100%; width:60px;">
+      <button id="like-button" onclick = "LikeHouse()" style="background-color:#67C390; height:60px; border-color: #67C390;border-radius: 100%; width:60px;">
         <span style="font-size: 1.7em; color:white">
         <i class="fas fa-heart"></i>
       </span>
       </button>
       &nbsp;
-      <button onClick="DislikeHouse" style="background-color:#F0422A; height:60px; border-color:#F0422A ;border-radius: 100%; width:60px;">
+      <button id="dislike-button" style="background-color:#F0422A; height:60px; border-color:#F0422A ;border-radius: 100%; width:60px;">
         <span style="font-size: 1.7em; color:white">
           <i class="fas fa-times"></i>
       </span>
       </button>
     </div> 
+
+    <script>
+      function LikeHouse(){
+
+      }
+      function LikeHouse(){
+        
+      }
+    </script>
   </body>
 
   <footer>  
