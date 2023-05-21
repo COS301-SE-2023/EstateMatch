@@ -9,14 +9,16 @@ describe('AppController', () => {
   let app: TestingModule;
   let controller: PreferenceController;
   let service: PreferenceService;
+  let commandBusMock: { execute: jest.Mock };
 
   beforeAll(async () => {
+    commandBusMock = { execute: jest.fn() };
     app = await Test.createTestingModule({
       controllers: [PreferenceController],
       providers: [PreferenceService,
         {
             provide: CommandBus,
-            useValue: {},
+            useValue: commandBusMock,
         }],
     }).compile();
 
