@@ -4,11 +4,13 @@ import { PropertiesService } from './properties.service';
 import { CqrsModule } from '@nestjs/cqrs';
 
 import {
-    DislikePropertyHandler
+    DislikePropertyHandler,
+    LikePropertyHandler
 } from './commands';
 
 export const CommandHandlers = [
-    DislikePropertyHandler
+    DislikePropertyHandler,
+    LikePropertyHandler
 ];
 
 @Module({
