@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/COS301-SE-2023/EstateMatch/branch/main/graph/badge.svg?token=M20C3A1SU1)](https://codecov.io/gh/COS301-SE-2023/EstateMatch)
+
 # Welcome to EstateMatch
 EstateMatch is a mobile application that uses a web-scraper to find Real Estate, sort it using
 AI, and display it to the user based on their preferences using a Tinder type design, making
