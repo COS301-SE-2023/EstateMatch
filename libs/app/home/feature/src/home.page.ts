@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Response } from '@nestjs/common';
+import { ToastController } from '@ionic/angular';
 
 interface Property {
   user: string;
@@ -19,7 +19,8 @@ interface Property {
 })
 
 export class HomePage {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    private toastController: ToastController) {}
   properties: Property[] = [
     {
       user: 'Jack Daniels',
@@ -72,16 +73,20 @@ export class HomePage {
 
   currentDescriptionIndex = 0;
 
-  likeHouse() { 
+  async likeHouse() { 
     const url = 'api/like';
 
 
     const currProperty = this.properties[this.currentDescriptionIndex];
     currProperty.liked = true;
+    const body = {
+      property: currProperty
+    }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.http.post(url, currProperty, { headers }).subscribe((response) => {
-      console.log(response);
+    this.http.post(url, body, { headers }).subscribe((response) => {
+      console.log('success');
     });
+    await this.makeToast('Property Liked');
     console.log(this.properties[this.currentDescriptionIndex]);
 
 
@@ -91,19 +96,32 @@ export class HomePage {
     }
   }
 
-  dislikeHouse() {
+  async dislikeHouse() {
     const url = 'api/dislike';
     const currProperty = this.properties[this.currentDescriptionIndex];
     currProperty.liked = false;
+    const body = {
+      property: currProperty
+    }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.http.post(url, currProperty, { headers }).subscribe((response) => {
-      console.log(response);
+    this.http.post(url, body, { headers }).subscribe((response) => {
+      console.log('success');
     });
     console.log(this.properties[this.currentDescriptionIndex]);
+    await this.makeToast('Property Disliked');
     this.currentDescriptionIndex++;
     if (this.currentDescriptionIndex >= this.descriptions.length) {
       this.currentDescriptionIndex = 0;
     }
+  }
+
+  async makeToast(message: any){
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      position: 'top',
+    })
+    toast.present();
   }
 }
 
