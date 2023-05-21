@@ -2,7 +2,8 @@ name: MainTests
 
 # Controls when the workflow will run
 on:
- [push]
+ push:
+  branches: [ main, development ]
 
 jobs:
   test:
@@ -31,10 +32,6 @@ jobs:
       - name: Install packages
         run: yarn install
 
-      # - name: Wait for containers startup
-      #   run: sleep 2m
-      #   shell: bash
-
       #Run tests on the entire repository
       - name: Test
         run: |
@@ -42,3 +39,9 @@ jobs:
         #yarn nx run-many --target=build --all --skip-nx-cacahe --parallel
         #yarn nx run-many --target=lint --all --skip-nx-cache --parallel
         #yarn nx run-many --target=e2e --all --skip-nx-cache --parallel --coverage
+      - name: Codecov
+        uses: codecov/codecov-action@v3.1.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./main/coverage/
+        
