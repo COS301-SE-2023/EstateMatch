@@ -36,7 +36,7 @@ jobs:
 
       #Run tests on the entire repository
       - name: Test
-        working-directory: ./main/
+        working-directory: main/
         run: |
           yarn nx run-many --target=test --all --skip-nx-cache --parallel --coverage
           yarn nx run-many --target=lint --all --skip-nx-cache --parallel
@@ -45,6 +45,6 @@ jobs:
         uses: codecov/codecov-action@v3.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./main/coverage/
+          directory: main/coverage/
         
         
