@@ -12,7 +12,7 @@ export const LikedPropertiesSchema = new mongoose.Schema({
 });
  
 //our model 
-export interface LikedProperties {
+export interface LikedPropertiesModel {
     user: string,
     address: string,
     price: number,
