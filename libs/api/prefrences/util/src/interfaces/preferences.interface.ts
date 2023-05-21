@@ -1,5 +1,4 @@
 export interface IPreference {
-    id: string;
     user: string;
     location: string;
     budget: number;

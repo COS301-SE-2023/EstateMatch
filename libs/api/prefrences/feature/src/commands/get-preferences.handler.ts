@@ -1,11 +1,11 @@
-//import { PreferenceRepository } from '@estate-match/api/prefrences/data-access';
+import { PreferencesRepository } from '@estate-match/api/prefrences/data-access';
 import { GetPreferencesCommand, IGetPreferencesResponse } from "@estate-match/api/prefrences/util";
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 
 @CommandHandler(GetPreferencesCommand)
 export class GetPreferencesHandler implements ICommandHandler<GetPreferencesCommand, IGetPreferencesResponse> {
     constructor(
-        //private readonly repository: PreferenceRepository,
+        private readonly repository: PreferencesRepository,
         private readonly publisher: EventPublisher
     ) {}
 
@@ -14,5 +14,6 @@ export class GetPreferencesHandler implements ICommandHandler<GetPreferencesComm
         const user = request.user;  
 
         //ready to query database
+        return this.repository.findOne(user);
     }
 }

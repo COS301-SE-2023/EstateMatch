@@ -13,11 +13,7 @@ export class SetPreferencesHandler implements ICommandHandler<SetPreferencesComm
     async execute(command: SetPreferencesCommand): Promise<any> {
         const request = command.request;
         const preferences = request.preferences; 
-        console.log(preferences); 
-        return this.repository.create(preferences);
-
-        
-        
+        return this.repository.create(preferences); 
     }
 
     //ready to query database
