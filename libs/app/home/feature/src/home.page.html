@@ -13,26 +13,28 @@
 
 <body>  
 
-    <div name="DisplayCard" id="DisplayCard">
-        <img name="HouseImage" id="HouseImage" src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg" />
-        <p name="Area" id="Area">
-          <title>Ballito, KZN</title>
-        </p>
-      
-        <p name="CardDescription" id="CardDescription">
-          Here's a small text description for the card content. Nothing more, nothing less.
-        </p>
-      </div> 
+  <ion-card name="DisplayCard">
+    <img name="HouseImage" src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg" />
+    <ion-card-header>
+      <ion-card-title>
+        {{ area[currentDescriptionIndex] }}
+      </ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content name="CardDescription" id="CardDescription">
+      {{ descriptions[currentDescriptionIndex] }}
+    </ion-card-content>
+  </ion-card>
   </body>
 
   <div id="button-container" style="text-align:center;">
-    <button id="like-button" (click) = "LikeHouse()" style="background-color:#67C390; height:60px; border-color: #67C390;border-radius: 100%; width:60px;">
+    <button id="like-button" (click) = "likeHouse()" style="background-color:#67C390; height:60px; border-color: #67C390;border-radius: 100%; width:60px;">
       <span style="font-size: 1.7em; color:white">
       <i class="fas fa-heart"></i>
     </span>
     </button>
     &nbsp;
-    <button id="dislike-button" (click) = "DislikeHouse()" style="background-color:#F0422A; height:60px; border-color:#F0422A ;border-radius: 100%; width:60px;">
+    <button id="dislike-button" (click) = "dislikeHouse()" style="background-color:#F0422A; height:60px; border-color:#F0422A ;border-radius: 100%; width:60px;">
       <span style="font-size: 1.7em; color:white">
         <i class="fas fa-times"></i>
     </span>
