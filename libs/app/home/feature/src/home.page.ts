@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Response } from '@nestjs/common';
 
 interface Property {
   user: string;
@@ -18,7 +19,7 @@ interface Property {
 })
 
 export class HomePage {
-
+  constructor(private http: HttpClient) {}
   properties: Property[] = [
     {
       user: 'Jack Daniels',
@@ -72,14 +73,15 @@ export class HomePage {
   currentDescriptionIndex = 0;
 
   likeHouse() { 
-    // if(this.currentDescriptionIndex == 0){
-    //   console.log(this.properties[0]);
-    // }else{
-    //   console.log(this.properties[this.currentDescriptionIndex - 1]);
-    // }
+    const url = 'api/like';
+
 
     const currProperty = this.properties[this.currentDescriptionIndex];
     currProperty.liked = true;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http.post(url, currProperty, { headers }).subscribe((response) => {
+      console.log(response);
+    });
     console.log(this.properties[this.currentDescriptionIndex]);
 
 
@@ -90,8 +92,13 @@ export class HomePage {
   }
 
   dislikeHouse() {
+    const url = 'api/dislike';
     const currProperty = this.properties[this.currentDescriptionIndex];
     currProperty.liked = false;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http.post(url, currProperty, { headers }).subscribe((response) => {
+      console.log(response);
+    });
     console.log(this.properties[this.currentDescriptionIndex]);
     this.currentDescriptionIndex++;
     if (this.currentDescriptionIndex >= this.descriptions.length) {
