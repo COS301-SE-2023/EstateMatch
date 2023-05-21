@@ -20,7 +20,6 @@ export class PreferencesPage {
   async setPreferences() {
     const url = 'api/setPreferences';
     const extras = this.extras.split(',');
-    console.log(extras);
     const body = {
       preferences:{
         user: 'Jack Daniels',
