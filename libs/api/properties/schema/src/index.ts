@@ -1,1 +1,1 @@
-export * from './liked-properties.schema';
+export * from './liked-property.schema';
