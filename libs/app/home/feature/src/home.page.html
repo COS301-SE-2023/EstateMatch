@@ -14,17 +14,15 @@
 <body>  
 
   <ion-card name="DisplayCard">
-    <img name="HouseImage" src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg" />
+    <img name="HouseImage" [src]="images[currentDescriptionIndex]" />
     <ion-card-header>
-      <ion-card-title>
-        {{ area[currentDescriptionIndex] }}
-      </ion-card-title>
+      <ion-card-title>{{ area[currentDescriptionIndex] }}</ion-card-title>
     </ion-card-header>
-  
     <ion-card-content name="CardDescription" id="CardDescription">
       {{ descriptions[currentDescriptionIndex] }}
     </ion-card-content>
   </ion-card>
+  
   </body>
 
   <div id="button-container" style="text-align:center;">
