@@ -1,5 +1,13 @@
 
 .header {
+    padding-left: 50%; 
+    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-bottom: 20px; 
+    
+}
+
+.header2 {
     padding-left: 5%; 
     padding-top: 5px;
     padding-bottom: 10px;
@@ -34,8 +42,9 @@
 .dropdown{
     padding-left: 5%; 
     padding-top: 5px; 
+    padding-bottom: 10px;
     width: 200px;
-    margin: auto;
+    // margin: auto;
 }
 
 .labels{
@@ -45,5 +54,5 @@
 .body{
     background-color: rgb(15, 82, 186);
     color: white;
-    height: 70%;
+    height: 75%;
 }

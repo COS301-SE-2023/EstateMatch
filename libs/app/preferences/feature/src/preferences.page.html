@@ -5,7 +5,7 @@
 
 
 
-<div class="header">
+<div class="header2">
   <div class="title">
       <h1>Estate Match</h1>
   </div>
@@ -22,8 +22,12 @@
   <div style="padding-left: 5%; padding-top: 5px;">
     <div style="height: 100px;text-align: center;width: 95%; border-radius: 5px;">
         <ion-grid>
-            <ion-row>            
-              <ion-input label="Area:" type="text" [(ngModel)]="area" placeholder="Enter area here"></ion-input>                             
+            <ion-row>   
+              <ion-col>        
+                <ion-input label="Area:" type="text" [(ngModel)]="area" placeholder="Enter area here"></ion-input>    
+              </ion-col> 
+              <ion-col></ion-col>  
+              <ion-col></ion-col>                       
             </ion-row>               
         </ion-grid>
     </div>
@@ -132,7 +136,7 @@
 
 
   <div style="padding-left: 5%; padding-top: 5px;">
-    <div style="height: 100px;text-align: center;width: 95%; border-radius: 5px;">
+    <div style="height: 100px;width: 95%; border-radius: 5px;">
         <ion-grid>
             <ion-row>
             
@@ -170,8 +174,9 @@
             </ion-row>
 
             <ion-row>
-              <!-- <ion-col><ion-input label="Pet-Friendly: " type="text" placeholder="Enter text here"></ion-input></ion-col> -->
+              
               <ion-col><ion-input label="Extra: " type="text" placeholder="Enter text here" [(ngModel)]="extras"></ion-input></ion-col>
+              <ion-col></ion-col>
               <ion-col></ion-col>
             </ion-row>
             
