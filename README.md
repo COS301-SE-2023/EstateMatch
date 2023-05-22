@@ -3,16 +3,17 @@
 ![GitHub issues](https://img.shields.io/github/issues/COS301-SE-2023/EstateMatch)
 
 #  TeamBlue
-# EstateMatch
+## EstateMatch
 EstateMatch is a mobile application that uses a web-scraper to find Real Estate, sort it using
 AI, and display it to the user based on their preferences using a Tinder type design, making
 it easier to search and find your ideal property match.
 
-#### Team Contact
+## Meet the Team
+
+### Team Contact
 - teamblue.cos301@gmail.com
 
-### Meet the Team
-#### Project Manager
+### Project Manager
 <details><summary>Daniël van Zyl (u21446459)</summary><br>
 <p>
 Daniël is a BSC Computer Science student with a special interest in AI and security. He also likes maths and doesn't mind spending time solving more complex problems. He has experience working with C++, Java, JavaScript, nodeJS, Angular and Ionic, Python and TypeScript. He is a hard worker and is always willing to walk the extra mile to master any given task. Although he prefers working on the backend, he finds working on front ends refreshing. He can find group work challenging but is always happy to have team members to assist when needed.
@@ -26,7 +27,7 @@ Daniël is a BSC Computer Science student with a special interest in AI and secu
 </details>
 
 
-#### Developers
+### Developers
 <details><summary>Adam Osborne (u21529583)</summary><br>
 <p>
 Adam is a BSC Computer Science student. He finds that he easily fits into groups and works well with others. He puts a lot of effort into anything he does. He has worked with Java, C++ and Python. He is proficient in either language and finds that backend is his strong suit. He has worked with Ionic and Angular but spent more time improving his backend skills. He is a quick learner and picks up new technologies quite quickly.
@@ -76,12 +77,12 @@ Liam is a BSc Computer Science student. All the way through he loved doing the b
 </details>
 
 ## Documentation
-#### Software Requirements Specification
+### Software Requirements Specification
 <a href="https://docs.google.com/document/d/1IPPo0ORLdAqlDpaK2BRLdt88pe27UXzoNSb_TqKFMJ8/edit#heading=h.y9ikcpqx8cfk">SRSv1</a>
 
 ## Project Management
-#### Github Boards
-<a href="https://github.com/orgs/COS301-SE-2023/projects/31">Documentation Board</a>
+### Github Boards
+<a href="https://github.com/orgs/COS301-SE-2023/projects/31">Documentation Board</a><br>
 <a href="https://github.com/orgs/COS301-SE-2023/projects/40/views/1">Development Board</a>
 
 
