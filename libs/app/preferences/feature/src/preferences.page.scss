@@ -1,14 +1,18 @@
+
 .header {
     text-align: center;
     font-size: 30px;
 }
 
 .buttons{
-    
-    color: black;
-    border-color: black;
     height: 30px;
-    padding-top: 10px;
+    color: white;
+    background-color: #F0422A;
+}
+
+.buttonDiv{
+    padding-left: 42%;
+    padding-top: 50px;
 }
 
 .header4{
@@ -16,3 +20,18 @@
     border-radius: 5px;
 }
 
+.dropdown{
+    padding-left: 5%; 
+    padding-top: 5px; 
+    width: 200px;
+}
+
+.dropdownColor{
+    --ion-color-primary:blue;
+}
+
+.body{
+    background-color: rgb(15, 82, 186);
+    color: white;
+    height: 70%;
+}
