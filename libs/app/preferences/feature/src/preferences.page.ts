@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'ms-preferences-page',
   templateUrl: './preferences.page.html',

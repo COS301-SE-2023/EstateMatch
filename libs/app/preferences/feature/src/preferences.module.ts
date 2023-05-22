@@ -5,8 +5,11 @@ import { IonicModule } from '@ionic/angular';
 import { PreferencesPage } from './preferences.page';
 import { PreferencesRouting } from './preferences.routing';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 @NgModule({
-  imports: [CommonModule, IonicModule, PreferencesRouting],
+  imports: [CommonModule, IonicModule, PreferencesRouting, FormsModule,ReactiveFormsModule],
   declarations: [PreferencesPage],
 })
 
