@@ -1,119 +1,96 @@
 import { Test, TestingModule } from '@nestjs/testing';
-
-import { Pr}
-import { PreferenceService } from './preferences.service';
-import { IGetPreferencesRequest, IGetPreferencesResponse, ISetPreferencesRequest } from '@estate-match/api/prefrences/util';
+import { PropertiesController } from './properties.controller';
+import { PropertiesService } from './properties.service';
+import { IDislikePropertyRequest, IDislikePropertyResponse, ILikePropertyRequest, ILikePropertyResponse } from '@estate-match/api/properties/util';
+import { IProperty } from '@estate-match/api/properties/util';
 import { CommandBus } from '@nestjs/cqrs';
 
-describe('PreferenceController', () => {
+describe('PropertiesController', () => {
   let app: TestingModule;
-  let controller: PreferenceController;
-  let service: PreferenceService;
+  let controller: PropertiesController;
+  let service: PropertiesService;
   let commandBusMock: { execute: jest.Mock };
 
   beforeAll(async () => {
     commandBusMock = { execute: jest.fn() };
     app = await Test.createTestingModule({
-      controllers: [PreferenceController],
-      providers: [PreferenceService,
+      controllers: [PropertiesController],
+      providers: [PropertiesService,
         {
             provide: CommandBus,
             useValue: commandBusMock,
         }],
     }).compile();
 
-    controller = app.get<PreferenceController>(PreferenceController);
-    service = app.get<PreferenceService>(PreferenceService);
+    controller = app.get<PropertiesController>(PropertiesController);
+    service = app.get<PropertiesService>(PropertiesService);
   });
 
   describe('getData', () => {
-    it('It should call service.getPreferences with the provided user', async () => {
-      const user: IGetPreferencesRequest = {
-        user: 'test',
-      };
-
-      const getPreferencesSpy = jest.spyOn(service, 'getPreferences');
-
-      await controller.getData(user);
-
-      expect(getPreferencesSpy).toHaveBeenCalledWith(user);
+    it('should return "Likes and dislikes api"', () => {
+      const propertiesController = app.get<PropertiesController>(PropertiesController);
+      expect(propertiesController.getData()).toEqual({ message: 'Likes and dislikes api' });
     });
+  });
 
-    it('It should return the preferences of the user', async () => {
-      const user: IGetPreferencesRequest = {
+  describe('dislikeProperty', () => {
+    it('should call propertiesService.dislikeProperty with the provided property and return the result', async () => {
+      const property: IProperty = {
+        // Fill in the necessary properties of the dislike property object
+        // For example:
         user: 'test',
+        address: 'test address',
+        price: 100000,
+        bedrooms: 2,
+        bathrooms: 1,
+        garages: 1,
+        amenities: ['gym', 'pool'],
+        liked: false,
       };
 
+      const request: IDislikePropertyRequest = {
+        property: property,
+      };
 
-      const expectedResult: IGetPreferencesResponse = {
-        preferences: {
-            user: 'test',
-            location: 'test',
-            budget: 1000,
-            bedrooms: 1,
-            bathrooms: 1,
-            garages: 1,
-            extras: []
-        }
-      }
+      const expectedResult: IDislikePropertyResponse = {
+        message: 'property disliked',
+      };
 
-      jest.spyOn(service, 'getPreferences').mockResolvedValue(expectedResult);
+      jest.spyOn(service, 'dislikeProperty').mockResolvedValue(expectedResult);
 
-      const result = await controller.getData(user);
+      const result = await controller.dislikeProperty(request);
 
+      
       expect(result).toEqual(expectedResult);
     });
   });
 
-  describe('postData', () => {
-    it('It should call service.setPreferences with the provided preferences', async () => {
-      const preferences: ISetPreferencesRequest = {
-        preferences: {
-            user: 'test',
-            location: 'test',
-            budget: 1000,
-            bedrooms: 1,
-            bathrooms: 1,
-            garages: 1,
-            extras: []
-        }
+  describe('likeProperty', () => {
+    it('should call propertiesService.likeProperty with the provided property and return the result', async () => {
+      const property: IProperty = {
+        user: 'test',
+        address: 'test address',
+        price: 100000,
+        bedrooms: 2,
+        bathrooms: 1,
+        garages: 1,
+        amenities: ['gym', 'pool'],
+        liked: true,
       };
 
-      const setPreferencesSpy = jest.spyOn(service, 'setPreferences');
-
-      await controller.postData(preferences);
-
-      expect(setPreferencesSpy).toHaveBeenCalledWith(preferences);
-    });
-
-    it('It should return the added preference', async () => {
-      const preferences: ISetPreferencesRequest = {
-        preferences: {
-            user: 'test',
-            location: 'test',
-            budget: 1000,
-            bedrooms: 1,
-            bathrooms: 1,
-            garages: 1,
-            extras: []
-        }
+      const request: ILikePropertyRequest = {
+        property: property,
       };
 
-      const expectedResult = {
-        preferences: {
-            user: 'test',
-            location: 'test',
-            budget: 1000,
-            bedrooms: 1,
-            bathrooms: 1,
-            garages: 1,
-            extras: []
-        }
-      }
+      const expectedResult: ILikePropertyResponse = {
+        message: 'property liked',
+      };
 
-      jest.spyOn(service, 'setPreferences').mockResolvedValue(expectedResult);
+    
 
-      const result = await controller.postData(preferences);
+      jest.spyOn(service, 'likeProperty').mockResolvedValue(expectedResult);
+
+      const result = await controller.likeProperty(request);
 
       expect(result).toEqual(expectedResult);
     });
