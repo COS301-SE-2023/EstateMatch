@@ -14,6 +14,6 @@ export class LikedPropertiesRepository {
     }
 
     async getLikedProperties() : Promise<LikedPropertiesModel[]> {
-        return this.likedPropertiesModel.find({liked: false}).exec();
+        return this.likedPropertiesModel.find({liked: true}).exec();
     }
 }

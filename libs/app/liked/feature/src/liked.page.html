@@ -13,12 +13,12 @@
 
 <body>  
 
-  <ion-card name="DisplayCard">
+  <ion-card name="DisplayCard" *ngFor="let property of likedProperties">
     <ion-card-header>
-      <ion-card-title>Liked Property</ion-card-title>
+      <ion-card-title>{{property.address}}</ion-card-title>
     </ion-card-header>
     <ion-card-content name="CardDescription" id="CardDescription">
-      Some description
+      R {{property.price}}
     </ion-card-content>
   </ion-card>
   
