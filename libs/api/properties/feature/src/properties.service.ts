@@ -58,9 +58,16 @@ export class PropertiesService
       >(new LikePropertyCommand(request));
   }
 
-  async getLikedProperties(
+  async getlikeProperty(
     request: IGetLikedPropertiesRequest
-  ); Promise<IGetLikedPropertiesResponse>{}
+  ): Promise<IGetLikedPropertiesResponse> {
+      return await this.commandBus.execute<
+          GetLikedPropertiesCommand,
+          IGetLikedPropertiesResponse
+      >(new GetLikedPropertiesCommand(request));
+  }
+
+  
 
 
 }

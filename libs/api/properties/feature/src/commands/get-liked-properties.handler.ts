@@ -3,7 +3,7 @@ import { GetLikedPropertiesCommand, IGetLikedPropertiesResponse } from "@estate-
 import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
 
 @CommandHandler(GetLikedPropertiesCommand)
-export class GetLikedPropertiesHandler implements ICommandHandler<GetLikedPropertiesCommand> {
+export class GetLikedPropertiesHandler implements ICommandHandler<GetLikedPropertiesCommand, IGetLikedPropertiesResponse> {
     constructor(
         private readonly repository: LikedPropertiesRepository,
         private readonly publisher: EventPublisher
