@@ -6,17 +6,13 @@
 
 
 <header>
-  <ion-toolbar>
+  <ion-toolbar name="ToolBar">
     <ion-title>Estate Match</ion-title>
   </ion-toolbar>
 </header>
 
-
-<div class="mainBody">
-  <div class="body">
-    <div class="header">
-        <h4>Preferences</h4>
-    </div>
+<ion-card name="displayContainer">
+    <ion-card-subtitle name="Subtitle">Preferences</ion-card-subtitle>
 
 
     <div style="padding-left: 5%; padding-top: 5px;">
@@ -24,7 +20,7 @@
           <ion-grid>
               <ion-row>   
                 <ion-col>        
-                  <ion-input label="Area:" type="text" [(ngModel)]="area" placeholder="Enter area here"></ion-input>    
+                  <ion-input name="AreaInput" label="Area:" type="text" [(ngModel)]="area" placeholder="Enter area here"></ion-input>    
                 </ion-col> 
                 <ion-col></ion-col>  
                 <ion-col></ion-col>                       
@@ -113,10 +109,6 @@
                   </select>
                 </ion-col>
                 
-                
-
-                
-              
               </ion-row>
               <ion-row></ion-row>
 
@@ -156,23 +148,18 @@
               <ion-row></ion-row>
 
               <ion-row>
-                
                 <ion-col><ion-input label="Extra: " type="text" placeholder="Enter text here" [(ngModel)]="extras"></ion-input></ion-col>
                 <ion-col></ion-col>
                 <ion-col></ion-col>
               </ion-row>
-              
-              
+
           </ion-grid>
       </div>
     </div>
+</ion-card>
 
-    <div class="buttonDiv">
-      <button (click)="setPreferences()" class="buttons" fill="default"routerLink="/home" routerDirection="root">Set Preferences</button>
-    </div>
-
-
-  </div>
+<div class="buttonDiv">
+  <button (click)="setPreferences()" class="buttons" fill="default"routerLink="/home" routerDirection="root">Set Preferences</button>
 </div>
 
 <!-- <footer>
