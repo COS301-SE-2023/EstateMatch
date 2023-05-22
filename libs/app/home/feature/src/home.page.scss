@@ -14,6 +14,7 @@ ion-header[name="TopHeader"] {
 }
 ion-toolbar[name="TopToolBar"] {
     height:min-content;
+    fill:none;
 }
 button[name="Like"]{
     padding-right: 10%;
@@ -32,6 +33,31 @@ button[name="Dislike"]{
     background-color: #F0422A;
 }
 ion-label{
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
 }
+.navbar {
+    background-color: #edebeb;
+    bottom: 0;
+    max-height: 3.5em;
+    width: 100%;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .navbar a {
+    padding-top: 16px;
+    width: 25%;
+    float: left;
+    display: block;
+    color: #131313;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+  }
+  
+  /* Add a color to the active/current link */
+  .navbar a.active {
+    background-color: #ffffff;
+    color: rgb(88, 163, 238);
+  }
 
