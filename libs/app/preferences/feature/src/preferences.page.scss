@@ -1,14 +1,37 @@
+
 .header {
-    text-align: center;
-    font-size: 30px;
+    padding-left: 50%; 
+    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-bottom: 20px; 
+    
+}
+
+.header2 {
+    padding-left: 5%; 
+    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-bottom: 20px; 
+    
+}
+
+.title{
+    border-style: solid;
+    height: 100px;text-align: center;
+    width: 95%; 
+    border-radius: 5px;
+    border-color: rgb(15, 82, 186);
 }
 
 .buttons{
-    
-    color: black;
-    border-color: black;
     height: 30px;
-    padding-top: 10px;
+    color: white;
+    background-color: #F0422A;
+}
+
+.buttonDiv{
+    padding-left: 48%;
+    padding-top: 30px;
 }
 
 .header4{
@@ -16,3 +39,26 @@
     border-radius: 5px;
 }
 
+.dropdown{
+    padding-left: 5%; 
+    padding-top: 5px; 
+    padding-bottom: 10px;
+    width: 200px;
+    // margin: auto;
+}
+
+.labels{
+    padding-right: 5px;
+}
+
+.body{
+    background-color: rgb(15, 82, 186);
+    color: white;
+    height: 80%;
+    width: 90%;
+}
+
+.mainBody{
+    padding-left: 10%; 
+    height: 90%;
+}
