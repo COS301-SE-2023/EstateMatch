@@ -5,11 +5,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   templateUrl: 'core.shell.html',
   styleUrls: ['core.shell.scss'],
 })
-export class CoreShell implements OnInit, OnDestroy {
-    ngOnInit(): void {
-        alert('Initialised');
-    }
-
+export class CoreShell implements OnDestroy {
     ngOnDestroy(): void {
         alert('Destroyed');
     }

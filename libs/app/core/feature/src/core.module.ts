@@ -16,5 +16,6 @@ import { CoreShell } from './core.shell';
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [CoreShell],
+  
 })
 export class CoreModule {}

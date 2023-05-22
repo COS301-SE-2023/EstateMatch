@@ -1,11 +1,11 @@
-// import { PropertiesRepository } from '@estate-match/api/properties/data-access';
+import { LikedPropertiesRepository } from "@estate-match/api/properties/data-access";
 import { DislikePropertyCommand, IDislikePropertyResponse } from "@estate-match/api/properties/util";
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 
 @CommandHandler(DislikePropertyCommand)
 export class DislikePropertyHandler implements ICommandHandler<DislikePropertyCommand, IDislikePropertyResponse> {
     constructor(
-        // private readonly repository: PreferencesRepository,
+        private readonly repository: LikedPropertiesRepository,
         private readonly publisher: EventPublisher
     ) {}
 
@@ -15,7 +15,8 @@ export class DislikePropertyHandler implements ICommandHandler<DislikePropertyCo
         
         console.log(property);
         //ready to query database
-        const success = true;
+        //ready to query database
+        const success = await this.repository.setLikedProperty(property);
 
         if(success){
             return 'property disliked';

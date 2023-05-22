@@ -1,1 +1,41 @@
-<h1>This Works</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="home.page.scss">
+  </head>
+
+  <header>
+    <ion-toolbar>
+      <ion-title>Estate Match</ion-title>
+    </ion-toolbar>
+  </header>
+
+<body>  
+
+  <ion-card name="DisplayCard">
+    <img name="HouseImage" [src]="images[currentDescriptionIndex]" />
+    <ion-card-header>
+      <ion-card-title>{{ area[currentDescriptionIndex] }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content name="CardDescription" id="CardDescription">
+      {{ descriptions[currentDescriptionIndex] }}
+    </ion-card-content>
+  </ion-card>
+  
+  </body>
+
+  <div id="button-container" style="text-align:center;">
+    <button id="like-button" (click) = "likeHouse()" style="background-color:#67C390; height:60px; border-color: #67C390;border-radius: 100%; width:60px;">
+      <span style="font-size: 1.7em; color:white">
+      <i class="fas fa-heart"></i>
+    </span>
+    </button>
+    &nbsp;
+    <button id="dislike-button" (click) = "dislikeHouse()" style="background-color:#F0422A; height:60px; border-color:#F0422A ;border-radius: 100%; width:60px;">
+      <span style="font-size: 1.7em; color:white">
+        <i class="fas fa-times"></i>
+    </span>
+    </button>
+  </div>
+</html> 
