@@ -28,26 +28,25 @@ describe('GetPreferencesHandler', () => {
     });
 
   it('should return the result of findOne method from PreferencesRepository', async () => {
-    // Create a mock command
     const mockCommand = new GetPreferencesCommand({
       user: 'mockUserId',
     });
 
-    // Create a mock preferences object
     const mockPreferences = {
-      // Define mock preferences properties
+      preferences: {
+        user: 'test',
+        location: 'test',
+        budget: 1000,
+        bedrooms: 1,
+        bathrooms: 1,
+        garages: 1,
+        extras: []
+    }
     };
 
-    // Mock the findOne method of the PreferencesRepository
     jest.spyOn(mockRepository, 'findOne').mockResolvedValue(mockPreferences);
-
-    // Execute the command handler
     const result = await handler.execute(mockCommand);
-
-    // Assert that the findOne method was called with the correct user ID
     expect(mockRepository.findOne).toHaveBeenCalledWith('mockUserId');
-
-    // Assert that the result matches the mock preferences object
     expect(result).toEqual(mockPreferences);
   });
 });
