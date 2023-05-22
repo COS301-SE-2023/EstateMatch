@@ -1,0 +1,109 @@
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+  
+</head>
+<div style="padding-left: 5%; padding-top: 5px;">
+  <div style="border-style: solid;height: 100px;text-align: center;width: 95%; border-radius: 5px;">
+      <h1>Estate Match</h1>
+  </div>
+</div>
+
+<div class="header">
+    <h4>Preferences</h4>
+</div>
+
+
+<div style="padding-left: 5%; padding-top: 5px;">
+  <div style="border-style: solid;height: 100px;text-align: center;width: 95%; border-radius: 5px;">
+      <ion-grid>
+          <ion-row>            
+            <ion-input label="Area:" type="text" [(ngModel)]="area" placeholder="Enter area here"></ion-input>                             
+          </ion-row>               
+      </ion-grid>
+  </div>
+</div>
+
+<div style="padding-left: 5%; padding-top: 5px;">
+  <div style="border-style: solid;height: 100px;text-align: center;width: 95%; border-radius: 5px;">
+      <ion-grid>
+          <ion-row> 
+            <ion-list>
+              <ion-list>
+                <ion-item>
+                  <ion-input label="Budget: R" type="number" placeholder="0.00" [(ngModel)]="budget"></ion-input>
+                </ion-item>               
+              </ion-list>
+            </ion-list>
+          </ion-row>          
+      </ion-grid>
+  </div>
+</div>
+
+
+<div style="padding-left: 5%; padding-top: 5px;">
+  <div style="border-style: solid;height: 100px;text-align: center;width: 95%; border-radius: 5px;">
+      <ion-grid>
+          <ion-row>
+          
+             <ion-col> <ion-input class="input" label="Bedrooms: " type="number" placeholder="0" [(ngModel)]="bedrooms"></ion-input></ion-col>
+             <ion-col><ion-input label="Bathroom: " type="number" placeholder="0" [(ngModel)]="bathrooms"></ion-input></ion-col>
+             <ion-col><ion-input label="Garage: " type="number" placeholder="0" [(ngModel)]="garages"></ion-input></ion-col>
+          
+          </ion-row>
+
+          <ion-row>
+            <!-- <ion-col><ion-input label="Pet-Friendly: " type="text" placeholder="Enter text here"></ion-input></ion-col> -->
+            <ion-col><ion-input label="Extra: " type="text" placeholder="Enter text here" [(ngModel)]="extras"></ion-input></ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          
+          
+      </ion-grid>
+  </div>
+</div>
+
+<ion-button (click)="setPreferences()" class="buttons" color="dark" fill="outline" style="padding-left: 32%;" routerLink="/home" routerDirection="root">Set Preferences</ion-button>
+
+
+
+<!-- <footer>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="tab1">
+        <span style="font-size: 1.3em; ">
+        <i class="fas fa-home fa-lg"></i>
+        </span>
+        <span style="font-size:1.5em; ">
+        <ion-label>Home</ion-label>
+      </span>
+      </ion-tab-button>
+
+      <ion-tab-button tab="tab2">
+        <span style="font-size: 1.3em; ">
+          <i class="fas fa-search fa-lg"></i>
+          </span>
+          <span style="font-size:1.5em; ">
+          <ion-label>Search</ion-label>
+        </span>
+      </ion-tab-button>
+
+      <ion-tab-button tab="tab3">
+        <span style="font-size: 1.3em;">
+          <i class="fas fa-star fa-lg"></i>
+          </span>
+          <span style="font-size:1.5em;">
+          <ion-label>Liked</ion-label>
+        </span>
+      </ion-tab-button>
+
+      <ion-tab-button tab="tab4">
+        <span style="font-size: 1.3em; color:rgb(118, 148, 238)">
+          <i class="fas fa-user fa-lg"></i>
+          </span>
+          <span style="font-size:1.5em; color:rgb(118, 148, 238)">
+          <ion-label>Profile</ion-label>
+          </span>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs> 
+</footer> -->
