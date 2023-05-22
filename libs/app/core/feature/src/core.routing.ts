@@ -8,6 +8,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
+    redirectTo: 'preferences',
     loadChildren: () =>
       import('@estate-match/app/home/feature').then((m) => m.HomeModule),
   },
@@ -16,6 +17,12 @@ const routes: Routes = [
     pathMatch: 'full',
     loadChildren: () =>
       import('@estate-match/app/preferences/feature').then((m) => m.PreferencesModule),
+  },
+  {
+    path: 'home',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/home/feature').then((m) => m.HomeModule),
   },
 ];
 
