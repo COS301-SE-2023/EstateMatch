@@ -28,19 +28,32 @@
       "@estate-match/api/prefrences/util": [
         "libs/api/prefrences/util/src/index.ts"
       ],
+      "@estate-match/api/properties/data-access": [
+        "libs/api/properties/data-access/src/index.ts"
+      ],
+      "@estate-match/api/properties/feature": [
+        "libs/api/properties/feature/src/index.ts"
+      ],
+      "@estate-match/api/properties/schema": [
+        "libs/api/properties/schema/src/index.ts"
+      ],
+      "@estate-match/api/properties/util": [
+        "libs/api/properties/util/src/index.ts"
+      ],
       "@estate-match/app/core/data-access": [
         "libs/app/core/data-access/src/index.ts"
       ],
       "@estate-match/app/core/feature": ["libs/app/core/feature/src/index.ts"],
       "@estate-match/app/core/util": ["libs/app/core/util/src/index.ts"],
-      "@estate-match/app/home/feature": ["libs/app/home/feature/src/index.ts"],
-      "@estate-match/app/preferences/feature": [
-        "libs/app/preferences/feature/src/index.ts" ],
       "@estate-match/app/home/data-access": [
         "libs/app/home/data-access/src/index.ts"
       ],
+      "@estate-match/app/home/feature": ["libs/app/home/feature/src/index.ts"],
       "@estate-match/app/home/util--unit-test-runner=jest": [
         "libs/app/home/util--unit-test-runner=jest/src/index.ts"
+      ],
+      "@estate-match/app/preferences/feature": [
+        "libs/app/preferences/feature/src/index.ts"
       ]
     }
   },
