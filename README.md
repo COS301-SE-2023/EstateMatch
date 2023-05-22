@@ -10,9 +10,6 @@ it easier to search and find your ideal property match.
 
 ## Meet the Team
 
-### Team Contact
-- teamblue.cos301@gmail.com
-
 ### Project Manager
 <details><summary>Daniël van Zyl (u21446459)</summary><br>
 <p>
@@ -75,6 +72,10 @@ Liam is a BSc Computer Science student. All the way through he loved doing the b
     <img alt="ion" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
 </a><br>
 </details>
+
+<div>
+    Contact us: teamblue.cos301@gmail.com
+</div>
 
 ## Documentation
 ### Software Requirements Specification
