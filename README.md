@@ -74,7 +74,8 @@ Liam is a BSc Computer Science student. All the way through he loved doing the b
 </details>
 
 <div>
-    Contact us: teamblue.cos301@gmail.com
+    <img alt="ion" src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+    teamblue.cos301@gmail.com
 </div>
 
 ## Documentation
