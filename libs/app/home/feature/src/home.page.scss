@@ -32,6 +32,31 @@ button[name="Dislike"]{
     background-color: #F0422A;
 }
 ion-label{
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
 }
+.navbar {
+    background-color: #edebeb;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-height: 3.5em;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .navbar a {
+    float: left;
+    display: block;
+    color: #131313;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+  }
+  
+  /* Add a color to the active/current link */
+  .navbar a.active {
+    background-color: #ffffff;
+    color: rgb(88, 163, 238);
+  }
 
