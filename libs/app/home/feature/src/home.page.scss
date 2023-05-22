@@ -1,7 +1,10 @@
+*{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
 ion-card[name="DisplayCard"] {
     height: 450px;
     border-radius: 10%;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
 }
 img[name="HouseImage"]{
     max-height: 60%;
@@ -43,7 +46,6 @@ ion-label{
     width: 100%;
   }
   
-  /* Style the links inside the navigation bar */
   .navbar a {
     padding-top: 12px;
     padding-bottom: 16px;
@@ -57,7 +59,6 @@ ion-label{
     font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
   }
   
-  /* Add a color to the active/current link */
   .navbar a.active {
     background-color: #ffffff;
     color: rgb(88, 163, 238);
