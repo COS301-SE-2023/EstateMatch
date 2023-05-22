@@ -13,6 +13,6 @@ export class GetLikedPropertiesHandler implements ICommandHandler<GetLikedProper
        const request = command.request;
        const user = request.user;
 
-       //return this.repository.findOne({ user });
+       return this.repository.getLikedProperties();
     }
 }
