@@ -25,6 +25,7 @@
     "@nxtend/ionic-angular": "^13.1.0",
     "axios": "^1.0.0",
     "fast-text-encoding": "^1.0.6",
+    "mongodb-memory-server": "^8.12.2",
     "mongoose": "^7.1.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",
