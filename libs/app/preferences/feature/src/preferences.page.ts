@@ -36,9 +36,9 @@ export class PreferencesPage {
       'Content-Type': 'application/json',
     });
 
-    // this.http.post(url, body, { headers }).subscribe((response) => {
-    //   console.log(response);
-    // });
+    this.http.post(url, body, { headers }).subscribe((response) => {
+      console.log(response);
+    });
 
     
 
