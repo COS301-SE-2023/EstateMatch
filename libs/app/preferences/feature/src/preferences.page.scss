@@ -1,7 +1,18 @@
 
 .header {
-    text-align: center;
-    font-size: 30px;
+    padding-left: 5%; 
+    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-bottom: 20px; 
+    
+}
+
+.title{
+    border-style: solid;
+    height: 100px;text-align: center;
+    width: 95%; 
+    border-radius: 5px;
+    border-color: rgb(15, 82, 186);
 }
 
 .buttons{
@@ -11,8 +22,8 @@
 }
 
 .buttonDiv{
-    padding-left: 42%;
-    padding-top: 50px;
+    padding-left: 48%;
+    padding-top: 30px;
 }
 
 .header4{
@@ -24,10 +35,11 @@
     padding-left: 5%; 
     padding-top: 5px; 
     width: 200px;
+    margin: auto;
 }
 
-.dropdownColor{
-    --ion-color-primary:blue;
+.labels{
+    padding-right: 5px;
 }
 
 .body{

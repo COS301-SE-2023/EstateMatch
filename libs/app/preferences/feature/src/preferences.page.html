@@ -5,8 +5,8 @@
 
 
 
-<div style="padding-left: 5%; padding-top: 5px;">
-  <div style="border-style: solid;height: 100px;text-align: center;width: 95%; border-radius: 5px;">
+<div class="header">
+  <div class="title">
       <h1>Estate Match</h1>
   </div>
 </div>
@@ -30,7 +30,7 @@
   </div>
 
   <div class="dropdown">
-    <ion-grid>
+    <ion-grid style="width: 100%;">
       <ion-row>
         <ion-col>
           <label for="Min-Price">Select minimum price</label>
@@ -76,6 +76,9 @@
             <option value="2 000 000">2 000 000</option>
           </select>
         </ion-col>
+
+
+        
 
         <ion-col>
           <label for="Max-Price">Select maximum price</label>
@@ -133,9 +136,36 @@
         <ion-grid>
             <ion-row>
             
-              <ion-col> <ion-input class="input" label="Bedrooms: " type="number" placeholder="0" [(ngModel)]="bedrooms"></ion-input></ion-col>
-              <ion-col><ion-input label="Bathroom: " type="number" placeholder="0" [(ngModel)]="bathrooms"></ion-input></ion-col>
-              <ion-col><ion-input label="Garage: " type="number" placeholder="0" [(ngModel)]="garages"></ion-input></ion-col>
+              <ion-col> 
+                <label for="Bedrooms" class="labels">Bedrooms</label>
+                <select label="Bedrooms">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  
+                </select>
+              </ion-col>
+              <ion-col>
+
+                <label for="Bathrooms" class="labels">Bathrooms</label>
+                <select label="Bathrooms">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+
+              </ion-col>
+              <ion-col>
+
+                <label for="Garage" class="labels">Garage Parking</label>
+                <select label="Garage">
+                  <option value="1">1</option>
+                  <option value="2">2</option>            
+                </select>
+
+              </ion-col>
             
             </ion-row>
 
