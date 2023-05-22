@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { PropertiesController } from './properties.controller';
 import { PropertiesService } from './properties.service';
 import { IDislikePropertyRequest, IDislikePropertyResponse, ILikePropertyRequest, ILikePropertyResponse } from '@estate-match/api/properties/util';
+import { IGetLikedPropertiesRequest, IGetLikedPropertiesResponse } from '@estate-match/api/properties/util';
 import { IProperty } from '@estate-match/api/properties/util';
 import { CommandBus } from '@nestjs/cqrs';
 
@@ -95,4 +96,34 @@ describe('PropertiesController', () => {
       expect(result).toEqual(expectedResult);
     });
   });
+
+  describe('getLikedProperties', () => {
+    it('should call return the liked properties of the user', async () => {
+      const user: IGetLikedPropertiesRequest = {
+        user: 'test',
+      };
+
+      const expectedResult: IGetLikedPropertiesResponse = {
+        properties: [{
+          user: 'test',
+          address: 'test',
+          price: 1000,
+          bedrooms: 1,
+          bathrooms: 1,
+          garages: 1,
+          amenities: [],
+          liked: true
+        },]
+      };
+
+      jest.spyOn(service, 'getlikeProperty').mockResolvedValue(expectedResult);
+
+      const result = await controller.getLikedProperties(user);
+      expect(result).toEqual(expectedResult);
+
+    });
+  });
+
+
+
 });
