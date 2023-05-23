@@ -13,7 +13,7 @@ ion-card[name="displayContainer"]{
 ion-card-subtitle[name="Subtitle"]{
     padding-top: 8%;
     text-align: center;
-    font-size: large;
+    font-size: x-large;
     color:black;
 }
 
@@ -30,25 +30,22 @@ select{
 }
 
 .AreaContainer{
-    padding-left: 10%; 
-    padding-top: 5px; 
-    padding-bottom: 10px;
+    padding-left: 13%; 
+    padding-top: 15%; 
 }
 
 .TagsContainer{
-    padding-left: 10%; 
-    padding-top: 5px; 
-    padding-bottom: 10px;
+    padding-top: 10%; 
 }
 
 .buttons{
     height: 50px;
     color: rgb(0, 0, 0);
     background-color: #67C390;
-    width: 40%;
+    width: 50%;
     border-color: #67C390;
     border-radius: 5%;
-    font-size: large;
+    font-size: 1.5em;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -60,11 +57,19 @@ select{
 }
 
 .dropdown{
-    padding-left: 10%; 
-    padding-top: 5px; 
-    padding-bottom: 10px;
+    padding-top: 15%; 
 }
+
 
 .labels{
     padding-right: 5px;
+}
+
+ion-col{
+    width: 50%;
+    text-align: left;
+}
+
+ion-row{
+    padding-left: 10%;
 }

@@ -15,14 +15,19 @@
 <div id="CardCentering">
 
     <div>
-      <div class="AreaContainer">        
+      <div class="AreaContainer">      
           <ion-input name="AreaInput" label="Area:" type="text" [(ngModel)]="area" placeholder="Enter area here"></ion-input>    
       </div>
     </div>
 
     <div class="dropdown" id="BudgetContainer">
+    <ion-grid>
+    <ion-row>
+      <ion-col>
       <ion-label for="Budget">Budget: R</ion-label>
-          
+      </ion-col>
+
+      <ion-col>
       <select class="dropdownColor" label="Budget">
         <option value="100 000">100 000</option>
         <option value="150 000">150 000</option>
@@ -63,37 +68,61 @@
         <option value="1 950 000">1 950 000</option>
         <option value="2 000 000">2 000 000</option>
       </select>
+    </ion-col>
+    </ion-row>
+    </ion-grid>
     </div>
 
       <div class="TagsContainer">
+        <ion-grid>
+        <ion-row>
+        <ion-col>
         <ion-label for="Bedrooms" class="labels">Bedrooms</ion-label>
+        </ion-col>
+        <ion-col>
         <select label="Bedrooms">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
-          <option value="4">4</option>
-                    
+          <option value="4">4</option>       
         </select>
+        </ion-col> 
+        </ion-row>
 
-        <br><br>
+        <ion-row>
+        <ion-col>
         <ion-label for="Bathrooms" class="labels">Bathrooms</ion-label>
+        </ion-col>
 
+        <ion-col>
         <select label="Bathrooms">
           <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
         </select>
-         
-        <br><br>
+        </ion-col>
+        </ion-row>
+        
+        <ion-row>
+        <ion-col>
         <ion-label for="Garage" class="labels">Parking</ion-label>
-
+        </ion-col>
+        
+        <ion-col>
         <select label="Garage">
           <option value="1">1</option>
           <option value="2">2</option>            
         </select>
+        </ion-col>
+        </ion-row>
 
+        <ion-row>
+        <ion-col>
         <ion-input label="Extra: " type="text" placeholder="Enter text here" [(ngModel)]="extras"></ion-input>
+        </ion-col>
+        </ion-row>
+        </ion-grid>
       </div>
 </div>
 </ion-card>
