@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+
   <head>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
     <link rel="stylesheet" href="liked.page.scss">
@@ -11,18 +11,18 @@
     </ion-toolbar>
   </header>
 
-<body>  
-
+<ion-content>
   <ion-card name="DisplayCard" *ngFor="let property of likedProperties">
     <ion-card-header>
       <ion-card-title>{{property.address}}</ion-card-title>
     </ion-card-header>
     <ion-card-content name="CardDescription" id="CardDescription">
-      R {{property.price}}
+      <div class="card-image-container">
+        <img src={{property.image}} alt="Image" class="card-image" />
+      </div>
     </ion-card-content>
-  </ion-card>
-  
-  </body>
+  </ion-card> 
+</ion-content>  
 
   <footer>
     <div class="navbar">
@@ -44,4 +44,3 @@
       </a>
       </div>
   </footer>
-</html> 

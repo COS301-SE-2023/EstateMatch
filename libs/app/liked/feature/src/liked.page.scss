@@ -1,3 +1,32 @@
+.HouseImage{
+  max-height: 300px;
+  object-fit: contain;
+  object-position: center;
+}
+
+ion-card[name="DisplayCard"] {
+  height: 42%;
+  border-radius: 10%;
+  font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
+
+.card-image-container {
+  height: 100%;
+  align-items: center; 
+  justify-content: center; 
+}
+
+.card-image {
+  max-width: 100%;
+  max-height: 98%; 
+  object-fit: contain; 
+}
+
+
+ ion-content{
+  max-height: 87%;
+ }
+
 .navbar {
     background-color: #edebeb;
     position: fixed;
