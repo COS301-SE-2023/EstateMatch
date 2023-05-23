@@ -15,9 +15,15 @@
 <div id="CardCentering">
 
     <div>
-      <div class="AreaContainer">      
+      <div class="AreaContainer">  
+        <ion-grid>
+          <ion-row>
+            <ion-col>    
           <ion-input name="AreaInput" label="Area:" type="text" [(ngModel)]="area" placeholder="Enter area here"></ion-input>    
-      </div>
+           </ion-col>
+        </ion-row>
+      </ion-grid>
+        </div>
     </div>
 
     <div class="dropdown" id="BudgetContainer">
@@ -116,7 +122,8 @@
         </select>
         </ion-col>
         </ion-row>
-
+        
+        <br>
         <ion-row>
         <ion-col>
         <ion-input label="Extra: " type="text" placeholder="Enter text here" [(ngModel)]="extras"></ion-input>

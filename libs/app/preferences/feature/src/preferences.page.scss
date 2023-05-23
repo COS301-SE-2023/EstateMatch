@@ -2,9 +2,6 @@
     font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
 }
 
-ion-input[name="AreaInput"]{
-    width: 200px;
-}
 ion-card[name="displayContainer"]{
     height: 75%;
     border-radius: 5%;
@@ -30,12 +27,11 @@ select{
 }
 
 .AreaContainer{
-    padding-left: 13%; 
-    padding-top: 15%; 
+    padding-top: 8%; 
 }
 
 .TagsContainer{
-    padding-top: 10%; 
+    padding-top: 8%; 
 }
 
 .buttons{
@@ -51,13 +47,8 @@ select{
     transform: translateX(-50%);
 }
 
-.header4{
-    border-style: solid;
-    border-radius: 5px;
-}
-
 .dropdown{
-    padding-top: 15%; 
+    padding-top: 8%; 
 }
 
 
