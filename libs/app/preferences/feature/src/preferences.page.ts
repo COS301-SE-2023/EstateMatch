@@ -24,10 +24,10 @@ export class PreferencesPage {
       preferences:{
         user: 'Jack Daniels',
         location: this.area,
-        budget: this.budget,
-        bedrooms: this.bedrooms,
-        bathrooms: this.bathrooms,
-        garages: this.garages,
+        budget: parseInt(this.budget.replace(/\s/g, "")),
+        bedrooms: parseInt(this.bedrooms),
+        bathrooms: parseInt(this.bathrooms),
+        garages: parseInt(this.garages),
         extras: extras       
       }
     }

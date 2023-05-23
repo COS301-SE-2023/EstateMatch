@@ -34,7 +34,7 @@
       </ion-col>
 
       <ion-col>
-      <select class="dropdownColor" label="Budget">
+      <select class="dropdownColor" [(ngModel)]="budget" label="Budget">
         <option value="100 000">100 000</option>
         <option value="150 000">150 000</option>
         <option value="200 000">200 000</option>
@@ -86,7 +86,7 @@
         <ion-label for="Bedrooms" class="labels">Bedrooms</ion-label>
         </ion-col>
         <ion-col>
-        <select label="Bedrooms">
+        <select label="Bedrooms" [(ngModel)]="bedrooms">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -101,7 +101,7 @@
         </ion-col>
 
         <ion-col>
-        <select label="Bathrooms">
+        <select label="Bathrooms" [(ngModel)]="bathrooms">
           <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -116,7 +116,7 @@
         </ion-col>
         
         <ion-col>
-        <select label="Garage">
+        <select label="Garage" [(ngModel)]="garages">
           <option value="1">1</option>
           <option value="2">2</option>            
         </select>
