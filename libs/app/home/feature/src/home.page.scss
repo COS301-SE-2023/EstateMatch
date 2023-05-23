@@ -1,7 +1,10 @@
+*{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
 ion-card[name="DisplayCard"] {
     height: 450px;
     border-radius: 10%;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
 }
 img[name="HouseImage"]{
     max-height: 60%;
@@ -14,6 +17,7 @@ ion-header[name="TopHeader"] {
 }
 ion-toolbar[name="TopToolBar"] {
     height:min-content;
+    fill:none;
 }
 button[name="Like"]{
     padding-right: 10%;
@@ -32,6 +36,31 @@ button[name="Dislike"]{
     background-color: #F0422A;
 }
 ion-label{
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
 }
+.navbar {
+    background-color: #edebeb;
+    position: fixed;
+    bottom: 0;
+    max-height: 3.5em;
+    width: 100%;
+  }
+  
+  .navbar a {
+    padding-top: 12px;
+    padding-bottom: 16px;
+    width: 25%;
+    float: left;
+    display: block;
+    color: #131313;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+  }
+  
+  .navbar a.active {
+    background-color: #ffffff;
+    color: rgb(88, 163, 238);
+  }
 

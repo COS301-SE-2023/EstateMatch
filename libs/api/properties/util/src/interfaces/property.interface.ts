@@ -6,5 +6,6 @@ export interface IProperty{
     bathrooms: number,
     garages: number,
     amenities: string[],
-    liked: boolean
+    liked: boolean,
+    image: string,
 }

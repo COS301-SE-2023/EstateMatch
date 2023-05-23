@@ -18,9 +18,15 @@ export class LikePropertyHandler implements ICommandHandler<LikePropertyCommand,
         const success = await this.repository.setLikedProperty(property);
 
         if(success){
-            return 'property liked';
+            const response = {
+                message: 'property liked'
+            };
+            return response;
         }else{
-            return 'unexpected error';
+            const response = {
+                message: 'unexpected error'
+            };
+            return response;
         }
     }
 }
