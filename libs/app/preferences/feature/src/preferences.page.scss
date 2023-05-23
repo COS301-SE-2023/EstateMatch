@@ -6,7 +6,7 @@ ion-input[name="AreaInput"]{
     width: 200px;
 }
 ion-card[name="displayContainer"]{
-    height: 70%;
+    height: 75%;
     border-radius: 5%;
 }
 
@@ -17,12 +17,28 @@ ion-card-subtitle[name="Subtitle"]{
     color:black;
 }
 
-.header2 {
-    padding-left: 5%; 
-    padding-top: 5px;
+ion-input{
+    font-size: large;
+}
+
+ion-label{
+    font-size: large;
+}
+
+select{
+    font-size: large;
+}
+
+.AreaContainer{
+    padding-left: 10%; 
+    padding-top: 5px; 
     padding-bottom: 10px;
-    padding-bottom: 20px; 
-    
+}
+
+.TagsContainer{
+    padding-left: 10%; 
+    padding-top: 5px; 
+    padding-bottom: 10px;
 }
 
 .buttons{
@@ -44,28 +60,11 @@ ion-card-subtitle[name="Subtitle"]{
 }
 
 .dropdown{
-    padding-left: 5%; 
+    padding-left: 10%; 
     padding-top: 5px; 
     padding-bottom: 10px;
-    width: 200px;
-    // margin: auto;
 }
 
 .labels{
     padding-right: 5px;
 }
-
-/*.body{
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    height: 85%;
-    width: 90%;
-    border-radius: 5%;
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
-}*/
-
-/*.mainBody{
-    padding-top: 10px;
-    padding-left: 10%; 
-    height: 90%;
-}*/

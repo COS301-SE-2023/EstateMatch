@@ -1,6 +1,5 @@
 <head>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
-  
 </head>
 
 
@@ -13,149 +12,90 @@
 
 <ion-card name="displayContainer">
     <ion-card-subtitle name="Subtitle">Preferences</ion-card-subtitle>
+<div id="CardCentering">
 
-
-    <div style="padding-left: 5%; padding-top: 5px;">
-      <div style="height: 100px;text-align: center;width: 95%; border-radius: 5px;">
-          <ion-grid>
-              <ion-row>   
-                <ion-col>        
-                  <ion-input name="AreaInput" label="Area:" type="text" [(ngModel)]="area" placeholder="Enter area here"></ion-input>    
-                </ion-col> 
-                <ion-col></ion-col>  
-                <ion-col></ion-col>                       
-              </ion-row>               
-          </ion-grid>
+    <div>
+      <div class="AreaContainer">        
+          <ion-input name="AreaInput" label="Area:" type="text" [(ngModel)]="area" placeholder="Enter area here"></ion-input>    
       </div>
     </div>
 
-    <div class="dropdown">
-      <ion-grid style="width: 100%;">
-        <ion-row>
-          <ion-col>
-            <label for="Budget">Budget: R</label>
-          </ion-col>
+    <div class="dropdown" id="BudgetContainer">
+      <ion-label for="Budget">Budget: R</ion-label>
           
-          <ion-col>
-            <select class="dropdownColor" label="Budget">
-              <option value="100 000">100 000</option>
-              <option value="150 000">150 000</option>
-              <option value="200 000">200 000</option>
-              <option value="250 000">250 000</option>
-              <option value="300 000">300 000</option>
-              <option value="350 000">350 000</option>
-              <option value="400 000">400 000</option>
-              <option value="450 000">450 000</option>
-              <option value="500 000">500 000</option>
-              <option value="550 000">550 000</option>
-              <option value="600 000">600 000</option>
-              <option value="650 000">650 000</option>
-              <option value="700 000">700 000</option>
-              <option value="750 000">750 000</option>
-              <option value="800 000">800 000</option>
-              <option value="850 000">850 000</option>
-              <option value="900 000">900 000</option>
-              <option value="950 000">950 000</option>
-              <option value="1 000 000">1 000 000</option>
-              <option value="1 100 000">1 100 000</option>
-              <option value="1 150 000">1 150 000</option>
-              <option value="1 200 000">1 200 000</option>
-              <option value="1 250 000">1 250 000</option>
-              <option value="1 300 000">1 300 000</option>
-              <option value="1 350 000">1 350 000</option>
-              <option value="1 400 000">1 400 000</option>
-              <option value="1 450 000">1 450 000</option>
-              <option value="1 500 000">1 500 000</option>
-              <option value="1 550 000">1 550 000</option>
-              <option value="1 650 000">1 600 000</option>
-              <option value="1 650 000">1 650 000</option>
-              <option value="1 700 000">1 700 000</option>
-              <option value="1 750 000">1 750 000</option>
-              <option value="1 800 000">1 800 000</option>
-              <option value="1 850 000">1 850 000</option>
-              <option value="1 900 000">1 900 000</option>
-              <option value="1 950 000">1 950 000</option>
-              <option value="2 000 000">2 000 000</option>
-            </select>
-          </ion-col>
-
-
-          
-
-    
-        </ion-row>
-
-      </ion-grid>
-
+      <select class="dropdownColor" label="Budget">
+        <option value="100 000">100 000</option>
+        <option value="150 000">150 000</option>
+        <option value="200 000">200 000</option>
+        <option value="250 000">250 000</option>
+        <option value="300 000">300 000</option>
+        <option value="350 000">350 000</option>
+        <option value="400 000">400 000</option>
+        <option value="450 000">450 000</option>
+        <option value="500 000">500 000</option>
+        <option value="550 000">550 000</option>
+        <option value="600 000">600 000</option>
+        <option value="650 000">650 000</option>
+        <option value="700 000">700 000</option>
+        <option value="750 000">750 000</option>
+        <option value="800 000">800 000</option>
+        <option value="850 000">850 000</option>
+        <option value="900 000">900 000</option>
+        <option value="950 000">950 000</option>
+        <option value="1 000 000">1 000 000</option>
+        <option value="1 100 000">1 100 000</option>
+        <option value="1 150 000">1 150 000</option>
+        <option value="1 200 000">1 200 000</option>
+        <option value="1 250 000">1 250 000</option>
+        <option value="1 300 000">1 300 000</option>
+        <option value="1 350 000">1 350 000</option>
+        <option value="1 400 000">1 400 000</option>
+        <option value="1 450 000">1 450 000</option>
+        <option value="1 500 000">1 500 000</option>
+        <option value="1 550 000">1 550 000</option>
+        <option value="1 650 000">1 600 000</option>
+        <option value="1 650 000">1 650 000</option>
+        <option value="1 700 000">1 700 000</option>
+        <option value="1 750 000">1 750 000</option>
+        <option value="1 800 000">1 800 000</option>
+        <option value="1 850 000">1 850 000</option>
+        <option value="1 900 000">1 900 000</option>
+        <option value="1 950 000">1 950 000</option>
+        <option value="2 000 000">2 000 000</option>
+      </select>
     </div>
 
-
-    <div style="padding-left: 5%; padding-top: 5px;">
-      <div style="height: 100px;width: 95%; border-radius: 5px;">
-          <ion-grid>
-              <ion-row>
-              
-                <ion-col> 
-                  <label for="Bedrooms" class="labels">Bedrooms</label>
-                </ion-col>
-
-                <ion-col>
-                  <select label="Bedrooms">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
+      <div class="TagsContainer">
+        <ion-label for="Bedrooms" class="labels">Bedrooms</ion-label>
+        <select label="Bedrooms">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
                     
-                  </select>
-                </ion-col>
-                
-              </ion-row>
-              <ion-row></ion-row>
+        </select>
 
-              <ion-row>
+        <br><br>
+        <ion-label for="Bathrooms" class="labels">Bathrooms</ion-label>
 
-                <ion-col>
+        <select label="Bathrooms">
+          <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+         
+        <br><br>
+        <ion-label for="Garage" class="labels">Parking</ion-label>
 
-                  <label for="Bathrooms" class="labels">Bathrooms</label>
-                </ion-col>
+        <select label="Garage">
+          <option value="1">1</option>
+          <option value="2">2</option>            
+        </select>
 
-                <ion-col>
-                  <select label="Bathrooms">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                  </select>
-
-                </ion-col>
-              </ion-row>
-
-
-              <ion-row>
-                <ion-col>
-
-                  <label for="Garage" class="labels">Parking     </label>
-                </ion-col>
-                
-                <ion-col>
-                  <select label="Garage">
-                    <option value="1">1</option>
-                    <option value="2">2</option>            
-                  </select>
-                </ion-col>
-              </ion-row>
-
-              <ion-row></ion-row>
-
-              <ion-row>
-                <ion-col><ion-input label="Extra: " type="text" placeholder="Enter text here" [(ngModel)]="extras"></ion-input></ion-col>
-                <ion-col></ion-col>
-                <ion-col></ion-col>
-              </ion-row>
-
-          </ion-grid>
+        <ion-input label="Extra: " type="text" placeholder="Enter text here" [(ngModel)]="extras"></ion-input>
       </div>
-    </div>
+</div>
 </ion-card>
 
 <div class="buttonDiv">
