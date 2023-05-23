@@ -44,7 +44,8 @@ describe('PropertiesService', () => {
             bathrooms: 1,
             garages: 1,
             amenities: [],
-            liked: true
+            liked: true,
+            image: 'test image'
         }
     };
 
@@ -70,7 +71,8 @@ describe('PropertiesService', () => {
             bathrooms: 1,
             garages: 1,
             amenities: [],
-            liked: false
+            liked: false,
+            image: 'test image'
         }
     };
 
@@ -100,7 +102,8 @@ describe('PropertiesService', () => {
             bathrooms: 1,
             garages: 1,
             amenities: [],
-            liked: true
+            liked: true,
+            image: 'test image'
         },
         {
             user: 'test2',
@@ -110,7 +113,8 @@ describe('PropertiesService', () => {
             bathrooms: 1,
             garages: 1,
             amenities: [],
-            liked: true
+            liked: true,
+            image: 'test image'
         },]
     };
 

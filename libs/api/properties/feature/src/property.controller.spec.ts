@@ -47,6 +47,7 @@ describe('PropertiesController', () => {
         garages: 1,
         amenities: ['gym', 'pool'],
         liked: false,
+        image: 'test image'
       };
 
       const request: IDislikePropertyRequest = {
@@ -77,6 +78,7 @@ describe('PropertiesController', () => {
         garages: 1,
         amenities: ['gym', 'pool'],
         liked: true,
+        image: 'test image'
       };
 
       const request: ILikePropertyRequest = {
@@ -112,7 +114,8 @@ describe('PropertiesController', () => {
           bathrooms: 1,
           garages: 1,
           amenities: [],
-          liked: true
+          liked: true,
+          image: 'test image'
         },]
       };
 
