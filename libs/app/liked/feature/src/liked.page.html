@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+  <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="liked.page.scss">
+  </head>
+
+  <header>
+    <ion-toolbar>
+      <ion-title>Estate Match</ion-title>
+    </ion-toolbar>
+  </header>
+
+<ion-content>
+  <ion-card name="DisplayCard" *ngFor="let property of likedProperties">
+    <ion-card-header>
+      <ion-card-title>{{property.address}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content name="CardDescription" id="CardDescription">
+      <div class="card-image-container">
+        <img src={{property.image}} alt="Image" class="card-image" />
+      </div>
+    </ion-card-content>
+  </ion-card> 
+</ion-content>  
+
+  <footer>
+    <div class="navbar">
+      <a href="home">
+        <i class="fas fa-home"></i>
+        <br>Home
+      </a>
+      <a>
+        <i class="fas fa-search"></i>
+        <br>Search
+      </a>
+      <a class="active" href="liked">
+        <i class="fas fa-star"></i>
+        <br>Liked
+      </a>
+      <a>
+        <i class="fas fa-user"></i>
+        <br>Profile
+      </a>
+      </div>
+  </footer>

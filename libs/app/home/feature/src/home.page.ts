@@ -10,6 +10,7 @@ interface Property {
   bathrooms: number;
   amenities: string[];
   liked: boolean;
+  image: string;
 }
 
 @Component({
@@ -30,6 +31,7 @@ export class HomePage {
       bathrooms: 2,
       amenities: [],
       liked: false,
+      image: 'https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg',
     },
     {
       user: 'Jack Daniels',
@@ -39,6 +41,7 @@ export class HomePage {
       bathrooms: 3,
       amenities: ['Indoor Pool'],
       liked: false,
+      image: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
       user: 'Jack Daniels',
@@ -48,6 +51,7 @@ export class HomePage {
       bathrooms: 1,
       amenities: ['24hr Security'],
       liked: false,
+      image: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg',
     },
     {
       user: 'Jack Daniels',
@@ -57,6 +61,7 @@ export class HomePage {
       bathrooms: 1,
       amenities: ['Pool'],
       liked: false,
+      image: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg',
     },
   ];
   descriptions: string[] = ['R5 000 000. Three Bedroom and Two Bathrooms.',

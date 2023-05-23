@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-// import { ProfileModule } from '@mp/app/profile/data-access';
-import { PreferencesPage } from './preferences.page';
-import { PreferencesRouting } from './preferences.routing';
+import { LikedPage } from './liked.page';
+import { LikedRouting } from './liked.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -11,11 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     IonicModule,
-    PreferencesRouting, 
+    LikedRouting, 
     FormsModule, 
     HttpClientModule
   ],
-  declarations: [PreferencesPage],
+  declarations: [LikedPage],
 })
 
-export class PreferencesModule {}
+export class LikedModule {}

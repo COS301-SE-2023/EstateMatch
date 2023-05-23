@@ -12,4 +12,8 @@ export class LikedPropertiesRepository {
         const createdLikedProperty = new this.likedPropertiesModel(likedProperty);
         return createdLikedProperty.save();
     }
+
+    async getLikedProperties() : Promise<LikedPropertiesModel[]> {
+        return this.likedPropertiesModel.find({liked: true}).exec();
+    }
 }

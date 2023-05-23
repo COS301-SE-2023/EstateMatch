@@ -19,9 +19,15 @@ export class DislikePropertyHandler implements ICommandHandler<DislikePropertyCo
         const success = await this.repository.setLikedProperty(property);
 
         if(success){
-            return 'property disliked';
+            const response = {
+                message: 'property disliked'
+            };
+            return response;
         }else{
-            return 'unexpected error';
+            const response = {
+                message: 'unexpected error'
+            };
+            return response;
         }
     }
 }
