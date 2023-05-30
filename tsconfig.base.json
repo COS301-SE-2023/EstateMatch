@@ -40,6 +40,14 @@
       "@estate-match/api/properties/util": [
         "libs/api/properties/util/src/index.ts"
       ],
+      "@estate-match/api/users/data-access": [
+        "libs/api/users/data-access/src/index.ts"
+      ],
+      "@estate-match/api/users/feature": [
+        "libs/api/users/feature/src/index.ts"
+      ],
+      "@estate-match/api/users/schema": ["libs/api/users/schema/src/index.ts"],
+      "@estate-match/api/users/util": ["libs/api/users/util/src/index.ts"],
       "@estate-match/app/core/data-access": [
         "libs/app/core/data-access/src/index.ts"
       ],
