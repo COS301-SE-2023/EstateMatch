@@ -1,1 +1,1 @@
-export * from './lib/api-users-schema';
+export * from "./user.schema";
