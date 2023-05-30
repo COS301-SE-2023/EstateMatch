@@ -1,1 +1,1 @@
-export * from './lib/api-users-data-access';
+export * from './user.module';
