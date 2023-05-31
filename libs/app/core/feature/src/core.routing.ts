@@ -33,7 +33,6 @@ const routes: Routes = [
   {
     path: 'login',
     pathMatch: 'full',
-    redirectTo: 'login',
     loadChildren: () =>
       import('@estate-match/app/login/feature').then((m) => m.LoginModule),
   },
