@@ -45,6 +45,15 @@
       ],
       "@estate-match/app/core/feature": ["libs/app/core/feature/src/index.ts"],
       "@estate-match/app/core/util": ["libs/app/core/util/src/index.ts"],
+      "@estate-match/app/header-footer/data-access": [
+        "libs/app/header-footer/data-access/src/index.ts"
+      ],
+      "@estate-match/app/header-footer/feature": [
+        "libs/app/header-footer/feature/src/index.ts"
+      ],
+      "@estate-match/app/header-footer/util--unit-test-runner=jest": [
+        "libs/app/header-footer/util--unit-test-runner=jest/src/index.ts"
+      ],
       "@estate-match/app/home/data-access": [
         "libs/app/home/data-access/src/index.ts"
       ],
