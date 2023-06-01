@@ -64,6 +64,15 @@
       "@estate-match/app/liked/feature": [
         "libs/app/liked/feature/src/index.ts"
       ],
+      "@estate-match/app/more-info/data-access": [
+        "libs/app/more-info/data-access/src/index.ts"
+      ],
+      "@estate-match/app/more-info/feature": [
+        "libs/app/more-info/feature/src/index.ts"
+      ],
+      "@estate-match/app/more-info/util--unit-test-runner=jest": [
+        "libs/app/more-info/util--unit-test-runner=jest/src/index.ts"
+      ],
       "@estate-match/app/preferences/feature": [
         "libs/app/preferences/feature/src/index.ts"
       ]
