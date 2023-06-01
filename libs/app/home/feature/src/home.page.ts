@@ -128,6 +128,10 @@ export class HomePage {
     })
     toast.present();
   }
+
+  async moreInfo() {
+    
+  }
 }
 
 
