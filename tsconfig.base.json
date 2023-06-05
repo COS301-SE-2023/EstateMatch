@@ -63,6 +63,9 @@
       "@estate-match/app/liked/feature": [
         "libs/app/liked/feature/src/index.ts"
       ],
+      "@estate-match/app/login/feature": [
+        "libs/app/login/feature/src/index.ts"
+      ],
       "@estate-match/app/preferences/feature": [
         "libs/app/preferences/feature/src/index.ts"
       ]
