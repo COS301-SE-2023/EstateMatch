@@ -60,6 +60,9 @@
       ],
       "@estate-match/app/preferences/feature": [
         "libs/app/preferences/feature/src/index.ts"
+      ],
+      "@estate-match/app/register/feature": [
+        "libs/app/register/feature/src/index.ts"
       ]
     }
   },
