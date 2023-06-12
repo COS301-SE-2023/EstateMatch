@@ -22,18 +22,17 @@ export class AuthController {
         const saltOrRounds = 10;
         const hash = await bcrypt.hash(register.password, saltOrRounds);
 
-        //handle auth
         const registerRequest: IRegisterRequest = {
             register: {
                 username: register.username,
                 password: hash,
+                email: register.email,
+                firstName: register.firstName,
+                lastName: register.lastName,
             }
         };
 
         return this.service.register(registerRequest);
-
-        //handle user
-
     }
 
 }

@@ -1,12 +1,14 @@
 import { AuthRepository } from "@estate-match/api/authentication/data-access";
 import { RegisterCommand } from "@estate-match/api/authentication/util";
 import { IRegisterResponse } from "@estate-match/api/authentication/util";
+import { UserRepository } from "@estate-match/api/users/data-access";
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 
 @CommandHandler(RegisterCommand)
 export class RegisterHandler implements ICommandHandler<RegisterCommand, IRegisterResponse> {
     constructor(
         private readonly repository: AuthRepository,
+        private readonly userRepo: UserRepository,
         private readonly publisher: EventPublisher
     ) {}
 
@@ -16,6 +18,15 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand, IRegist
             return {message: 'User Register Failed'};
         }
         else {
+            const newUser = {
+                username: command.request.register.username,
+                email: command.request.register.email,
+                firstName: command.request.register.firstName,
+                lastName: command.request.register.lastName,
+            }
+
+            await this.userRepo.create(newUser);
+
             return {message: 'User Register Success'};
         }
     }
