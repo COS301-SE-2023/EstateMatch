@@ -10,15 +10,6 @@ export class AuthController {
     constructor(private readonly service: AuthService) {}
     @Post('/login')
     async login(@Body() login: IRegister): Promise<any> {
-        // const saltOrRounds = 10;
-        // const hash = await bcrypt.hash(login.password, saltOrRounds);
-
-        // const hashedLogin: ILoginRequest = {
-        //     login: {
-        //         username: login.username,
-        //         password: hash
-        //     }
-        // };
         const loginRequest: ILoginRequest = {
             login: login
         };
@@ -34,7 +25,7 @@ export class AuthController {
         const match = await bcrypt.compare(pass, hash);
 
         if(match)
-            return {message: 'success'};
+            return {message: hash};
         else
             return {message: 'error'};
     }
