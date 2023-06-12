@@ -15,6 +15,18 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@estate-match/api/authentication/data-access": [
+        "libs/api/authentication/data-access/src/index.ts"
+      ],
+      "@estate-match/api/authentication/feature": [
+        "libs/api/authentication/feature/src/index.ts"
+      ],
+      "@estate-match/api/authentication/schema": [
+        "libs/api/authentication/schema/src/index.ts"
+      ],
+      "@estate-match/api/authentication/util": [
+        "libs/api/authentication/util/src/index.ts"
+      ],
       "@estate-match/api/core/feature": ["libs/api/core/feature/src/index.ts"],
       "@estate-match/api/prefrences/data-access": [
         "libs/api/prefrences/data-access/src/index.ts"
