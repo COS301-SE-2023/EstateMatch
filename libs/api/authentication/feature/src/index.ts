@@ -1,1 +1,3 @@
-export * from './lib/api-authentication-feature';
+export * from './authentication.module';
+export * from './authentication.service';
+export * from './authentication.controller';
