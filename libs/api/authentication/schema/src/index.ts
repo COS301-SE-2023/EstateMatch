@@ -1,1 +1,1 @@
-export * from './lib/api-authentication-schema';
+export * from './authentication.schema';

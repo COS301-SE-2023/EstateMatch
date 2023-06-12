@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
-import { PreferenceModule as PreferenceDataAccess} from '@estate-match/api/prefrences/data-access';
+import { AuthenticationModule as AuthenticationDataAccess} from '@estate-match/api/authentication/data-access';
 import { AuthController } from './authentication.controller';
 import { AuthService } from './authentication.service';
 
@@ -13,7 +13,7 @@ export const CommandHandlers = [
 ];
 
 @Module({
-  imports: [CqrsModule],
+  imports: [CqrsModule, AuthenticationDataAccess],
   providers: [AuthService, ...CommandHandlers],
   controllers: [AuthController],
   exports: [AuthService]

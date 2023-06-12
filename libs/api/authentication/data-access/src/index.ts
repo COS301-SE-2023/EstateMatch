@@ -1,1 +1,2 @@
-export * from './lib/api-authentication-data-access';
+export * from './authentication.module';
+export * from './authentication.repository';
