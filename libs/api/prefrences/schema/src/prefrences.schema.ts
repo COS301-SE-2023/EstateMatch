@@ -9,7 +9,7 @@ export const PrefrencesSchema = new mongoose.Schema({
     bedrooms: Number,
     bathrooms: Number,
     garages: Number,
-    // extras: String[];
+    extras: [String],
 });
 
 //our model
