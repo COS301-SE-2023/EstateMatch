@@ -4,19 +4,17 @@ import { PreferenceModule as PreferenceDataAccess} from '@estate-match/api/prefr
 import { AuthController } from './authentication.controller';
 import { AuthService } from './authentication.service';
 
-// import {
-//   GetPreferencesHandler,
-//   SetPreferencesHandler,
-// } from './commands';
+import {
+  LoginHandler,
+} from './commands';
 
-// export const CommandHandlers = [
-//   GetPreferencesHandler,
-//   SetPreferencesHandler,
-// ];
+export const CommandHandlers = [
+    LoginHandler
+];
 
 @Module({
   imports: [CqrsModule],
-  providers: [AuthService,],
+  providers: [AuthService, ...CommandHandlers],
   controllers: [AuthController],
   exports: [AuthService]
 })
