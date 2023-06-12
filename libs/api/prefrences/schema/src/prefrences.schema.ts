@@ -2,23 +2,27 @@ import * as mongoose from 'mongoose';
 
 export const PrefrencesSchema = new mongoose.Schema({
     user : {type: String, required: true},
-    budget : Number,
     location : String,
-    bedrooms : Number,
-    bathrooms : Number,
-    garages : Number,
-    //extra : {type : String, default : "None"},
+    budgetMin: Number,
+    budgetMax: Number,
+    type: String,
+    bedrooms: Number,
+    bathrooms: Number,
+    garages: Number,
+    // extras: String[];
 });
 
 //our model
 export interface PrefrencesModel  {
     user : string;
-    budget : number;
     location : string;
-    bedrooms : number;
-    bathrooms : number;
-    garages : number;
-    //extra : string,
+    budgetMin: number;
+    budgetMax: number;
+    type: string;
+    bedrooms: number;
+    bathrooms: number;
+    garages: number;
+    extras: string[];
 }
 
 // import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
