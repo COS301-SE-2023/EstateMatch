@@ -6,10 +6,12 @@ import { AuthService } from './authentication.service';
 
 import {
   LoginHandler,
+  RegisterHandler
 } from './commands';
 
 export const CommandHandlers = [
-    LoginHandler
+    LoginHandler,
+    RegisterHandler
 ];
 
 @Module({

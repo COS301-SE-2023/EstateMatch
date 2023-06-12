@@ -23,8 +23,13 @@ export class AuthRepository {
 
     }
 
-    // async create(prefrences : PrefrencesModel) : Promise<PrefrencesModel> {
-    //     const createdPrefrences = new this.prefrencesModel(prefrences);
-    //     return createdPrefrences.save();
-    // }
+    async create(account : AuthenticationModel) : Promise<AuthenticationModel | null> {
+        const exist = await this.authModel.findOne({username: account.username});
+        if(exist){
+            return null;
+        }else{
+            const createdPrefrences = new this.authModel(account);
+            return createdPrefrences.save();            
+        }
+    }
 }

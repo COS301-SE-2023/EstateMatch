@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { ILogin, ILoginRequest, IRegister } from '@estate-match/api/authentication/util';
+import { ILogin, ILoginRequest, IRegister, IRegisterRequest } from '@estate-match/api/authentication/util';
 import { AuthService } from './authentication.service';
 
 const pass = 'password1234';
@@ -22,12 +22,18 @@ export class AuthController {
         const saltOrRounds = 10;
         const hash = await bcrypt.hash(register.password, saltOrRounds);
 
-        const match = await bcrypt.compare(pass, hash);
+        //handle auth
+        const registerRequest: IRegisterRequest = {
+            register: {
+                username: register.username,
+                password: hash,
+            }
+        };
 
-        if(match)
-            return {message: hash};
-        else
-            return {message: 'error'};
+        return this.service.register(registerRequest);
+
+        //handle user
+
     }
 
 }
