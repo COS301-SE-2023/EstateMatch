@@ -19,7 +19,7 @@
           <ion-grid>
             <ion-row>
               <ion-col>    
-            <ion-input name="Email" label="Email:" type="text" placeholder="Enter email here"></ion-input>    
+            <ion-input [(ngModel)]="username" name="Email" label="Username:" type="text" placeholder="Enter username here"></ion-input>    
              </ion-col>
           </ion-row>
         </ion-grid>
@@ -31,7 +31,7 @@
           <ion-grid>
             <ion-row>
               <ion-col>    
-            <ion-input name="Password" label="Password:" type="text" placeholder="Enter password here"></ion-input>    
+            <ion-input [(ngModel)]="password" name="Password" label="Password:" type="password" placeholder="Enter password here"></ion-input>    
              </ion-col>
           </ion-row>
         </ion-grid>
@@ -77,6 +77,6 @@
   </ion-card>
   
   <div class="buttonDiv">
-    <button class="buttons" fill="default"routerLink="/home" routerDirection="root">Log In</button>
+    <button (click)="login()" class="buttons" fill="default" routerDirection="root">Log In</button>
   </div>
   
