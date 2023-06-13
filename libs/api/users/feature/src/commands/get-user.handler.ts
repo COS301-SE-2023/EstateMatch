@@ -1,18 +1,17 @@
 import { UserRepository } from "@estate-match/api/users/data-access";
-import { UserModel } from "@estate-match/api/users/schema";
-import { SetUserCommand, ISetUserResponse } from "@estate-match/api/users/util";
+import { GetUserCommand, IGetUserResponse } from "@estate-match/api/users/util";
 import { CommandHandler, ICommandHandler, EventPublisher } from "@nestjs/cqrs";
 
-@CommandHandler(SetUserCommand)
-export class SetUserHandler implements ICommandHandler<SetUserCommand, ISetUserResponse> {
+@CommandHandler(GetUserCommand)
+export class GetUserHandler implements ICommandHandler<GetUserCommand, IGetUserResponse> {
     constructor(
         private readonly userRepository: UserRepository,
         private readonly publisher: EventPublisher
     ) {}
     
-    async execute(command: SetUserCommand): Promise<any> {
+    async execute(command: GetUserCommand): Promise<any> {
         const request = command.request;
         const user =  request.user;
-        return this.userRepository.create(user);
+        return this.userRepository.findOne(user);
     }
 }

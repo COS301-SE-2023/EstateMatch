@@ -1,3 +1,3 @@
 export interface IGetUserRequest {
-    id: string;
+    user: string;
 }
