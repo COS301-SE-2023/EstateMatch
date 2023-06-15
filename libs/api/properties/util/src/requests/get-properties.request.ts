@@ -1,4 +1,4 @@
-export interface IGetProperty{
+export interface IGetPropertyRequest{
     _id: string, //could say users here 
     address: string,
     price: number,
