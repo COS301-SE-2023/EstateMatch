@@ -6,7 +6,7 @@ import {UserModule as UserDataAccessModule} from '@estate-match/api/users/data-a
 
 //import handlers
 import {GetUserHandler, SetUserHandler} from './commands';
-import exp = require('constants');
+
 
 export const UserCommandHandlers = [
     GetUserHandler,
