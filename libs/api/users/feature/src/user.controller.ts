@@ -2,7 +2,7 @@ import {Controller, Post, Body, Get} from '@nestjs/common';
 import {UserService} from './user.service';
 import { IGetUserRequest } from '@estate-match/api/users/util';
 import { ISetUserRequest} from '@estate-match/api/users/util';
-
+import { IUpdateUserRequest} from '@estate-match/api/users/util';
 @Controller()
 export class UserController {
     constructor(private readonly userService: UserService) {}
@@ -20,5 +20,11 @@ export class UserController {
     async setUser(@Body() request: ISetUserRequest) {
         return await this.userService.setUser(request);
     }
+
+    @Post('/updateUser')
+    async updateUser(@Body() request: IUpdateUserRequest) {
+        return await this.userService.updateUser(request);
+    }
+    
 
 }

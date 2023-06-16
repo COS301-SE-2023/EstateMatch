@@ -5,12 +5,14 @@ import { CqrsModule } from '@nestjs/cqrs';
 import {UserModule as UserDataAccessModule} from '@estate-match/api/users/data-access';
 
 //import handlers
-import {GetUserHandler, SetUserHandler} from './commands';
+import {GetUserHandler, SetUserHandler, UpdateUserHandler} from './commands';
 
 
 export const UserCommandHandlers = [
     GetUserHandler,
-    SetUserHandler
+    SetUserHandler,
+    UpdateUserHandler
+
 ];
 
 @Module({

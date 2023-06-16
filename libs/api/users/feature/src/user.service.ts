@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import { GetUserCommand, IGetUserRequest, IGetUserResponse } from '@estate-match/api/users/util';
 import { SetUserCommand, ISetUserRequest, ISetUserResponse } from '@estate-match/api/users/util';
+import { UpdateUserCommand, IUpdateUserRequest, IUpdateUserResponse } from '@estate-match/api/users/util';
 import { CommandBus } from '@nestjs/cqrs';
 
 @Injectable()
@@ -15,5 +16,10 @@ export class UserService {
     async setUser(request: ISetUserRequest): Promise<ISetUserResponse> {
        return await this.commandBus.execute<
             SetUserCommand, ISetUserResponse>(new SetUserCommand(request));
+    }
+
+    async updateUser(request: IUpdateUserRequest): Promise<IUpdateUserResponse> {
+        return await this.commandBus.execute<
+            UpdateUserCommand, IUpdateUserResponse>(new UpdateUserCommand(request));
     }
 }
