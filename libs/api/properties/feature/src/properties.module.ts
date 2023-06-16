@@ -7,13 +7,15 @@ import { PropertiesModule as PropertiesDataAccessModule } from '@estate-match/ap
 import {
     DislikePropertyHandler,
     LikePropertyHandler,
-    GetLikedPropertiesHandler
+    GetLikedPropertiesHandler,
+    GetPropertiesHandler
 } from './commands';
 
 export const CommandHandlers = [
     DislikePropertyHandler,
     LikePropertyHandler,
-    GetLikedPropertiesHandler
+    GetLikedPropertiesHandler,
+    GetPropertiesHandler
 ];
 
 @Module({
