@@ -1,7 +1,7 @@
 import { UserModel } from "@estate-match/api/users/schema";
 import {  Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
+import { Model} from "mongoose";
 
 @Injectable()
 export class UserRepository {
@@ -19,6 +19,32 @@ export class UserRepository {
     async create(user : UserModel) : Promise<UserModel> {
         const createdUser = new this.userModel(user);
         return createdUser.save();
+    }
+
+    //update user details
+    async update(id : string,updateUser : Partial<UserModel>) : Promise<boolean> {
+        try {
+            const user = await this.findOne(id);
+
+            if(!user){
+                return false;
+            }
+
+            const updateUserData: UserModel = {
+                ...user,
+                ...updateUser,
+    
+            } 
+
+            //perform update
+            await this.userModel.updateOne({userID: id}, updateUserData);
+            return true;
+
+            
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
     }
 
 }
