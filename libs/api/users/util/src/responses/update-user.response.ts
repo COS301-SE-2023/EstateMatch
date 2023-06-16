@@ -1,3 +1,3 @@
-export interface UpdateUserResponse {
+export interface IUpdateUserResponse {
     success: boolean;
 }

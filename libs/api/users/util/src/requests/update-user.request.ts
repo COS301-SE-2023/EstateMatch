@@ -1,5 +1,5 @@
 import { IUser } from "../interfaces";
 
-export interface UpdateUserRequest {
+export interface IUpdateUserRequest {
     user: IUser;
 }
