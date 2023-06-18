@@ -1,0 +1,15 @@
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+}
+
+ion-card[name="displayContainer"]{
+    height: 75%;
+    border-radius: 5%;
+}
+
+ion-card-subtitle[name="Subtitle"]{
+    padding-top: 8%;
+    text-align: center;
+    font-size: x-large;
+    color:black;
+}
