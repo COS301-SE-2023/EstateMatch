@@ -30,6 +30,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('@estate-match/app/liked/feature').then((m) => m.LikedModule),
   },
+  {
+    path: 'info',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/more-info/feature').then((m) => m.InfoModule),
+  },
 ];
 
 @NgModule({
