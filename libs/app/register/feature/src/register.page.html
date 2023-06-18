@@ -27,6 +27,18 @@
             </div>
         </div>
 
+        <div>
+            <div class="InputContainer">  
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>    
+                            <ion-input [(ngModel)]="password" name="Password" label="Password:" type="password" placeholder="Enter password here"></ion-input>    
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </div>
+        </div>
+
 
   <div class="buttonDiv">
     <button (click)="register()" class="buttons" fill="default" routerDirection="root">Register</button>
