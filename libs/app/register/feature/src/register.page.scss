@@ -29,3 +29,33 @@ select{
 .InputContainer{
     padding-top: 8%; 
 }
+
+.TextContainer{
+    padding-top: 4%;
+}
+
+.TagsContainer{
+    padding-top: 8%; 
+}
+
+.buttons{
+    height: 50px;
+    color: rgb(255, 255, 255);
+    background-color: #67C390;
+    width: 50%;
+    border-color: #67C390;
+    border-radius: 5%;
+    font-size: 1.5em;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+ion-col{
+    width: 50%;
+}
+
+ion-row{
+    padding-left: 10%;
+}
