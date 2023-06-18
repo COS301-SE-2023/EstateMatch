@@ -11,9 +11,23 @@
   </header>
 
 
-
+  <ion-card name="displayContainer">
+    <ion-card-subtitle name="Subtitle">Login</ion-card-subtitle>
+    <div id="CardCentering">
+        
+        <div>
+            <div class="InputContainer">  
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>    
+                            <ion-input [(ngModel)]="username" name="Email" label="Username:" type="text" placeholder="Enter username here"></ion-input>    
+                        </ion-col>
+              </ion-row>
+                </ion-grid>
+            </div>
+        </div>
 
 
   <div class="buttonDiv">
-    <button (click)="login()" class="buttons" fill="default" routerDirection="root">Log In</button>
+    <button (click)="register()" class="buttons" fill="default" routerDirection="root">Register</button>
   </div>
