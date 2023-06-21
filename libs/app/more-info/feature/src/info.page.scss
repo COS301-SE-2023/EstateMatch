@@ -8,10 +8,12 @@ ion-card[name="DisplayCard"] {
     overflow : scroll;
 }
 img[name="HouseImage"]{
-    max-height: 60%;
+    min-height: 60%;
     object-fit: cover;
     object-position: center;
+    max-width: 325px;
 }
 ion-card-content[name="CardDescription"]{
     color:black;
+    font-size: large;
 }
