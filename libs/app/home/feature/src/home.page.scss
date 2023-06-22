@@ -3,13 +3,13 @@
 }
 ion-card[name="DisplayCard"] {
     height: 450px;
-    border-radius: 10%;
     font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
 }
 img[name="HouseImage"]{
-    max-height: 60%;
+    min-height: 60%;
     object-fit: cover;
     object-position: center;
+    max-width: 325px;
 }
 
 button[name="Like"]{
