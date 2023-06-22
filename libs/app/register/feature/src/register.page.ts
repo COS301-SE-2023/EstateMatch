@@ -23,7 +23,10 @@ export class RegisterPage {
   
   async register() {
     const url = 'api/register';
-    const body = {
+    if(this.password !== this.cpassword){
+      this.makeToast('Passwords do not match');
+    }else{
+      const body = {
         username: this.username,
         password: this.password,
         email: this.email,
@@ -36,12 +39,14 @@ export class RegisterPage {
     });
 
     const loggedIn = await this.http.post(url, body, { headers }).toPromise() as {message: string};
-    if(loggedIn.message === 'User Login Success'){
-      this.makeToast('Login success');
-      this.router.navigate(['/home'], { replaceUrl: true });
+    if(loggedIn.message === 'User Register Success'){
+      this.makeToast('Register success');
+      this.router.navigate(['/preferences'], { replaceUrl: true });
     }else{
-      this.makeToast('Login failed');
+      this.makeToast('Register failed');
     }
+    }
+
   }
 
   async makeToast(message: any){
