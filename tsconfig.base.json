@@ -75,6 +75,9 @@
       ],
       "@estate-match/app/preferences/feature": [
         "libs/app/preferences/feature/src/index.ts"
+      ],
+      "@estate-match/app/search/feature": [
+        "libs/app/search/feature/src/index.ts"
       ]
     }
   },
