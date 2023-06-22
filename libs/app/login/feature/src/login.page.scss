@@ -2,6 +2,22 @@
     font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
 }
 
+:root {
+    --ion-color-secondary: #67C390;
+    --ion-color-secondary-rgb: 0, 102, 0;
+    --ion-color-secondary-contrast: #ffffff;
+    --ion-color-secondary-contrast-rgb: 255, 255, 255;
+    --ion-color-secondary-shade: #005a00;
+    --ion-color-secondary-tint: #1a751a;
+  }
+
+ion-toolbar{
+    --background: #EFF0F5;
+}
+ion-content{
+    --background: #EFF0F5;
+}
+
 ion-card[name="displayContainer"]{
     height: 75%;
     border-radius: 5%;
@@ -35,21 +51,10 @@ select{
 }
 
 .TagsContainer{
-    padding-top: 8%; 
+    padding-top: 4%; 
 }
 
-.buttons{
-    height: 50px;
-    color: rgb(255, 255, 255);
-    background-color: #67C390;
-    width: 50%;
-    border-color: #67C390;
-    border-radius: 5%;
-    font-size: 1.5em;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
+
 
 
 ion-col{
@@ -58,4 +63,67 @@ ion-col{
 
 ion-row{
     padding-left: 10%;
+}
+
+.main_content_div{
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+
+    ion-label {
+        display: block;
+    }
+
+    .buttons{
+        height: 50px;
+        color: rgb(255, 255, 255);
+        background-color: #67C390;
+        width: 50%;
+        border-color: #67C390;
+        border-radius: 5%;
+        font-size: 1.5em;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .form_div{
+        width: 100%;
+        padding: 20px;
+        margin-top: 40px;
+
+        .head_lbl{
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .small_lbl{
+            margin-bottom: 5px;
+        }
+
+        ion-input{
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            --padding-start: 8px;
+        }
+
+        ion-button{
+            --border-radius: 5px;
+            margin-top: 25px;
+        }
+    }
+
+    .bottom_div{
+        text-align: center;
+        padding-bottom: 30px;
+        ion-label {
+            margin-bottom: 0%;
+        }
+    }
+
 }

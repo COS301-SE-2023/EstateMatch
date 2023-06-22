@@ -1,82 +1,50 @@
 <head>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
-  </head>
-  
-  
-  
-  <header>
-    <ion-toolbar name="ToolBar">
-      <ion-title>Estate Match</ion-title>
-    </ion-toolbar>
-  </header>
-  
-  <ion-card name="displayContainer">
-      <ion-card-subtitle name="Subtitle">Login</ion-card-subtitle>
-  <div id="CardCentering">
-  
-      <div>
-        <div class="InputContainer">  
-          <ion-grid>
-            <ion-row>
-              <ion-col>    
-            <ion-input [(ngModel)]="username" name="Email" label="Username:" type="text" placeholder="Enter username here"></ion-input>    
-             </ion-col>
-          </ion-row>
-        </ion-grid>
-          </div>
-      </div>
-  
-      <div>
-        <div class="InputContainer">  
-          <ion-grid>
-            <ion-row>
-              <ion-col>    
-            <ion-input [(ngModel)]="password" name="Password" label="Password:" type="password" placeholder="Enter password here"></ion-input>    
-             </ion-col>
-          </ion-row>
-        </ion-grid>
-          </div>
-      </div>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+</head>
 
-      
 
-      <div>
-        <div class="TextContainer">  
-          <ion-grid>
-            <ion-row>
-              <ion-col>    
-                <ion-item lines="none">
-                  <ion-nav-link>
-                    <ion-text color="primary">Forgot Password?</ion-text>
-                  </ion-nav-link>
-                </ion-item>
-             </ion-col>
-            </ion-row>
-          </ion-grid>
-        </div>
-      </div>
 
-      <div>
-        <div class="TextContainer">  
-          <ion-grid>
-            <ion-row>
-              <ion-col>    
-                <ion-item lines="none">
-                  <ion-nav-link>
-                    <p>Don't have an account? <ion-text color="primary">Register Here!</ion-text></p>
-                  </ion-nav-link>
-                </ion-item>
-             </ion-col>
-            </ion-row>
-          </ion-grid>
-        </div>
-      </div>
-  
+<header>
+  <ion-toolbar name="ToolBar">
+    <ion-title>Estate Match</ion-title>
+  </ion-toolbar>
+</header>
+
+
+<ion-card name="displayContainer">
+  <ion-card-subtitle name="Subtitle">Login</ion-card-subtitle>
+  <ion-content>
+      <div class="main_content_div">
         
-  </div>
-  </ion-card>
-  
-  <div class="buttonDiv">
-    <button (click)="login()" class="buttons" fill="default" routerDirection="root">Log In</button>
-  </div>
-  
+        <div class="form_div">
+          
+    
+        
+    
+         
+    
+          <ion-label class="small_lbl">Email</ion-label>
+          <ion-input type="text" placeholder="Enter Email Adress"></ion-input>
+    
+          <ion-label class="small_lbl">Password</ion-label>
+          <ion-input type="text" placeholder="Password"></ion-input>
+
+         
+    
+          <ion-button class="buttons" color="secondary" expand="block">
+            Login
+          </ion-button>
+    
+        </div>
+    
+        <div class="bottom_div">
+          <ion-label>Don't have an account ? Sign Up.</ion-label>
+        </div>
+    
+      </div>
+    </ion-content>
+
+
+<div class="buttonDiv">
+  <button class="buttons" fill="default" routerDirection="root">Register</button>
+</div>
