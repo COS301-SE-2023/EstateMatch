@@ -45,6 +45,9 @@
       ],
       "@estate-match/app/core/feature": ["libs/app/core/feature/src/index.ts"],
       "@estate-match/app/core/util": ["libs/app/core/util/src/index.ts"],
+      "@estate-match/app/edit-profile/feature": [
+        "libs/app/edit-profile/feature/src/index.ts"
+      ],
       "@estate-match/app/home/data-access": [
         "libs/app/home/data-access/src/index.ts"
       ],
