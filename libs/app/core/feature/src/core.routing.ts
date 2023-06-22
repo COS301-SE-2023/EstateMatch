@@ -42,6 +42,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('@estate-match/app/register/feature').then((m) => m.RegisterModule),
   },
+  {
+    path: 'map',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/map/feature').then((m) => m.MapModule),
+  },
 ];
 
 @NgModule({
