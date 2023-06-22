@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+// import {} from 'googlemaps';
 
 
 @Component({
@@ -7,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./map.page.scss'],
 })
 export class MapPage {
-  
+  @ViewChild('map', { static: true }) mapElement: any;
+
+  // constructor() {
+  //   this.loadmap();
+  // }
+
+  // async loadmap() {
+  //   const currentCords = await this.getCurrentLocation();
+  //   const mapProperties = {
+  //       center: new google.maps.LatLng(currentCords.latitude, currentCords.longitude),
+
+  //   };
+  // }
 }
