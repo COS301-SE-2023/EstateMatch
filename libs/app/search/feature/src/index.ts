@@ -1,1 +1,3 @@
-export * from './lib/app-search-feature';
+export * from './search.module';
+export * from './search.page';
+export * from './search.routing';
