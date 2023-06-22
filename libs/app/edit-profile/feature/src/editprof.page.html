@@ -12,7 +12,33 @@
   </header>
 
   <body>
-
+    <ion-content>
+        <div class="main_content_div">
+      
+          <ion-card class="white_div">
+            
+            <ion-label class="small_lbl">First Name</ion-label>
+            <ion-input type="text" placeholder="First Name" value="Mausam" [disabled]="isDisabled"></ion-input>
+      
+            <ion-label class="small_lbl">Last Name</ion-label>
+            <ion-input type="text" placeholder="Last Name" value="Chavda" [disabled]="isDisabled"></ion-input>
+      
+            <ion-label class="small_lbl">Mobile</ion-label>
+            <ion-input type="text" placeholder="Mobile" value="987654323" [disabled]="isDisabled"></ion-input>
+      
+            <ion-label class="small_lbl">Email ID</ion-label>
+            <ion-input type="text" placeholder="Email ID" value="mausam@gmail.com" [disabled]="isDisabled"></ion-input>
+      
+            <ion-label class="small_lbl">City</ion-label>
+            <ion-input type="text" placeholder="City" value="Bhavnagar" [disabled]="isDisabled"></ion-input>
+      
+            <button (click)="save()" expand="block">
+              {{btnText}}
+            </button>
+      
+          </ion-card>
+        </div>
+      </ion-content>
   </body>
 
   <footer>

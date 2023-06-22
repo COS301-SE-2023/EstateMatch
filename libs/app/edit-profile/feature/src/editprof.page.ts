@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -7,4 +7,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./editprof.page.scss'],
 })
 
-export class EditProfilePage {}
+export class EditProfilePage implements OnInit {
+
+    btnText = 'Edit Profile';
+    isDisabled = true;
+    constructor() { }
+  
+    ngOnInit() {
+    }
+  
+    save() {
+      if (this.btnText === 'Edit Profile') {
+        this.btnText = 'Save Profile';
+        this.isDisabled = false;
+      } else {
+        this.isDisabled = true;
+        this.btnText = 'Edit Profile';
+      }
+    }
+  
+  }

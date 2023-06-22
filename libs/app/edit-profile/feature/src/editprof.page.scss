@@ -36,3 +36,65 @@
     background-color: #ffffff;
     color: rgb(88, 163, 238);
   }
+.main_content_div{
+    //width: 100%;
+
+    ion-label {
+        display: block;
+    }
+
+    /*.up_div{
+        width: 100%;
+        height: 45vh;
+        background: var(--ion-color-primary);
+        position: relative;
+
+        .user_back{
+            height: 120px;
+            width: 120px;
+            border-radius: 100%;
+            background-position: top;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border: 4px solid #EFF0F5;
+            // border: 4px solid #FF8035;
+        }
+    }*/
+
+    .white_div{
+        padding-top: 10%;
+        width:85%;
+        position: fixed;
+        height: 70%;
+    }
+
+    .small_lbl{
+        margin-left: 5%;
+    }
+
+    ion-input{
+        margin-left: 5%;
+        border: 1px solid #707070;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        width: 90%;
+        --padding-start: 8px;
+    }
+
+    button{
+        margin-top: 20px;
+        --border-radius: 5px;
+        width: 60%;
+        height: 2.5em;
+        font-size: large;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #67C390;
+        border-color: #67C390;
+        color: white; 
+        border-radius: 5%;
+    }
+}
