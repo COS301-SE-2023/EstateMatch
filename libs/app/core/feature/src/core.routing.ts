@@ -36,6 +36,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('@estate-match/app/profile/feature').then((m) => m.ProfileModule),
   },
+  {
+    path: 'editprof',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/edit-profile/feature').then((m) => m.EditProfileModule),
+  },
 ];
 
 @NgModule({
