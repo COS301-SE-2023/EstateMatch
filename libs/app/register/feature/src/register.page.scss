@@ -19,7 +19,7 @@ ion-content{
 }
 
 ion-card[name="displayContainer"]{
-    height: 75%;
+    height: 100%;
    
 }
 
@@ -31,31 +31,12 @@ ion-card-subtitle[name="Subtitle"]{
 }
 
 ion-input{
-    font-size: large;
+    font-size: medium;
 }
 
 ion-label{
     font-size: large;
 }
-
-select{
-    font-size: large;
-}
-
-.InputContainer{
-    padding-top: 8%; 
-}
-
-.TextContainer{
-    padding-top: 4%;
-}
-
-.TagsContainer{
-    padding-top: 4%; 
-}
-
-
-
 
 ion-col{
     width: 50%;
@@ -72,6 +53,7 @@ ion-row{
     flex-direction: column;
     justify-content: space-between;
     background-color: #ffffff;
+    padding-top: 0%;
     
 
     ion-label {
@@ -124,7 +106,7 @@ ion-row{
         text-align: center;
         padding-bottom: 30px;
         ion-label {
-            margin-bottom: 20%;
+            margin-bottom: 30%;
         }
     }
 
