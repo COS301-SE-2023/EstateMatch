@@ -9,9 +9,11 @@ import * as L from 'leaflet';
 })
   export class MapPage {
 
-      map: L.Map;
+      map!:L.Map
 
-      // constructor() {}
+      // constructor() {
+        
+      // }
 
       ngOnInit() {
         this.map=L.map('map',{
