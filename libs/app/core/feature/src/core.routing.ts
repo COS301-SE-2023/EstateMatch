@@ -42,6 +42,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('@estate-match/app/search/feature').then((m) => m.SearchModule),
   },
+  {
+    path: 'filters',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/search-filters/feature').then((m) => m.SearchModule),
+  },
 ];
 
 @NgModule({
