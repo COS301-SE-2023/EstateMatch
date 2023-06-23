@@ -1,1 +1,1 @@
-export * from './lib/api-search-feature';
+export * from './search.service';

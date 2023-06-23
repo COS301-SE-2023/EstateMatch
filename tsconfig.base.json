@@ -46,6 +46,7 @@
       "@estate-match/api/search/feature": [
         "libs/api/search/feature/src/index.ts"
       ],
+      
       "@estate-match/api/search/util": ["libs/api/search/util/src/index.ts"],
       "@estate-match/app/core/data-access": [
         "libs/app/core/data-access/src/index.ts"
