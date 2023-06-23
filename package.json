@@ -27,6 +27,7 @@
     "axios": "^1.0.0",
     "bcrypt": "^5.1.0",
     "fast-text-encoding": "^1.0.6",
+    "leaflet": "^1.9.4",
     "mongoose": "^7.1.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",

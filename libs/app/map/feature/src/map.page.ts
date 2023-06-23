@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-// import {} from 'googlemaps';
+import * as L from 'leaflet';
 
 
 @Component({
@@ -7,18 +7,25 @@ import { Component, ViewChild } from '@angular/core';
   templateUrl: './map.page.html',
   styleUrls: ['./map.page.scss'],
 })
-export class MapPage {
-  @ViewChild('map', { static: true }) mapElement: any;
+  export class MapPage {
 
-  // constructor() {
-  //   this.loadmap();
-  // }
+      map: L.Map;
 
-  // async loadmap() {
-  //   const currentCords = await this.getCurrentLocation();
-  //   const mapProperties = {
-  //       center: new google.maps.LatLng(currentCords.latitude, currentCords.longitude),
+      // constructor() {}
 
-  //   };
-  // }
+      ngOnInit() {
+        this.map=L.map('map',{
+          center: [ 51.505, -0.09 ],
+          zoom: 13,
+          renderer: L.canvas()
+        })
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: 'copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+      }).addTo(this.map);
+      setTimeout(() => {
+        this.map.invalidateSize();
+      },0);
+  }
+
 }

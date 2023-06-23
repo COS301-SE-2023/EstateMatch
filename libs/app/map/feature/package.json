@@ -1,5 +1,8 @@
 {
   "name": "@estate-match/app/map/feature",
   "version": "0.0.1",
-  "type": "commonjs"
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/leaflet": "^1.9.3"
+  }
 }
