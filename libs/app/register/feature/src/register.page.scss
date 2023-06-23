@@ -31,7 +31,10 @@ ion-card-subtitle[name="Subtitle"]{
 }
 
 ion-input{
-    font-size: medium;
+    border: 1px solid #707070;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    --padding-start: 8px;
 }
 
 ion-label{
