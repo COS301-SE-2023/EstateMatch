@@ -3,7 +3,7 @@ import { SearchService } from './search.service';
 import { ISearchRequest } from '@estate-match/api/search/util';
 
 @Controller()
-export class PropertiesController {
+export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 
   @Post('/search')

@@ -14,6 +14,7 @@ export class SearchHandler implements IQueryHandler<SearchQuery, ISearchResponse
   async execute(query: SearchQuery) : Promise<any> {
     const request = query.request;
     console.log(request); 
+    //ready to query database
     return null;
   }
 }
