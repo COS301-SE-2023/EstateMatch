@@ -1,7 +1,7 @@
-// import { Module } from '@nestjs/common';
-// import { CqrsModule } from '@nestjs/cqrs';
-// import { BrowseModule as BrowseModuleDA } from '@mp/api/browse/data-access';
-// import { BrowseService } from './browse.service';
+import { Module } from '@nestjs/common';
+import { CqrsModule } from '@nestjs/cqrs';
+// import { SearchModule as SearchModuleDA } from '@mp/api/search/data-access';
+import { SearchService } from './search.service';
 
 // import {
 //   GetUserHandler,
@@ -14,12 +14,12 @@
 //     GetTrendingHandler
 // ];
 
-// @Module (
-//   {
-//     imports: [CqrsModule, BrowseModuleDA],
-//    providers: [BrowseService, ...QueryHandlers],
-//    exports: [BrowseService],
-//   }
-// )
+@Module (
+  {
+    imports: [CqrsModule, /*SearchModuleDA*/],
+   providers: [SearchService, /*...QueryHandlers*/],
+   exports: [SearchService],
+  }
+)
 
-// export class BrowseModule {}
+export class SearchModule {}
