@@ -1,1 +1,3 @@
-export * from './lib/app-search-filters-feature';
+export * from './filters.module';
+export * from './filters.page';
+export * from './filters.routing';
