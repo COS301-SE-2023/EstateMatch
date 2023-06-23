@@ -8,7 +8,7 @@ export class SearchService{
         private readonly queryBus: QueryBus,
     ){}
 
-    async getUser(
+    async search(
         request: ISearchRequest
     ): Promise<ISearchResponse>{
         return await this.queryBus.execute<
