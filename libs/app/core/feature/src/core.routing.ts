@@ -42,6 +42,24 @@ const routes: Routes = [
     loadChildren: () =>
       import('@estate-match/app/edit-profile/feature').then((m) => m.EditProfileModule),
   },
+  {
+    path: 'login',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/login/feature').then((m) => m.LoginModule),
+  },
+  {
+    path: 'register',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/register/feature').then((m) => m.RegisterModule),
+  },
+  {
+    path: 'map',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/map/feature').then((m) => m.MapModule),
+  },
 ];
 
 @NgModule({

@@ -15,6 +15,18 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@estate-match/api/authentication/data-access": [
+        "libs/api/authentication/data-access/src/index.ts"
+      ],
+      "@estate-match/api/authentication/feature": [
+        "libs/api/authentication/feature/src/index.ts"
+      ],
+      "@estate-match/api/authentication/schema": [
+        "libs/api/authentication/schema/src/index.ts"
+      ],
+      "@estate-match/api/authentication/util": [
+        "libs/api/authentication/util/src/index.ts"
+      ],
       "@estate-match/api/core/feature": ["libs/api/core/feature/src/index.ts"],
       "@estate-match/api/prefrences/data-access": [
         "libs/api/prefrences/data-access/src/index.ts"
@@ -40,6 +52,15 @@
       "@estate-match/api/properties/util": [
         "libs/api/properties/util/src/index.ts"
       ],
+      "@estate-match/api/users/data-access": [
+        "libs/api/users/data-access/src/index.ts"
+      ],
+      
+      "@estate-match/api/users/feature": [
+        "libs/api/users/feature/src/index.ts"
+      ],
+      "@estate-match/api/users/schema": ["libs/api/users/schema/src/index.ts"],
+      "@estate-match/api/users/util": ["libs/api/users/util/src/index.ts"],
       "@estate-match/app/core/data-access": [
         "libs/app/core/data-access/src/index.ts"
       ],
@@ -58,11 +79,20 @@
       "@estate-match/app/liked/feature": [
         "libs/app/liked/feature/src/index.ts"
       ],
+      "@estate-match/app/login/feature": [
+        "libs/app/login/feature/src/index.ts"
+      ],
+      "@estate-match/app/map/data-access": [
+        "libs/app/map/data-access/src/index.ts"
+      ],
+      "@estate-match/app/map/feature": ["libs/app/map/feature/src/index.ts"],
       "@estate-match/app/preferences/feature": [
         "libs/app/preferences/feature/src/index.ts"
       ],
       "@estate-match/app/profile/feature": [
-        "libs/app/profile/feature/src/index.ts"
+        "libs/app/profile/feature/src/index.ts"],
+      "@estate-match/app/register/feature": [
+        "libs/app/register/feature/src/index.ts"
       ]
     }
   },

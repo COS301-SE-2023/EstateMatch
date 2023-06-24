@@ -1,0 +1,40 @@
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+</head>
+
+
+
+<header>
+  <ion-toolbar name="ToolBar">
+    <ion-title>Estate Match</ion-title>
+  </ion-toolbar>
+</header>
+
+
+<ion-card name="displayContainer">
+  <ion-card-subtitle name="Subtitle">Login</ion-card-subtitle>
+  
+      <div class="main_content_div">
+        
+        <div class="form_div">
+                   
+          <ion-label class="small_lbl">Email</ion-label>
+          <ion-input [(ngModel)]="username" type="text" placeholder="Enter Email Address"></ion-input>
+    
+          <ion-label class="small_lbl">Password</ion-label>
+          <ion-input [(ngModel)]="password" type="password" placeholder="Password"></ion-input>
+   
+          <ion-button (click)="login()" class="buttons" color="secondary" expand="block">
+            Login
+          </ion-button>
+    
+        </div>
+    
+        <div class="bottom_div">
+          <ion-label>Don't have an account ? Sign Up.</ion-label>
+        </div>
+    
+      </div>
+    
+    
+
