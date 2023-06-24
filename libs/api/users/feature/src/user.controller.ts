@@ -25,6 +25,4 @@ export class UserController {
     async updateUser(@Body() request: IUpdateUserRequest) {
         return await this.userService.updateUser(request);
     }
-    
-
 }

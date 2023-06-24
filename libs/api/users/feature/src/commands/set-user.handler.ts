@@ -1,5 +1,4 @@
 import { UserRepository } from "@estate-match/api/users/data-access";
-import { UserModel } from "@estate-match/api/users/schema";
 import { SetUserCommand, ISetUserResponse } from "@estate-match/api/users/util";
 import { CommandHandler, ICommandHandler, EventPublisher } from "@nestjs/cqrs";
 
