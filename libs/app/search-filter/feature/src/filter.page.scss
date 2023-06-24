@@ -9,7 +9,7 @@ ion-toolbar {
     fill:none;
 }
 ion-card[name="displayContainer"]{
-    height: 75%;
+    height: 450px;
     border-radius: 5%;
 }
 
@@ -22,12 +22,6 @@ ion-card-subtitle[name="Subtitle"]{
 
 ion-input{
     font-size: large;
-    margin-left: 5%;
-    border: 1px solid #707070;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    width: 90%;
-    --padding-start: 8px;
 }
 
 ion-label{
@@ -78,4 +72,8 @@ ion-col{
 
 ion-row{
     padding-left: 10%;
+    padding-bottom: 20px;
+}
+div[name="Spacing"]{
+    height: 50px;
 }
