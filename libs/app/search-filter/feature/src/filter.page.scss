@@ -1,0 +1,67 @@
+*{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
+ion-header {
+    height:5rem;
+}
+ion-toolbar {
+    height:min-content;
+    fill:none;
+}
+ion-card[name="displayContainer"]{
+    height: 75%;
+    border-radius: 5%;
+}
+
+ion-card-subtitle[name="Subtitle"]{
+    padding-top: 8%;
+    text-align: center;
+    font-size: x-large;
+    color:black;
+}
+
+ion-input{
+    font-size: large;
+}
+
+ion-label{
+    font-size: large;
+}
+
+select{
+    font-size: large;
+}
+
+.AreaContainer{
+    padding-top: 8%; 
+}
+
+.TagsContainer{
+    padding-top: 8%; 
+}
+
+.buttons{
+    height: 50px;
+    color: rgb(255, 255, 255);
+    background-color: #67C390;
+    width: 50%;
+    border-color: #67C390;
+    border-radius: 5%;
+    font-size: 1.5em;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dropdown{
+    padding-top: 8%; 
+}
+
+ion-col{
+    width: 50%;
+    text-align: left;
+}
+
+ion-row{
+    padding-left: 10%;
+}
