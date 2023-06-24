@@ -29,8 +29,8 @@ export class EditProfilePage {
 
         const url = 'api/updateUser';
         const body = {
-          usernam: sessionStorage.getItem('username'),
-          newUserDeatail: {
+          username: sessionStorage.getItem('username'),
+          newUserDetail: {
             username: this.newUsername,
             email: this.newEmail,
             firstName: this.newFName,
@@ -42,8 +42,8 @@ export class EditProfilePage {
           'Content-Type': 'application/json',
         });
 
-        const updated = await this.http.post(url, body, { headers }).toPromise() as {message: boolean};
-        if(updated.message){
+        const updated = await this.http.post(url, body, { headers }).toPromise() as {success: boolean};
+        if(updated.success){
           this.makeToast('Profile succesfully updated');
           this.router.navigate(['/profile'], { replaceUrl: true });
         }else{
