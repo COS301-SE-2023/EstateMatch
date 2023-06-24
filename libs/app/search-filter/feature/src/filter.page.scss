@@ -53,6 +53,19 @@ select{
     transform: translateX(-50%);
 }
 
+button[name="Cancel"]{
+    height: 50px;
+    color: rgb(255, 255, 255);
+    background-color: #67C390;
+    width: 50%;
+    border-color: #67C390;
+    border-radius: 5%;
+    font-size: 1.5em;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .dropdown{
     padding-top: 8%; 
 }

@@ -13,7 +13,7 @@
 
     <body>  
         <ion-card name="displayContainer">
-            <ion-card-subtitle name="Subtitle">Preferences</ion-card-subtitle>
+            <ion-card-subtitle name="Subtitle">Search Filters</ion-card-subtitle>
         <div id="CardCentering">
         
             <div>
@@ -21,7 +21,7 @@
                 <ion-grid>
                   <ion-row>
                     <ion-col>    
-                  <ion-input name="AreaInput" label="Area:" type="text" [(ngModel)]="area" placeholder="Enter area here"></ion-input>    
+                  <ion-input name="AreaInput" label="Area:" type="text" placeholder="Enter area here"></ion-input>    
                    </ion-col>
                 </ion-row>
               </ion-grid>
@@ -36,7 +36,7 @@
               </ion-col>
         
               <ion-col>
-              <select class="dropdownColor" [(ngModel)]="budget" label="Budget">
+              <select class="dropdownColor" label="Budget">
                 <option value="100 000">100 000</option>
                 <option value="150 000">150 000</option>
                 <option value="200 000">200 000</option>
@@ -88,7 +88,7 @@
                 <ion-label for="Bedrooms" class="labels">Bedrooms</ion-label>
                 </ion-col>
                 <ion-col>
-                <select label="Bedrooms" [(ngModel)]="bedrooms">
+                <select label="Bedrooms">
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -103,7 +103,7 @@
                 </ion-col>
         
                 <ion-col>
-                <select label="Bathrooms" [(ngModel)]="bathrooms">
+                <select label="Bathrooms">
                   <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -118,7 +118,7 @@
                 </ion-col>
                 
                 <ion-col>
-                <select label="Garage" [(ngModel)]="garages">
+                <select label="Garage">
                   <option value="1">1</option>
                   <option value="2">2</option>            
                 </select>
@@ -128,7 +128,7 @@
                 <br><br>
                 <ion-row>
                 <ion-col>
-                <ion-input label="Extra: " type="text" placeholder="Enter text here" [(ngModel)]="extras"></ion-input>
+                <ion-input label="Extra: " type="text" placeholder="Enter text here"></ion-input>
                 </ion-col>
                 </ion-row>
                 </ion-grid>
@@ -137,8 +137,11 @@
         </ion-card>
         
         <div class="buttonDiv">
-          <button (click)="setPreferences()" class="buttons" fill="default"routerLink="/home" routerDirection="root">Set Preferences</button>
+          <button class="buttons" fill="default"routerLink="/search" routerDirection="root">Save</button>
+          &nbsp;
+          <button name="Cancel" fill="default"routerLink="/search" routerDirection="root">Cancel</button>  
         </div>
+
     </body>
 
 </html>

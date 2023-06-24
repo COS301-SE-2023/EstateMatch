@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePage } from '@estate-match/app/home/feature';
+import { SearchPage } from '@estate-match/app/search/feature';
 import { FilterPage } from './filter.page';
 
 const routes: Routes = [
@@ -10,9 +10,9 @@ const routes: Routes = [
         component: FilterPage
     },
     {
-      path: 'home',
+      path: 'search',
       pathMatch: 'full',
-      component: HomePage
+      component: SearchPage
   }    
 ];
 
