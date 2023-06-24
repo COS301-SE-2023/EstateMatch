@@ -33,7 +33,7 @@ export class WebScraperService {
 
       //const imageURLs: string[]  = await propertyPage.$$eval('.js_lightboxImageWrapper', (imagesElement) => imagesElement.map((image) => image.getAttribute('data-image-url') || ''));
       const title = await propertyPage.$eval('.titleContainer h1', (titleElement) => titleElement.textContent?.trim() || '');
-      //const price = await propertyPage.$eval('.titleContainer h2 span.detailsPrice', (priceElement) => priceElement.textContent?.trim() || '');
+      const price = await propertyPage.$eval('.titleContainer h2 span.detailsPrice', (priceElement) => priceElement.textContent?.trim() || '');
       //const description = await propertyPage.$eval('.description p', (descriptionElement) => descriptionElement.textContent?.trim() || '');
       //const bedrooms = await propertyPage.$eval('li.p24_feaureDetails[title = "Bedrooms"] span ', (bedroomElement) => bedroomElement.textContent?.trim() || '');
       //const bathrooms = await propertyPage.$eval('.p24_feautureDetails[title = "Bathrooms"] span', (bathroomElement) => bathroomElement.textContent?.trim() || '');
@@ -45,7 +45,7 @@ export class WebScraperService {
       return {
         //imageURLs,
         title,
-        //price,
+        price,
         //description,
         //bedrooms,
         //bathrooms,
