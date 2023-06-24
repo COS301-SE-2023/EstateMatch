@@ -84,7 +84,7 @@
     }
 
     button{
-        margin-top: 20px;
+        margin-top: 10px;
         --border-radius: 5px;
         width: 60%;
         height: 2.5em;
@@ -92,9 +92,16 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-        background-color: #67C390;
-        border-color: #67C390;
         color: white; 
         border-radius: 5%;
+    }
+
+    button[name="Back"]{
+      background-color: #E7604D;
+      border-color: #E7604D;
+    }
+    button[name="Edit"]{
+      background-color: #67C390;
+      border-color: #67C390;
     }
 }
