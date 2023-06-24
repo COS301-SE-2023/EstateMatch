@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserService } from './user.service';
 import { CommandBus } from '@nestjs/cqrs';
-import { GetUserCommand, IGetUserRequest, IGetUserResponse, ISetUserRequest, ISetUserResponse, IUpdateUserRequest, IUpdateUserResponse, SetUserCommand } from '@estate-match/api/users/util';
+import { GetUserCommand, IGetUserRequest, IGetUserResponse, ISetUserRequest, ISetUserResponse, IUpdateUserRequest, IUpdateUserResponse, SetUserCommand, UpdateUserCommand } from '@estate-match/api/users/util';
 
 describe('UserService', () => {
   let service: UserService;
@@ -76,7 +76,29 @@ describe('UserService', () => {
     expect(result).toEqual(commandResponse);
   });
 
+  it('should update an existing user', async () => {
+    const request: IUpdateUserRequest = { 
+        username: 'test',
+        newUserDetail: {
+            id: 'testID',
+            username: 'test2',
+            firstName: 'testFName',
+            lastName: 'testLName',
+            email: 'test2@gmail.com',
+        }
+    };
 
+    const commandResponse: IUpdateUserResponse = { 
+        success: true
+    };
+
+    (commandBus.execute as jest.Mock).mockResolvedValue(commandResponse);
+    const result = await service.updateUser(request);
+    expect(commandBus.execute).toHaveBeenCalledWith(
+      expect.any(UpdateUserCommand),
+    );
+    expect(result).toEqual(commandResponse);
+  });  
 });
 
 
