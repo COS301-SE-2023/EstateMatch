@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable} from '@nestjs/common';
 import { GetUserCommand, IGetUserRequest, IGetUserResponse } from '@estate-match/api/users/util';
 import { SetUserCommand, ISetUserRequest, ISetUserResponse } from '@estate-match/api/users/util';
 import { UpdateUserCommand, IUpdateUserRequest, IUpdateUserResponse } from '@estate-match/api/users/util';
