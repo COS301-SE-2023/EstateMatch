@@ -35,13 +35,13 @@ export class WebScraperService {
       const price = await propertyPage.$eval('.titleContainer h2 span.detailsPrice', (priceElement) => priceElement.textContent?.trim() || '');
       const description = await propertyPage.$$eval('.description p', (descriptionElement) => descriptionElement.map((description) => description.textContent?.trim() || ''));
       const location = await propertyPage.$eval('.previousPage span', (locationElement) => locationElement.textContent?.trim() || '');
-      //const attributeLabel = await propertyPage.$$eval('.attributeLabel', (attributeLabelElement) => attributeLabelElement.map((attributeLabel) => attributeLabel.textContent?.trim() || ''));
-      //const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
+      const attributeLabel = await propertyPage.$$eval('.attributeLabel', (attributeLabelElement) => attributeLabelElement.map((attributeLabel) => attributeLabel.textContent?.trim() || ''));
+      const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
     
-      //var bedrooms;
-      //var bathrooms;
-      //var garages;
-      //var amenities: string[] = [];
+      var bedrooms;
+      var bathrooms;
+      var garages;
+      var amenities: string[] = [];
 
       //console.log(attributeLabel);
 
@@ -49,7 +49,7 @@ export class WebScraperService {
       //const attributeLabelText = await propertyPage.evaluate(span => span?.textContent, attributeLabel);
 
       // Check if the text content matches the desired value
-      /*for (const attribute of attributeLabel) 
+      for (const attribute of attributeLabel) 
       {
         if (attribute === 'Bedrooms') 
         {
@@ -85,7 +85,7 @@ export class WebScraperService {
         {
           imageURLs[i] = imageURLs[i]?.slice(0, lastDotIndex) + "_dhd" + imageURLs[i]?.slice(lastDotIndex);
         }
-      }*/
+      }
     
 
       await propertyPage.close();
