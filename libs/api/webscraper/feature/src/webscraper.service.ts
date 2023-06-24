@@ -14,9 +14,6 @@ export class WebScraperService {
     //await page.waitForSelector('.js_listingResultsContainer');
     await page.waitForSelector('.resultsItemsContainer');
 
-    console.log('Scraping property listings from: ', page.url());
-
-    
     const propertyURLs = await page.$$eval('.resultsItemsContainer a.listingResult', (listings) =>
     listings.map((listing) => listing.getAttribute('href') || '')
   );
@@ -24,7 +21,6 @@ export class WebScraperService {
   
   const propertyListings = await Promise.all(
     propertyURLs.map(async (url) => {
-      console.log('Scraping property listing from: ', url);
       const propertyPage = await browser.newPage();
       await propertyPage.goto("https://www.privateproperty.co.za" +url);
 
@@ -43,31 +39,28 @@ export class WebScraperService {
       var garages;
       var amenities: string[] = [];
 
-      //console.log(attributeLabel);
-
-      // Get the text content of the <span> element
-      //const attributeLabelText = await propertyPage.evaluate(span => span?.textContent, attributeLabel);
+    
 
       // Check if the text content matches the desired value
       for (const attribute of attributeLabel) 
       {
         if (attribute === 'Bedrooms') 
         {
-          // Get the text content of the <div> element
+          
           bedrooms= propAttrValue[attributeLabel.indexOf(attribute)];
-          //console.log(bedrooms);
+          
         }
 
         if (attribute === 'Bathrooms')
         {
           bathrooms= propAttrValue[attributeLabel.indexOf(attribute)];
-          //console.log(bathrooms);
+          
         }
 
         if (attribute === 'Covered Parkings' || attribute === 'Open Parkings' || attribute === 'Garages')
         {
           garages= propAttrValue[attributeLabel.indexOf(attribute)];
-          //console.log(garages);
+          
         }
 
         if(attribute !== 'Bedrooms' && attribute !== 'Bathrooms' && attribute !== 'Covered Parkings' && attribute !== 'Open Parkings' && attribute !== 'Garages' && attribute !== 'Lounges')
