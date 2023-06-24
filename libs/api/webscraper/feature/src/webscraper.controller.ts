@@ -6,7 +6,8 @@ export class WebScraperController {
     constructor(private readonly webscraperService: WebScraperService) {}
     
     @Get()
-    webscraperController() {
-        return this.webscraperService.scrape();
-    }
+    async getScrapedProperties() {
+        const properties = await this.webscraperService.scrape();
+        return properties;
+      }
 }
