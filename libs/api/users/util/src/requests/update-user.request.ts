@@ -1,5 +1,6 @@
 import { IUser } from "../interfaces";
 
 export interface IUpdateUserRequest {
-    user: IUser;
+    username: string;
+    newUserDetail: IUser;
 }
