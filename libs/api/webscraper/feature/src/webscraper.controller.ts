@@ -5,7 +5,7 @@ import { WebScraperService } from "./webscraper.service";
 export class WebScraperController {
     constructor(private readonly webscraperService: WebScraperService) {}
     
-    @Get()
+    @Get("/scraper")
     async getScrapedProperties() {
         const properties = await this.webscraperService.scrape();
         return properties;
