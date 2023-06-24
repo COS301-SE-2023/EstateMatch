@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 
 export const PropertiesSchema = new mongoose.Schema({
-    propertyId:  {type: String, required: true},
+    //propertyId:  {type: String, required: true},
     address: {type: String, required: true},
     price: Number,
     bedrooms: Number,
@@ -11,7 +11,7 @@ export const PropertiesSchema = new mongoose.Schema({
 });
 
 export interface PropertiesModel {
-    propertyId: string,
+    //propertyId: string,
     address: string,
     price: number,
     bedrooms: number,

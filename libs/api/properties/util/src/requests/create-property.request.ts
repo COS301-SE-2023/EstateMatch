@@ -1,5 +1,5 @@
-import { IPreference } from "@estate-match/api/prefrences/util";
+import { IProperty } from "../interfaces";
 
 export interface ICreatePropertyRequest {
-    preference: IPreference; //create property based on preference
+    property: IProperty;
 }
