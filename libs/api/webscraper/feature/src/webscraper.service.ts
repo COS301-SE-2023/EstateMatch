@@ -5,57 +5,54 @@ import { NestCrawlerService } from 'nest-crawler';
 
 @Injectable()
 export class WebScraperService {
-    constructor(
-        private readonly crawler: NestCrawlerService,
-      ) {}
+  public async scrape(): Promise<any[]> {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto('https://www.property24.com/for-sale/cape-town/western-cape/432');
+
     
-      // scraping the specific page
-      public async scrape(): Promise<void> {
-        interface ExampleCom {
-          title: string;
-          info: string;
-          content: string;
-        }
+    await page.waitForSelector('.js_listingResultsContainer');
+
     
-        const data: ExampleCom = await this.crawler.fetch({
-          target: 'https://www.property24.com/for-sale/cape-town/western-cape/432',
-          fetch: {
-            title: 'h1',
-            info: {
-              selector: 'p > a',
-              attr: 'href',
-            },
-            content: {
-              selector: '.content',
-              how: 'html',
-            },
-          },
-        });
-    
-        console.log(data);
+    const propertyURLs = await page.$$eval('.js_psuedoLinkHref', (listings) =>
+    listings.map((listing) => listing.getAttribute('href') || '')
+  );
+
+  
+  const propertyListings = await Promise.all(
+    propertyURLs.map(async (url) => {
+      const propertyPage = await browser.newPage();
+      await propertyPage.goto(url);
+
+      
+      await propertyPage.waitForSelector('.p24_listing');
+
+      const imageURLs: string[]  = await propertyPage.$$eval('.js_lightboxImageWrapper', (imagesElement) => imagesElement.map((image) => image.getAttribute('data-image-url') || ''));
+      const title = await propertyPage.$eval('.p24_mBM h1', (titleElement) => titleElement.textContent?.trim() || '');
+      const price = await propertyPage.$eval('.p24_price', (priceElement) => priceElement.textContent?.trim() || '');
+      const description = await propertyPage.$eval('.js_expandedText p', (descriptionElement) => descriptionElement.textContent?.trim() || '');
+      const bedrooms = await propertyPage.$eval('.p24_feautureDetails[title = "Bedrooms"] span ', (bedroomElement) => bedroomElement.textContent?.trim() || '');
+      const bathrooms = await propertyPage.$eval('.p24_feautureDetails[title = "Bathrooms"] span', (bathroomElement) => bathroomElement.textContent?.trim() || '');
+      const garages = await propertyPage.$eval('.p24_feautureDetails[title = "Parking spaces"] span', (garageElement) => garageElement.textContent?.trim() || '');
+
+
+      await propertyPage.close();
+
+      return {
+        imageURLs,
+        title,
+        price,
+        description,
+        bedrooms,
+        bathrooms,
+        garages,
         
-      }
-    
-      // crawling multi pages is also supported
-      public async crawl(): Promise<void> {
-        interface HackerNewsPage {
-          title: string;
-        }
-    
-        const pages: HackerNewsPage[] = await this.crawler.fetch({
-          target: {
-            url: 'https://www.property24.com',
-            iterator: {
-              selector: 'span.age > a',
-              convert: (x: string) => `https://news.ycombinator.com/${x}`,
-            },
-          },
-          fetch: (data: any, index: number, url: string) => ({
-            title: '.title > a',
-          }),
-        });
-    
-        console.log(pages);
-     
-      }
+      };
+    })
+  );
+
+  await browser.close();
+
+  return propertyListings;
+}
 }
