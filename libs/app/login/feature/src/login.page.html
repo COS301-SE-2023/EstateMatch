@@ -17,21 +17,14 @@
       <div class="main_content_div">
         
         <div class="form_div">
-          
-    
-        
-    
-         
-    
+                   
           <ion-label class="small_lbl">Email</ion-label>
-          <ion-input type="text" placeholder="Enter Email Address"></ion-input>
+          <ion-input [(ngModel)]="username" type="text" placeholder="Enter Email Address"></ion-input>
     
           <ion-label class="small_lbl">Password</ion-label>
-          <ion-input type="text" placeholder="Password"></ion-input>
-
-         
-    
-          <ion-button class="buttons" color="secondary" expand="block">
+          <ion-input [(ngModel)]="password" type="password" placeholder="Password"></ion-input>
+   
+          <ion-button (click)="login()" class="buttons" color="secondary" expand="block">
             Login
           </ion-button>
     

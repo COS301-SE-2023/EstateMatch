@@ -63,6 +63,7 @@
     "@schematics/angular": "~16.0.0",
     "@types/bcrypt": "^5.0.0",
     "@types/jest": "^29.4.0",
+    "@types/leaflet": "^1.9.3",
     "@types/node": "~18.7.1",
     "@types/passport-local": "^1.0.35",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
