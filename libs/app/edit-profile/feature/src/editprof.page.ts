@@ -29,7 +29,7 @@ export class EditProfilePage {
 
         const url = 'api/updateUser';
         const body = {
-          usernam: "Need to implement this",
+          usernam: sessionStorage.getItem('username'),
           newUserDeatail: {
             username: this.newUsername,
             email: this.newEmail,
@@ -46,6 +46,8 @@ export class EditProfilePage {
         if(updated.message){
           this.makeToast('Profile succesfully updated');
           this.router.navigate(['/profile'], { replaceUrl: true });
+        }else{
+          this.makeToast('Profile update failed, please check that you are logged in');
         }
 
       } else {
