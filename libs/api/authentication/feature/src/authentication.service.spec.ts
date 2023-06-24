@@ -44,5 +44,26 @@ describe('AuthService', () => {
     expect(result).toEqual(commandResponse);
   });
 
+  it('should register a user', async () => {
+    const request: IRegisterRequest = { 
+        register: {
+            username: 'test',
+            password: 'test1234',
+            email: 'test@gmail.com',
+            firstName: 'TestFName',
+            lastName: 'TestLName'
+        }
+    };
 
+    const commandResponse: IRegisterResponse = { 
+        message: 'Register successful'
+    };
+
+    (commandBus.execute as jest.Mock).mockResolvedValue(commandResponse);
+    const result = await service.register(request);
+    expect(commandBus.execute).toHaveBeenCalledWith(
+      expect.any(RegisterCommand),
+    );
+    expect(result).toEqual(commandResponse);
+  });
 });
