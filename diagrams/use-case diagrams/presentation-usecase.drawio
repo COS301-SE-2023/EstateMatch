@@ -1,31 +1,31 @@
 <mxfile host="65bd71144e">
     <diagram id="J0BVPanL6UoHwVZonEcy" name="Page-1">
-        <mxGraphModel dx="1119" dy="656" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="736" dy="442" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="Presentation Subsystem" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="2" value="Presentation Subsystem" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="320" y="70" width="200" height="370" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="View Properties" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                <mxCell id="4" value="View Properties" style="ellipse;whiteSpace=wrap;html=1;" parent="2" vertex="1">
                     <mxGeometry x="30" y="60" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="Swipe Right" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                <mxCell id="5" value="Swipe Right" style="ellipse;whiteSpace=wrap;html=1;" parent="2" vertex="1">
                     <mxGeometry x="30" y="160" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="Swipe Left" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                <mxCell id="6" value="Swipe Left" style="ellipse;whiteSpace=wrap;html=1;" parent="2" vertex="1">
                     <mxGeometry x="30" y="260" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" style="edgeStyle=none;html=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="4">
+                <mxCell id="7" style="edgeStyle=none;html=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" source="3" target="4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="8" style="edgeStyle=none;html=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="5">
+                <mxCell id="8" style="edgeStyle=none;html=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" source="3" target="5" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" style="edgeStyle=none;html=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="6">
+                <mxCell id="9" style="edgeStyle=none;html=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" source="3" target="6" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="Potential Property Buyer" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+                <mxCell id="3" value="Potential Property Buyer" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
                     <mxGeometry x="110" y="230" width="60" height="120" as="geometry"/>
                 </mxCell>
             </root>
