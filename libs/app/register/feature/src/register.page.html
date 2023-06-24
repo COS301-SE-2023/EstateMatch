@@ -19,29 +19,24 @@
         <div class="form_div">
           
           <ion-label class="small_lbl">First Name</ion-label>
-          <ion-input type="text" placeholder="Enter First Name"></ion-input>
+          <ion-input [(ngModel)]="fname" type="text" placeholder="Enter First Name"></ion-input>
 
           <ion-label class="small_lbl">Last Name</ion-label>
-          <ion-input type="text" placeholder="Enter Last Name"></ion-input>
+          <ion-input [(ngModel)]="lname"  type="text" placeholder="Enter Last Name"></ion-input>
 
           <ion-label class="small_lbl">Username</ion-label>
-          <ion-input type="text" placeholder="Enter Username"></ion-input>
-        
-    
-         
-    
+          <ion-input [(ngModel)]="username"  type="text" placeholder="Enter Username"></ion-input>
+      
           <ion-label class="small_lbl">Email</ion-label>
-          <ion-input type="text" placeholder="Enter Email Address"></ion-input>
+          <ion-input [(ngModel)]="email"  type="text" placeholder="Enter Email Address"></ion-input>
     
           <ion-label class="small_lbl">Password</ion-label>
-          <ion-input type="text" placeholder="Enter Your Password"></ion-input>
+          <ion-input [(ngModel)]="password" type="password" placeholder="Enter Your Password"></ion-input>
 
           <ion-label class="small_lbl">Confirm Password</ion-label>
-          <ion-input type="text" placeholder="Confirm Password"></ion-input>
+          <ion-input [(ngModel)]="cpassword" type="password" placeholder="Confirm Password"></ion-input>
 
-         
-    
-          <ion-button class="buttons" color="secondary" expand="block">
+          <ion-button (click)="register()" class="buttons" color="secondary" expand="block">
             Create Account
           </ion-button>
     

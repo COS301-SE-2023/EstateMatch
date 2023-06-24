@@ -37,14 +37,13 @@ export class RegisterPage {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-
-    const loggedIn = await this.http.post(url, body, { headers }).toPromise() as {message: string};
-    if(loggedIn.message === 'User Register Success'){
-      this.makeToast('Register success');
-      this.router.navigate(['/preferences'], { replaceUrl: true });
-    }else{
-      this.makeToast('Register failed');
-    }
+    // const loggedIn = await this.http.post(url, body, { headers }).toPromise() as {message: string};
+    // if(loggedIn.message === 'User Register Success'){
+    //   this.makeToast('Register success');
+    //   this.router.navigate(['/preferences'], { replaceUrl: true });
+    // }else{
+    //   this.makeToast('Register failed');
+    // }
     }
 
   }
