@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start:api:dev": "yarn nx run api:serve --configuration=development",
-    "start:app:dev": "yarn nx run app:serve --configuration=development"
+    "start:app:dev": "yarn nx run app:serve --configuration=development",
+    "test" : "jest"
   },
   "private": true,
   "dependencies": {
