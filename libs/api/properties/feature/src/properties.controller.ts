@@ -4,6 +4,7 @@ import { IDislikePropertyRequest } from '@estate-match/api/properties/util';
 import { ILikePropertyRequest } from '@estate-match/api/properties/util';
 import { IGetPropertyRequest } from '@estate-match/api/properties/util';
 import { IGetLikedPropertiesRequest } from '@estate-match/api/properties/util';
+import { ICreatePropertyRequest } from '@estate-match/api/properties/util';
 
 @Controller()
 export class PropertiesController {
@@ -41,5 +42,10 @@ export class PropertiesController {
   @Post('/getProperty')
   async getProperty(@Body() property: IGetPropertyRequest) {
     return await this.propertiesService.getProperty(property);
+  }
+
+  @Post('/createProperty')
+  async createProperty(@Body() property: ICreatePropertyRequest) {
+    return await this.propertiesService.createProperty(property);
   }
 }
