@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { CommandBus } from '@nestjs/cqrs';
-import { IGetUserRequest, IGetUserResponse } from '@estate-match/api/users/util';
+import { IGetUserRequest, IGetUserResponse, ISetUserRequest, ISetUserResponse } from '@estate-match/api/users/util';
 
 describe('UserController', () => {
   let app: TestingModule;
@@ -47,37 +47,35 @@ describe('UserController', () => {
     });
   });
 
-//   describe('likeProperty', () => {
-//     it('should call propertiesService.likeProperty with the provided property and return the result', async () => {
-//       const property: IProperty = {
-//         user: 'test',
-//         address: 'test address',
-//         price: 100000,
-//         bedrooms: 2,
-//         bathrooms: 1,
-//         garages: 1,
-//         amenities: ['gym', 'pool'],
-//         liked: true,
-//         image: 'test image'
-//       };
+  describe('setUser', () => {
+    it('should call user service and create new user in the database', async () => {
+      const request: ISetUserRequest = {
+        user: {
+            id: 'testID',
+            firstName: 'Test FName',
+            lastName: 'Test FName',
+            email: 'test@gmail.com',
+            username: 'testuser'
+        }
+      };
 
-//       const request: ILikePropertyRequest = {
-//         property: property,
-//       };
+      const expectedResult: ISetUserResponse = {
+        user: {
+            id: 'testID',
+            firstName: 'Test FName',
+            lastName: 'Test FName',
+            email: 'test@gmail.com',
+            username: 'testuser'
+        }
+      };
 
-//       const expectedResult: ILikePropertyResponse = {
-//         message: 'property liked',
-//       };
+      jest.spyOn(service, 'setUser').mockResolvedValue(expectedResult);
 
-    
+      const result = await controller.setUser(request);
 
-//       jest.spyOn(service, 'likeProperty').mockResolvedValue(expectedResult);
-
-//       const result = await controller.likeProperty(request);
-
-//       expect(result).toEqual(expectedResult);
-//     });
-//   });
+      expect(result).toEqual(expectedResult);
+    });
+  });
 
 //   describe('getLikedProperties', () => {
 //     it('should call return the liked properties of the user', async () => {
