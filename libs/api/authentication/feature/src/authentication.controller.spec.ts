@@ -42,4 +42,23 @@ describe('AuthController', () => {
     });
   });
 
+  describe('register', () => {
+    it('should call auth service and create a new user', async () => {
+      const request: IRegister = {
+        username: 'test',
+        password: 'test1234',
+        email: 'test@gmail.com',
+        firstName: 'TestFName',
+        lastName: 'TestLName'
+      };
+
+      const expectedResult: IRegisterResponse = {
+        message: 'Register successful',
+      };
+
+      jest.spyOn(service, 'register').mockResolvedValue(expectedResult);
+      const result = await controller.register(request);
+      expect(result).toEqual(expectedResult);
+    });
+  });
 });
