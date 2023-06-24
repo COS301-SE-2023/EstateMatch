@@ -79,13 +79,13 @@ export class WebScraperService {
 
       const imageURLs = (await propertyPage.$$eval('.imageGrid a', (imagesElement) => imagesElement.map((image) => image.dataset['background']))).filter(url => url !== null && url !== undefined);
 
-      for (let i = 0; i < imageURLs.length; i++) {
+      /*for (let i = 0; i < imageURLs.length; i++) {
         const lastDotIndex = imageURLs[i]?.lastIndexOf(".");
         if (lastDotIndex !== -1) 
         {
           imageURLs[i] = imageURLs[i]?.slice(0, lastDotIndex) + "_dhd" + imageURLs[i]?.slice(lastDotIndex);
         }
-      }
+      }*/
     
 
       await propertyPage.close();
@@ -94,12 +94,12 @@ export class WebScraperService {
         title,
         price,
         description,
-        //bedrooms,
-        //bathrooms,
-        //garages,
-        //imageURLs,
+        bedrooms,
+        bathrooms,
+        garages,
+        imageURLs,
         location,
-        //amenities,
+        amenities,
 
         
       };
