@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserService } from './user.service';
 import { CommandBus } from '@nestjs/cqrs';
-import { GetUserCommand, IGetUserRequest, IGetUserResponse } from '@estate-match/api/users/util';
+import { GetUserCommand, IGetUserRequest, IGetUserResponse, ISetUserRequest, ISetUserResponse, IUpdateUserRequest, IUpdateUserResponse, SetUserCommand } from '@estate-match/api/users/util';
 
 describe('UserService', () => {
   let service: UserService;
@@ -47,70 +47,36 @@ describe('UserService', () => {
     expect(result).toEqual(commandResponse);
   });
 
-//   it('should set add the property to the database as disliked', async () => {
-//     const request: IDislikePropertyRequest = { 
-//         property: {
-//             user: 'test',
-//             address: 'test',
-//             price: 1000,
-//             bedrooms: 1,
-//             bathrooms: 1,
-//             garages: 1,
-//             amenities: [],
-//             liked: false,
-//             image: 'test image'
-//         }
-//     };
+  it('should a user to the database', async () => {
+    const request: ISetUserRequest = { 
+        user: {
+            id: 'testID',
+            username: 'testU',
+            firstName: 'testFName',
+            lastName: 'testLName',
+            email: 'test@gmail.com'
+        }
+    };
 
-//     const commandResponse: IDislikePropertyResponse = { 
-//         message: 'property disliked'
-//     };
+    const commandResponse: ISetUserResponse = { 
+        user: {
+            id: 'testID',
+            username: 'testU',
+            firstName: 'testFName',
+            lastName: 'testLName',
+            email: 'test@gmail.com'
+        }
+    };
 
-//     (commandBus.execute as jest.Mock).mockResolvedValue(commandResponse);
-//     const result = await service.dislikeProperty(request);
-//     expect(commandBus.execute).toHaveBeenCalledWith(
-//       expect.any(DislikePropertyCommand),
-//     );
-//     expect(result).toEqual(commandResponse);
-//   });
+    (commandBus.execute as jest.Mock).mockResolvedValue(commandResponse);
+    const result = await service.setUser(request);
+    expect(commandBus.execute).toHaveBeenCalledWith(
+      expect.any(SetUserCommand),
+    );
+    expect(result).toEqual(commandResponse);
+  });
 
-//   it('get likedProperties from the database', async () => {
-//     const request: IGetLikedPropertiesRequest = { 
-//         user: 'test'
-//     };
 
-//     const commandResponse: IGetLikedPropertiesResponse = { 
-//         properties: [{
-//             user: 'test',
-//             address: 'test',
-//             price: 1000,
-//             bedrooms: 1,
-//             bathrooms: 1,
-//             garages: 1,
-//             amenities: [],
-//             liked: true,
-//             image: 'test image'
-//         },
-//         {
-//             user: 'test2',
-//             address: 'test2',
-//             price: 1000,
-//             bedrooms: 1,
-//             bathrooms: 1,
-//             garages: 1,
-//             amenities: [],
-//             liked: true,
-//             image: 'test image'
-//         },]
-//     };
-
-//     (commandBus.execute as jest.Mock).mockResolvedValue(commandResponse);
-//     const result = await service.getlikeProperty(request);
-//     expect(commandBus.execute).toHaveBeenCalledWith(
-//       expect.any(GetLikedPropertiesCommand),
-//     );
-//     expect(result).toEqual(commandResponse);
-//   });  
 });
 
 
