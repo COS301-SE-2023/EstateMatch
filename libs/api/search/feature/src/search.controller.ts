@@ -7,7 +7,7 @@ export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 
   @Post('/search')
-  async dislikeProperty(@Body() filters: ISearchRequest){
+  async search(@Body() filters: ISearchRequest){
     return await this.searchService.search(filters);
   }
 }

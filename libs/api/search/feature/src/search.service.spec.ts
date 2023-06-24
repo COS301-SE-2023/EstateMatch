@@ -26,7 +26,7 @@ describe('SearchService', () => {
     queryBus = module.get<QueryBus>(QueryBus);
   });
 
-  it('should set add the property to the database as liked', async () => {
+  it('should return an array of properties', async () => {
     const request: ISearchRequest = { 
         filters: {
             location: 'My Test Location',
