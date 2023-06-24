@@ -46,7 +46,7 @@ const routes: Routes = [
     path: 'filters',
     pathMatch: 'full',
     loadChildren: () =>
-      import('@estate-match/app/search-filters/feature').then((m) => m.SearchModule),
+      import('@estate-match/app/search-filters/feature').then((m) => m.FiltersModule),
   },
 ];
 
