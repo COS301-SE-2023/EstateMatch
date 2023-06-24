@@ -8,14 +8,16 @@ import {
     DislikePropertyHandler,
     LikePropertyHandler,
     GetLikedPropertiesHandler,
-    GetPropertiesHandler
+    GetPropertiesHandler, 
+    CreatePropertyHandler
 } from './commands';
 
 export const CommandHandlers = [
     DislikePropertyHandler,
     LikePropertyHandler,
     GetLikedPropertiesHandler,
-    GetPropertiesHandler
+    GetPropertiesHandler, 
+    CreatePropertyHandler
 ];
 
 @Module({
