@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { CommandBus } from '@nestjs/cqrs';
-import { IGetUserRequest, IGetUserResponse, ISetUserRequest, ISetUserResponse } from '@estate-match/api/users/util';
+import { IGetUserRequest, IGetUserResponse, ISetUserRequest, ISetUserResponse, IUpdateUserRequest, IUpdateUserResponse } from '@estate-match/api/users/util';
 
 describe('UserController', () => {
   let app: TestingModule;
@@ -70,38 +70,31 @@ describe('UserController', () => {
       };
 
       jest.spyOn(service, 'setUser').mockResolvedValue(expectedResult);
-
       const result = await controller.setUser(request);
-
       expect(result).toEqual(expectedResult);
     });
   });
 
-//   describe('getLikedProperties', () => {
-//     it('should call return the liked properties of the user', async () => {
-//       const user: IGetLikedPropertiesRequest = {
-//         user: 'test',
-//       };
+  describe('updateUser', () => {
+    it('should call user service and update an existing user in the database', async () => {
+      const user: IUpdateUserRequest = {
+        username: 'test',
+        newUserDetail: {
+            id: 'testID',
+            username: 'test2',
+            firstName: 'testFName',
+            lastName: 'testLName',
+            email: 'test2@gmail.com',
+        }
+      };
 
-//       const expectedResult: IGetLikedPropertiesResponse = {
-//         properties: [{
-//           user: 'test',
-//           address: 'test',
-//           price: 1000,
-//           bedrooms: 1,
-//           bathrooms: 1,
-//           garages: 1,
-//           amenities: [],
-//           liked: true,
-//           image: 'test image'
-//         },]
-//       };
+      const expectedResult: IUpdateUserResponse = { 
+        success: true
+    };
 
-//       jest.spyOn(service, 'getlikeProperty').mockResolvedValue(expectedResult);
-
-//       const result = await controller.getLikedProperties(user);
-//       expect(result).toEqual(expectedResult);
-
-//     });
-//   });
+      jest.spyOn(service, 'updateUser').mockResolvedValue(expectedResult);
+      const result = await controller.updateUser(user);
+      expect(result).toEqual(expectedResult);
+    });
+  });
 });
