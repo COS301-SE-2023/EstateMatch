@@ -19,6 +19,7 @@ export class WebScraperService {
     // Wait for the results container to load 
     await page.waitForSelector('.resultsItemsContainer');
 
+    // Get the URLs of the properties
     const propertyURLs = await page.$$eval('.resultsItemsContainer a.listingResult', (listings) =>
     listings.map((listing) => listing.getAttribute('href') || '')
   );
