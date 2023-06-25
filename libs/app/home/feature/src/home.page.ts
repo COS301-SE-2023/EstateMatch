@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
-import { trigger, keyframes, animate, transition } from "@angular/animations";
-import * as kf from './keyframes';
 import { Subject } from 'rxjs'; 
 
 interface Property {
@@ -20,20 +18,12 @@ interface Property {
   selector: 'ms-home-page',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  animations: [
-    trigger('cardAnimator', [
-    transition('* => swiperight', animate(750, keyframes(kf.swiperight))),
-    transition('* => swipeleft', animate(750, keyframes(kf.swipeleft)))
-    ])
-  ]
 })
 
 export class HomePage {
-  @Input()
+  
   parentSubject:Subject<string> = new Subject();
 
-  animationState!: string; 
-  index = 0;
   constructor(private http: HttpClient,
     private toastController: ToastController) {}
   properties: Property[] = [
@@ -92,29 +82,8 @@ export class HomePage {
 
   currentDescriptionIndex = 0;
 
-  cardAnimation(value: any) {
+ cardAnimation(value: string) {
     this.parentSubject.next(value);
-  }
-
-  ngOnit() {
-    this.parentSubject.subscribe(event=> {
-      this.startAnimation(event)
-    }); 
-  }
-
-  startAnimation(state: string) {
-    if (!this.animationState) {
-      this.animationState = state;
-    }
-  }
-
-  resetAnimationState(state: any) {
-    this.animationState = '';
-    this.index++;
-  }
-
-  ngOnDestroy() {
-    this.parentSubject.unsubscribe();
   }
 
   async likeHouse() { 

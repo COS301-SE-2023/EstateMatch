@@ -1,39 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
+ <!-- <head>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
     <link rel="stylesheet" href="home.page.scss">
   </head>
 
   <app-header>
-  </app-header>
+  </app-header> -->
 
 <body>  
 
-  <div class="tphoto"
-  [@cardAnimator]="animationState"
-  (@cardAnimator.done)="resetAnimationState($event)"
-  (swipeleft)='startAnimation("swipeleft")' 
-  (swiperight)='startAnimation("swiperight")'
->
-  <ion-card name="DisplayCard">
-    <img name="HouseImage" [src]="images[currentDescriptionIndex]" />
-    <button name="more-info" id="more-info" style="background-color:#246d88; height:40px; border-color: #246d88;border-radius: 100%; width:40px;">
-      <span style="font-size: 1.2em; color:white">
-      <i class="fas fa-info"></i>
-    </span>
-    </button>
-    <ion-card-header>
-      <ion-card-title>{{ area[currentDescriptionIndex] }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content name="CardDescription" id="CardDescription">
-      {{ descriptions[currentDescriptionIndex] }}
-    </ion-card-content>
-  </ion-card>
+  <div class="tbgwrap">
+    <app-card  [parentSubject]="parentSubject"></app-card>
 </div>
   </body>
 
-  <div id="button-container" style="text-align:center;">
+  <!-- <div id="button-container" style="text-align:center;">
     <button id="dislike-button" (click) = "dislikeHouse()" style="background-color:#F0422A; height:60px; border-color:#F0422A ;border-radius: 100%; width:60px;">
       <span style="font-size: 1.7em; color:white">
         <i class="fas fa-times"></i>
@@ -49,5 +31,5 @@
 
   <app-footer>
     
-  </app-footer>
+  </app-footer> -->
 </html> 
