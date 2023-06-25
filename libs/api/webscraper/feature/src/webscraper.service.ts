@@ -92,7 +92,7 @@ export class WebScraperService {
     
       // Close the property page
       await propertyPage.close();
-      
+
       // Return an object containing all the extracted property details
       return {
         title,
@@ -107,7 +107,8 @@ export class WebScraperService {
       };
     })
   );
-
+  
+  // Close the browser
   await browser.close();
 
   return propertyListings;
