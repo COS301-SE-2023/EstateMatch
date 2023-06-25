@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
+import { trigger, keyframes, animate, transition } from "@angular/animations";
+import * as kf from './keyframes';
+import { Subject } from 'rxjs'; 
 
 interface Property {
   user: string;
@@ -17,6 +20,12 @@ interface Property {
   selector: 'ms-home-page',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
+  animations: [
+    trigger('cardAnimator', [
+    transition('* => swiperight', animate(750, keyframes(kf.swiperight))),
+    transition('* => swipeleft', animate(750, keyframes(kf.swipeleft)))
+    ])
+  ]
 })
 
 export class HomePage {
