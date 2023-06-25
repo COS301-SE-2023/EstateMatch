@@ -19,8 +19,15 @@ export class WebScraperService {
     // Wait for the results container to load 
     await page.waitForSelector('.resultsItemsContainer');
 
+    const pageLinks = (await page.$$eval('.pagination a.pageNumber', (pagination) => pagination.map((page) => page.getAttribute('href') || ''))).filter(url => url !== "#");
+
+    console.log(pageLinks);
+
+    const pages = await browser.newPage();
+    await pages.goto("https://www.privateproperty.co.za" + pageLinks[1]);
+
     // Get the URLs of the properties
-    const propertyURLs = await page.$$eval('.resultsItemsContainer a.listingResult', (listings) =>
+    const propertyURLs = await pages.$$eval('.resultsItemsContainer a.listingResult', (listings) =>
     listings.map((listing) => listing.getAttribute('href') || '')
   );
 
