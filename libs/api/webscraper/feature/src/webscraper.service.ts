@@ -56,7 +56,6 @@ export class WebScraperService {
         ));
       }
 
-      console.log(propertyURLs);
 
     }
 
@@ -64,7 +63,6 @@ export class WebScraperService {
   const propertyListings = await Promise.all(
     propertyURLs.map(async (url) => {
       // Open a new page for each property
-      console.log(url);
       const propertyPage = await browser.newPage();
       await propertyPage.goto("https://www.privateproperty.co.za" +url, {
         timeout: navigationTimeout,
