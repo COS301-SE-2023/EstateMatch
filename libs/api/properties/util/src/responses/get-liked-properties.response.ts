@@ -1,5 +1,5 @@
-import { IProperty } from "../interfaces";
+import { ILikeProperty } from "../interfaces";
 
 export interface IGetLikedPropertiesResponse {
-    properties: IProperty[];
+    properties: ILikeProperty[];
 }

@@ -5,6 +5,9 @@ import { IGetLikedPropertiesRequest, IGetLikedPropertiesResponse, GetLikedProper
 import { GetPropertiesCommand, IGetPropertyRequest, IGetPropertyResponse } from '@estate-match/api/properties/util';
 import { CommandBus } from '@nestjs/cqrs';
 
+//create property imports 
+import { ICreatePropertyRequest, ICreatePropertyResponse, CreatePropertyCommand } from '@estate-match/api/properties/util';
+
 //import { InjectModel } from '@nestjs/mongoose';
 //import { Model } from 'mongoose';
 //import { Card } from './card.schema';
@@ -78,5 +81,13 @@ export class PropertiesService
       >(new GetPropertiesCommand(request));
   }
 
-
+  //create property
+  async createProperty(
+    request: ICreatePropertyRequest
+  ): Promise<ICreatePropertyResponse> {
+      return await this.commandBus.execute<
+          CreatePropertyCommand,
+          ICreatePropertyResponse
+      >(new CreatePropertyCommand(request));
+  }
 }

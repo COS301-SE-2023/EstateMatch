@@ -1,5 +1,5 @@
-import { IProperty } from '../interfaces';
+import { ILikeProperty } from '../interfaces';
 
 export interface ILikePropertyRequest {
-  property: IProperty;
+  property: ILikeProperty;
 }

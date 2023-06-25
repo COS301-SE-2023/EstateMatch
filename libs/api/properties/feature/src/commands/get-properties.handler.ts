@@ -11,7 +11,7 @@ export class GetPropertiesHandler implements ICommandHandler<GetPropertiesComman
 
     async execute(command: GetPropertiesCommand): Promise<any> {
         const request = command.request;
-        const property = request.property;
-        return await this.propertiesRepository.getProperties();
+        const preference = request.preference;
+        return await this.propertiesRepository.getPropertiesByPreferences(preference);
     }
 }
