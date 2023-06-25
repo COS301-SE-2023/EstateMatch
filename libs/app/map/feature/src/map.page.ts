@@ -1,5 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
+import { Geolocation } from '@ionic-native/geolocation';
+
+
 
 
 @Component({
@@ -15,7 +18,7 @@ import * as L from 'leaflet';
         
       // }
 
-      ngOnInit() {
+      async ngOnInit() {
         this.map=L.map('map',{
           center: [ 51.505, -0.09 ],
           zoom: 13,
@@ -28,6 +31,11 @@ import * as L from 'leaflet';
       setTimeout(() => {
         this.map.invalidateSize();
       },0);
+
+      const coordinates = await Geolocation.getCurrentPosition();
+
+      console.log('Current position:', coordinates);
+    
   }
 
 }
