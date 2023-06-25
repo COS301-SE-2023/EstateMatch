@@ -4,7 +4,7 @@ export interface ILikeProperty{
     price: number,
     bedrooms: number,
     bathrooms: number,
-    // garages: number,
+    garages: number | null,
     amenities: string[],
     liked: boolean,
     image: string,

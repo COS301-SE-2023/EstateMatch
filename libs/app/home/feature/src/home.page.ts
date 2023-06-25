@@ -88,6 +88,7 @@ export class HomePage {
       price: currProperty.price,
       bedrooms: currProperty.bedrooms,
       bathrooms: currProperty.bathrooms,
+      garages: currProperty.garages,
       amenities: currProperty.amenities,
       liked: true,
       image: currProperty.images[0]
@@ -119,6 +120,7 @@ export class HomePage {
       price: currProperty.price,
       bedrooms: currProperty.bedrooms,
       bathrooms: currProperty.bathrooms,
+      garages: currProperty.garages,
       amenities: currProperty.amenities,
       liked: true,
       image: currProperty.images[0]
