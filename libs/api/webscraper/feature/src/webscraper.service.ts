@@ -107,10 +107,11 @@ export class WebScraperService {
       };
     })
   );
-  
+
   // Close the browser
   await browser.close();
 
+  // Return the array of property listings
   return propertyListings;
 }
 }
