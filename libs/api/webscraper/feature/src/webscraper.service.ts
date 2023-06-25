@@ -41,7 +41,8 @@ export class WebScraperService {
       const location = await propertyPage.$eval('.previousPage span', (locationElement) => locationElement.textContent?.trim() || '');
       const attributeLabel = await propertyPage.$$eval('.attributeLabel', (attributeLabelElement) => attributeLabelElement.map((attributeLabel) => attributeLabel.textContent?.trim() || ''));
       const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
-    
+      
+      // Initialize variables for storing bedrooms, bathrooms, garages, and amenities 
       var bedrooms;
       var bathrooms;
       var garages;
