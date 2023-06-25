@@ -29,7 +29,7 @@
                 <ion-label for="Budget">Starting Point: R</ion-label>
                 </ion-col>
               <ion-col>
-              <select class="dropdownColor">
+              <select [(ngModel)]="minBudget"  class="dropdownColor">
                 <option value="100 000">100 000</option>
                 <option value="150 000">150 000</option>
                 <option value="200 000">200 000</option>
@@ -77,7 +77,7 @@
                 <ion-label for="Budget">Ending Point: R</ion-label>
                 </ion-col>
               <ion-col>
-              <select class="dropdownColor">
+              <select [(ngModel)]="maxBudget" class="dropdownColor">
                 <option value="100 000">100 000</option>
                 <option value="150 000">150 000</option>
                 <option value="200 000">200 000</option>
@@ -122,7 +122,7 @@
             </ion-grid>
             </div>
         
-              <div class="TagsContainer">
+              <!-- <div class="TagsContainer">
                 <ion-grid>
                 <ion-row>
                 <ion-col>
@@ -189,12 +189,12 @@
               </ion-col>
               </ion-row>
                 </ion-grid>
-              </div>
+              </div> -->
         </div>
         </ion-card>
         <div name = "Spacing"></div>
         <div name="buttonContainer" style="text-align:center;">
-        <button name="Save" fill="default"routerLink="/search" routerDirection="root">Save</button>  
+        <button (click)="searchProperties()" name="Save" fill="default"routerLink="/search" routerDirection="root">Save</button>  
         &nbsp;
         <button name="Cancel" fill="default"routerLink="/search" routerDirection="root">Cancel</button>
         </div>    
