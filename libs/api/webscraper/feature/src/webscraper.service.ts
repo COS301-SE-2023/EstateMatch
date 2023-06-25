@@ -27,6 +27,7 @@ export class WebScraperService {
   // Process each property page
   const propertyListings = await Promise.all(
     propertyURLs.map(async (url) => {
+      // Open a new page for each property
       const propertyPage = await browser.newPage();
       await propertyPage.goto("https://www.privateproperty.co.za" +url);
 
