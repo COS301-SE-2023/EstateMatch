@@ -3,6 +3,7 @@ import { PrefrencesModel } from "@estate-match/api/prefrences/schema";
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
+import { ISearchRequest } from "@estate-match/api/search/util";
 
 @Injectable()
 export class PropertiesRepository {
@@ -24,14 +25,14 @@ export class PropertiesRepository {
     }
 
     // get properties based on the preferences of the user
-    async getPropertiesByPreferences(preference : PrefrencesModel): Promise<PropertiesModel[] | null> {
-        const userPreference = new this.preferenceModel(preference);
-        return this.propertiesModel.find({$and: [{price: {$lte: userPreference.budget}},
-             {bedrooms: {$gte: userPreference.bedrooms}}, 
-             {bathrooms: {$gte: userPreference.bathrooms}}, 
-             {garages: {$gte: userPreference.garages}},
+    async getPropertiesByPreferences(preference : ISearchRequest): Promise<PropertiesModel[] | null> {
+        const userPreference = preference.filters;
+        return this.propertiesModel.find({$and: [{price: {$lte: userPreference.maxBudget}}, {price: {$gte: userPreference.minBudget}},
+            //  {bedrooms: {$gte: userPreference.bedrooms}}, 
+            //  {bathrooms: {$gte: userPreference.bathrooms}}, 
+            //  {garages: {$gte: userPreference.garages}},
              {location: {$eq: userPreference.location}},
-            {extras: {$in: userPreference.extras}}
+            // {extras: {$in: userPreference.extras}}
             ]}).exec();
     }
 }
