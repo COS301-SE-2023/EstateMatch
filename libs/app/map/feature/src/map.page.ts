@@ -22,7 +22,7 @@ import { Geolocation} from '@ionic-native/geolocation'
         
         this.map=L.map('map',{
           center: [ 51.505, -0.09 ],
-          zoom: 13,
+          zoom: 9,
           renderer: L.canvas()
         })
 
@@ -41,7 +41,13 @@ import { Geolocation} from '@ionic-native/geolocation'
 
       const marker = L.marker([coordinates.coords.latitude, coordinates.coords.longitude]).addTo(this.map);
 
-      marker.bindPopup("<b>Current Location</b><br />").openPopup();
+      marker.bindPopup("<b>Your Current Location</b><br />").openPopup();
+
+      L.control.scale().addTo(this.map);
+
+      this.map.on('click', function(e) {
+        console.log("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
+      });
     
   }
 
