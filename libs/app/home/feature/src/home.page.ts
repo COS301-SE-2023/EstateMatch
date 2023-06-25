@@ -20,6 +20,8 @@ interface Property {
 })
 
 export class HomePage {
+  
+
   constructor(private http: HttpClient,
     private toastController: ToastController) {}
   properties: Property[] = [
