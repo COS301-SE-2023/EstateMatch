@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
-import { Geolocation } from '@ionic-native/geolocation';
+import { Geolocation} from '@ionic-native/geolocation'
 
 @Component({
   selector: 'ms-map-page',
