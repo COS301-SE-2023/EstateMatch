@@ -31,9 +31,10 @@ export class WebScraperService {
       const propertyPage = await browser.newPage();
       await propertyPage.goto("https://www.privateproperty.co.za" +url);
 
-      
+      // Wait for the property page to load
       await propertyPage.waitForSelector('.contentWhite');
 
+      // Extract the data we want
       const title = await propertyPage.$eval('.titleContainer h1', (titleElement) => titleElement.textContent?.trim() || '');
       const price = await propertyPage.$eval('.titleContainer h2 span.detailsPrice', (priceElement) => priceElement.textContent?.trim() || '');
       const description = await propertyPage.$$eval('.description p', (descriptionElement) => descriptionElement.map((description) => description.textContent?.trim() || ''));
