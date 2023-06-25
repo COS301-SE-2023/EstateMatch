@@ -18,7 +18,6 @@ export class FilterPage {
     results: IProperty[] = [];
 
     async searchProperties(){
-      console.log(this.location, this.minBudget, this.maxBudget);
       const url = 'api/search';
       const body = {
         filters: {
@@ -26,7 +25,6 @@ export class FilterPage {
           minBudget: parseInt(this.minBudget.replace(/\s/g, "")),
           maxBudget: parseInt(this.maxBudget.replace(/\s/g, "")),          
         }
-
       }
 
       const headers = new HttpHeaders({
