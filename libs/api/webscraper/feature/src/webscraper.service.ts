@@ -78,7 +78,7 @@ export class WebScraperService {
         }
       }
 
-
+      // Extract and process image URLs for the property
       const imageURLs = (await propertyPage.$$eval('.imageGrid a', (imagesElement) => imagesElement.map((image) => image.dataset['background']))).filter(url => url !== null && url !== undefined);
 
       for (let i = 0; i < imageURLs.length; i++) {
