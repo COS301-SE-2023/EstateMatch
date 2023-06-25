@@ -30,7 +30,7 @@ interface Property {
 
 export class HomePage {
   @Input()
-  parentSubject!: Subject<any>; 
+  parentSubject:Subject<string> = new Subject();
 
   animationState!: string; 
   index = 0;
@@ -91,6 +91,10 @@ export class HomePage {
   area: string[] = ['Ballito, KZN', 'Salt Rock, KZN', 'Kyalami, Gauteng', 'Vereeniging, Gauteng']; 
 
   currentDescriptionIndex = 0;
+
+  cardAnimation(value: any) {
+    this.parentSubject.next(value);
+  }
 
   ngOnit() {
     this.parentSubject.subscribe(event=> {
@@ -162,10 +166,6 @@ export class HomePage {
       position: 'top',
     })
     toast.present();
-  }
-
-  async moreInfo() {
-    
   }
 }
 
