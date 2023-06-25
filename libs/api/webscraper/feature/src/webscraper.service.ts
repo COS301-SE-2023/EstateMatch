@@ -90,7 +90,7 @@ export class WebScraperService {
         }
       }
     
-
+      // Close the property page
       await propertyPage.close();
 
       return {
