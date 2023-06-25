@@ -9,6 +9,8 @@ export class WebScraperService {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     //await page.goto('https://www.property24.com/for-sale/cape-town/western-cape/432');
+
+    // Go to target web page
     await page.goto('https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59');
 
     
