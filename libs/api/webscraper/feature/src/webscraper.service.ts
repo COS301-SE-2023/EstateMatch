@@ -24,7 +24,7 @@ export class WebScraperService {
     listings.map((listing) => listing.getAttribute('href') || '')
   );
 
-  
+  // Process each property page
   const propertyListings = await Promise.all(
     propertyURLs.map(async (url) => {
       const propertyPage = await browser.newPage();
