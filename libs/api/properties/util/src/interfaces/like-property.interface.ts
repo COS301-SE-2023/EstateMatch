@@ -1,4 +1,4 @@
-export interface IProperty{
+export interface ILikeProperty{
     user: string,
     address: string,
     price: number,
@@ -6,5 +6,6 @@ export interface IProperty{
     bathrooms: number,
     garages: number,
     amenities: string[],
-    images: string[],
+    liked: boolean,
+    image: string,
 }
