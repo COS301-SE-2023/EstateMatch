@@ -21,20 +21,42 @@ export class WebScraperService {
 
     const pageLinks = (await page.$$eval('.pagination a.pageNumber', (pagination) => pagination.map((page) => page.getAttribute('href') || ''))).filter(url => url !== "#");
 
-    console.log(pageLinks);
+    const lastPageLink = pageLinks[pageLinks.length - 2];
+    const pageNumber = parseInt(lastPageLink.slice(-2));
 
+    var propertyURLs: string[] = [];
     const pages = await browser.newPage();
-    await pages.goto("https://www.privateproperty.co.za" + pageLinks[1]);
 
-    // Get the URLs of the properties
-    const propertyURLs = await pages.$$eval('.resultsItemsContainer a.listingResult', (listings) =>
-    listings.map((listing) => listing.getAttribute('href') || '')
-  );
+    for(let i = 1; i <= 2; i++)
+    {
+      if(i === 1)
+      {
+
+        await pages.goto("https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59");
+
+        propertyURLs = propertyURLs.concat( await pages.$$eval('.resultsItemsContainer a.listingResult', (listings) =>
+        listings.map((listing) => listing.getAttribute('href') || '')
+        ));
+      }
+
+      else
+      {
+        await pages.goto('https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59?page=' + i.toString());
+
+        propertyURLs = propertyURLs.concat( await pages.$$eval('.resultsItemsContainer a.listingResult', (listings) =>
+        listings.map((listing) => listing.getAttribute('href') || '')
+        ));
+      }
+
+      console.log(propertyURLs);
+
+    }
 
   // Process each property page
   const propertyListings = await Promise.all(
     propertyURLs.map(async (url) => {
       // Open a new page for each property
+      console.log(url);
       const propertyPage = await browser.newPage();
       await propertyPage.goto("https://www.privateproperty.co.za" +url);
 
