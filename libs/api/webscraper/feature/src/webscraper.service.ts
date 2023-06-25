@@ -15,6 +15,8 @@ export class WebScraperService {
 
     
     //await page.waitForSelector('.js_listingResultsContainer');
+
+    // Wait for the results container to load 
     await page.waitForSelector('.resultsItemsContainer');
 
     const propertyURLs = await page.$$eval('.resultsItemsContainer a.listingResult', (listings) =>
