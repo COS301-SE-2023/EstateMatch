@@ -26,7 +26,6 @@ import { Geolocation} from '@ionic-native/geolocation'
       async ngOnInit() {
         const coordinates = await Geolocation.getCurrentPosition();
 
-        console.log('Current position:', coordinates);
         
         this.map=L.map('map',{
           center: [ 51.505, -0.09 ],
@@ -57,7 +56,6 @@ import { Geolocation} from '@ionic-native/geolocation'
       L.control.scale().addTo(this.map);
 
       this.map.once('click', (e) => {
-        console.log("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng);
         this.setLatLong(e.latlng.lat, e.latlng.lng);
         const mark=L.marker([e.latlng.lat, e.latlng.lng]).addTo(this.map);
         mark.bindPopup("<b>Selected Location</b><br />").openPopup();
