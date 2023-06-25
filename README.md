@@ -106,7 +106,7 @@ Contact us: teamblue.cos301@gmail.com
 </div>
 
 #### Web-Scraper
-- Scrapy
+- Puppeteer
 
 #### AI
 - Tensorflow
