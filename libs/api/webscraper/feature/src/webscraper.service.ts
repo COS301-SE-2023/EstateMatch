@@ -93,9 +93,7 @@ export class WebScraperService {
         garages,
         imageURLs,
         location,
-        amenities,
-
-        
+        amenities, 
       };
     })
   );
