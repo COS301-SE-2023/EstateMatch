@@ -80,7 +80,8 @@ export class WebScraperService {
 
       // Extract and process image URLs for the property
       const imageURLs = (await propertyPage.$$eval('.imageGrid a', (imagesElement) => imagesElement.map((image) => image.dataset['background']))).filter(url => url !== null && url !== undefined);
-
+      
+      // Modify image URLs to include "_dhd" before the file extension
       for (let i = 0; i < imageURLs.length; i++) {
         const lastDotIndex = imageURLs[i]?.lastIndexOf(".");
         if (lastDotIndex !== -1) 
