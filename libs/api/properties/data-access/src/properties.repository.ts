@@ -12,6 +12,12 @@ export class PropertiesRepository {
 
     async createProperty(property: PropertiesModel): Promise<PropertiesModel> {
         const createdProperty = new this.propertiesModel(property);
+        //check if the property already exists by address before saving
+        const propertyExists = await this.propertiesModel.findOne({address: property.address}).exec();
+        if(propertyExists) {
+            throw new Error('Property already exists');
+        }
+
         return createdProperty.save();
     }
 
