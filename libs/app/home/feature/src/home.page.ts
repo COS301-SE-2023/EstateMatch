@@ -29,6 +29,11 @@ interface Property {
 })
 
 export class HomePage {
+  @Input()
+  parentSubject!: Subject<any>; 
+
+  animationState!: string; 
+  index = 0;
   constructor(private http: HttpClient,
     private toastController: ToastController) {}
   properties: Property[] = [
@@ -86,6 +91,27 @@ export class HomePage {
   area: string[] = ['Ballito, KZN', 'Salt Rock, KZN', 'Kyalami, Gauteng', 'Vereeniging, Gauteng']; 
 
   currentDescriptionIndex = 0;
+
+  ngOnit() {
+    this.parentSubject.subscribe(event=> {
+      this.startAnimation(event)
+    }); 
+  }
+
+  startAnimation(state: string) {
+    if (!this.animationState) {
+      this.animationState = state;
+    }
+  }
+
+  resetAnimationState(state: any) {
+    this.animationState = '';
+    this.index++;
+  }
+
+  ngOnDestroy() {
+    this.parentSubject.unsubscribe();
+  }
 
   async likeHouse() { 
     const url = 'api/like';
