@@ -12,10 +12,21 @@
 
 <ion-content [fullscreen]="false">
     <div id="map"></div>
-    <div class="background">
-          <ion-button class="buttons">Confirm Location</ion-button>
-          <ion-button (click)="clear()" class="buttons">Clear Selected location</ion-button>
-    </div>
+     <div class="background">
+          <ion-grid>
+               <ion-row>
+                    <ion-col>
+                         <ion-button class="buttons">Confirm Location</ion-button>
+                    </ion-col>
+                    <ion-col>
+                         <ion-button (click)="clear()" class="buttons" color="secondary" expand="block">
+                              Clear Selected Location
+                         </ion-button>
+                    </ion-col>
+               </ion-row>
+          </ion-grid>
+     </div>
+     
 </ion-content>
 
 
