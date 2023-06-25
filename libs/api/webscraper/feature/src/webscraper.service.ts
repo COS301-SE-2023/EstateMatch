@@ -10,8 +10,12 @@ export class WebScraperService {
     const page = await browser.newPage();
     //await page.goto('https://www.property24.com/for-sale/cape-town/western-cape/432');
 
+    const navigationTimeout = 60000;
+
     // Go to target web page
-    await page.goto('https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59');
+    await page.goto('https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59', {
+      timeout: navigationTimeout,
+    });
 
     
     //await page.waitForSelector('.js_listingResultsContainer');
@@ -27,12 +31,14 @@ export class WebScraperService {
     var propertyURLs: string[] = [];
     const pages = await browser.newPage();
 
-    for(let i = 1; i <= 2; i++)
+    for(let i = 1; i <= 5; i++)
     {
       if(i === 1)
       {
 
-        await pages.goto("https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59");
+        await pages.goto("https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59", {
+          timeout: navigationTimeout,
+        });
 
         propertyURLs = propertyURLs.concat( await pages.$$eval('.resultsItemsContainer a.listingResult', (listings) =>
         listings.map((listing) => listing.getAttribute('href') || '')
@@ -41,7 +47,9 @@ export class WebScraperService {
 
       else
       {
-        await pages.goto('https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59?page=' + i.toString());
+        await pages.goto('https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59?page=' + i.toString(), {
+          timeout: navigationTimeout,
+        });
 
         propertyURLs = propertyURLs.concat( await pages.$$eval('.resultsItemsContainer a.listingResult', (listings) =>
         listings.map((listing) => listing.getAttribute('href') || '')
@@ -58,7 +66,9 @@ export class WebScraperService {
       // Open a new page for each property
       console.log(url);
       const propertyPage = await browser.newPage();
-      await propertyPage.goto("https://www.privateproperty.co.za" +url);
+      await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+        timeout: navigationTimeout,
+      });
 
       // Wait for the property page to load
       await propertyPage.waitForSelector('.contentWhite');
@@ -140,7 +150,9 @@ export class WebScraperService {
   // Close the browser
   await browser.close();
 
+  const filteredPropertyListings = propertyListings.filter((property) => property.price !== "Sold");
+
   // Return the array of property listings
-  return propertyListings;
+  return filteredPropertyListings;
 }
 }
