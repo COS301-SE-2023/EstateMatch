@@ -1,5 +1,14 @@
 @import "~leaflet/dist/leaflet.css";
 
+:root {
+    --ion-color-secondary: #67C390;
+    --ion-color-secondary-rgb: 0, 102, 0;
+    --ion-color-secondary-contrast: #ffffff;
+    --ion-color-secondary-contrast-rgb: 255, 255, 255;
+    --ion-color-secondary-shade: #005a00;
+    --ion-color-secondary-tint: #1a751a;
+  }
+
 #map { 
     height: 80%; 
 }

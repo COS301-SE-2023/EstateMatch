@@ -13,7 +13,8 @@
 <ion-content [fullscreen]="false">
     <div id="map"></div>
     <div class="background">
-          <ion-button>Confirm Location</ion-button>
+          <ion-button class="buttons">Confirm Location</ion-button>
+          <ion-button (click)="clear()" class="buttons">Clear Selected location</ion-button>
     </div>
 </ion-content>
 

@@ -1,6 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 import * as L from 'leaflet';
 import { Geolocation} from '@ionic-native/geolocation'
+
 
 @Component({
   selector: 'ms-map-page',
@@ -10,10 +11,17 @@ import { Geolocation} from '@ionic-native/geolocation'
   export class MapPage {
 
       map!:L.Map
+      locationLat: number;
+      locationLong: number;
+      userLat: number;
+      userLong: number;
 
-      // constructor() {
-        
-      // }
+      constructor() {
+        this.locationLat=0;
+        this.locationLong=0;
+        this.userLat=0;
+        this.userLong=0;
+      }
 
       async ngOnInit() {
         const coordinates = await Geolocation.getCurrentPosition();
@@ -35,6 +43,9 @@ import { Geolocation} from '@ionic-native/geolocation'
 
       this.map.panTo(new L.LatLng(coordinates.coords.latitude, coordinates.coords.longitude));
 
+      this.userLat=coordinates.coords.latitude;
+      this.userLong=coordinates.coords.longitude;
+
       const layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 
       this.map.addLayer(layer);
@@ -45,10 +56,30 @@ import { Geolocation} from '@ionic-native/geolocation'
 
       L.control.scale().addTo(this.map);
 
-      this.map.on('click', function(e) {
-        console.log("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
+      this.map.once('click', (e) => {
+        console.log("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng);
+        this.setLatLong(e.latlng.lat, e.latlng.lng);
+        const mark=L.marker([e.latlng.lat, e.latlng.lng]).addTo(this.map);
+        mark.bindPopup("<b>Selected Location</b><br />").openPopup();
       });
+
+      
     
   }
 
+
+
+  setLatLong(lat: any, long: any) {
+    this.locationLat = lat;
+    this.locationLong = long;
+  }
+
+  async clear(){
+    this.map.remove();
+    this.ngOnInit();
+  }
+  
+
 }
+
+
