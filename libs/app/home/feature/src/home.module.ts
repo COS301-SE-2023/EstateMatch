@@ -7,15 +7,10 @@ import { HomeRouting } from './home.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import { CardComponent } from './card/card.component';
 
 @NgModule({
-  imports: [CommonModule, IonicModule, HomeRouting, HttpClientModule,BrowserModule,
-    BrowserAnimationsModule],
-  declarations: [HomePage, HeaderComponent, FooterComponent, CardComponent],
+  imports: [CommonModule, IonicModule, HomeRouting, HttpClientModule],
+  declarations: [HomePage, HeaderComponent, FooterComponent],
   exports: [HomePage],
 })
 export class HomeModule {}

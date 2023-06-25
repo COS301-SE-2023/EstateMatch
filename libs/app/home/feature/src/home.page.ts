@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
-import { Subject } from 'rxjs'; 
 
 interface Property {
   user: string;
@@ -21,9 +20,6 @@ interface Property {
 })
 
 export class HomePage {
-  
-  parentSubject:Subject<string> = new Subject();
-
   constructor(private http: HttpClient,
     private toastController: ToastController) {}
   properties: Property[] = [
@@ -81,10 +77,6 @@ export class HomePage {
   area: string[] = ['Ballito, KZN', 'Salt Rock, KZN', 'Kyalami, Gauteng', 'Vereeniging, Gauteng']; 
 
   currentDescriptionIndex = 0;
-
- cardAnimation(value: string) {
-    this.parentSubject.next(value);
-  }
 
   async likeHouse() { 
     const url = 'api/like';
