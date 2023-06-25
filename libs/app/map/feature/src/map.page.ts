@@ -16,6 +16,10 @@ import { Geolocation} from '@ionic-native/geolocation'
       // }
 
       async ngOnInit() {
+        const coordinates = await Geolocation.getCurrentPosition();
+
+        console.log('Current position:', coordinates);
+        
         this.map=L.map('map',{
           center: [ 51.505, -0.09 ],
           zoom: 13,
@@ -29,9 +33,15 @@ import { Geolocation} from '@ionic-native/geolocation'
         this.map.invalidateSize();
       },0);
 
-      const coordinates = await Geolocation.getCurrentPosition();
+      this.map.panTo(new L.LatLng(coordinates.coords.latitude, coordinates.coords.longitude));
 
-      console.log('Current position:', coordinates);
+      const layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+
+      this.map.addLayer(layer);
+
+      const marker = L.marker([coordinates.coords.latitude, coordinates.coords.longitude]).addTo(this.map);
+
+      marker.bindPopup("<b>Current Location</b><br />").openPopup();
     
   }
 
