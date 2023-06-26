@@ -6,7 +6,7 @@ import { IGetPreferencesRequest, ISetPreferencesRequest } from '@estate-match/ap
 @Controller()
 export class PreferenceController {
     constructor(private readonly service: PreferenceService) {}
-    @Get('/getPreferences')
+    @Post('/getPreferences')
     async getData(@Body() user: IGetPreferencesRequest){
         return await this.service.getPreferences(user);
     }

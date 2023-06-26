@@ -40,6 +40,14 @@
       "@estate-match/api/properties/util": [
         "libs/api/properties/util/src/index.ts"
       ],
+      "@estate-match/api/search/data-access": [
+        "libs/api/search/data-access/src/index.ts"
+      ],
+      
+      "@estate-match/api/search/feature": [
+        "libs/api/search/feature/src/index.ts"
+      ],
+      "@estate-match/api/search/util": ["libs/api/search/util/src/index.ts"],
       "@estate-match/api/webscaper/util--unit-test-runner=jest": [
         "libs/api/webscaper/util--unit-test-runner=jest/src/index.ts"
       ],
@@ -63,6 +71,15 @@
       ],
       "@estate-match/app/core/feature": ["libs/app/core/feature/src/index.ts"],
       "@estate-match/app/core/util": ["libs/app/core/util/src/index.ts"],
+      "@estate-match/app/header-footer/data-access": [
+        "libs/app/header-footer/data-access/src/index.ts"
+      ],
+      "@estate-match/app/header-footer/feature": [
+        "libs/app/header-footer/feature/src/index.ts"
+      ],
+      "@estate-match/app/header-footer/util--unit-test-runner=jest": [
+        "libs/app/header-footer/util--unit-test-runner=jest/src/index.ts"
+      ],
       "@estate-match/app/home/data-access": [
         "libs/app/home/data-access/src/index.ts"
       ],
@@ -73,8 +90,23 @@
       "@estate-match/app/liked/feature": [
         "libs/app/liked/feature/src/index.ts"
       ],
+      "@estate-match/app/more-info/data-access": [
+        "libs/app/more-info/data-access/src/index.ts"
+      ],
+      "@estate-match/app/more-info/feature": [
+        "libs/app/more-info/feature/src/index.ts"
+      ],
+      "@estate-match/app/more-info/util--unit-test-runner=jest": [
+        "libs/app/more-info/util--unit-test-runner=jest/src/index.ts"
+      ],
       "@estate-match/app/preferences/feature": [
         "libs/app/preferences/feature/src/index.ts"
+      ],
+      "@estate-match/app/search-filter/feature": [
+        "libs/app/search-filter/feature/src/index.ts"
+      ],
+      "@estate-match/app/search/feature": [
+        "libs/app/search/feature/src/index.ts"
       ]
     }
   },

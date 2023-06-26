@@ -5,6 +5,8 @@ import { LikedPage } from './liked.page';
 import { LikedRouting } from './liked.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component'
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -14,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule, 
     HttpClientModule
   ],
-  declarations: [LikedPage],
+  declarations: [LikedPage, HeaderComponent, FooterComponent],
 })
 
 export class LikedModule {}
