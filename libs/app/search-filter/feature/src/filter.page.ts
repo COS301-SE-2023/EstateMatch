@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { IProperty } from '@estate-match/api/properties/util';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ms-filter-page',
@@ -12,7 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 export class FilterPage {
   constructor(private http: HttpClient,
     private toastController: ToastController,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
     location = ''; //Need to get from map
     minBudget = '';
@@ -22,7 +23,6 @@ export class FilterPage {
     ngOnInit() {
       this.route.queryParams.subscribe(params => {
         this.location = params['data'];
-        console.log(this.location);
       });
     }
 
@@ -41,8 +41,8 @@ export class FilterPage {
       });
 
       this.results = await this.http.post(url, body, { headers }).toPromise() as IProperty[];
-      console.log(this.results);
-      
+      const encodedData = JSON.stringify(this.results);
+      this.router.navigate(['/search'], { queryParams: { data: encodedData}, replaceUrl: true});
     }
 
     async makeToast(message: any){
