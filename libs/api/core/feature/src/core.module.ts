@@ -14,7 +14,7 @@ import { WebScraperModule } from '@estate-match/api/webscraper/feature';
     PreferenceModule,
     PropertiesModule,
     AuthenticationModule,
-    UserModule
+    UserModule,
     SearchModule,
     WebScraperModule,
   ],

@@ -11,7 +11,7 @@
 <body>  
 
   <ion-card name="DisplayCard">
-    <img name="HouseImage" [src]="images[currentDescriptionIndex]" />
+    <img name="HouseImage" [src]="properties[currentDescriptionIndex].images[lastImageIndex]" />
     <button name="more-info" id="more-info" style="background-color:#246d88; height:40px; border-color: #246d88;border-radius: 100%; width:40px;">
       <span style="font-size: 1.2em; color:white">
       <i class="fas fa-info"></i>

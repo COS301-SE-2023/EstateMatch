@@ -1,7 +1,7 @@
 
-import { ISearch } from "../interfaces";
+import { IPropSearch } from "../interfaces";
 
 export interface IGetPropertyRequest{
-    property: ISearch;
+    property: IPropSearch;
 
 }
