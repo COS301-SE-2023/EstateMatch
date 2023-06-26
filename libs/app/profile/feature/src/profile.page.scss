@@ -37,6 +37,7 @@
     color: rgb(88, 163, 238);
   }
   img[name="ProfilePhoto"] {
+    margin-top: -5%;
     border-radius: 50%;
     height: 150px;
     width: 150px;
@@ -52,7 +53,10 @@
     font-size: large;
   }
   div[name="ProfileInfo"]{
-        
+    margin-top: -5%;
+  }
+  ion-button[name="Logout"]{
+    margin-left: 70%;
   }
 
   ion-button[name="Edit"] {

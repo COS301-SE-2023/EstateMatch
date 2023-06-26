@@ -47,12 +47,12 @@ export class HomePage {
     amenities: [],
     images: this.images,
   }];
+  lastImageIndex = 0;
   currentDescriptionIndex = 0;
   
   userPreferences!: IPreference;
 
   async ngOnInit() {
-    sessionStorage.setItem('username', 'Jack Daniels');
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     //Get preferences
     const prefURL = 'api/getPreferences';
@@ -60,9 +60,8 @@ export class HomePage {
       user: sessionStorage.getItem('username')
     }
 
-
     this.userPreferences = await this.http.post(prefURL, prefBody, { headers }).toPromise() as IPreference;
-
+    console.log(this.userPreferences);
     //Search
     const url = 'api/search';
     const body = {
@@ -74,7 +73,7 @@ export class HomePage {
     }
 
     this.properties = await this.http.post(url, body, { headers }).toPromise() as IProperty[];
-    console.log(this.properties[0].title);
+    this.lastImageIndex = this.properties[0].images.length - 1;
   }
 
   async likeHouse() { 
@@ -106,6 +105,7 @@ export class HomePage {
 
 
     this.currentDescriptionIndex++;
+    this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
     // if (this.currentDescriptionIndex >= this.descriptions.length) {
     //   this.currentDescriptionIndex = 0;
     // }
@@ -135,6 +135,8 @@ export class HomePage {
     console.log(this.properties[this.currentDescriptionIndex]);
     await this.makeToast('Property Disliked');
     this.currentDescriptionIndex++;
+    this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
+
     // if (this.currentDescriptionIndex >= this.descriptions.length) {
     //   this.currentDescriptionIndex = 0;
     // }

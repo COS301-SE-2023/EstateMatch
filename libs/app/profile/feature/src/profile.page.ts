@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -7,4 +8,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile.page.scss'],
 })
 
-export class ProfilePage {}
+export class ProfilePage {
+  constructor(private toastController: ToastController) {}
+
+  logout() {
+    sessionStorage.clear();
+    this.makeToast('Logged out successfully');
+  }
+
+  async makeToast(message: any){
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      position: 'top',
+    })
+    toast.present();
+  }
+}

@@ -11,7 +11,7 @@
     </ion-toolbar>
   </header>
 
-  &nbsp;
+  <ion-button name="Logout" fill="clear" routerLink="/login" routerDirection="root" (click)="logout()">Log Out</ion-button>
   <div name="ProfilePhoto">
     <img name ="ProfilePhoto" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
   </div>
@@ -50,7 +50,7 @@
         <i class="fas fa-home"></i>
         <br>Home
       </a>
-      <a>
+      <a href="search">
         <i class="fas fa-search"></i>
         <br>Search
       </a>

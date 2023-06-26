@@ -7,10 +7,11 @@ import { SearchRouting } from './search.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  imports: [CommonModule, IonicModule, SearchRouting, HttpClientModule],
+  imports: [CommonModule, FormsModule, IonicModule, SearchRouting, HttpClientModule],
   declarations: [SearchPage, HeaderComponent, FooterComponent],
   exports: [SearchPage],
 })

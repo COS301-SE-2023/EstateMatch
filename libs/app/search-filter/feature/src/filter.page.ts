@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { IProperty } from '@estate-match/api/properties/util';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ms-filter-page',
@@ -10,12 +11,20 @@ import { IProperty } from '@estate-match/api/properties/util';
 })
 export class FilterPage {
   constructor(private http: HttpClient,
-    private toastController: ToastController) { }
+    private toastController: ToastController,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
-    location = 'Zonnebloem'; //Need to get from map
+    location = ''; //Need to get from map
     minBudget = '';
     maxBudget = '';
     results: IProperty[] = [];
+
+    ngOnInit() {
+      this.route.queryParams.subscribe(params => {
+        this.location = params['data'];
+      });
+    }
 
     async searchProperties(){
       const url = 'api/search';
@@ -32,7 +41,8 @@ export class FilterPage {
       });
 
       this.results = await this.http.post(url, body, { headers }).toPromise() as IProperty[];
-      console.log(this.results);
+      const encodedData = JSON.stringify(this.results);
+      this.router.navigate(['/search'], { queryParams: { data: encodedData}, replaceUrl: true});
     }
 
     async makeToast(message: any){

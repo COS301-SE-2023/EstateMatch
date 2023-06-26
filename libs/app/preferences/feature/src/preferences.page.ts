@@ -22,7 +22,7 @@ export class PreferencesPage {
     const extras = this.extras.split(',');
     const body = {
       preferences:{
-        user: 'Jack Daniels',
+        user: sessionStorage.getItem('username'),
         location: this.area,
         budget: parseInt(this.budget.replace(/\s/g, "")),
         bedrooms: parseInt(this.bedrooms),

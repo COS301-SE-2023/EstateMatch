@@ -44,4 +44,8 @@ export class LoginPage {
     })
     toast.present();
   }
+
+  signup(){
+    this.router.navigate(['/register'], { replaceUrl: true });
+  }
 }
