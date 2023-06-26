@@ -9,10 +9,10 @@ AI, and display it to the user based on their preferences using a Tinder type de
 it easier to search and find your ideal property match.
 
 ## Documentation
-<a href="https://docs.google.com/document/d/1RlTstf5AUX04HHE7UJJ6J_Fwv7FWnpZjaSfp0pe_y6g">SRSv2</a>
-<a href="https://docs.google.com/document/d/1eEZawQQsqDtdPr7PcepF3r3jhFEsvrvVfRbxEUtQ5KE">Architecture</a>
-<a href="https://docs.google.com/document/d/1qvRzDJuF_YBuy4V8E-jjelcO2OqnoXkK8b9G8zBNcdc">User Manual</a>
-<a href="https://docs.google.com/document/d/1epleAggUqhXkfQHwGLf67TS5sfkBkPydWQ50SCDiOLk">Coding Standards</a>
+<a href="https://docs.google.com/document/d/1RlTstf5AUX04HHE7UJJ6J_Fwv7FWnpZjaSfp0pe_y6g">SRSv2</a><br>
+<a href="https://docs.google.com/document/d/1eEZawQQsqDtdPr7PcepF3r3jhFEsvrvVfRbxEUtQ5KE">Architecture</a><br>
+<a href="https://docs.google.com/document/d/1qvRzDJuF_YBuy4V8E-jjelcO2OqnoXkK8b9G8zBNcdc">User Manual</a><br>
+<a href="https://docs.google.com/document/d/1epleAggUqhXkfQHwGLf67TS5sfkBkPydWQ50SCDiOLk">Coding Standards</a><br>
 
 ### Archived Documentation
 <a href="https://docs.google.com/document/d/1IPPo0ORLdAqlDpaK2BRLdt88pe27UXzoNSb_TqKFMJ8/edit#heading=h.y9ikcpqx8cfk">SRSv1</a>
