@@ -29,7 +29,7 @@ export class PropertiesRepository {
         return this.propertiesModel.findById(propertyId).exec();
     }
 
-    //get properties based on the preferences of the user
+    // get properties based on the preferences of the user
     async getPropertiesByPreferences(preference : PrefrencesModel): Promise<PropertiesModel[] | null> {
         const userPreference = new this.preferenceModel(preference);
         return this.propertiesModel.find({$and: [{price: {$lte: userPreference.budget}},
@@ -40,6 +40,4 @@ export class PropertiesRepository {
             {extras: {$in: userPreference.extras}}
             ]}).exec();
     }
-    
-
 }

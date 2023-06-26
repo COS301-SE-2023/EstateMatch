@@ -40,6 +40,24 @@
       "@estate-match/api/properties/util": [
         "libs/api/properties/util/src/index.ts"
       ],
+      "@estate-match/api/webscaper/util--unit-test-runner=jest": [
+        "libs/api/webscaper/util--unit-test-runner=jest/src/index.ts"
+      ],
+      "@estate-match/api/webscraper/data-access": [
+        "libs/api/webscraper/data-access/src/index.ts"
+      ],
+      "@estate-match/api/webscraper/feature": [
+        "libs/api/webscraper/feature/src/index.ts"
+      ],
+      "@estate-match/api/webscraper/util": [
+        "libs/api/webscraper/util/src/index.ts"
+      ],
+      "@estate-match/api/webscraper/util--unit-test-runner=jest": [
+        "libs/api/webscraper/util--unit-test-runner=jest/src/index.ts"
+      ],
+      "@estate-match/apo/webscaper/util--unit-test-runner=jest": [
+        "libs/apo/webscaper/util--unit-test-runner=jest/src/index.ts"
+      ],
       "@estate-match/app/core/data-access": [
         "libs/app/core/data-access/src/index.ts"
       ],

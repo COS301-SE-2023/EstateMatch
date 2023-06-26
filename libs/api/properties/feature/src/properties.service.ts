@@ -90,6 +90,4 @@ export class PropertiesService
           ICreatePropertyResponse
       >(new CreatePropertyCommand(request));
   }
-
-
 }
