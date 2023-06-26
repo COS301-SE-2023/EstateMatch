@@ -131,10 +131,3 @@ export class HomePage {
     toast.present();
   }
 }
-
-
-
-
-
-
-
