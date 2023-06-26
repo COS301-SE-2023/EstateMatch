@@ -30,11 +30,6 @@ ion-card-subtitle[name="Subtitle"]{
     color:black;
 }
 
-ion-input{
-    font-size: medium;
-    border: 1px solid #707070;
-    border-radius: 5px;
-}
 
 ion-label{
     font-size: large;
@@ -43,6 +38,8 @@ ion-label{
 select{
     font-size: large;
 }
+
+
 
 .InputContainer{
     padding-top: 8%; 
@@ -110,10 +107,11 @@ ion-row{
         }
 
         ion-input{
-            border: 1px solid #ffffff;
+            border: 1px solid #000000;
             border-radius: 5px;
             margin-bottom: 10px;
             --padding-start: 8px;
+            width: 90%;
         }
 
         ion-button{

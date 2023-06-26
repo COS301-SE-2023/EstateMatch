@@ -51,14 +51,14 @@ import { Geolocation} from '@ionic-native/geolocation'
 
       const marker = L.marker([coordinates.coords.latitude, coordinates.coords.longitude]).addTo(this.map);
 
-      marker.bindPopup("<b>Your Current Location</b><br />").openPopup();
+      marker.bindPopup("<b>Your Current Location.</b><br />").openPopup();
 
       L.control.scale().addTo(this.map);
 
       this.map.once('click', (e) => {
         this.setLatLong(e.latlng.lat, e.latlng.lng);
         const mark=L.marker([e.latlng.lat, e.latlng.lng]).addTo(this.map);
-        mark.bindPopup("<b>Selected Location</b><br />").openPopup();
+        mark.bindPopup("<b>Selected Location. Lattitude: "+e.latlng.lat+". Longtitude: "+e.latlng.lng+"</b><br />").openPopup();
       });
 
       
