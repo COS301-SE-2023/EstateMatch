@@ -9,8 +9,9 @@
   </app-header>
 
 <body>  
+  <app-carousel></app-carousel>
 
-  <ion-card name="DisplayCard">
+  <!-- <ion-card name="DisplayCard">
     <img name="HouseImage" [src]="images[currentDescriptionIndex]" />
     <button name="more-info" id="more-info" style="background-color:#246d88; height:40px; border-color: #246d88;border-radius: 100%; width:40px;">
       <span style="font-size: 1.2em; color:white">
@@ -23,10 +24,8 @@
     <ion-card-content name="CardDescription" id="CardDescription">
       {{ descriptions[currentDescriptionIndex] }}
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
   
-  </body>
-
   <div id="button-container" style="text-align:center;">
     <button id="dislike-button" (click) = "dislikeHouse()" style="background-color:#F0422A; height:60px; border-color:#F0422A ;border-radius: 100%; width:60px;">
       <span style="font-size: 1.7em; color:white">
@@ -40,6 +39,7 @@
     </span>
     </button>
   </div>
+  </body>
 
   <app-footer>
     

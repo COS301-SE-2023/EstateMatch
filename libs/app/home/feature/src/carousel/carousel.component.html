@@ -3,8 +3,77 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="cards.component.scss">  
+  <style>
+    *{
+        font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #board {
+      width: 80%;
+      height: 60%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      overflow: hidden;
+      background-color: rgb(245, 247, 250);
+
+    }
+
+    .card {
+      width: 90%; /* Increased width for bigger cards */
+      height: 90%; /* Increased height for bigger cards */
+      position: absolute;
+      top: 48%;
+      left: 48%;
+      transform: translate(-50%, -50%);
+      border-radius: 10px;
+      box-shadow: 0px 4px 4px 0px rgba(105, 93, 93, 0.1);
+    }
+
+    .card-content {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 50%; /* Increased height for bigger card images */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .card-title {
+    font-size: 50px; /* Increased font size */
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 8px;
+    margin-top: 30px;
+    }
+
+    .card-subtitle {
+    font-size: 40px; /* Increased font size */
+    text-align: left;
+    margin-bottom: 8px;
+    }
+  </style>
 </head>
+
 <body>
   <div id="board"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
@@ -225,4 +294,3 @@
     const carousel = new Carousel(board);
   </script>
 </body>
-</html>

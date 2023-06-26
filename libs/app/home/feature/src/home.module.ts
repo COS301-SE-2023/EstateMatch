@@ -7,10 +7,11 @@ import { HomeRouting } from './home.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   imports: [CommonModule, IonicModule, HomeRouting, HttpClientModule],
-  declarations: [HomePage, HeaderComponent, FooterComponent],
+  declarations: [HomePage, HeaderComponent, FooterComponent, CarouselComponent],
   exports: [HomePage],
 })
 export class HomeModule {}
