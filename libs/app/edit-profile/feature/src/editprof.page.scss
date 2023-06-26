@@ -1,0 +1,107 @@
+*{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+  }
+  ion-header[name="TopHeader"] {
+    height:5rem;
+  }
+  ion-toolbar[name="TopToolBar"] {
+    height:min-content;
+    fill:none;
+  }
+  ion-label{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+  }
+  .navbar {
+    background-color: #edebeb;
+    position: fixed;
+    bottom: 0;
+    max-height: 3.5em;
+    width: 100%;
+  }
+  
+  .navbar a {
+    padding-top: 12px;
+    padding-bottom: 16px;
+    width: 25%;
+    float: left;
+    display: block;
+    color: #131313;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+  }
+  
+  .navbar a.active {
+    background-color: #ffffff;
+    color: rgb(88, 163, 238);
+  }
+.main_content_div{
+    //width: 100%;
+
+    ion-label {
+        display: block;
+    }
+
+    /*.up_div{
+        width: 100%;
+        height: 45vh;
+        background: var(--ion-color-primary);
+        position: relative;
+
+        .user_back{
+            height: 120px;
+            width: 120px;
+            border-radius: 100%;
+            background-position: top;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border: 4px solid #EFF0F5;
+            // border: 4px solid #FF8035;
+        }
+    }*/
+
+    .white_div{
+        padding-top: 10%;
+        width:85%;
+        position: fixed;
+        height: 70%;
+    }
+
+    .small_lbl{
+        margin-left: 5%;
+    }
+
+    ion-input{
+        margin-left: 5%;
+        border: 1px solid #707070;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        width: 90%;
+        --padding-start: 8px;
+    }
+
+    button{
+        margin-top: 10px;
+        --border-radius: 5px;
+        width: 60%;
+        height: 2.5em;
+        font-size: large;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        color: white; 
+        border-radius: 5%;
+    }
+
+    button[name="Back"]{
+      background-color: #E7604D;
+      border-color: #E7604D;
+    }
+    button[name="Edit"]{
+      background-color: #67C390;
+      border-color: #67C390;
+    }
+}

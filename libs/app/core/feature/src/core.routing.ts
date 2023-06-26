@@ -31,6 +31,36 @@ const routes: Routes = [
       import('@estate-match/app/liked/feature').then((m) => m.LikedModule),
   },
   {
+    path: 'profile',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/profile/feature').then((m) => m.ProfileModule),
+  },
+  {
+    path: 'editprof',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/edit-profile/feature').then((m) => m.EditProfileModule),
+  },
+  {
+    path: 'login',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/login/feature').then((m) => m.LoginModule),
+  },
+  {
+    path: 'register',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/register/feature').then((m) => m.RegisterModule),
+  },
+  {
+    path: 'map',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/map/feature').then((m) => m.MapModule),
+  },
+  {
     path: 'info',
     pathMatch: 'full',
     loadChildren: () =>
