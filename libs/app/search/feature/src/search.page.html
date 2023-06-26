@@ -17,6 +17,36 @@
             <i class="fas fa-filter"></i>
         </span>
     </button>
+
+    <ion-card name="DisplayCard">
+        <img name="HouseImage" [src]="" />
+        <button name="more-info" id="more-info" style="background-color:#246d88; height:40px; border-color: #246d88;border-radius: 100%; width:40px;" routerLink="/info" routerDirection="root">
+          <span style="font-size: 1.2em; color:white">
+          <i class="fas fa-info"></i>
+        </span>
+        </button>
+        <ion-card-header>
+          <ion-card-title>Title Placeholder</ion-card-title>
+        </ion-card-header>
+        <ion-card-content name="CardDescription" id="CardDescription">
+          Price:  <br>
+          Location:  <br>
+        </ion-card-content>
+      </ion-card>
+
+      <div id="button-container" style="text-align:center;">
+        <button id="dislike-button" style="background-color:#F0422A; height:60px; border-color:#F0422A ;border-radius: 100%; width:60px;">
+          <span style="font-size: 1.7em; color:white">
+            <i class="fas fa-times"></i>
+        </span>
+        </button>
+        &nbsp;
+        <button id="like-button" style="background-color:#67C390; height:60px; border-color: #67C390;border-radius: 100%; width:60px;">
+          <span style="font-size: 1.7em; color:white">
+          <i class="fas fa-heart"></i>
+        </span>
+        </button>
+      </div>
 </body>
 
 
