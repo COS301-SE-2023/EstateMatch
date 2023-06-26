@@ -40,6 +40,7 @@ export class RegisterPage {
     const registerResponse = await this.http.post(url, body, { headers }).toPromise() as {message: string};
     if(registerResponse.message === 'User Register Success'){
       this.makeToast('Register success');
+      sessionStorage.setItem('username', this.username);
       this.router.navigate(['/preferences'], { replaceUrl: true });
     }else{
       this.makeToast('Register failed');

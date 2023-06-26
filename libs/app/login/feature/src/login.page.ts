@@ -29,6 +29,7 @@ export class LoginPage {
     const loggedIn = await this.http.post(url, body, { headers }).toPromise() as {message: string};
     if(loggedIn.message === 'User Login Success'){
       this.makeToast('Login success');
+      sessionStorage.setItem('username', this.username);
       this.router.navigate(['/home'], { replaceUrl: true });
     }else{
       this.makeToast('Login failed');

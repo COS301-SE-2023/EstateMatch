@@ -9,9 +9,9 @@ const pass = 'password1234';
 export class AuthController {
     constructor(private readonly service: AuthService) {}
     @Post('/login')
-    async login(@Body() login: IRegister): Promise<any> {
+    async login(@Body() request: ILogin): Promise<any> {
         const loginRequest: ILoginRequest = {
-            login: login
+            login: request
         };
 
         return this.service.login(loginRequest);
