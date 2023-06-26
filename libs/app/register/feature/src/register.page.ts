@@ -58,4 +58,7 @@ export class RegisterPage {
     toast.present();
   }
   
+  login(){
+    this.router.navigate(['/login'], { replaceUrl: true });
+  }
 }

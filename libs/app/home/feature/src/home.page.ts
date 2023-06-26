@@ -53,7 +53,6 @@ export class HomePage {
   userPreferences!: IPreference;
 
   async ngOnInit() {
-    sessionStorage.setItem('username', 'Jack Daniels');
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     //Get preferences
     const prefURL = 'api/getPreferences';
@@ -61,9 +60,8 @@ export class HomePage {
       user: sessionStorage.getItem('username')
     }
 
-
     this.userPreferences = await this.http.post(prefURL, prefBody, { headers }).toPromise() as IPreference;
-
+    console.log(this.userPreferences);
     //Search
     const url = 'api/search';
     const body = {
