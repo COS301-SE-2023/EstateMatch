@@ -8,6 +8,27 @@ EstateMatch is a mobile application that uses a web-scraper to find Real Estate,
 AI, and display it to the user based on their preferences using a Tinder type design, making
 it easier to search and find your ideal property match.
 
+## Documentation
+### Software Requirements Specification
+<a href="https://docs.google.com/document/d/1RlTstf5AUX04HHE7UJJ6J_Fwv7FWnpZjaSfp0pe_y6g">SRSv2</a>
+
+### Architecural Document
+<a href="https://docs.google.com/document/d/1eEZawQQsqDtdPr7PcepF3r3jhFEsvrvVfRbxEUtQ5KE">Architecture</a>
+
+### User Manual
+<a href="https://docs.google.com/document/d/1qvRzDJuF_YBuy4V8E-jjelcO2OqnoXkK8b9G8zBNcdc">User Manual</a>
+
+### Coding Standards
+<a href="https://docs.google.com/document/d/1epleAggUqhXkfQHwGLf67TS5sfkBkPydWQ50SCDiOLk">Coding Standards</a>
+
+### Archived Documentation
+<a href="https://docs.google.com/document/d/1IPPo0ORLdAqlDpaK2BRLdt88pe27UXzoNSb_TqKFMJ8/edit#heading=h.y9ikcpqx8cfk">SRSv1</a>
+
+## Project Management
+### Github Boards
+<a href="https://github.com/orgs/COS301-SE-2023/projects/31">Documentation Board</a><br>
+<a href="https://github.com/orgs/COS301-SE-2023/projects/40/views/1">Development Board</a>
+
 ## Meet the Team
 
 ### Project Manager
@@ -22,7 +43,6 @@ Daniël is a BSC Computer Science student with a special interest in AI and secu
     <img alt="ion" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
 </a><br>
 </details>
-
 
 ### Developers
 <details><summary>Adam Osborne (u21529583)</summary><br>
@@ -76,16 +96,6 @@ Liam is a BSc Computer Science student. All the way through he loved doing the b
 <div>
 Contact us: teamblue.cos301@gmail.com
 </div>
-
-## Documentation
-### Software Requirements Specification
-<a href="https://docs.google.com/document/d/1IPPo0ORLdAqlDpaK2BRLdt88pe27UXzoNSb_TqKFMJ8/edit#heading=h.y9ikcpqx8cfk">SRSv1</a>
-
-## Project Management
-### Github Boards
-<a href="https://github.com/orgs/COS301-SE-2023/projects/31">Documentation Board</a><br>
-<a href="https://github.com/orgs/COS301-SE-2023/projects/40/views/1">Development Board</a>
-
 
 ## Tech Stack
 
