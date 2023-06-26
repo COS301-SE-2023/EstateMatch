@@ -1,6 +1,7 @@
-import { IProperty } from "../interfaces";
-import { ISearchRequest  } from "@estate-match/api/search/util";
+
+import { ISearch } from "../interfaces";
+
 export interface IGetPropertyRequest{
-    property: ISearchRequest;
-    // preference: IPreference;
+    property: ISearch;
+
 }

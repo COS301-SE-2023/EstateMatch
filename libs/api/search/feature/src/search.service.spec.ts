@@ -37,28 +37,26 @@ describe('SearchService', () => {
     };
 
     const commandResponse: ISearchResponse = { 
-        results: [{
-            user: 'test',
-            address: 'test',
-            price: 15000,
-            bedrooms: 1,
-            bathrooms: 1,
-            garages: 1,
-            amenities: [],
-            liked: true,
-            image: ['test image']
-        },
-        {
-            user: 'test2',
-            address: 'test2',
-            price: 15000,
-            bedrooms: 1,
-            bathrooms: 1,
-            garages: 1,
-            amenities: [],
-            liked: true,
-            image: ['test image']
-        },]
+      results: [{
+        title: 'test',
+        location: 'test',
+        price: 15000,
+        bedrooms: 1,
+        bathrooms: 1,
+        garages: 1,
+        amenities: [],
+        images: ['test image']
+    },
+    {
+      title: 'test2',
+      location: 'test2',
+      price: 15000,
+      bedrooms: 1,
+      bathrooms: 1,
+      garages: 1,
+      amenities: [],
+      images: ['test image']
+    },]
     };
 
     (queryBus.execute as jest.Mock).mockResolvedValue(commandResponse);

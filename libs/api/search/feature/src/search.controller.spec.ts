@@ -45,26 +45,24 @@ describe('SearchController', () => {
 
         const expectedResult: ISearchResponse = {
             results: [{
-                user: 'test',
-                address: 'test',
+                title: 'test',
+                location: 'test',
                 price: 15000,
                 bedrooms: 1,
                 bathrooms: 1,
                 garages: 1,
                 amenities: [],
-                liked: true,
-                image: ['test image']
+                images: ['test image']
             },
             {
-                user: 'test2',
-                address: 'test2',
-                price: 15000,
-                bedrooms: 1,
-                bathrooms: 1,
-                garages: 1,
-                amenities: [],
-                liked: true,
-                image: ['test image']
+              title: 'test2',
+              location: 'test2',
+              price: 15000,
+              bedrooms: 1,
+              bathrooms: 1,
+              garages: 1,
+              amenities: [],
+              images: ['test image']
             },]
         }
 
