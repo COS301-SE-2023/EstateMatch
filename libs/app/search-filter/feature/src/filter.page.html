@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="filter.page.scss">
+    </head>
+
+    <header>
+        <ion-toolbar>
+            <ion-title>Estate Match</ion-title>
+        </ion-toolbar> 
+    </header>
+
+    <body>  
+        <ion-card name="displayContainer">
+            <ion-card-subtitle name="Subtitle">Search Filters</ion-card-subtitle>
+        <div id="CardCentering">
+        
+            <div class="dropdown" id="BudgetContainer">
+            <ion-grid>
+            <ion-row>
+              <ion-col>
+              <ion-label for="Budget">Budget</ion-label>
+              </ion-col>
+            </ion-row>  
+            
+            <ion-row>
+              <ion-col>
+                <ion-label for="Budget">Starting Point: R</ion-label>
+                </ion-col>
+              <ion-col>
+              <select [(ngModel)]="minBudget"  class="dropdownColor">
+                <!-- <option value="100 000">100 000</option>
+                <option value="150 000">150 000</option>
+                <option value="200 000">200 000</option>
+                <option value="250 000">250 000</option>
+                <option value="300 000">300 000</option>
+                <option value="350 000">350 000</option>
+                <option value="400 000">400 000</option>
+                <option value="450 000">450 000</option>
+                <option value="500 000">500 000</option>
+                <option value="550 000">550 000</option>
+                <option value="600 000">600 000</option>
+                <option value="650 000">650 000</option>
+                <option value="700 000">700 000</option>
+                <option value="750 000">750 000</option>
+                <option value="800 000">800 000</option>
+                <option value="850 000">850 000</option>
+                <option value="900 000">900 000</option>
+                <option value="950 000">950 000</option> -->
+                <option value="500 000">500 000</option>
+                <option value="1 500 000">1 500 000</option>
+                <!-- <option value="1 100 000">1 100 000</option>
+                <option value="1 150 000">1 150 000</option>
+                <option value="1 200 000">1 200 000</option>
+                <option value="1 250 000">1 250 000</option>
+                <option value="1 300 000">1 300 000</option>
+                <option value="1 350 000">1 350 000</option>
+                <option value="1 400 000">1 400 000</option>
+                <option value="1 450 000">1 450 000</option>
+                <option value="1 500 000">1 500 000</option>
+                <option value="1 550 000">1 550 000</option>
+                <option value="1 650 000">1 600 000</option>
+                <option value="1 650 000">1 650 000</option>
+                <option value="1 700 000">1 700 000</option>
+                <option value="1 750 000">1 750 000</option>
+                <option value="1 800 000">1 800 000</option>
+                <option value="1 850 000">1 850 000</option>
+                <option value="1 900 000">1 900 000</option>
+                <option value="1 950 000">1 950 000</option> -->
+                <option value="2 000 000">2 000 000</option>
+                <option value="2 500 000">2 500 000</option>
+                <option value="3 000 000">3 000 000</option>
+                <option value="3 500 000">3 500 000</option>
+                <option value="4 000 000">4 000 000</option>
+                <option value="4 500 000">4 500 000</option>
+                <option value="5 000 000">5 000 000</option>
+                <option value="5 500 000">5 500 000</option>
+                <option value="6 000 000">6 000 000</option>
+                <option value="6 500 000">6 500 000</option>
+                <option value="7 000 000">7 000 000</option>
+                <option value="7 500 000">7 500 000</option>
+                <option value="8 000 000">8 000 000</option>
+                <option value="8 500 000">8 500 000</option>
+                <option value="9 000 000">9 000 000</option>
+                <option value="9 500 000">9 500 000</option>
+                <option value="10 000 000">10 000 000</option>
+                <option value="10 500 000">10 500 000</option>
+              </select>
+            </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <ion-label for="Budget">Ending Point: R</ion-label>
+                </ion-col>
+              <ion-col>
+              <select [(ngModel)]="maxBudget" class="dropdownColor">
+                <!-- <option value="100 000">100 000</option>
+                <option value="150 000">150 000</option>
+                <option value="200 000">200 000</option>
+                <option value="250 000">250 000</option>
+                <option value="300 000">300 000</option>
+                <option value="350 000">350 000</option>
+                <option value="400 000">400 000</option>
+                <option value="450 000">450 000</option>
+                <option value="500 000">500 000</option>
+                <option value="550 000">550 000</option>
+                <option value="600 000">600 000</option>
+                <option value="650 000">650 000</option>
+                <option value="700 000">700 000</option>
+                <option value="750 000">750 000</option>
+                <option value="800 000">800 000</option>
+                <option value="850 000">850 000</option>
+                <option value="900 000">900 000</option>
+                <option value="950 000">950 000</option> -->
+                <option value="500 000">500 000</option>
+                <option value="1 500 000">1 500 000</option>
+                <!-- <option value="1 100 000">1 100 000</option>
+                <option value="1 150 000">1 150 000</option>
+                <option value="1 200 000">1 200 000</option>
+                <option value="1 250 000">1 250 000</option>
+                <option value="1 300 000">1 300 000</option>
+                <option value="1 350 000">1 350 000</option>
+                <option value="1 400 000">1 400 000</option>
+                <option value="1 450 000">1 450 000</option>
+                <option value="1 500 000">1 500 000</option>
+                <option value="1 550 000">1 550 000</option>
+                <option value="1 650 000">1 600 000</option>
+                <option value="1 650 000">1 650 000</option>
+                <option value="1 700 000">1 700 000</option>
+                <option value="1 750 000">1 750 000</option>
+                <option value="1 800 000">1 800 000</option>
+                <option value="1 850 000">1 850 000</option>
+                <option value="1 900 000">1 900 000</option>
+                <option value="1 950 000">1 950 000</option> -->
+                <option value="2 000 000">2 000 000</option>
+                <option value="2 500 000">2 500 000</option>
+                <option value="3 000 000">3 000 000</option>
+                <option value="3 500 000">3 500 000</option>
+                <option value="4 000 000">4 000 000</option>
+                <option value="4 500 000">4 500 000</option>
+                <option value="5 000 000">5 000 000</option>
+                <option value="5 500 000">5 500 000</option>
+                <option value="6 000 000">6 000 000</option>
+                <option value="6 500 000">6 500 000</option>
+                <option value="7 000 000">7 000 000</option>
+                <option value="7 500 000">7 500 000</option>
+                <option value="8 000 000">8 000 000</option>
+                <option value="8 500 000">8 500 000</option>
+                <option value="9 000 000">9 000 000</option>
+                <option value="9 500 000">9 500 000</option>
+                <option value="10 000 000">10 000 000</option>
+                <option value="10 500 000">10 500 000</option>
+              </select>
+            </ion-col>
+            </ion-row>
+            </ion-grid>
+            </div>
+        
+              <!-- <div class="TagsContainer">
+                <ion-grid>
+                <ion-row>
+                <ion-col>
+                <ion-label for="Bedrooms" class="labels">Bedrooms</ion-label>
+                </ion-col>
+                <ion-col>
+                <select label="Bedrooms">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>       
+                </select>
+                </ion-col> 
+                </ion-row>
+        
+                <ion-row>
+                <ion-col>
+                <ion-label for="Bathrooms" class="labels">Bathrooms</ion-label>
+                </ion-col>
+        
+                <ion-col>
+                <select label="Bathrooms">
+                  <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                </ion-col>
+                </ion-row>
+                
+                <ion-row>
+                <ion-col>
+                <ion-label for="Garage" class="labels">Parking</ion-label>
+                </ion-col>
+                
+                <ion-col>
+                <select label="Garage">
+                  <option value="1">1</option>
+                  <option value="2">2</option>            
+                </select>
+                </ion-col>
+                </ion-row>
+                
+                <br><br>
+                <ion-row>
+                <ion-col>
+                <ion-label>Extras:</ion-label>
+                </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                <ion-checkbox labelPlacement="end">Pet friendly</ion-checkbox>
+                  </ion-col>   
+                  <ion-col>  
+                <ion-checkbox labelPlacement="end">Pool</ion-checkbox>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                <ion-checkbox labelPlacement="end">Garden</ion-checkbox>
+                </ion-col>   
+                <ion-col>  
+                <ion-checkbox labelPlacement="end">Furnished</ion-checkbox>
+              </ion-col>
+              </ion-row>
+                </ion-grid>
+              </div> -->
+        </div>
+        </ion-card>
+        <div name = "Spacing"></div>
+        <div name="buttonContainer" style="text-align:center;">
+        <button (click)="searchProperties()" name="Save" fill="default"routerLink="/search" routerDirection="root">Save</button>  
+        &nbsp;
+        <button name="Cancel" fill="default"routerLink="/search" routerDirection="root">Cancel</button>
+        </div>    
+    </body>
+
+</html>

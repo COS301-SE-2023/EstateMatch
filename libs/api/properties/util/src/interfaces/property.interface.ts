@@ -1,11 +1,10 @@
 export interface IProperty{
-    user: string,
-    address: string,
+    title: string,
+    location: string,
     price: number,
     bedrooms: number,
     bathrooms: number,
-    garages: number,
+    garages: number | null,
     amenities: string[],
-    liked: boolean,
-    image: string,
+    images: string[],
 }

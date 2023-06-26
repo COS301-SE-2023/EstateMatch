@@ -1,0 +1,52 @@
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+</head>
+
+
+
+<header>
+  <ion-toolbar name="ToolBar">
+    <ion-title>Estate Match</ion-title>
+  </ion-toolbar>
+</header>
+
+
+  <ion-card name="displayContainer">
+    <ion-card-subtitle name="Subtitle">Register</ion-card-subtitle>
+      <!-- <ion-content> -->
+        <div class="main_content_div">
+          
+          <div class="form_div">
+            
+            <ion-label class="small_lbl">First Name</ion-label>
+            <ion-input [(ngModel)]="fname" type="text" placeholder="Enter First Name"></ion-input>
+
+            <ion-label class="small_lbl">Last Name</ion-label>
+            <ion-input [(ngModel)]="lname"  type="text" placeholder="Enter Last Name"></ion-input>
+
+            <ion-label class="small_lbl">Username</ion-label>
+            <ion-input [(ngModel)]="username"  type="text" placeholder="Enter Username"></ion-input>
+        
+            <ion-label class="small_lbl">Email</ion-label>
+            <ion-input [(ngModel)]="email"  type="text" placeholder="Enter Email Address"></ion-input>
+      
+            <ion-label class="small_lbl">Password</ion-label>
+            <ion-input [(ngModel)]="password" type="password" placeholder="Enter Your Password"></ion-input>
+
+            <ion-label class="small_lbl">Confirm Password</ion-label>
+            <ion-input [(ngModel)]="cpassword" type="password" placeholder="Confirm Password"></ion-input>
+
+            <ion-button (click)="register()" class="buttons" color="secondary" expand="block">
+              Create Account
+            </ion-button>
+      
+          </div>
+      
+          <div class="bottom_div">
+            <ion-label (click)="login()">Already have an account? Login.</ion-label>
+          </div>
+      
+        </div>
+      <!-- </ion-content> -->
+        
+  </ion-card>

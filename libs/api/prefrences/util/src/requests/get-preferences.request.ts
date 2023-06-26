@@ -1,3 +1,3 @@
 export interface IGetPreferencesRequest {
-    user: string;
-  }
+  user: string;
+}
