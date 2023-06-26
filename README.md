@@ -9,16 +9,9 @@ AI, and display it to the user based on their preferences using a Tinder type de
 it easier to search and find your ideal property match.
 
 ## Documentation
-### Software Requirements Specification
 <a href="https://docs.google.com/document/d/1RlTstf5AUX04HHE7UJJ6J_Fwv7FWnpZjaSfp0pe_y6g">SRSv2</a>
-
-### Architecural Document
 <a href="https://docs.google.com/document/d/1eEZawQQsqDtdPr7PcepF3r3jhFEsvrvVfRbxEUtQ5KE">Architecture</a>
-
-### User Manual
 <a href="https://docs.google.com/document/d/1qvRzDJuF_YBuy4V8E-jjelcO2OqnoXkK8b9G8zBNcdc">User Manual</a>
-
-### Coding Standards
 <a href="https://docs.google.com/document/d/1epleAggUqhXkfQHwGLf67TS5sfkBkPydWQ50SCDiOLk">Coding Standards</a>
 
 ### Archived Documentation
