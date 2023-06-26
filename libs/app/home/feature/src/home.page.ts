@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
+import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
+import { IPreference } from '@estate-match/api/prefrences/util';
 
 interface Property {
   user: string;
@@ -22,70 +24,78 @@ interface Property {
 export class HomePage {
   constructor(private http: HttpClient,
     private toastController: ToastController) {}
-  properties: Property[] = [
-    {
-      user: 'Jack Daniels',
-      address: 'Ballito, KZN',
-      price: 5000000,
-      bedrooms: 3,
-      bathrooms: 2,
-      amenities: [],
-      liked: false,
-      image: 'https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg',
-    },
-    {
-      user: 'Jack Daniels',
-      address: 'Salt Rock, KZN',
-      price: 10000000,
-      bedrooms: 4,
-      bathrooms: 3,
-      amenities: ['Indoor Pool'],
-      liked: false,
-      image: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-    },
-    {
-      user: 'Jack Daniels',
-      address: 'Kyalami, Gauteng',
-      price: 3000000,
-      bedrooms: 2,
-      bathrooms: 1,
-      amenities: ['24hr Security'],
-      liked: false,
-      image: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg',
-    },
-    {
-      user: 'Jack Daniels',
-      address: 'Vereeniging, Gauteng',
-      price: 15000000,
-      bedrooms: 3,
-      bathrooms: 1,
-      amenities: ['Pool'],
-      liked: false,
-      image: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg',
-    },
-  ];
-  descriptions: string[] = ['R5 000 000. Three Bedroom and Two Bathrooms.',
-   'R10 000 000. Four Bedroom and 3 Bathrooms. With an indoor pool.',
-   'R3 000 000. 2 Bedroom house in a good neighbourhood. 24hr Security.',
-    'R1 500 000.3 Bedroom and One bathroom, with a pool.'];
+
+
+  // descriptions: string[] = ['R5 000 000. Three Bedroom and Two Bathrooms.',
+  //  'R10 000 000. Four Bedroom and 3 Bathrooms. With an indoor pool.',
+  //  'R3 000 000. 2 Bedroom house in a good neighbourhood. 24hr Security.',
+  //   'R1 500 000.3 Bedroom and One bathroom, with a pool.'];
   images: string[] = [
     'https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg',
     'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg',
     'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg'
   ];
-  area: string[] = ['Ballito, KZN', 'Salt Rock, KZN', 'Kyalami, Gauteng', 'Vereeniging, Gauteng']; 
-
+  // area: string[] = ['Ballito, KZN', 'Salt Rock, KZN', 'Kyalami, Gauteng', 'Vereeniging, Gauteng']; 
+  properties: IProperty[] = [{
+    title: 'R5 000 000. Three Bedroom and Two Bathrooms.',
+    location: 'Ballito, KZN',
+    price: 100000,
+    bedrooms: 1,
+    bathrooms: 1,
+    garages: 1,
+    amenities: [],
+    images: this.images,
+  }];
   currentDescriptionIndex = 0;
+  
+  userPreferences!: IPreference;
+
+  async ngOnInit() {
+    sessionStorage.setItem('username', 'Jack Daniels');
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    //Get preferences
+    const prefURL = 'api/getPreferences';
+    const prefBody = {
+      user: sessionStorage.getItem('username')
+    }
+
+
+    this.userPreferences = await this.http.post(prefURL, prefBody, { headers }).toPromise() as IPreference;
+
+    //Search
+    const url = 'api/search';
+    const body = {
+      filters: {
+        location: this.userPreferences.location,
+        minBudget: this.userPreferences.budget, 
+        maxBudget: 100000000,      //Need to add max budget    
+      }
+    }
+
+    this.properties = await this.http.post(url, body, { headers }).toPromise() as IProperty[];
+    console.log(this.properties[0].title);
+  }
 
   async likeHouse() { 
     const url = 'api/like';
 
 
     const currProperty = this.properties[this.currentDescriptionIndex];
-    currProperty.liked = true;
+    const likedProperty: ILikeProperty = {
+      user: sessionStorage.getItem('username')!,
+      address: currProperty.location,
+      price: currProperty.price,
+      bedrooms: currProperty.bedrooms,
+      bathrooms: currProperty.bathrooms,
+      garages: currProperty.garages,
+      amenities: currProperty.amenities,
+      liked: true,
+      image: currProperty.images[0]
+    };
+    // currProperty.liked = true;
     const body = {
-      property: currProperty
+      property: likedProperty
     }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http.post(url, body, { headers }).subscribe((response) => {
@@ -96,17 +106,27 @@ export class HomePage {
 
 
     this.currentDescriptionIndex++;
-    if (this.currentDescriptionIndex >= this.descriptions.length) {
-      this.currentDescriptionIndex = 0;
-    }
+    // if (this.currentDescriptionIndex >= this.descriptions.length) {
+    //   this.currentDescriptionIndex = 0;
+    // }
   }
 
   async dislikeHouse() {
     const url = 'api/dislike';
     const currProperty = this.properties[this.currentDescriptionIndex];
-    currProperty.liked = false;
+    const dislikedProperty: ILikeProperty = {
+      user: sessionStorage.getItem('username')!,
+      address: currProperty.location,
+      price: currProperty.price,
+      bedrooms: currProperty.bedrooms,
+      bathrooms: currProperty.bathrooms,
+      garages: currProperty.garages,
+      amenities: currProperty.amenities,
+      liked: true,
+      image: currProperty.images[0]
+    };
     const body = {
-      property: currProperty
+      property: dislikedProperty
     }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http.post(url, body, { headers }).subscribe((response) => {
@@ -115,9 +135,9 @@ export class HomePage {
     console.log(this.properties[this.currentDescriptionIndex]);
     await this.makeToast('Property Disliked');
     this.currentDescriptionIndex++;
-    if (this.currentDescriptionIndex >= this.descriptions.length) {
-      this.currentDescriptionIndex = 0;
-    }
+    // if (this.currentDescriptionIndex >= this.descriptions.length) {
+    //   this.currentDescriptionIndex = 0;
+    // }
   }
 
   async makeToast(message: any){
@@ -128,6 +148,10 @@ export class HomePage {
     })
     toast.present();
   }
+
+  // async moreInfo() {
+    
+  // }
 }
 
 

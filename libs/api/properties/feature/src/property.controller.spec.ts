@@ -3,7 +3,7 @@ import { PropertiesController } from './properties.controller';
 import { PropertiesService } from './properties.service';
 import { IDislikePropertyRequest, IDislikePropertyResponse, ILikePropertyRequest, ILikePropertyResponse } from '@estate-match/api/properties/util';
 import { IGetLikedPropertiesRequest, IGetLikedPropertiesResponse } from '@estate-match/api/properties/util';
-import { IProperty } from '@estate-match/api/properties/util';
+import { IProperty, ILikeProperty } from '@estate-match/api/properties/util';
 import { CommandBus } from '@nestjs/cqrs';
 
 describe('PropertiesController', () => {
@@ -36,7 +36,7 @@ describe('PropertiesController', () => {
 
   describe('dislikeProperty', () => {
     it('should call propertiesService.dislikeProperty with the provided property and return the result', async () => {
-      const property: IProperty = {
+      const property: ILikeProperty = {
         // Fill in the necessary properties of the dislike property object
         // For example:
         user: 'test',
@@ -69,7 +69,7 @@ describe('PropertiesController', () => {
 
   describe('likeProperty', () => {
     it('should call propertiesService.likeProperty with the provided property and return the result', async () => {
-      const property: IProperty = {
+      const property: ILikeProperty = {
         user: 'test',
         address: 'test address',
         price: 100000,

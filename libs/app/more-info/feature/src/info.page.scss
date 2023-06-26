@@ -1,0 +1,24 @@
+*{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
+ion-card[name="DisplayCard"] {
+    height: 450px;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+    overflow : scroll;
+}
+img[name="HouseImage"]{
+    min-height: 60%;
+    object-fit: cover;
+    object-position: center;
+    max-width: 325px;
+}
+ion-card-content[name="CardDescription"]{
+    color:black;
+    font-size: large;
+}
+button[name="more-info"]{
+    margin-left: 85%;
+}
+ion-card-title{
+    margin-top: -10%;
+}

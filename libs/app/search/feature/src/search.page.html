@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="search.page.scss">
+    </head>
+
+<header>
+    <app-header></app-header>
+</header>
+
+
+<body>
+    <ion-searchbar name="searchBar" id="searchBar" inputmode="search" type="text" show-cancel-button="never" animated></ion-searchbar>
+    <button name="filter-button" id="filter-button" style="background-color:#246d88; height:35px; border-color:#246d88 ;border-radius: 100%; width:35px;" routerLink="/filter" routerDirection="root">
+        <span style="font-size: 1.1em; color:white">
+            <i class="fas fa-filter"></i>
+        </span>
+    </button>
+</body>
+
+
+<footer>
+    <app-footer></app-footer>
+</footer>        

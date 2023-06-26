@@ -60,6 +60,24 @@ const routes: Routes = [
     loadChildren: () =>
       import('@estate-match/app/map/feature').then((m) => m.MapModule),
   },
+  {
+    path: 'info',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/more-info/feature').then((m) => m.InfoModule),
+  },
+  {
+    path: 'search',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/search/feature').then((m) => m.SearchModule),
+  },
+  {
+    path: 'filter',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/search-filter/feature').then((m) => m.FilterModule),
+  },
 ];
 
 @NgModule({

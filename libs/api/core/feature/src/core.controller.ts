@@ -7,10 +7,4 @@ export class CoreController {
   getData(){
     return 'Hello EstateMatch...';
   }
-
-  @Post('/post')
-  postData(){
-    const myTest = {id: 1, name: 'test'};
-    return myTest;
-}
 }
