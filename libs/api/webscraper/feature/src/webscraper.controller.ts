@@ -1,6 +1,7 @@
 import { Controller, Get } from "@nestjs/common";
 import { PrivatePropertySaleService } from "./PrivatePropertySale.service";
 import { PrivatePropertyRentService } from "./PrivatePropertyRent.service";
+import { RemaxSaleService } from "./RemaxSale.service";
 import { PropertiesService } from "@estate-match/api/properties/feature";
 import { ICreatePropertyRequest, IProperty } from "@estate-match/api/properties/util";
 
@@ -8,16 +9,14 @@ import { ICreatePropertyRequest, IProperty } from "@estate-match/api/properties/
 export class WebScraperController {
     constructor(private readonly PrivatePropertySaleService: PrivatePropertySaleService,
       private readonly PrivatePropertyRentService: PrivatePropertyRentService,
+      private readonly RemaxSaleService: RemaxSaleService,
       private readonly propertyService: PropertiesService
       ) {}
     
     @Get("/PrivatePropertySaleScraper")
     async getScrapedProperties() {
         const properties = await this.PrivatePropertySaleService.PrivatePropertySalescrape();
-        // properties.forEach(property => {
-        
-        
-        // });
+      
         for(let i = 0; i < properties.length; i++){
           const property: IProperty = {
             title: properties[i].title,
@@ -42,10 +41,7 @@ export class WebScraperController {
     @Get("/PrivatePropertyRentScraper")
     async getScrapedPropertiesRent() {
       const properties = await this.PrivatePropertyRentService.PrivatePropertyRentscrape();
-      // properties.forEach(property => {
       
-      
-      // });
       for(let i = 0; i < properties.length; i++){
         const property: IProperty = {
           title: properties[i].title,
@@ -60,11 +56,20 @@ export class WebScraperController {
         const request: ICreatePropertyRequest = {
           property: property
         };
-        // console.log(request);
+
         this.propertyService.createProperty(request);
       }
       
       return properties;
     }
+
+    @Get("/RemaxSaleScraper")
+    async getScrapedPropertiesRemax() {
+      const properties = await this.RemaxSaleService.RemaxSalescrape();
+      
+      return properties;
+    }
+
+
 
 }
