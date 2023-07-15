@@ -3,8 +3,8 @@ import * as puppeteer from 'puppeteer';
 
 
 @Injectable()
-export class WebScraperService {
-  public async scrape(): Promise<any[]> {
+export class PrivatePropertySaleService {
+  public async PrivatePropertySalescrape(): Promise<any[]> {
     // Launch Puppeteer and open new page
     const browser = await puppeteer.launch();
     const page = await browser.newPage();

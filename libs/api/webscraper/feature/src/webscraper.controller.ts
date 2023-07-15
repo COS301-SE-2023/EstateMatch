@@ -1,17 +1,17 @@
 import { Controller, Get } from "@nestjs/common";
-import { WebScraperService } from "./webscraper.service";
+import { PrivatePropertySaleService } from "./PrivatePropertySale.service";
 import { PropertiesService } from "@estate-match/api/properties/feature";
 import { ICreatePropertyRequest, IProperty } from "@estate-match/api/properties/util";
 
 @Controller()
 export class WebScraperController {
-    constructor(private readonly webscraperService: WebScraperService,
+    constructor(private readonly PrivatePropertySaleService: PrivatePropertySaleService,
       private readonly propertyService: PropertiesService
       ) {}
     
     @Get("/scraper")
     async getScrapedProperties() {
-        const properties = await this.webscraperService.scrape();
+        const properties = await this.PrivatePropertySaleService.PrivatePropertySalescrape();
         // properties.forEach(property => {
         
         
