@@ -66,6 +66,24 @@ export class WebScraperController {
     @Get("/RemaxSaleScraper")
     async getScrapedPropertiesRemax() {
       const properties = await this.RemaxSaleService.RemaxSalescrape();
+
+      for(let i = 0; i < properties.length; i++){
+        const property: IProperty = {
+          title: properties[i].title,
+          price: parseInt(properties[i].price.replace(/\s/g, "")),
+          bedrooms: properties[i].bedrooms,
+          bathrooms: properties[i].bathrooms,
+          garages: properties[i].garages,
+          location: properties[i].location,
+          amenities: properties[i].amenities,
+          images: properties[i].imageURLs,
+      }
+        const request: ICreatePropertyRequest = {
+          property: property
+        };
+
+        this.propertyService.createProperty(request);
+      }
       
       return properties;
     }
