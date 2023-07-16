@@ -71,21 +71,21 @@ export class RemaxSaleService {
       // Extract the data we want
       const title = await propertyPage.$eval('.header-info-lrg h1', (titleElement) => titleElement.textContent?.trim() || '');
       const price = await propertyPage.$eval('.price', (priceElement) => priceElement.textContent?.trim() || '');
-      const description = await propertyPage.$$eval('.details p', (descriptionElement) => descriptionElement.map((description) => description.textContent?.trim() || ''));
+      const filteredDescription = await propertyPage.$$eval('.details p', (descriptionElement) => descriptionElement.map((description) => description.textContent?.trim() || '').filter((item) => item.trim() !== ''));
+      const description = filteredDescription.slice(0, filteredDescription.length - 6);
       const location = title.split("in")[1].trim();
-      const bedrooms = await page.$('td[itemprop="numberOfRooms"]');
-      const keyVals = await page.$$('td[itemprop="amenityFeature"]');
-      //const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
-      const amenities = await page.$$(`.mobi-features-list li`);
+      const bedrooms = await (await propertyPage.$('.details.property-details [itemprop="numberOfRooms"]'))?.evaluate((el) => el.textContent?.trim() || '');
+      const keyVals = await propertyPage.$$eval('.details.property-details [itemprop="amenityFeature"]', (elements) =>elements.map((el) => el.textContent?.trim() || ''));
+      const amenities = await propertyPage.$$eval('.mobi-features-list li', (elements) =>elements.map((el) => el.textContent?.trim() || ''));
 
       // Initialize variables for storing bedrooms, bathrooms, garages, and amenities 
       var bathrooms;
       var garages;
 
-      if (keyVals.length === 1)
+      if (keyVals.length < 2)
       {
         bathrooms = keyVals[0];
-        garages = 0;
+        garages = "0";
       }
 
       else
@@ -93,36 +93,6 @@ export class RemaxSaleService {
         bathrooms = keyVals[0];
         garages = keyVals[1];
       }
-
-    
-
-      // Check if the text content matches the desired value
-      /*for (const attribute of attributeLabel) 
-      {
-        if (attribute === 'Bedrooms') 
-        {
-          
-          bedrooms= propAttrValue[attributeLabel.indexOf(attribute)];
-          
-        }
-
-        if (attribute === 'Bathrooms')
-        {
-          bathrooms= propAttrValue[attributeLabel.indexOf(attribute)];
-          
-        }
-
-        if (attribute === 'Covered Parkings' || attribute === 'Open Parkings' || attribute === 'Garages')
-        {
-          garages= propAttrValue[attributeLabel.indexOf(attribute)];
-          
-        }
-
-        if(attribute !== 'Bedrooms' && attribute !== 'Bathrooms' && attribute !== 'Covered Parkings' && attribute !== 'Open Parkings' && attribute !== 'Garages' && attribute !== 'Lounges')
-        {
-          amenities.push(attribute);
-        }
-      }*/
 
       // Extract and process image URLs for the property
       const imageURLs = await propertyPage.$$eval('.swiper-slide a', (imagesElement) => imagesElement.map((image) => image.getAttribute('href') || ''));
