@@ -23,7 +23,7 @@ export class RemaxRentService {
     const pageLinks = (await page.$$eval('.page-item a.page-link', (pagination) => pagination.map((page) => page.getAttribute('href') || ''))).filter(url => url !== "#");
 
     const lastPageLink = pageLinks[pageLinks.length - 2];
-    const pageNumber = parseInt(lastPageLink.slice(-2));
+    //const pageNumber = parseInt(lastPageLink.slice(-2));
 
     var propertyURLs: string[] = [];
     const pages = await browser.newPage();
@@ -70,7 +70,7 @@ export class RemaxRentService {
 
       // Extract the data we want
       const title = await propertyPage.$eval('.header-info-lrg h1', (titleElement) => titleElement.textContent?.trim() || '');
-      const price = await propertyPage.$eval('.price', (priceElement) => priceElement.textContent?.trim() || '');
+      const price = (await propertyPage.$eval('.price', (priceElement) => priceElement.textContent?.trim() || '')).slice(1);
       const filteredDescription = await propertyPage.$$eval('.details p', (descriptionElement) => descriptionElement.map((description) => description.textContent?.trim() || '').filter((item) => item.trim() !== ''));
       const description = filteredDescription.slice(0, filteredDescription.length - 6);
       const location = title.split("in")[1].trim();
@@ -118,7 +118,7 @@ export class RemaxRentService {
   // Close the browser
   await browser.close();
 
-  const filteredPropertyListings = propertyListings.filter((property) => property.price !== "Sold");
+  const filteredPropertyListings = propertyListings.filter((property) => property.price !== "OA");
 
   // Return the array of property listings
   return filteredPropertyListings;
