@@ -9,7 +9,6 @@
   </app-header>
 
 <body>  
-<!--  -->
   <ion-card name="DisplayCard">
     <div class="back_image">
       <img name="HouseImage" [src]="properties[currentDescriptionIndex].images[lastImageIndex]"/>
@@ -18,19 +17,15 @@
       </div>
     </div>
     
-    <ion-card-header>
+    <!-- <ion-card-header>
       <ion-card-title>{{ properties[currentDescriptionIndex].title }}</ion-card-title>
-    </ion-card-header>
+    </ion-card-header> -->
     <ion-card-content name="CardDescription" id="CardDescription"> 
+      <i class="fa fa-map-marker" aria-hidden="true"></i>
+      <ion-label class="city">{{ properties[currentDescriptionIndex].location }}</ion-label><br>
+      <i class="fa fa-credit-card" aria-hidden="true"></i>
+      <ion-label class="price">R{{ properties[currentDescriptionIndex].price }}</ion-label>
       <ion-grid fixed>
-        <!-- <ion-row>
-          <ion-col size="6">
-            <ion-label class="city">{{ properties[currentDescriptionIndex].location }}</ion-label>
-          </ion-col>
-          <ion-col size="6">
-            <ion-label class="price">R{{ properties[currentDescriptionIndex].price }}</ion-label>
-          </ion-col>
-        </ion-row> -->
         <ion-row>
           <ion-col size="4">
             <img class="info-icon" src="assets/bed.png"><br>
@@ -46,11 +41,6 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <!-- <button name="more-info" id="more-info" style="background-color:#246d88; height:40px; border-color: #246d88;border-radius: 100%; width:40px;" routerLink="/info" routerDirection="root">
-        <span style="font-size: 1.2em; color:white">
-        <i class="fas fa-info"></i>
-      </span>
-      </button> -->
     </ion-card-content>
   </ion-card>
   

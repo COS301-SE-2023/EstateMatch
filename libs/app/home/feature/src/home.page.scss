@@ -25,6 +25,19 @@ ion-card[name="DisplayCard"] {
     border-right: none !important;
 }
 
+.city{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.price{
+    font-size: 18px;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
 ion-col{
     align-content: center;
     text-align: center;
@@ -76,7 +89,10 @@ ion-card-title{
     font-size: 20px;
     margin-top: -8%;
 }
+ion-grid{
+    margin-top: 10%;
+}
 
 ion-row{
-    margin-left: 10%;
+    margin-left: 5%;
 }
