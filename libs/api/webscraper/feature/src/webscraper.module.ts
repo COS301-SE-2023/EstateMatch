@@ -3,12 +3,13 @@ import { WebScraperController } from "./webscraper.controller";
 import { PrivatePropertySaleService } from "./PrivatePropertySale.service";
 import { PrivatePropertyRentService } from "./PrivatePropertyRent.service";
 import { RemaxSaleService } from "./RemaxSale.service";
+import { RemaxRentService } from "./RemaxRent.service";
 import { PropertiesService } from "@estate-match/api/properties/feature";
 import { CqrsModule } from "@nestjs/cqrs";
 
 @Module({
     imports: [CqrsModule],
     controllers: [WebScraperController],
-    providers: [PrivatePropertySaleService, PrivatePropertyRentService,RemaxSaleService, PropertiesService],
+    providers: [PrivatePropertySaleService, PrivatePropertyRentService,RemaxSaleService,RemaxRentService, PropertiesService],
 })
 export class WebScraperModule {}
