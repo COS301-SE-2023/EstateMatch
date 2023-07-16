@@ -23,22 +23,26 @@
     </ion-card-header>
     <ion-card-content name="CardDescription" id="CardDescription"> 
       <ion-grid fixed>
-        <ion-row>
+        <!-- <ion-row>
           <ion-col size="6">
             <ion-label class="city">{{ properties[currentDescriptionIndex].location }}</ion-label>
           </ion-col>
           <ion-col size="6">
             <ion-label class="price">R{{ properties[currentDescriptionIndex].price }}</ion-label>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
         <ion-row>
-          <ion-col size="6">
-            <img src="../../../../../apps/app/src/assets/bed.png">
-            <ion-label>   {{ properties[currentDescriptionIndex].bedrooms }}</ion-label>
+          <ion-col size="4">
+            <img class="info-icon" src="assets/bed.png"><br>
+            <ion-label class="info-number">{{ properties[currentDescriptionIndex].bedrooms }}</ion-label>
           </ion-col>
-          <ion-col size="6">
-            <img src="../../../../../apps/app/src/assets/bath.png">
-            <ion-label>   {{ properties[currentDescriptionIndex].bathrooms }}</ion-label>
+          <ion-col size="4">
+            <img class="info-icon" src="assets/bath.png"><br>
+            <ion-label class="info-number">{{ properties[currentDescriptionIndex].bathrooms }}</ion-label>
+          </ion-col>
+          <ion-col class="last-col" size="4">
+            <img  class="info-icon" src="assets/car.png"><br>
+            <ion-label class="info-number">{{ properties[currentDescriptionIndex].garages }}</ion-label>
           </ion-col>
         </ion-row>
       </ion-grid>

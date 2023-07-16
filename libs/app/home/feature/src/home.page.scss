@@ -10,7 +10,7 @@ ion-card[name="DisplayCard"] {
     position: absolute;
     z-index: 999;
     right: 0;
-    top: 50px;
+    top: 1px;
     background: rgba(0,0,0,0.4);
     width: 120px;
     height: 45px;
@@ -21,7 +21,27 @@ ion-card[name="DisplayCard"] {
     z-index: 9999;
 }
 
+.last-col{
+    border-right: none !important;
+}
 
+ion-col{
+    align-content: center;
+    text-align: center;
+    border-right: 1px solid lightgray;
+}
+
+.info-icon{
+    width: 23px;
+    height: 23px;
+    margin-right: 10%;
+    align-content: center;
+}
+
+.info-number{
+    font-size: 16px;
+    align-content: center;
+}
 
 img[name="HouseImage"]{
     min-height: 54%;
