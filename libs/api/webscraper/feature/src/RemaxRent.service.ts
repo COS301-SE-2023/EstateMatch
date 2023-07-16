@@ -3,8 +3,8 @@ import * as puppeteer from 'puppeteer';
 
 
 @Injectable()
-export class RemaxSaleService {
-  public async RemaxSalescrape(): Promise<any[]> {
+export class RemaxRentService {
+  public async RemaxRentscrape(): Promise<any[]> {
     // Launch Puppeteer and open new page
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
