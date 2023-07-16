@@ -70,7 +70,7 @@ export class RemaxSaleService {
 
       // Extract the data we want
       const title = await propertyPage.$eval('.header-info-lrg h1', (titleElement) => titleElement.textContent?.trim() || '');
-      const price = await propertyPage.$eval('.price', (priceElement) => priceElement.textContent?.trim() || '');
+      const price = (await propertyPage.$eval('.price', (priceElement) => priceElement.textContent?.trim() || '')).slice(1);
       const filteredDescription = await propertyPage.$$eval('.details p', (descriptionElement) => descriptionElement.map((description) => description.textContent?.trim() || '').filter((item) => item.trim() !== ''));
       const description = filteredDescription.slice(0, filteredDescription.length - 6);
       const location = title.split("in")[1].trim();
