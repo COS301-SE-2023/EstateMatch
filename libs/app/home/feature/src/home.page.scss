@@ -1,9 +1,16 @@
 *{
     font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
 }
-ion-card[name="DisplayCard"] {
-    height: 450px;
-    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+
+.card-content {
+    background-color: #fbfcfa;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-top: -20px;
+    z-index: 999;
+    position: fixed;
+    height: 100%;
+    width: 100%;
 }
 
 .more_info{
@@ -38,10 +45,9 @@ ion-card[name="DisplayCard"] {
     margin-left: 5%;
 }
 
-ion-col{
-    align-content: center;
-    text-align: center;
-    border-right: 1px solid lightgray;
+.icon{
+    margin-top: 5%;
+    margin-left: 5%;
 }
 
 .info-icon{
@@ -60,7 +66,7 @@ img[name="HouseImage"]{
     min-height: 54%;
     object-fit: cover;
     object-position: center;
-    max-width: 325px;
+    max-width: 350px;
 }
 
 button[name="Like"]{
@@ -79,20 +85,35 @@ button[name="Dislike"]{
     border-radius: 50%;
     background-color: #F0422A;
 }
-ion-label{
-    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
-}
+
 button[name="more-info"]{
     margin-left: 87%;
 }
+
+ion-card[name="DisplayCard"] {
+    height: 425px;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
+
 ion-card-title{
     font-size: 20px;
     margin-top: -8%;
 }
+
+ion-label{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
+
 ion-grid{
     margin-top: 10%;
 }
 
 ion-row{
     margin-left: 5%;
+}
+
+ion-col{
+    align-content: center;
+    text-align: center;
+    border-right: 1px solid lightgray;
 }
