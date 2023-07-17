@@ -40,7 +40,8 @@
               <ion-label class="info-number">{{ properties[currentDescriptionIndex].garages }}</ion-label>
             </ion-col>
           </ion-row>
-        </ion-grid>        
+        </ion-grid> 
+        <p class="description">{{ properties[currentDescriptionIndex].title }}.. <ion-label (click)="moreInfo()" class="read-more">Read more</ion-label>  </p>     
       </div>
   </ion-card>
   

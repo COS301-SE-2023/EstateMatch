@@ -2,6 +2,34 @@
     font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
 }
 
+ion-card[name="DisplayCard"] {
+    height: 500px;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
+
+ion-card-title{
+    font-size: 20px;
+    margin-top: -8%;
+}
+
+ion-label{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
+
+ion-grid{
+    margin-top: 10%;
+}
+
+ion-row{
+    margin-left: 5%;
+}
+
+ion-col{
+    align-content: center;
+    text-align: center;
+    border-right: 1px solid lightgray;
+}
+
 .card-content {
     background-color: #fbfcfa;
     border-top-left-radius: 20px;
@@ -62,6 +90,19 @@
     align-content: center;
 }
 
+.description{
+    margin: 5%;
+    padding: 1%;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.read-more{
+    margin-left: 2%;
+    font-size: 16px;
+    color: #67C390;
+}
+
 img[name="HouseImage"]{
     min-height: 54%;
     object-fit: cover;
@@ -69,51 +110,43 @@ img[name="HouseImage"]{
     max-width: 350px;
 }
 
-button[name="Like"]{
-    padding-right: 10%;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background-color:#67C390;
-    border-color: #67C390;
-}
-button[name="Dislike"]{
-    border-color: #F0422A;
-    padding-left: 15px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background-color: #F0422A;
-}
+// button[name="Like"]{
+//     padding-right: 10%;
+//     height: 50px;
+//     width: 50px;
+//     border-radius: 50%;
+//     background-color:#67C390;
+//     border-color: #67C390;
+// }
+// button[name="Dislike"]{
+//     border-color: #F0422A;
+//     padding-left: 15px;
+//     height: 50px;
+//     width: 50px;
+//     border-radius: 50%;
+//     background-color: #F0422A;
+// }
 
 button[name="more-info"]{
     margin-left: 87%;
 }
 
-ion-card[name="DisplayCard"] {
-    height: 425px;
-    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+#dislike-button{
+    position: absolute;
+    z-index: 999;
+    left: 32%;
+    top: 72%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-ion-card-title{
-    font-size: 20px;
-    margin-top: -8%;
-}
-
-ion-label{
-    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
-}
-
-ion-grid{
-    margin-top: 10%;
-}
-
-ion-row{
-    margin-left: 5%;
-}
-
-ion-col{
-    align-content: center;
-    text-align: center;
-    border-right: 1px solid lightgray;
+#like-button{
+    position: absolute;
+    z-index: 999;
+    left: 52%;
+    top: 72%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
