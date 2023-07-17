@@ -130,10 +130,8 @@ ion-col{
     border-right: 1px solid lightgray;
 }
 
-.ameneties-list{
-    --color: #fbfcfa;
+ion-item {
+    --background: #fbfcfa;
+    --color: #999999;
+    // font-weight: bold;
 }
-
-// ion-item{
-//     --ion-color: #fbfcfa !important;
-// }
