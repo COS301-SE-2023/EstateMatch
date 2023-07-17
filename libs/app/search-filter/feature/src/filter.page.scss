@@ -44,6 +44,14 @@ ion-range::part(pin) {
     height: 28px;
   }
 
+ion-select{
+    font-size: 20px;
+    border: #000000 1px solid;
+    width: 50%;
+    margin-top: 3%;
+    padding: 1%;
+}
+
 select{
     font-size: large;
 }
@@ -114,7 +122,7 @@ div[name="Spacing"]{
         width: 50%;
         border-color: #67C390;
         border-radius: 5%;
-        font-size: 1.5em;
+        font-size: 20px;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -126,6 +134,7 @@ div[name="Spacing"]{
         margin-top: 2%;
 
         .small_lbl{
+            font-size: 20px;
             margin-bottom: 2%;
         }
 

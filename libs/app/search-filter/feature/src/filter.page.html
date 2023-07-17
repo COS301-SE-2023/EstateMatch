@@ -16,81 +16,29 @@
             <ion-card-subtitle name="Subtitle">Search Filters</ion-card-subtitle>
             <div class="main_content_div">
               <div class="form_div">     
-                <!-- <ion-label class="small_lbl">Username</ion-label>
-                <ion-input  type="text" placeholder="Enter Username"></ion-input> -->
-          
                 <ion-label class="small_lbl">Budget</ion-label>
                 <ion-range aria-label="budget" [dualKnobs]="true" [ticks]="true" [snaps]="true" [min]="500000" [max]="8000000" [step]="500000" [pin]="true"></ion-range>
+                <ion-select aria-label="bedrooms" placeholder="Bedrooms">
+                  <ion-select-option value="1">1</ion-select-option>
+                  <ion-select-option value="2">2</ion-select-option>
+                  <ion-select-option value="3">3</ion-select-option>
+                  <ion-select-option value="4">4</ion-select-option>
+                  <ion-select-option value="5">5</ion-select-option>
+                </ion-select>
+                <ion-select aria-label="bathrooms" placeholder="Bathrooms">
+                  <ion-select-option value="1">1</ion-select-option>
+                  <ion-select-option value="2">2</ion-select-option>
+                  <ion-select-option value="3">3</ion-select-option>
+                  <ion-select-option value="4">4</ion-select-option>
+                  <ion-select-option value="5">5</ion-select-option>
+                </ion-select>
+                <ion-select aria-label="parking-bays" placeholder="Parking bays">
+                  <ion-select-option value="1">1</ion-select-option>
+                  <ion-select-option value="2">2</ion-select-option>
+                  <ion-select-option value="3">3</ion-select-option>
+                </ion-select>
               </div>
             </div>  
-              <!-- <div class="TagsContainer">
-                <ion-grid>
-                <ion-row>
-                <ion-col>
-                <ion-label for="Bedrooms" class="labels">Bedrooms</ion-label>
-                </ion-col>
-                <ion-col>
-                <select label="Bedrooms">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>       
-                </select>
-                </ion-col> 
-                </ion-row>
-        
-                <ion-row>
-                <ion-col>
-                <ion-label for="Bathrooms" class="labels">Bathrooms</ion-label>
-                </ion-col>
-        
-                <ion-col>
-                <select label="Bathrooms">
-                  <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-                </ion-col>
-                </ion-row>
-                
-                <ion-row>
-                <ion-col>
-                <ion-label for="Garage" class="labels">Parking</ion-label>
-                </ion-col>
-                
-                <ion-col>
-                <select label="Garage">
-                  <option value="1">1</option>
-                  <option value="2">2</option>            
-                </select>
-                </ion-col>
-                </ion-row>
-                
-                <br><br>
-                <ion-row>
-                <ion-col>
-                <ion-label>Extras:</ion-label>
-                </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col>
-                <ion-checkbox labelPlacement="end">Pet friendly</ion-checkbox>
-                  </ion-col>   
-                  <ion-col>  
-                <ion-checkbox labelPlacement="end">Pool</ion-checkbox>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col>
-                <ion-checkbox labelPlacement="end">Garden</ion-checkbox>
-                </ion-col>   
-                <ion-col>  
-                <ion-checkbox labelPlacement="end">Furnished</ion-checkbox>
-              </ion-col>
-              </ion-row>
-                </ion-grid>
-              </div> -->
         </ion-card>
         <div name = "Spacing"></div>
         <div name="buttonContainer" style="text-align:center;">
