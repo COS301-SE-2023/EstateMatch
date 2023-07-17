@@ -13,7 +13,7 @@
     <div class="back_image">
       <img name="HouseImage" [src]="properties[currentDescriptionIndex].images[lastImageIndex]"/>
       <div class="more_info">
-        <ion-label>More Info</ion-label>
+        <ion-label (click)="moreInfo()">More Info</ion-label>
       </div>
     </div>
     

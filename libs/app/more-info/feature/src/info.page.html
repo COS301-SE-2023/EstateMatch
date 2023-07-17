@@ -13,7 +13,7 @@
         <ion-card name="DisplayCard">
           <img name="HouseImage" (click)= "nextImage()" [src]="images[currentIndex]" />
           <div class="white_back_div">
-            <img class="back-icon" src="assets/back.png"><br>
+            <img class="back-icon" src="assets/back.png" (click)="back()"><br>
           </div>
           <div class="card-content">
             <i class="fa fa-map-marker icon" aria-hidden="true"></i>

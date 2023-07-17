@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
 import { IPreference } from '@estate-match/api/prefrences/util';
+import { Router } from '@angular/router';
 
 interface Property {
   user: string;
@@ -23,7 +24,8 @@ interface Property {
 
 export class HomePage {
   constructor(private http: HttpClient,
-    private toastController: ToastController) {}
+    private toastController: ToastController,
+    private router: Router) {}
 
 
   // descriptions: string[] = ['R5 000 000. Three Bedroom and Two Bathrooms.',
@@ -78,8 +80,6 @@ export class HomePage {
 
   async likeHouse() { 
     const url = 'api/like';
-
-
     const currProperty = this.properties[this.currentDescriptionIndex];
     const likedProperty: ILikeProperty = {
       user: sessionStorage.getItem('username')!,
@@ -151,9 +151,9 @@ export class HomePage {
     toast.present();
   }
 
-  // async moreInfo() {
-    
-  // }
+  async moreInfo() {
+    this.router.navigate(['/info'], { replaceUrl: true });
+  }
 }
 
 
