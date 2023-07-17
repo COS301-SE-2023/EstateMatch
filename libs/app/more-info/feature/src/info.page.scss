@@ -74,6 +74,14 @@ button[name="more-info"]{
     align-content: center;
 }
 
+.ameneties{
+    margin-top: 8%;
+    padding-bottom: 5%;
+    margin-left: 3%;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 img[name="HouseImage"]{
     min-height: 54%;
     object-fit: cover;
@@ -121,3 +129,9 @@ ion-col{
     text-align: center;
     border-right: 1px solid lightgray;
 }
+
+// .item-content{
+//     height: 100%;
+//     width: 100%;
+//     background-color: #fbfcfa;
+// }
