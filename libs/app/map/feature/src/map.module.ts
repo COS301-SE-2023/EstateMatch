@@ -5,6 +5,9 @@ import { MapPage } from './map.page';
 import { MapRouting } from './map.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { Plugins } from '@capacitor/core';
+
+const { Geolocation } = Plugins;
 
 @NgModule({
   imports: [
