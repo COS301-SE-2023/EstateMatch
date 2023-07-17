@@ -11,7 +11,7 @@ describe('Search Page Test', () => {
   });
 
   it('User searches for a property', () => {
-    cy.get('ion-searchbar[name="searchBar"]').type('Ballito');
+    cy.get('ion-searchbar[name="searchBar"]').type('Zonnebloem');
     cy.get('button[name="filter-button"]').click();
     cy.get('select[_ngcontent-ng-c3162222661]').eq(0).select('5 500 000');
     cy.get('select[_ngcontent-ng-c3162222661]').eq(1).select('7 500 000');

@@ -9,6 +9,7 @@ describe('Login and Register Page Test', () => {
     cy.get('ion-input[placeholder="Enter Username"]').type('TestUsername');
     cy.get('ion-input[placeholder="Password"]').type('TestPassword');
     cy.contains('ion-button', ' Login ').click();
+    cy.wait(3000);
   });
 
   it('clicks Signup on the Login page', () => {
@@ -24,5 +25,6 @@ describe('Login and Register Page Test', () => {
     cy.get('ion-input[placeholder="Confirm Password"]').type('TestPassword');
 
     cy.contains('ion-button', ' Create Account ').click();
+    cy.wait(3000);
   });
 });
