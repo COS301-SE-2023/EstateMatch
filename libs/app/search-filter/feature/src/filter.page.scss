@@ -45,11 +45,13 @@ ion-range::part(pin) {
   }
 
 ion-select{
-    font-size: 20px;
+    font-size: 18px;
     border: #000000 1px solid;
-    width: 50%;
     margin-top: 3%;
+    margin-left: 3%;
     padding: 1%;
+    width: 83%;
+    border-radius: 5px;
 }
 
 select{
@@ -134,8 +136,9 @@ div[name="Spacing"]{
         margin-top: 2%;
 
         .small_lbl{
-            font-size: 20px;
-            margin-bottom: 2%;
+            font-size: 18px;
+            margin-bottom: 3%;
+            margin-left: 3%;
         }
 
         ion-input{
