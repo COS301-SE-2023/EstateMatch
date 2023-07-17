@@ -66,6 +66,23 @@ ion-label{
     border-right: none !important;
 }
 
+#searchBar {
+    margin: 0px;
+    margin-top: 5%;
+    padding: 0px;
+    width: 100%;
+    outline: none;
+    height: 35px;
+}
+
+
+#filter-button{
+    position: absolute;
+    z-index: 999;
+    border: none;
+    top: 9.5%;
+}
+
 .city{
     font-size: 20px;
     font-weight: bold;
