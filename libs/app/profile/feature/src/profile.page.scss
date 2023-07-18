@@ -23,7 +23,7 @@ ion-card-header{
   align-items: center;
   justify-content: center;
   padding: 2%;
-  margin-left: 25%;
+  margin-left: 28%;
   color: #999999;
 }
 
@@ -42,6 +42,7 @@ ion-card[name="ProfileInfo"]{
   width: 93%;
   margin-left: 3%;
   margin-top: 6%;
+  margin-bottom: 4%;
 }
 
 ion-button[name="Logout"]{
@@ -62,16 +63,31 @@ ion-button[name="Logout"]{
   color: #67C390;
   margin-top: -2% !important;
   height: 18%;
-  margin-left: -6.5%;
+  margin-left: -3%;
   fill: clear;
 }
 
 ion-card[name="Preferences"]{
-  height: 15rem;
+  background-color: #fbfcfa;
+  height: 58vh;
+  border-radius: 3%;
+  width: 93%;
+  margin-left: 3%;
+  margin-top: 6%;
+  margin-bottom: 4%;
   overflow: scroll;
-  margin-top: auto;
-
 }
+
+ion-card-subtitle[name="Subtitle"]{
+  padding-top: 3%;
+  padding-bottom: 3%;
+  text-align: center;
+  font-size: 18px;
+  color:#999999;
+  background-color: #f3f1f1;
+  width: 100%;
+}
+
 ion-chip{
   background-color: #67C390;
   color: white;
