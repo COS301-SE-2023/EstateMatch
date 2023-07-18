@@ -4,6 +4,8 @@
 
 ion-label{
   font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+  text-align: center;
+  width: 100%;
 }
 
 img[name="ProfilePhoto"] {
@@ -91,15 +93,15 @@ ion-card-subtitle[name="Subtitle"]{
 ion-chip{
   background-color: #67C390;
   color: white;
-}
-p[name="PrefSubtitle"]{
-  color: black;
-  font-size: medium;
-}
-p[name="titlePref"]{
-  font-size: large;
-  color: black;
+  width: 93%;
   text-align: center;
+}
+
+.small_lbl{
+  font-size: 16px;
+  margin-bottom: 3%;
+  margin-left: 3%;
+  margin-top: -6% !important;
 }
 
 button[name="PrefEdit"]{
@@ -110,4 +112,8 @@ button[name="PrefEdit"]{
   position:absolute;
   left: 83%;
   font-size: small;
+}
+
+.icon{
+  margin-left: 5%;
 }
