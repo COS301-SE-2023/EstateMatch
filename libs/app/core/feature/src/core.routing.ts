@@ -78,6 +78,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('@estate-match/app/search-filter/feature').then((m) => m.FilterModule),
   },
+  {
+    path: 'change-pass',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/change-pass/feature').then((m) => m.ChangeModule),
+  },
 ];
 
 @NgModule({

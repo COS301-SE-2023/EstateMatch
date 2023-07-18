@@ -13,4 +13,8 @@ export class ChangePage {
   constructor(private http: HttpClient,
     private toastController: ToastController,
     private router: Router) { }
+
+    async save() {
+        return; 
+    }
   }

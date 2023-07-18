@@ -16,24 +16,21 @@
         <div class="main_content_div">
       
           <ion-card class="white_div">
-            
-            <ion-label class="small_lbl">First Name</ion-label>
-            <ion-input [(ngModel)]="newFName" type="text" placeholder="First Name"></ion-input>
+            <p class="TopLabel">Change Password</p>
+            <ion-label class="small_lbl">Enter old password:</ion-label>
+            <ion-input type="text" placeholder="Old password"></ion-input>
       
-            <ion-label class="small_lbl">Last Name</ion-label>
-            <ion-input [(ngModel)]="newLName" type="text" placeholder="Last Name"></ion-input>
+            <ion-label class="small_lbl">Enter new password:</ion-label>
+            <ion-input type="text" placeholder="New password"></ion-input>
       
-            <ion-label class="small_lbl">Username</ion-label>
-            <ion-input [(ngModel)]="newUsername" type="text" placeholder="Username"></ion-input>
-      
-            <ion-label class="small_lbl">Email</ion-label>
-            <ion-input [(ngModel)]="newEmail" type="text" placeholder="Email"></ion-input>
+            <ion-label class="small_lbl">Re-enter new password:</ion-label>
+            <ion-input type="text" placeholder="Re-enter new password:"></ion-input>
       
             <!-- <ion-label class="small_lbl">Password</ion-label>
             <ion-input type="text" placeholder="Password" value="password" [disabled]="isDisabled"></ion-input> -->
       
             <button name ="Edit" (click)="save()" expand="block">
-              {{btnText}}
+              Set New Password
             </button>
             <button name ="Back" expand="block" routerLink="/profile" routerDirection="root">
               Back to Profile
