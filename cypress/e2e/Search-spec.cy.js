@@ -24,7 +24,5 @@ describe('Search Page Test', () => {
 
     cy.wait(3000); //wait 3 seconds for the page to load
     cy.get('button[id="dislike-button"]').click();
-
-
   });
 });
