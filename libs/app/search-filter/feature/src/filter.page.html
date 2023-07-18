@@ -36,7 +36,12 @@
                   <ion-select-option value="3">3</ion-select-option>
                 </ion-select>
               </div>
-
+              <div class="ameneties_container">
+                <ion-badge id="pool" (click)="pick('pool')">Pool</ion-badge>
+                <ion-badge>Pet Friendly</ion-badge>
+                <ion-badge>Balcony</ion-badge>
+                <ion-badge>Laundry</ion-badge>
+              </div>
               <div class="button_container" name="buttonContainer" style="text-align:center;">
                 <button (click)="searchProperties()" name="Save" fill="default"routerLink="/search" routerDirection="root">Save</button>  
                 &nbsp;

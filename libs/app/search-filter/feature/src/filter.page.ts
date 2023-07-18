@@ -53,4 +53,12 @@ export class FilterPage {
       })
       toast.present();
     }
+
+    async pick(picked: string){
+      const pill = document.getElementById(picked);
+      if(pill){
+        pill.style.backgroundColor = '#67C390';
+      }
+      
+    }
 }
