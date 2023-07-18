@@ -14,7 +14,15 @@ img[name="ProfilePhoto"] {
 }
 
 ion-card-header{
-  
+  position: absolute;
+  z-index: 999;
+  top: 12%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: green;
+  padding: 2%;
+  margin-left: 20%;
 }
 
 ion-card-subtitle {
@@ -32,7 +40,7 @@ div[name="ProfileInfo"]{
   border-radius: 3%;
   width: 93%;
   margin-left: 3%;
-  margin-top: 8%;
+  margin-top: 6%;
 }
 
 ion-button[name="Logout"]{
