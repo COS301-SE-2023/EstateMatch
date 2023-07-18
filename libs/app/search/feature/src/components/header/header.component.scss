@@ -8,3 +8,11 @@ ion-toolbar[name="TopToolBar"] {
     height:min-content;
     fill:none;
 }
+
+.logo{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    margin-top: 7%;
+}
