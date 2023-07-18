@@ -6,9 +6,7 @@
   </head>
 
   <header>
-    <ion-toolbar>
-      <ion-title>Estate Match</ion-title>
-    </ion-toolbar>
+    <app-header></app-header>
   </header>
 
   <ion-button name="Logout" fill="clear" routerLink="/login" routerDirection="root" (click)="logout()">Log Out</ion-button>
@@ -45,7 +43,7 @@
   </ion-card>
 
   <footer>
-    <div class="navbar">
+    <!-- <div class="navbar">
       <a href="home">
         <i class="fas fa-home"></i>
         <br>Home
@@ -62,6 +60,7 @@
         <i class="fas fa-user"></i>
         <br>Profile
       </a>
-      </div>
+      </div> -->
+      <app-footer></app-footer>
   </footer>
 </html> 
