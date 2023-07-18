@@ -8,6 +8,16 @@ ion-toolbar {
     height:min-content;
     fill:none;
 }
+
+ion-col{
+    width: 50%;
+    text-align: left;
+}
+
+ion-row{
+    padding-left: 10%;
+}
+
 ion-card[name="displayContainer"]{
     height: 475px;
     border-radius: 5%;
@@ -15,10 +25,12 @@ ion-card[name="displayContainer"]{
 }
 
 ion-card-subtitle[name="Subtitle"]{
-    padding-top: 8%;
+    padding-top: 3%;
+    padding-bottom: 3%;
     text-align: center;
     font-size: x-large;
     color:#999999;
+    background-color: #f3f1f1;
 }
 
 ion-label{
@@ -91,14 +103,6 @@ button[name="Cancel"]{
     padding-top: 8%; 
 }
 
-ion-col{
-    width: 50%;
-    text-align: left;
-}
-
-ion-row{
-    padding-left: 10%;
-}
 div[name="Spacing"]{
     height: 20px;
 }

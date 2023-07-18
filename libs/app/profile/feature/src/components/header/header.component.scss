@@ -4,11 +4,9 @@
 ion-header[name="TopHeader"] {
     height:5rem;
 }
-ion-toolbar[name="TopToolBar"] {
-    height:min-content;
-    fill:none;
+ion-toolbar{
+    --background: #f3f1f1;
 }
-
 .logo{
     height: 100%;
     width: 100%;
