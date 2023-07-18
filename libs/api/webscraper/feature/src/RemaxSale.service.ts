@@ -97,6 +97,7 @@ export class RemaxSaleService {
       // Extract and process image URLs for the property
       const imageURLs = await propertyPage.$$eval('.swiper-slide a', (imagesElement) => imagesElement.map((image) => image.getAttribute('href') || ''));
     
+      const type = 'Sale';
       // Close the property page
       await propertyPage.close();
 
