@@ -11,17 +11,18 @@
 
 
 
-  <div name="ProfileInfo">
+  <ion-card name="ProfileInfo">
     <img name ="ProfilePhoto" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
     <ion-button name="Logout" fill="clear" routerLink="/login" routerDirection="root" (click)="logout()">Log Out</ion-button>
     <!-- <i class="fa fa-ellipsis-v settings" aria-hidden="true"></i> -->
   
     <ion-card-header>
-      <ion-button name="Edit" fill="clear" routerLink="/editprof" routerDirection="root">Edit Profile Information</ion-button>
       <ion-card-subtitle>User's Email address</ion-card-subtitle>
       <ion-card-subtitle name="userName">User's Name</ion-card-subtitle>
     </ion-card-header>
-  </div>
+    <!-- <ion-button name="Edit" fill="clear" routerLink="/editprof" routerDirection="root">Edit Profile Information</ion-button> -->
+    <ion-button class="edit_prof" fill="clear" routerLink="/editprof" routerDirection="root">Edit Profile Information</ion-button>
+  </ion-card>
 
   <ion-card name="Preferences">
     <ion-card-content>
