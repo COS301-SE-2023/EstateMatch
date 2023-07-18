@@ -1,1 +1,3 @@
-export * from './lib/app-change-pass-feature';
+export * from './change.module';
+export * from './change.page';
+export * from './change.routing';
