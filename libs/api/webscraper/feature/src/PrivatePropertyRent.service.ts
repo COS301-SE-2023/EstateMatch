@@ -126,6 +126,8 @@ export class PrivatePropertyRentService {
           imageURLs[i] = imageURLs[i]?.slice(0, lastDotIndex) + "_dhd" + imageURLs[i]?.slice(lastDotIndex);
         }
       }
+
+      const type = "Rent";
     
       // Close the property page
       await propertyPage.close();
