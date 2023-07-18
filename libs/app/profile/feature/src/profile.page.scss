@@ -105,23 +105,39 @@ ion-chip{
 }
 
 button[name="PrefEdit"]{
-  background-color: #E75C48; 
-  border-color: #E75C48;
-  color:white;
+  // background-color: #E75C48; 
+  // border-color: #E75C48;
+  // color:white;
+  // border-radius: 5%;
+  // position:absolute;
+  display: block;
+  // margin-left: auto;
+  margin-right: auto;
+  // height: 10vh;
+  // width: 10vh;
+  height: 8%;
+  padding: 2%;
+  color: rgb(255, 255, 255);
+  background-color: #E7604D;
+  width: 93%;
+  border-color: #E7604D;
   border-radius: 5%;
-  position:absolute;
-  left: 83%;
-  font-size: small;
+  font-size: 18px;
+  margin-top: 3%;
 }
 
 .icon{
   margin-left: 5%;
 }
 
-.area_chip{
+.area_chip {
   width: 45% !important;
 }
 
 .general_chip{
   width: 29% !important;
+}
+
+.ameneties_chip{
+  width: 45% !important;
 }

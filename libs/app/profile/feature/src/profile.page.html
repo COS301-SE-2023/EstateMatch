@@ -27,7 +27,6 @@
   <ion-card name="Preferences">
     <ion-card-subtitle name="Subtitle">Preferences</ion-card-subtitle>
     <ion-card-content>
-      <button name="PrefEdit" routerLink="/preferences" routerDirection="root">Edit</button>
       <div class="budget_container">
         <ion-label class="small_lbl">Budget:</ion-label>
         <ion-chip>
@@ -61,6 +60,26 @@
           <ion-label>2</ion-label>
         </ion-chip>
       </div>
+      <div class="ameneties_container">
+        <ion-label class="small_lbl">Ameneties:</ion-label><br>
+        <ion-chip class="ameneties_chip">
+          <i class="fa fa-plus icon" aria-hidden="true"></i>
+          <ion-label>Furnished</ion-label>
+        </ion-chip>
+        <ion-chip class="ameneties_chip">
+          <i class="fa fa-plus icon" aria-hidden="true"></i>
+          <ion-label>Study</ion-label>
+        </ion-chip>
+        <ion-chip class="ameneties_chip">
+          <i class="fa fa-plus icon" aria-hidden="true"></i>
+          <ion-label>Pet-Friendly</ion-label>
+        </ion-chip>
+        <ion-chip class="ameneties_chip">
+          <i class="fa fa-plus icon" aria-hidden="true"></i>
+          <ion-label>Pool</ion-label>
+        </ion-chip>
+      </div>
+      <button name="PrefEdit" routerLink="/preferences" routerDirection="root">Edit</button>
       <!-- <p name="PrefSubtitle">Budget:</p> 
       <ion-chip>Starting point: R 1 500 000</ion-chip>
       <ion-chip>End point: R 3 000 000</ion-chip> 
