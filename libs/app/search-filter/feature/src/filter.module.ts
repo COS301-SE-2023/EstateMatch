@@ -6,6 +6,7 @@ import { FilterPage } from './filter.page';
 import { FilterRouting } from './filter.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule, 
     HttpClientModule
   ],
-  declarations: [FilterPage],
+  declarations: [FilterPage, HeaderComponent],
 })
 
 export class FilterModule {}
