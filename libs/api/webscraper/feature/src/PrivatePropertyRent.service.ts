@@ -127,7 +127,7 @@ export class PrivatePropertyRentService {
         }
       }
 
-      const type = "Rent";
+      const type = 'Rent';
     
       // Close the property page
       await propertyPage.close();

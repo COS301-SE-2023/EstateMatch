@@ -126,6 +126,8 @@ export class PrivatePropertySaleService {
           imageURLs[i] = imageURLs[i]?.slice(0, lastDotIndex) + "_dhd" + imageURLs[i]?.slice(lastDotIndex);
         }
       }
+
+      const type = 'Sale';
     
       // Close the property page
       await propertyPage.close();
