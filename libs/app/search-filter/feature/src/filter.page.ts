@@ -24,6 +24,25 @@ export class FilterPage {
       this.route.queryParams.subscribe(params => {
         this.location = params['data'];
       });
+      const pool = document.getElementById('pool');
+      if(pool)
+        pool.style.backgroundColor = '#E7604D';
+
+      const pet = document.getElementById('pet');
+      if(pet)
+        pet.style.backgroundColor = '#E7604D';
+      
+      const study = document.getElementById('study');
+      if(study)
+        study.style.backgroundColor = '#E7604D';
+
+      const aircon = document.getElementById('aircon');
+      if(aircon)
+        aircon.style.backgroundColor = '#E7604D';
+
+      const furnished = document.getElementById('furnished');
+      if(furnished)
+        furnished.style.backgroundColor = '#E7604D';
     }
 
     async searchProperties(){
@@ -57,7 +76,10 @@ export class FilterPage {
     async pick(picked: string){
       const pill = document.getElementById(picked);
       if(pill){
-        pill.style.backgroundColor = '#67C390';
+        if(pill.style.backgroundColor === 'rgb(231, 96, 77)')
+          pill.style.backgroundColor = '#67C390';
+        else
+          pill.style.backgroundColor = '#E7604D';
       }
       
     }

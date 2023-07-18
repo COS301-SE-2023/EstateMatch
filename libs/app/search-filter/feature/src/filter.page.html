@@ -38,9 +38,10 @@
               </div>
               <div class="ameneties_container">
                 <ion-badge id="pool" (click)="pick('pool')">Pool</ion-badge>
-                <ion-badge>Pet Friendly</ion-badge>
-                <ion-badge>Balcony</ion-badge>
-                <ion-badge>Laundry</ion-badge>
+                <ion-badge id="study" (click)="pick('study')">Study</ion-badge>
+                <ion-badge id="aircon" (click)="pick('aircon')">Aircon</ion-badge>
+                <ion-badge id="furnished" (click)="pick('furnished')">Furnished</ion-badge>
+                <ion-badge id="pet" (click)="pick('pet')">Pet-Friendly</ion-badge>
               </div>
               <div class="button_container" name="buttonContainer" style="text-align:center;">
                 <button (click)="searchProperties()" name="Save" fill="default"routerLink="/search" routerDirection="root">Save</button>  

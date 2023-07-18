@@ -40,6 +40,14 @@ ion-label{
 ion-badge{
     background-color: #E7604D;
     --color: white ;
+    margin-top: 2%;
+    margin-left: 3%;
+    // padding: 1.5%;
+    width: 25%;
+}
+
+#furnished{
+    margin-left: 17%;
 }
 
 ion-range{
@@ -122,6 +130,7 @@ button[name="Cancel"]{
         width: 100%;
         padding: 8%;
         margin-top: 2%;
+        padding-bottom: 1% !important;
 
         .small_lbl{
             font-size: 18px;
@@ -161,6 +170,6 @@ button[name="Cancel"]{
     }
 
     .button_container{
-      margin-top: 8%;
+      margin-top: 2%;
     }
 }
