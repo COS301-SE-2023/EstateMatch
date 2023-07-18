@@ -96,7 +96,8 @@ export class RemaxRentService {
 
       // Extract and process image URLs for the property
       const imageURLs = await propertyPage.$$eval('.swiper-slide a', (imagesElement) => imagesElement.map((image) => image.getAttribute('href') || ''));
-    
+      
+      const type = 'Rent';
       // Close the property page
       await propertyPage.close();
 
