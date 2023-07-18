@@ -16,18 +16,17 @@ img[name="ProfilePhoto"] {
 ion-card-header{
   position: absolute;
   z-index: 999;
-  top: 12%;
+  top: 11%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: green;
   padding: 2%;
-  margin-left: 20%;
+  margin-left: 19%;
+  color: #999999;
 }
 
 ion-card-subtitle {
   text-align: center;
-  color: black;
 }
 
 ion-card-subtitle[name="userName"] {
@@ -35,7 +34,7 @@ ion-card-subtitle[name="userName"] {
 }
 
 div[name="ProfileInfo"]{
-  background-color: red;
+  background-color: #fbfcfa;
   height: 20vh;
   border-radius: 3%;
   width: 93%;
@@ -47,18 +46,23 @@ ion-button[name="Logout"]{
   position: absolute;
   z-index: 999;
   right: 0;
-  top: 9%;
+  top: 8.5%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: green;
+  color: #E75C48;
   padding: 2%;
   margin-right: 3%;
+  font-size: 14px;
 }
 
 ion-button[name="Edit"] {
-  float:left;
+  // float:left;
+  // color: white;  
+  color: #67C390;
+  margin-top: 0% !important;
 }
+
 ion-card[name="Preferences"]{
   height: 15rem;
   overflow: scroll;
