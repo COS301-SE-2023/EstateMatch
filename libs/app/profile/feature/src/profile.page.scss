@@ -1,86 +1,76 @@
-  *{
-    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
-  }
-  ion-header[name="TopHeader"] {
-    height:5rem;
-  }
-  ion-toolbar[name="TopToolBar"] {
-    height:min-content;
-    fill:none;
-  }
-  ion-label{
-    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
-  }
-  .navbar {
-    background-color: #edebeb;
-    position: fixed;
-    bottom: 0;
-    max-height: 3.5em;
-    width: 100%;
-  }
-  
-  .navbar a {
-    padding-top: 12px;
-    padding-bottom: 16px;
-    width: 25%;
-    float: left;
-    display: block;
-    color: #131313;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
-  }
-  
-  .navbar a.active {
-    background-color: #ffffff;
-    color: rgb(88, 163, 238);
-  }
-  img[name="ProfilePhoto"] {
-    margin-top: -5%;
-    border-radius: 50%;
-    height: 150px;
-    width: 150px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  ion-card-subtitle {
-    text-align: center;
-    color: black;
-  }
-  ion-card-subtitle[name="userName"] {
-    font-size: large;
-  }
-  div[name="ProfileInfo"]{
-    margin-top: -5%;
-  }
-  ion-button[name="Logout"]{
-    margin-left: 70%;
-  }
+*{
+  font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
 
-  ion-button[name="Edit"] {
-    float:left;
-  }
-  ion-card[name="Preferences"]{
-    height: 15rem;
-    overflow: scroll;
-    margin-top: auto;
+ion-label{
+  font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
 
-  }
-  ion-chip{
-    background-color: #67C390;
-    color: white;
-  }
-  p[name="PrefSubtitle"]{
-    color: black;
-    font-size: medium;
-  }
-  p[name="titlePref"]{
-    font-size: large;
-    color: black;
-    text-align: center;
-  }
+img[name="ProfilePhoto"] {
+  border-radius: 50%;
+  height: 10vh;
+  width: 10vh;
+  margin: 3%;
+}
+
+ion-card-header{
+  
+}
+
+ion-card-subtitle {
+  text-align: center;
+  color: black;
+}
+
+ion-card-subtitle[name="userName"] {
+  font-size: large;
+}
+
+div[name="ProfileInfo"]{
+  background-color: red;
+  height: 20vh;
+  border-radius: 3%;
+  width: 93%;
+  margin-left: 3%;
+  margin-top: 8%;
+}
+
+ion-button[name="Logout"]{
+  position: absolute;
+  z-index: 999;
+  right: 0;
+  top: 9%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: green;
+  padding: 2%;
+  margin-right: 3%;
+}
+
+ion-button[name="Edit"] {
+  float:left;
+}
+ion-card[name="Preferences"]{
+  height: 15rem;
+  overflow: scroll;
+  margin-top: auto;
+
+}
+ion-chip{
+  background-color: #67C390;
+  color: white;
+}
+p[name="PrefSubtitle"]{
+  color: black;
+  font-size: medium;
+}
+p[name="titlePref"]{
+  font-size: large;
+  color: black;
+  text-align: center;
+}
+
 button[name="PrefEdit"]{
   background-color: #E75C48; 
   border-color: #E75C48;
