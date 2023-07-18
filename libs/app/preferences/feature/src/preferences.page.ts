@@ -10,6 +10,28 @@ import { ToastController } from '@ionic/angular';
 export class PreferencesPage {
   constructor(private http: HttpClient,
     private toastController: ToastController) { }
+
+  ngOnInit() {
+    const pool = document.getElementById('pool');
+    if(pool)
+      pool.style.backgroundColor = '#E7604D';
+
+    const pet = document.getElementById('pet');
+    if(pet)
+      pet.style.backgroundColor = '#E7604D';
+    
+    const study = document.getElementById('study');
+    if(study)
+      study.style.backgroundColor = '#E7604D';
+
+    const aircon = document.getElementById('aircon');
+    if(aircon)
+      aircon.style.backgroundColor = '#E7604D';
+
+    const furnished = document.getElementById('furnished');
+    if(furnished)
+      furnished.style.backgroundColor = '#E7604D';
+  }
   area = '';
   budget = '';
   bathrooms = '';
@@ -52,5 +74,16 @@ export class PreferencesPage {
       position: 'top',
     })
     toast.present();
+  }
+
+  async pick(picked: string){
+    const pill = document.getElementById(picked);
+    if(pill){
+      if(pill.style.backgroundColor === 'rgb(231, 96, 77)')
+        pill.style.backgroundColor = '#67C390';
+      else
+        pill.style.backgroundColor = '#E7604D';
+    }
+    
   }
 }

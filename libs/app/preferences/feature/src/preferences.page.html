@@ -5,12 +5,52 @@
 
 
 <header>
-  <!-- <ion-toolbar name="ToolBar">
-    <ion-title>Estate Match</ion-title>
-  </ion-toolbar> --><app-header></app-header>
+  <app-header></app-header>
 </header>
 
 <ion-card name="displayContainer">
+  <ion-card-subtitle name="Subtitle">Preferences</ion-card-subtitle>
+  <div class="main_content_div">
+    <div class="form_div">     
+      <ion-label id="area" class="small_lbl">Area:</ion-label>
+      <ion-input type="text" placeholder="Area"></ion-input>
+      <ion-label class="small_lbl">Budget:</ion-label>
+      <ion-range aria-label="budget" [dualKnobs]="true" [ticks]="true" [snaps]="true" [min]="500000" [max]="8000000" [step]="500000" [pin]="true"></ion-range>
+      <ion-select aria-label="bedrooms" placeholder="Bedrooms">
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+        <ion-select-option value="5">5</ion-select-option>
+      </ion-select>
+      <ion-select aria-label="bathrooms" placeholder="Bathrooms">
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+        <ion-select-option value="5">5</ion-select-option>
+      </ion-select>
+      <ion-select aria-label="parking-bays" placeholder="Parking bays">
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+      </ion-select>
+    </div>
+    <div class="ameneties_container">
+      <ion-badge id="pool" (click)="pick('pool')">Pool</ion-badge>
+      <ion-badge id="study" (click)="pick('study')">Study</ion-badge>
+      <ion-badge id="aircon" (click)="pick('aircon')">Aircon</ion-badge>
+      <ion-badge id="furnished" (click)="pick('furnished')">Furnished</ion-badge>
+      <ion-badge id="pet" (click)="pick('pet')">Pet-Friendly</ion-badge>
+    </div>
+    <div class="button_container" name="buttonContainer" style="text-align:center;">
+      <button (click)="setPreferences()" class="buttons" fill="default"routerLink="/home" routerDirection="root">Set Preferences</button>
+    </div>  
+  </div>  
+
+</ion-card>
+
+<!-- <ion-card name="displayContainer">
     <ion-card-subtitle name="Subtitle">Preferences</ion-card-subtitle>
 <div id="CardCentering">
 
@@ -132,50 +172,4 @@
         </ion-grid>
       </div>
 </div>
-</ion-card>
-
-<div class="buttonDiv">
-  <button (click)="setPreferences()" class="buttons" fill="default"routerLink="/home" routerDirection="root">Set Preferences</button>
-</div>
-
-<!-- <footer>
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="tab1">
-        <span style="font-size: 1.3em; ">
-        <i class="fas fa-home fa-lg"></i>
-        </span>
-        <span style="font-size:1.5em; ">
-        <ion-label>Home</ion-label>
-      </span>
-      </ion-tab-button>
-
-      <ion-tab-button tab="tab2">
-        <span style="font-size: 1.3em; ">
-          <i class="fas fa-search fa-lg"></i>
-          </span>
-          <span style="font-size:1.5em; ">
-          <ion-label>Search</ion-label>
-        </span>
-      </ion-tab-button>
-
-      <ion-tab-button tab="tab3">
-        <span style="font-size: 1.3em;">
-          <i class="fas fa-star fa-lg"></i>
-          </span>
-          <span style="font-size:1.5em;">
-          <ion-label>Liked</ion-label>
-        </span>
-      </ion-tab-button>
-
-      <ion-tab-button tab="tab4">
-        <span style="font-size: 1.3em; color:rgb(118, 148, 238)">
-          <i class="fas fa-user fa-lg"></i>
-          </span>
-          <span style="font-size:1.5em; color:rgb(118, 148, 238)">
-          <ion-label>Profile</ion-label>
-          </span>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs> 
-</footer> -->
+</ion-card> -->
