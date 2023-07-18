@@ -36,14 +36,19 @@
                   <ion-select-option value="3">3</ion-select-option>
                 </ion-select>
               </div>
+
+              <div class="button_container" name="buttonContainer" style="text-align:center;">
+                <button (click)="searchProperties()" name="Save" fill="default"routerLink="/search" routerDirection="root">Save</button>  
+                &nbsp;
+                <button name="Cancel" fill="default"routerLink="/search" routerDirection="root">Cancel</button>
+              </div>  
             </div>  
+
         </ion-card>
-        <div name = "Spacing"></div>
-        <div name="buttonContainer" style="text-align:center;">
-        <button (click)="searchProperties()" name="Save" fill="default"routerLink="/search" routerDirection="root">Save</button>  
-        &nbsp;
-        <button name="Cancel" fill="default"routerLink="/search" routerDirection="root">Cancel</button>
-        </div>    
     </body>
+
+    <footer>
+      <app-footer></app-footer>
+    </footer>
 
 </html>

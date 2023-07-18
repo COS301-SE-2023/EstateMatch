@@ -19,7 +19,7 @@ ion-row{
 }
 
 ion-card[name="displayContainer"]{
-    height: 475px;
+    height: 78vh;
     border-radius: 5%;
     background-color: #fbfcfa;
 }
@@ -57,13 +57,11 @@ ion-range::part(pin) {
   }
 
 ion-select{
-    font-size: 18px;
-    border: #000000 1px solid;
-    margin-top: 3%;
-    margin-left: 3%;
-    padding: 1%;
-    width: 83%;
+    border: 1px solid #707070;
     border-radius: 5px;
+    margin-bottom: 10px;
+    width: 83%;
+    --padding-start: 8px;
 }
 
 select{
@@ -96,15 +94,10 @@ button[name="Cancel"]{
     border-color: #E7604D;
     border-radius: 5%;
     font-size: 1.5em;
-    top:90%;
 }
 
 .dropdown{
     padding-top: 8%; 
-}
-
-div[name="Spacing"]{
-    height: 20px;
 }
 
 .main_content_div{
@@ -120,20 +113,6 @@ div[name="Spacing"]{
         display: block;
     }
 
-
-    .buttons{
-        height: 50px;
-        color: rgb(255, 255, 255);
-        background-color: #67C390;
-        width: 50%;
-        border-color: #67C390;
-        border-radius: 5%;
-        font-size: 20px;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
     .form_div{
         width: 100%;
         padding: 8%;
@@ -143,6 +122,7 @@ div[name="Spacing"]{
             font-size: 18px;
             margin-bottom: 3%;
             margin-left: 3%;
+            margin-top: -6% !important;
         }
 
         ion-input{
@@ -152,11 +132,6 @@ div[name="Spacing"]{
             --padding-start: 8px;
             width: 90%;
         }
-
-        ion-button{
-            --border-radius: 5px;
-            margin-top: 25px;
-        }
     }
 
     .bottom_div{
@@ -165,5 +140,22 @@ div[name="Spacing"]{
         ion-label {
             margin-bottom: 0%;
         }
+    }
+
+    button{
+        // margin-top: 10px;
+        --border-radius: 5px;
+        width: 60%;
+        height: 2.5em;
+        font-size: large;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        color: white; 
+        margin-bottom: -3%;
+    }
+
+    .button_container{
+      margin-top: 8%;
     }
 }
