@@ -26,6 +26,7 @@
     "@nestjs/platform-express": "^9.1.1",
     "@nx/angular": "16.1.0",
     "@nxtend/ionic-angular": "^13.1.0",
+    "@tensorflow/tfjs": "^4.8.0",
     "axios": "^1.0.0",
     "bcrypt": "^5.1.0",
     "fast-text-encoding": "^1.0.6",
