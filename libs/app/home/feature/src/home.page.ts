@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ToastController } from '@ionic/angular';
+import { Gesture, GestureController, IonCard, ToastController } from '@ionic/angular';
 import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
 import { IPreference } from '@estate-match/api/prefrences/util';
 import { Router } from '@angular/router';
@@ -22,10 +22,14 @@ interface Property {
   styleUrls: ['./home.page.scss'],
 })
 
-export class HomePage {
+export class HomePage implements AfterViewInit{
+
+  @ViewChildren(IonCard, {read: ElementRef}) cards!: QueryList<ElementRef>;
+
   constructor(private http: HttpClient,
     private toastController: ToastController,
-    private router: Router) {}
+    private router: Router,
+    private gestureCtrl: GestureController) {}
 
 
   // descriptions: string[] = ['R5 000 000. Three Bedroom and Two Bathrooms.',
@@ -51,7 +55,10 @@ export class HomePage {
   }];
   lastImageIndex = 0;
   currentDescriptionIndex = 0;
-  
+
+  tempPower = 0;
+  tempActive = false;
+
   userPreferences!: IPreference;
 
   async ngOnInit() {
@@ -77,6 +84,11 @@ export class HomePage {
     this.properties = await this.http.post(url, body, { headers }).toPromise() as IProperty[];
     this.lastImageIndex = this.properties[0].images.length - 1;
   }
+
+  ngAfterViewInit(){
+      const cardArray = this.cards.toArray();
+      this.swipeEvent(cardArray);
+    }
 
   async likeHouse() { 
     const url = 'api/like';
@@ -155,6 +167,35 @@ export class HomePage {
     this.router.navigate(['/info'], { replaceUrl: true });
   }
 
+  async swipeEvent(cardArray: any) {
+    for(let i = 0; i < cardArray.length; i++){
+      console.log(cardArray[i]);
+      const card = cardArray[i];
+      const gesture: Gesture = this.gestureCtrl.create({
+        el: card.nativeElement,
+        gestureName: 'move',
+        onStart: ev => {
+          this.logStart();
+        },
+        onMove: ev => {
+          card.nativeElement.style.transform = `translateX(${ev.deltaX}px) rotate(${ev.deltaX / 10}deg)`;
+        },
+        onEnd: ev => {
+          this.logEnd();
+        }
+      });
+
+      gesture.enable(true);
+    }
+  }
+
+  logStart() {
+    console.log('Swipe started');
+  }
+
+  logEnd() {
+    console.log('Swipe ended');
+  }
 }
 
 
