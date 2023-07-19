@@ -154,6 +154,7 @@ export class HomePage {
   async moreInfo() {
     this.router.navigate(['/info'], { replaceUrl: true });
   }
+
 }
 
 

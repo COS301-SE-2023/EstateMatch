@@ -3,8 +3,9 @@
 }
 
 ion-card[name="DisplayCard"] {
-    height: 500px;
+    height: 78vh;
     font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+    // position: absolute;
 }
 
 ion-card-title{
@@ -105,7 +106,7 @@ ion-col{
 
 img[name="HouseImage"]{
     min-height: 54%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     max-width: 350px;
 }
@@ -135,7 +136,7 @@ button[name="more-info"]{
     position: absolute;
     z-index: 999;
     left: 32%;
-    top: 72%;
+    top: 77%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,7 +146,7 @@ button[name="more-info"]{
     position: absolute;
     z-index: 999;
     left: 52%;
-    top: 72%;
+    top: 77%;
     display: flex;
     align-items: center;
     justify-content: center;
