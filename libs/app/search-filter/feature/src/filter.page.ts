@@ -16,8 +16,8 @@ export class FilterPage {
     private router: Router) { }
 
     location = ''; //Need to get from map
-    minBudget = '';
-    maxBudget = '';
+    budget: any ;
+    // budget = { Lower: '0', Upper: '0' }; 
     bedrooms = 0;
     bathrooms = 0;
     garages = 0;
@@ -52,12 +52,13 @@ export class FilterPage {
     }
 
     async searchProperties(){
+      const budgetObject = JSON.parse(this.budget);
       const url = 'api/search';
       const body = {
         filters: {
           location: this.location,
-          minBudget: parseInt(this.minBudget.replace(/\s/g, "")),
-          maxBudget: parseInt(this.maxBudget.replace(/\s/g, "")),          
+          minBudget: parseInt(budgetObject.Lower),
+          maxBudget: parseInt(budgetObject.Upper),          
         }
       }
 
@@ -91,14 +92,14 @@ export class FilterPage {
           pill.style.backgroundColor = '#E7604D'; //Deselects
           this.ameneities = this.ameneities.filter(item => item !== picked);
         }
-      }
-      
+      }    
     }
 
     logVars(){
+      console.log(this.budget.lower);
       console.log(this.location);
-      console.log(this.minBudget);
-      console.log(this.maxBudget);
+      // console.log(budgetObject.Lower);
+      // console.log(budgetObject.Upper);
       console.log(this.bedrooms);
       console.log(this.bathrooms);
       console.log(this.garages);
