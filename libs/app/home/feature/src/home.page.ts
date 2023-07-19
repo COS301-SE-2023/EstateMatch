@@ -4,7 +4,6 @@ import { Gesture, GestureController, IonCard, Platform, ToastController } from '
 import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
 import { IPreference } from '@estate-match/api/prefrences/util';
 import { Router } from '@angular/router';
-import { set } from 'mongoose';
 
 interface Property {
   user: string;
@@ -85,11 +84,12 @@ export class HomePage implements AfterViewInit{
     }
 
     this.properties = await this.http.post(url, body, { headers }).toPromise() as IProperty[];
-    this.properties = this.properties.slice(0,4);
+    this.properties = this.properties.slice(0,3);
     this.lastImageIndex = this.properties[0].images.length - 1;
+    // this.ngAfterViewInit();
   }
 
-  async ngAfterViewInit(){
+  ngAfterViewInit(){
     const cardArray = this.cards.toArray();
     this.swipeEvent(cardArray);
   }
@@ -179,22 +179,23 @@ export class HomePage implements AfterViewInit{
           this.logStart();
         },
         onMove: ev => {
-          card.nativeElement.style.transform = `translateX(${ev.deltaX}px) rotate(${ev.deltaX / 10}deg)`;
+          card.nativeElement.style.transform = `translateX(${ev.deltaX}px)`;
+          // card.nativeElement.style.transform = `translateX(${ev.deltaX}px) rotate(${ev.deltaX / 10}deg)`;
         },
         onEnd: ev => {
           this.logEnd();
           card.nativeElement.style.transition = '.5s ease-out';
           if(ev.deltaX > 150){
             this.makeToast('Property Liked')
-            card.nativeElement.style.transform = `translateX(${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
-            // card.nativeElement.style.transform = `translateX(-${this.plt.width() * 1.5}px) translateX(${this.plt.width() * 1.5}px)`;
-            // this.likeHouse();
+            // card.nativeElement.style.transform = `translateX(${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
+            this.likeHouse();
           }else if(ev.deltaX < -150){
             this.makeToast('Property Disliked')
-            card.nativeElement.style.transform = `translateX(-${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
-          }else{
-            card.nativeElement.style.transform = '';
+            // card.nativeElement.style.transform = `translateX(-${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
+            this.dislikeHouse();
           }
+
+          card.nativeElement.style.transform = ''; 
         }
       });
 
