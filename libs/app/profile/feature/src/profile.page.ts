@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { IPreference } from '@estate-match/api/prefrences/util';
 
+import {IUser } from '@estate-match/api/users/util';
+
 
 @Component({
   selector: 'ms-profile-page',
@@ -12,6 +14,15 @@ import { IPreference } from '@estate-match/api/prefrences/util';
 export class ProfilePage {
   constructor(private toastController: ToastController) {}
   
+  user: IUser = {
+    id: 'string',
+    firstName: 'string',
+    lastName: 'string',
+    username: 'string',
+    email: 'string',
+    //password: 'string'
+  };
+
   preferences: IPreference= {
     user: 'string',
     location: 'string', // Need to add location array on API side
