@@ -19,6 +19,7 @@
     "@ionic-native/core": "^5.36.0",
     "@ionic-native/geolocation": "^5.36.0",
     "@capacitor/core": "^5.36.0",
+    "@ionic-native/ngx": "^5.36.0",
     "@ionic/angular": "^7.0.6",
     "@nestjs/common": "^9.1.1",
     "@nestjs/core": "^9.1.1",

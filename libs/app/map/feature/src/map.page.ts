@@ -16,7 +16,12 @@ import { Geolocation} from '@ionic-native/geolocation'
       userLat: number;
       userLong: number;
 
-      constructor() {
+      geocoderOptions: NativeGeocoderOptions = {
+        useLocale: true,
+        maxResults: 5
+      };
+
+      constructor(private locationAccuracy: LocationAccuracy, private nativeGeocoder: NativeGeocoder) {
         this.locationLat=0;
         this.locationLong=0;
         this.userLat=0;
