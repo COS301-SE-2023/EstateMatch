@@ -63,6 +63,8 @@ export class HomePage implements AfterViewInit{
 
   userPreferences!: IPreference;
 
+  temp: any = [];
+
   async ngOnInit() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     //Get preferences
@@ -83,7 +85,7 @@ export class HomePage implements AfterViewInit{
     }
 
     this.properties = await this.http.post(url, body, { headers }).toPromise() as IProperty[];
-    // this.properties = this.properties.slice(0,4);
+    this.properties = this.properties.slice(0,4);
     this.lastImageIndex = this.properties[0].images.length - 1;
   }
 
@@ -183,8 +185,8 @@ export class HomePage implements AfterViewInit{
           this.logEnd();
           card.nativeElement.style.transition = '.5s ease-out';
           if(ev.deltaX > 150){
-            // this.makeToast('Property Liked')
-            card.nativeElement.style.transform = `translateX(${+this.plt.width() * 1.5}px)`;
+            this.makeToast('Property Liked')
+            card.nativeElement.style.transform = `translateX(${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
             // card.nativeElement.style.transform = `translateX(-${this.plt.width() * 1.5}px) translateX(${this.plt.width() * 1.5}px)`;
             // this.likeHouse();
           }else if(ev.deltaX < -150){
@@ -193,10 +195,6 @@ export class HomePage implements AfterViewInit{
           }else{
             card.nativeElement.style.transform = '';
           }
-
-          setTimeout(() => {
-            card.nativeElement.style.transform = '';
-          }, 500);
         }
       });
 

@@ -9,7 +9,11 @@
   </app-header>
 
 <body>  
+  <!-- *ngFor="let p of properties"  -->
   <ion-card  name="DisplayCard">
+    <!-- <ion-card-header>
+      <ion-card-title>{{i}}</ion-card -title>
+    </ion-card-header> -->
     <div class="back_image">
       <img name="HouseImage" [src]="properties[currentDescriptionIndex].images[lastImageIndex]"/>
       <div class="more_info">
@@ -17,9 +21,6 @@
       </div>
     </div>
     
-    <!-- <ion-card-header>
-      <ion-card-title>{{ properties[currentDescriptionIndex].title }}</ion-card-title>
-    </ion-card-header> -->
       <div class="card-content">
         <i class="fa fa-map-marker icon" aria-hidden="true"></i>
         <ion-label class="city">{{ properties[currentDescriptionIndex].location }}</ion-label><br>

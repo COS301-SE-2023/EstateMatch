@@ -6,6 +6,7 @@ ion-card[name="DisplayCard"] {
     height: 78vh;
     font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
     // position: absolute;
+    // z-index: 999;
 }
 
 ion-card-title{
@@ -108,7 +109,7 @@ img[name="HouseImage"]{
     min-height: 54%;
     object-fit: contain;
     object-position: center;
-    max-width: 350px;
+    width: 100%;
 }
 
 // button[name="Like"]{
