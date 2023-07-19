@@ -84,7 +84,7 @@ export class HomePage implements AfterViewInit{
     }
 
     this.properties = await this.http.post(url, body, { headers }).toPromise() as IProperty[];
-    this.properties = this.properties.slice(0,3);
+    // this.properties = this.properties.slice(0,3);
     this.lastImageIndex = this.properties[0].images.length - 1;
     // this.ngAfterViewInit();
   }
@@ -165,7 +165,8 @@ export class HomePage implements AfterViewInit{
   }
 
   async moreInfo() {
-    this.router.navigate(['/info'], { replaceUrl: true });
+    const encodedData = JSON.stringify(this.properties[this.currentDescriptionIndex]);
+    this.router.navigate(['/info'], { queryParams: { data: encodedData}, replaceUrl: true});
   }
 
   async swipeEvent(cardArray: any) {

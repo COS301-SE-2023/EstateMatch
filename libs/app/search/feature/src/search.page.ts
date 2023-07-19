@@ -41,7 +41,6 @@ export class SearchPage implements AfterViewInit{
     }
 
     ngOnInit() {
-
       this.route.queryParams.subscribe(params => {
         if(params['data'] != null){
           this.properties = JSON.parse(params['data']);
