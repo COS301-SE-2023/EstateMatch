@@ -36,7 +36,7 @@ export class InfoPage {
 
   async nextImage() {
     this.currentIndex++;
-    if (this.currentIndex >= this.images.length) {
+    if (this.currentIndex >= this.property.images.length) {
       this.currentIndex = 0;
     }
   }

@@ -11,7 +11,7 @@
 
     <body>  
         <ion-card name="DisplayCard">
-          <img name="HouseImage" (click)= "nextImage()" [src]="property.images[0]" />
+          <img name="HouseImage" (click)= "nextImage()" [src]="property.images[currentIndex]" />
           <div class="white_back_div">
             <img class="back-icon" src="assets/back.png" (click)="back()"><br>
           </div>
