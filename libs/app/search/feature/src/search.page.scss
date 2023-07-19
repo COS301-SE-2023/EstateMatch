@@ -3,7 +3,7 @@
 }
 
 ion-card[name="DisplayCard"] {
-    height: 72vh;
+    height: 70vh;
     font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
 }
 
@@ -17,7 +17,7 @@ ion-label{
 }
 
 ion-grid{
-    margin-top: 10%;
+    margin-top: 7%;
 }
 
 ion-row{
@@ -38,28 +38,6 @@ img[name="HouseImage"]{
 
 button[name="filter-button"]{
     margin-left: 85%;
-}
-
-button[name="Dislike"]{
-    position: absolute;
-    z-index: 999;
-    left: 32%;
-    top: 77%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-button[name="Like"]{
-    position: absolute;
-    z-index: 999;
-    left: 52%;
-    top: 77%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-ion-label{
-    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
 }
 
 .card-content {
@@ -153,30 +131,26 @@ ion-label{
 }
 
 
-img[name="HouseImage"]{
-    min-height: 54%;
-    object-fit: cover;
-    object-position: center;
-    max-width: 350px;
-}
-
-button[name="Like"]{
-    padding-right: 10%;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background-color:#67C390;
-    border-color: #67C390;
-}
-button[name="Dislike"]{
-    border-color: #F0422A;
-    padding-left: 15px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background-color: #F0422A;
-}
-
 button[name="more-info"]{
     margin-left: 87%;
+}
+
+#dislike-button{
+    position: absolute;
+    z-index: 999;
+    left: 32%;
+    top: 77%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#like-button{
+    position: absolute;
+    z-index: 999;
+    left: 52%;
+    top: 77%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
