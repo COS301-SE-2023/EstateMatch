@@ -40,9 +40,9 @@ export class WebScraperController {
         return properties;
       }
 
-    @Get("/PrivatePropertyRentScraper")
-    async getScrapedPrivatePropertiesRentProperties() {
-      const properties = await this.PrivatePropertyRentService.PrivatePropertyRentscrape();
+    @Post("/PrivatePropertyRentScraper")
+    async getScrapedPrivatePropertiesRentProperties(@Body() location: string) {
+      const properties = await this.PrivatePropertyRentService.PrivatePropertyRentscrape(location);
       
       for(let i = 0; i < properties.length; i++){
         const property: IProperty = {

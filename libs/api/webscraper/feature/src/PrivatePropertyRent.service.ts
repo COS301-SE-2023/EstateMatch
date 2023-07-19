@@ -4,7 +4,7 @@ import * as puppeteer from 'puppeteer';
 
 @Injectable()
 export class PrivatePropertyRentService {
-  public async PrivatePropertyRentscrape(): Promise<any[]> {
+  public async PrivatePropertyRentscrape(location: string): Promise<any[]> {
     // Launch Puppeteer and open new page
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
