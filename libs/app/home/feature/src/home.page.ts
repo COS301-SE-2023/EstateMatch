@@ -182,6 +182,14 @@ export class HomePage implements AfterViewInit{
         },
         onEnd: ev => {
           this.logEnd();
+          card.nativeElement.style.transition = '.5s ease-out';
+          if(ev.deltaX > 150){
+            this.makeToast('Property Liked')
+          }else if(ev.deltaX < -150){
+            this.makeToast('Property Disliked')
+          }else{
+            card.nativeElement.style.transform = '';
+          }
         }
       });
 
