@@ -88,7 +88,6 @@ export class FilterPage {
       if(pill){
         if(pill.style.backgroundColor === 'rgb(231, 96, 77)'){
           pill.style.backgroundColor = '#67C390'; //Selects
-          //add to some array
           this.ameneities.push(picked);          
         }
         else{

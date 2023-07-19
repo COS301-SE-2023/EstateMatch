@@ -121,4 +121,8 @@ export class SearchPage {
       })
       toast.present();
     }
+
+    async moreInfo() {
+      this.router.navigate(['/info'], { replaceUrl: true });
+    }
 }
