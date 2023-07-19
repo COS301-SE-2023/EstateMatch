@@ -1623,6 +1623,13 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@capacitor/core@^5.36.0":
+  version "5.2.2-nightly-20230717T150519.0"
+  resolved "https://registry.yarnpkg.com/@capacitor/core/-/core-5.2.2-nightly-20230717T150519.0.tgz#2ceb20b6fd4a3abd2fe9169973b3a227841aeec5"
+  integrity sha512-rNH7nKmENswk2uvGwelEKLepg+xd2Ju104zKd8eNotDEGf4rkE+RWw8E4THeqyPvsKlvwmsIf8kh0M6CMYEaww==
+  dependencies:
+    tslib "^2.1.0"
+
 "@colors/colors@1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
