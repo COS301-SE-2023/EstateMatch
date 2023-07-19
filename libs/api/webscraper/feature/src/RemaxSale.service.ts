@@ -12,13 +12,38 @@ export class RemaxSaleService {
     const navigationTimeout = 180000;
 
     // Go to target web page
-    await page.goto('https://www.remax.co.za/property/for-sale/south-africa/western-cape/cape-town-city-bowl/', {
+    /*await page.goto('https://www.remax.co.za/property/for-sale/south-africa/western-cape/cape-town-city-bowl/', {
+      timeout: navigationTimeout,
+    });*/
+
+    await page.goto('https://www.remax.co.za/property/for-sale/', {
+      timeout: navigationTimeout,
+    });
+
+    await page.waitForSelector('.app-container', {
       timeout: navigationTimeout,
     });
 
 
+    for (const char of "Woodstock") {
+      await page.type('.tagify__input', char);
+    }
+
+    await page.keyboard.press('Enter');
+
+    //await page.waitForTimeout(1000);
+    await page.waitForSelector('#searchBox-container');
+    await page.waitForSelector('#searchBox-container button.btn.btn-red[type="submit"]');
+    const submitButtonSelector = 'button.btn.btn-red[type="submit"]';
+    const submitButton = await page.waitForSelector(submitButtonSelector);
+
+    await submitButton?.evaluate((button) => button.click());
+
+
     // Wait for the results container to load 
-    await page.waitForSelector('.landing-page-container-inner');
+    await page.waitForSelector('.landing-page-container-inner', {
+      timeout: navigationTimeout,
+    });
 
     const pageLinks = (await page.$$eval('.page-item a.page-link', (pagination) => pagination.map((page) => page.getAttribute('href') || ''))).filter(url => url !== "#");
 
