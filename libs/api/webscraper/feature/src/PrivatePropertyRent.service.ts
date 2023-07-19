@@ -8,17 +8,37 @@ export class PrivatePropertyRentService {
     // Launch Puppeteer and open new page
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    //await page.goto('https://www.property24.com/for-sale/cape-town/western-cape/432');
 
     const navigationTimeout = 60000;
 
     // Go to target web page
-    await page.goto('https://www.privateproperty.co.za/to-rent/western-cape/cape-town/cape-town-city-bowl/59', {
+    /*await page.goto('https://www.privateproperty.co.za/to-rent/western-cape/cape-town/cape-town-city-bowl/59', {
+      timeout: navigationTimeout,
+    });*/
+
+    await page.goto('https://www.privateproperty.co.za/to-rent', {
       timeout: navigationTimeout,
     });
 
+    await page.waitForSelector('.floatingSearchContainer');
+
+    await page.type('.formWrapper input', "Woodstock");
+
+    await page.waitForSelector('.autocomplete-suggestions');
+
+    const suggestionSelector = '.autocomplete-suggestion';
+    await page.evaluate((selector) => {
+      const suggestion = document.querySelector(selector);
+      if (suggestion) {
+        const clickEvent = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          view: window,
+        });
+        suggestion.dispatchEvent(clickEvent);
+      }
+    }, suggestionSelector);
     
-    //await page.waitForSelector('.js_listingResultsContainer');
 
     // Wait for the results container to load 
     await page.waitForSelector('.resultsItemsContainer');
