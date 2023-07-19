@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Gesture, GestureController, IonCard, ToastController } from '@ionic/angular';
+import { Gesture, GestureController, IonCard, Platform, ToastController } from '@ionic/angular';
 import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
 import { IPreference } from '@estate-match/api/prefrences/util';
 import { Router } from '@angular/router';
@@ -29,7 +29,8 @@ export class HomePage implements AfterViewInit{
   constructor(private http: HttpClient,
     private toastController: ToastController,
     private router: Router,
-    private gestureCtrl: GestureController) {}
+    private gestureCtrl: GestureController,
+    private plt: Platform) {}
 
 
   // descriptions: string[] = ['R5 000 000. Three Bedroom and Two Bathrooms.',
@@ -185,8 +186,10 @@ export class HomePage implements AfterViewInit{
           card.nativeElement.style.transition = '.5s ease-out';
           if(ev.deltaX > 150){
             this.makeToast('Property Liked')
+            card.nativeElement.style.transform = `translateX(${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
           }else if(ev.deltaX < -150){
             this.makeToast('Property Disliked')
+            card.nativeElement.style.transform = `translateX(-${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
           }else{
             card.nativeElement.style.transform = '';
           }
