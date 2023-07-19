@@ -90,9 +90,9 @@ export class WebScraperController {
       return properties;
     }
 
-    @Get("/RemaxRentScraper")
-    async getScrapedRemaxRentProperties() {
-        const properties = await this.RemaxRentService.RemaxRentscrape();
+    @Post("/RemaxRentScraper")
+    async getScrapedRemaxRentProperties(@Body() location: string) {
+        const properties = await this.RemaxRentService.RemaxRentscrape(location);
       
         for(let i = 0; i < properties.length; i++){
           const property: IProperty = {

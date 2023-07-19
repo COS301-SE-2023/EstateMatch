@@ -4,7 +4,7 @@ import * as puppeteer from 'puppeteer';
 
 @Injectable()
 export class RemaxRentService {
-  public async RemaxRentscrape(): Promise<any[]> {
+  public async RemaxRentscrape(location:string): Promise<any[]> {
     // Launch Puppeteer and open new page
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
