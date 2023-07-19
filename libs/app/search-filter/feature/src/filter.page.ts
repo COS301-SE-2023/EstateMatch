@@ -52,13 +52,16 @@ export class FilterPage {
     }
 
     async searchProperties(){
-      const budgetObject = JSON.parse(this.budget);
       const url = 'api/search';
       const body = {
         filters: {
           location: this.location,
-          minBudget: parseInt(budgetObject.Lower),
-          maxBudget: parseInt(budgetObject.Upper),          
+          minBudget: parseInt(this.budget.lower),
+          maxBudget: parseInt(this.budget.upper),
+          bedrooms: this.bedrooms,
+          bathrooms: this.bathrooms,
+          garages: this.garages,
+          ameneities: this.ameneities          
         }
       }
 
@@ -93,16 +96,5 @@ export class FilterPage {
           this.ameneities = this.ameneities.filter(item => item !== picked);
         }
       }    
-    }
-
-    logVars(){
-      console.log(this.budget.lower);
-      console.log(this.location);
-      // console.log(budgetObject.Lower);
-      // console.log(budgetObject.Upper);
-      console.log(this.bedrooms);
-      console.log(this.bathrooms);
-      console.log(this.garages);
-      console.log(this.ameneities);
     }
 }
