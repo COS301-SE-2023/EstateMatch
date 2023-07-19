@@ -18,8 +18,13 @@ export class FilterPage {
     location = ''; //Need to get from map
     minBudget = '';
     maxBudget = '';
-    results: IProperty[] = [];
     bedrooms = 0;
+    bathrooms = 0;
+    garages = 0;
+    ameneities: string[] = [];
+    results: IProperty[] = [];
+
+
 
     ngOnInit() {
       this.route.queryParams.subscribe(params => {
@@ -77,12 +82,15 @@ export class FilterPage {
     async pick(picked: string){
       const pill = document.getElementById(picked);
       if(pill){
-        if(pill.style.backgroundColor === 'rgb(231, 96, 77)')
+        if(pill.style.backgroundColor === 'rgb(231, 96, 77)'){
           pill.style.backgroundColor = '#67C390'; //Selects
           //add to some array
-        else
+          this.ameneities.push(picked);          
+        }
+        else{
           pill.style.backgroundColor = '#E7604D'; //Deselects
-          //remove from some array
+          this.ameneities = this.ameneities.filter(item => item !== picked);
+        }
       }
       
     }
@@ -92,5 +100,8 @@ export class FilterPage {
       console.log(this.minBudget);
       console.log(this.maxBudget);
       console.log(this.bedrooms);
+      console.log(this.bathrooms);
+      console.log(this.garages);
+      console.log(this.ameneities);
     }
 }
