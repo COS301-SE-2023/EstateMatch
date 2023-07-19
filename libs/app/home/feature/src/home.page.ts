@@ -4,6 +4,7 @@ import { Gesture, GestureController, IonCard, Platform, ToastController } from '
 import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
 import { IPreference } from '@estate-match/api/prefrences/util';
 import { Router } from '@angular/router';
+import { set } from 'mongoose';
 
 interface Property {
   user: string;
@@ -71,7 +72,6 @@ export class HomePage implements AfterViewInit{
     }
 
     this.userPreferences = await this.http.post(prefURL, prefBody, { headers }).toPromise() as IPreference;
-    console.log(this.userPreferences);
     //Search
     const url = 'api/search';
     const body = {
@@ -83,13 +83,14 @@ export class HomePage implements AfterViewInit{
     }
 
     this.properties = await this.http.post(url, body, { headers }).toPromise() as IProperty[];
+    // this.properties = this.properties.slice(0,4);
     this.lastImageIndex = this.properties[0].images.length - 1;
   }
 
-  ngAfterViewInit(){
-      const cardArray = this.cards.toArray();
-      this.swipeEvent(cardArray);
-    }
+  async ngAfterViewInit(){
+    const cardArray = this.cards.toArray();
+    this.swipeEvent(cardArray);
+  }
 
   async likeHouse() { 
     const url = 'api/like';
@@ -114,8 +115,6 @@ export class HomePage implements AfterViewInit{
       console.log('success');
     });
     await this.makeToast('Property Liked');
-    console.log(this.properties[this.currentDescriptionIndex]);
-
 
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
@@ -145,7 +144,6 @@ export class HomePage implements AfterViewInit{
     this.http.post(url, body, { headers }).subscribe((response) => {
       console.log('success');
     });
-    console.log(this.properties[this.currentDescriptionIndex]);
     await this.makeToast('Property Disliked');
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
@@ -185,14 +183,20 @@ export class HomePage implements AfterViewInit{
           this.logEnd();
           card.nativeElement.style.transition = '.5s ease-out';
           if(ev.deltaX > 150){
-            this.makeToast('Property Liked')
-            card.nativeElement.style.transform = `translateX(${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
+            // this.makeToast('Property Liked')
+            card.nativeElement.style.transform = `translateX(${+this.plt.width() * 1.5}px)`;
+            // card.nativeElement.style.transform = `translateX(-${this.plt.width() * 1.5}px) translateX(${this.plt.width() * 1.5}px)`;
+            // this.likeHouse();
           }else if(ev.deltaX < -150){
             this.makeToast('Property Disliked')
             card.nativeElement.style.transform = `translateX(-${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
           }else{
             card.nativeElement.style.transform = '';
           }
+
+          setTimeout(() => {
+            card.nativeElement.style.transform = '';
+          }, 500);
         }
       });
 
