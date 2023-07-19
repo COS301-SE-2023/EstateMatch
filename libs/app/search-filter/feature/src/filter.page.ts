@@ -19,6 +19,7 @@ export class FilterPage {
     minBudget = '';
     maxBudget = '';
     results: IProperty[] = [];
+    bedrooms = 0;
 
     ngOnInit() {
       this.route.queryParams.subscribe(params => {
@@ -77,10 +78,19 @@ export class FilterPage {
       const pill = document.getElementById(picked);
       if(pill){
         if(pill.style.backgroundColor === 'rgb(231, 96, 77)')
-          pill.style.backgroundColor = '#67C390';
+          pill.style.backgroundColor = '#67C390'; //Selects
+          //add to some array
         else
-          pill.style.backgroundColor = '#E7604D';
+          pill.style.backgroundColor = '#E7604D'; //Deselects
+          //remove from some array
       }
       
+    }
+
+    logVars(){
+      console.log(this.location);
+      console.log(this.minBudget);
+      console.log(this.maxBudget);
+      console.log(this.bedrooms);
     }
 }

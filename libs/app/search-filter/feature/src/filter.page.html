@@ -16,7 +16,7 @@
               <div class="form_div">     
                 <ion-label class="small_lbl">Budget:</ion-label>
                 <ion-range aria-label="budget" [dualKnobs]="true" [ticks]="true" [snaps]="true" [min]="500000" [max]="8000000" [step]="500000" [pin]="true"></ion-range>
-                <ion-select aria-label="bedrooms" placeholder="Bedrooms">
+                <ion-select [(ngModel)]="bedrooms" aria-label="bedrooms" placeholder="Bedrooms">
                   <ion-select-option value="1">1</ion-select-option>
                   <ion-select-option value="2">2</ion-select-option>
                   <ion-select-option value="3">3</ion-select-option>
@@ -44,7 +44,7 @@
                 <ion-badge id="pet" (click)="pick('pet')">Pet-Friendly</ion-badge>
               </div>
               <div class="button_container" name="buttonContainer" style="text-align:center;">
-                <button (click)="searchProperties()" name="Save" fill="default"routerLink="/search" routerDirection="root">Save</button>  
+                <button (click)="logVars()" name="Save" fill="default"routerLink="/search" routerDirection="root">Save</button>  
                 &nbsp;
                 <button name="Cancel" fill="default"routerLink="/search" routerDirection="root">Cancel</button>
               </div>  
