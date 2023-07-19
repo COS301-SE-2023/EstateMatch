@@ -12,9 +12,37 @@ export class RemaxRentService {
     const navigationTimeout = 180000;
 
     // Go to target web page
-    await page.goto('https://www.remax.co.za/property/to-rent/south-africa/western-cape/cape-town-city-bowl/', {
+    /*await page.goto('https://www.remax.co.za/property/to-rent/south-africa/western-cape/cape-town-city-bowl/', {
+      timeout: navigationTimeout,
+    });*/
+
+    await page.goto('https://www.remax.co.za/property/to-rent/', {
       timeout: navigationTimeout,
     });
+
+    await page.waitForSelector('.app-container', {
+      timeout: navigationTimeout,
+    });
+
+    await page.waitForSelector('span.tagify__input');
+
+    await page.type('span.tagify__input', "Camps Bay");
+
+    await page.waitForTimeout(1000);
+
+    await page.keyboard.press('Enter');
+
+    //await page.waitForTimeout(1000);
+    await page.waitForSelector('#searchBox-container');
+    await page.waitForSelector('#searchBox-container button.btn.btn-red[type="submit"]');
+    const submitButtonSelector = 'button.btn.btn-red[type="submit"]';
+    const submitButton = await page.waitForSelector(submitButtonSelector);
+
+    await submitButton?.evaluate((button) => button.click());
+
+    await page.waitForNavigation();
+
+    //console.log(page.url());
 
 
     // Wait for the results container to load 

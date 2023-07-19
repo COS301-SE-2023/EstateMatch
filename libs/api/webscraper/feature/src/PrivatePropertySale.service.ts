@@ -39,6 +39,10 @@ export class PrivatePropertySaleService {
       }
     }, suggestionSelector);
 
+    await page.waitForNavigation();
+
+    //console.log(page.url());
+
 
     // Wait for the results container to load 
     await page.waitForSelector('.resultsItemsContainer', {
