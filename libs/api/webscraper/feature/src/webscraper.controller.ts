@@ -1,4 +1,4 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Post, Body } from "@nestjs/common";
 import { PrivatePropertySaleService } from "./PrivatePropertySale.service";
 import { PrivatePropertyRentService } from "./PrivatePropertyRent.service";
 import { RemaxSaleService } from "./RemaxSale.service";
@@ -15,9 +15,9 @@ export class WebScraperController {
       private readonly propertyService: PropertiesService
       ) {}
     
-    @Get("/PrivatePropertySaleScraper")
-    async getScrapedPrivatePropertySalesProperties() {
-        const properties = await this.PrivatePropertySaleService.PrivatePropertySalescrape();
+    @Post("/PrivatePropertySaleScraper")
+    async getScrapedPrivatePropertySalesProperties(@Body() location: String) {
+        const properties = await this.PrivatePropertySaleService.PrivatePropertySalescrape(location);
       
         for(let i = 0; i < properties.length; i++){
           const property: IProperty = {
