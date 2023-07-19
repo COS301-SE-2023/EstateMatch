@@ -16,7 +16,7 @@ export class WebScraperController {
       ) {}
     
     @Post("/PrivatePropertySaleScraper")
-    async getScrapedPrivatePropertySalesProperties(@Body() location: String) {
+    async getScrapedPrivatePropertySalesProperties(@Body() location: string) {
         const properties = await this.PrivatePropertySaleService.PrivatePropertySalescrape(location);
       
         for(let i = 0; i < properties.length; i++){

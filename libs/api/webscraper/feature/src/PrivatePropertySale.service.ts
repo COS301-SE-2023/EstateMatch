@@ -4,21 +4,29 @@ import * as puppeteer from 'puppeteer';
 
 @Injectable()
 export class PrivatePropertySaleService {
-  public async PrivatePropertySalescrape(location: String): Promise<any[]> {
+  public async PrivatePropertySalescrape(location: string): Promise<any[]> {
     // Launch Puppeteer and open new page
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    //await page.goto('https://www.property24.com/for-sale/cape-town/western-cape/432');
 
     const navigationTimeout = 60000;
 
     // Go to target web page
-    await page.goto('https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59', {
+    /*await page.goto('https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59', {
+      timeout: navigationTimeout,
+    });*/
+
+    await page.goto('https://www.privateproperty.co.za/for-sale', {
       timeout: navigationTimeout,
     });
 
-    
-    //await page.waitForSelector('.js_listingResultsContainer');
+    await page.waitForSelector('.floatingSearchContainer');
+
+    await page.type('.location', location);
+
+    await page.waitForSelector('.autocomplete-suggestion');
+
+    await page.click('.autocomplete-suggestion');
 
     // Wait for the results container to load 
     await page.waitForSelector('.resultsItemsContainer');
