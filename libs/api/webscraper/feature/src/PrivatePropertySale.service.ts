@@ -9,7 +9,7 @@ export class PrivatePropertySaleService {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
-    const navigationTimeout = 60000;
+    const navigationTimeout = 180000;
 
     // Go to target web page
     /*await page.goto('https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59', {
@@ -22,14 +22,28 @@ export class PrivatePropertySaleService {
 
     await page.waitForSelector('.floatingSearchContainer');
 
-    await page.type('.location', location);
+    await page.type('.formWrapper input', "Woodstock");
 
-    await page.waitForSelector('.autocomplete-suggestion');
+    await page.waitForSelector('.autocomplete-suggestions');
 
-    await page.click('.autocomplete-suggestion');
+    const suggestionSelector = '.autocomplete-suggestion';
+    await page.evaluate((selector) => {
+      const suggestion = document.querySelector(selector);
+      if (suggestion) {
+        const clickEvent = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          view: window,
+        });
+        suggestion.dispatchEvent(clickEvent);
+      }
+    }, suggestionSelector);
+
 
     // Wait for the results container to load 
-    await page.waitForSelector('.resultsItemsContainer');
+    await page.waitForSelector('.resultsItemsContainer', {
+      timeout: navigationTimeout,
+    });
 
     const pageLinks = (await page.$$eval('.pagination a.pageNumber', (pagination) => pagination.map((page) => page.getAttribute('href') || ''))).filter(url => url !== "#");
 
