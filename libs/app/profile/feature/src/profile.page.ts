@@ -74,5 +74,18 @@ export class ProfilePage {
     this.user.email = this.users.email;
     //this.user.password = this.users.password;
 
+
+    const prefUrl = 'api/getPreferences';
+    const prefBody = { user : username };
+    if (username) {
+      try {
+        const response = await this.http.post(prefUrl, prefBody, { headers }).toPromise();
+        this.preferences = response as IPreference;
+        console.log(this.preferences);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    }
+
   }
 }
