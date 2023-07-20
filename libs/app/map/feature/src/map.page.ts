@@ -16,6 +16,7 @@ import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
       locationLong: number;
       userLat: number;
       userLong: number;
+      foundAddress: any;
 
       constructor() {
         this.locationLat=0;
@@ -58,30 +59,41 @@ import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
 
       this.map.once('click', (e) => {
         
-
+       
 
         const reverseGeocodingUrl = 'https://api.geoapify.com/v1/geocode/reverse?lat='+e.latlng.lat+'&lon='+e.latlng.lng+'&apiKey=dcd92e44986d482085e39a946d3cebbb';
 
-        fetch(reverseGeocodingUrl).then(result => result.json())
+        this.reverseGeocode(reverseGeocodingUrl,e.latlng.lat,e.latlng.lng);
+
+        
+      });
+
+      
+      
+    
+  }
+
+  setMarker(lat: any, long: any){
+    const mark=L.marker([lat,long]).addTo(this.map);
+    mark.bindPopup("<b>Selected Location. "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
+  }
+
+  reverseGeocode(reverseGeocodeURL:any,lat: any, long: any){
+    fetch(reverseGeocodeURL).then(result => result.json())
         .then(featureCollection => {
         if (featureCollection.features.length === 0) {
           console.log("The address is not found");
           return;
         }
 
-        const foundAddress = featureCollection.features[0];
-        console.log("The address is: ", foundAddress.properties);
-        console.log("The address is: ", foundAddress.properties.city);
+        this.foundAddress = featureCollection.features[0];
+        console.log("The address is: ", this.foundAddress.properties);
+        console.log("The address is: ", this.foundAddress.properties.city);
         // const marker = L.marker(new L.LatLng(foundAddress.properties.lat, foundAddress.properties.lon)).addTo(this.map);
-        this.setLatLong(e.latlng.lat, e.latlng.lng);
-        const mark=L.marker([e.latlng.lat, e.latlng.lng]).addTo(this.map);
-        mark.bindPopup("<b>Selected Location. "+foundAddress.properties.formatted+"</b><br />").openPopup();
+        this.setLatLong(lat,long);
+        this.setMarker(lat,long)
+        
       });
-      });
-
-      
-      
-    
   }
 
 
