@@ -6,6 +6,9 @@ import { ChangePage } from './change.page';
 import { ChangeRouting } from './change.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+
 
 @NgModule({
   imports: [
@@ -13,9 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule,
     ChangeRouting, 
     FormsModule, 
-    HttpClientModule
+    HttpClientModule,
   ],
-  declarations: [ChangePage],
+  declarations: [ChangePage, HeaderComponent, FooterComponent],
 })
 
 export class ChangeModule {}
