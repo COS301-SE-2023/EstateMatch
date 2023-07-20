@@ -57,9 +57,7 @@ import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
       L.control.scale().addTo(this.map);
 
       this.map.once('click', (e) => {
-        this.setLatLong(e.latlng.lat, e.latlng.lng);
-        const mark=L.marker([e.latlng.lat, e.latlng.lng]).addTo(this.map);
-        mark.bindPopup("<b>Selected Location. Lattitude: "+e.latlng.lat+". Longtitude: "+e.latlng.lng+"</b><br />").openPopup();
+        
 
 
         const reverseGeocodingUrl = 'https://api.geoapify.com/v1/geocode/reverse?lat='+e.latlng.lat+'&lon='+e.latlng.lng+'&apiKey=dcd92e44986d482085e39a946d3cebbb';
@@ -73,7 +71,11 @@ import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
 
         const foundAddress = featureCollection.features[0];
         console.log("The address is: ", foundAddress.properties);
-        // marker = L.marker(new L.LatLng(foundAddress.properties.lat, foundAddress.properties.lon)).addTo(map);
+        console.log("The address is: ", foundAddress.properties.city);
+        // const marker = L.marker(new L.LatLng(foundAddress.properties.lat, foundAddress.properties.lon)).addTo(this.map);
+        this.setLatLong(e.latlng.lat, e.latlng.lng);
+        const mark=L.marker([e.latlng.lat, e.latlng.lng]).addTo(this.map);
+        mark.bindPopup("<b>Selected Location. "+foundAddress.properties.formatted+"</b><br />").openPopup();
       });
       });
 
