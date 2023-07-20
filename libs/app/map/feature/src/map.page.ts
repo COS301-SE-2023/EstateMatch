@@ -60,10 +60,24 @@ import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
         this.setLatLong(e.latlng.lat, e.latlng.lng);
         const mark=L.marker([e.latlng.lat, e.latlng.lng]).addTo(this.map);
         mark.bindPopup("<b>Selected Location. Lattitude: "+e.latlng.lat+". Longtitude: "+e.latlng.lng+"</b><br />").openPopup();
+
+
+        const reverseGeocodingUrl = 'https://api.geoapify.com/v1/geocode/reverse?lat='+e.latlng.lat+'&lon='+e.latlng.lng+'&apiKey=dcd92e44986d482085e39a946d3cebbb';
+
+        fetch(reverseGeocodingUrl).then(result => result.json())
+        .then(featureCollection => {
+        if (featureCollection.features.length === 0) {
+          console.log("The address is not found");
+          return;
+        }
+
+        const foundAddress = featureCollection.features[0];
+        console.log("The address is: ", foundAddress.properties);
+        // marker = L.marker(new L.LatLng(foundAddress.properties.lat, foundAddress.properties.lon)).addTo(map);
+      });
       });
 
-      const reverseGeocodingUrl = `https://api.geoapify.com/v1/geocode/reverse?lat=${coordinates.coords.latitude}&lon=${coordinates.coords.longitude}&apiKey=${'dcd92e44986d482085e39a946s3cebbb'}`;
-
+      
       
     
   }
