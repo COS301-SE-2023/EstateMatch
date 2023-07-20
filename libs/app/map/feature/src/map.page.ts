@@ -1,6 +1,7 @@
 import { Component, ViewChild} from '@angular/core';
 import * as L from 'leaflet';
 import { Geolocation} from '@ionic-native/geolocation'
+import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
 
 
 @Component({
@@ -16,12 +17,7 @@ import { Geolocation} from '@ionic-native/geolocation'
       userLat: number;
       userLong: number;
 
-      geocoderOptions: NativeGeocoderOptions = {
-        useLocale: true,
-        maxResults: 5
-      };
-
-      constructor(private locationAccuracy: LocationAccuracy, private nativeGeocoder: NativeGeocoder) {
+      constructor() {
         this.locationLat=0;
         this.locationLong=0;
         this.userLat=0;
@@ -66,6 +62,8 @@ import { Geolocation} from '@ionic-native/geolocation'
         mark.bindPopup("<b>Selected Location. Lattitude: "+e.latlng.lat+". Longtitude: "+e.latlng.lng+"</b><br />").openPopup();
       });
 
+      const reverseGeocodingUrl = `https://api.geoapify.com/v1/geocode/reverse?lat=${coordinates.coords.latitude}&lon=${coordinates.coords.longitude}&apiKey=${'dcd92e44986d482085e39a946s3cebbb'}`;
+
       
     
   }
@@ -81,6 +79,29 @@ import { Geolocation} from '@ionic-native/geolocation'
     this.map.remove();
     this.ngOnInit();
   }
+
+//   reverse(location: L.LatLngLiteral, scale: number, cb: GeocodingCallback, context?: any) {
+//     try {
+//       const code = this.options.OpenLocationCode.encode(
+//         location.lat,
+//         location.lng,
+//         this.options.codeLength
+//       );
+//       const result = {
+//         name: code,
+//         center: L.latLng(location.lat, location.lng),
+//         bbox: L.latLngBounds(
+//           L.latLng(location.lat, location.lng),
+//           L.latLng(location.lat, location.lng)
+//         )
+//       };
+//       cb.call(context, [result]);
+//     } catch (e) {
+//       console.warn(e); // eslint-disable-line no-console
+//       cb.call(context, []);
+//     }
+//   }
+// }
   
 
 }
