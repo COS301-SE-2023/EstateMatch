@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 
+import { IPreference } from '@estate-match/api/prefrences/util';
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'ms-preferences-page',
   templateUrl: './preferences.page.html',
@@ -9,9 +12,27 @@ import { ToastController } from '@ionic/angular';
 })
 export class PreferencesPage {
   constructor(private http: HttpClient,
-    private toastController: ToastController) { }
+    private toastController: ToastController,
+    private route: ActivatedRoute,
+    private router: Router) { }
+
+    area = '';
+    budget: any;
+    bathrooms = 0;
+    bedrooms = 0;
+    garages = 0;
+    ameneties :string[] = [];
+    preference!: IPreference;
 
   ngOnInit() {
+
+    // this.route.queryParams.subscribe((params) => {
+    //   this.area = params['data'];
+    //   console.log(this.area);
+    // });
+
+    // const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
     const pool = document.getElementById('pool');
     if(pool)
       pool.style.backgroundColor = '#E7604D';
@@ -32,25 +53,21 @@ export class PreferencesPage {
     if(furnished)
       furnished.style.backgroundColor = '#E7604D';
   }
-  area = '';
-  budget = '';
-  bathrooms = '';
-  bedrooms = '';
-  garages = '';
-  extras = '';
+  
 
   async setPreferences() {
     const url = 'api/setPreferences';
-    const extras = this.extras.split(',');
+    //const extras = this.extras.split(',');
     const body = {
       preferences:{
         user: sessionStorage.getItem('username'),
         location: this.area,
-        budget: parseInt(this.budget.replace(/\s/g, "")),
-        bedrooms: parseInt(this.bedrooms),
-        bathrooms: parseInt(this.bathrooms),
-        garages: parseInt(this.garages),
-        extras: extras       
+        minBudget: parseInt(this.budget.lower),
+        maxBudget: parseInt(this.budget.upper),
+        bedrooms: (this.bedrooms),
+        bathrooms: (this.bathrooms),
+        garages: (this.garages),
+        extras: this.ameneties       
       }
     }
 
@@ -58,9 +75,11 @@ export class PreferencesPage {
       'Content-Type': 'application/json',
     });
 
-    this.http.post(url, body, { headers }).subscribe((response) => {
-      console.log(response);
-    });
+    this.preference = await this.http.post(url, body, { headers }).toPromise() as IPreference;
+
+    // this.http.post(url, body, { headers }).subscribe((response) => {
+    //   console.log(response);
+    // });
 
     
 
@@ -79,10 +98,15 @@ export class PreferencesPage {
   async pick(picked: string){
     const pill = document.getElementById(picked);
     if(pill){
-      if(pill.style.backgroundColor === 'rgb(231, 96, 77)')
+      if(pill.style.backgroundColor === 'rgb(231, 96, 77)'){
         pill.style.backgroundColor = '#67C390';
-      else
+        this.ameneties.push(picked);
+      }
+      else{
         pill.style.backgroundColor = '#E7604D';
+        this.ameneties = this.ameneties.filter(item => item !== picked);
+      }
+        
     }
     
   }

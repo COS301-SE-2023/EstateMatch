@@ -13,24 +13,24 @@
   <div class="main_content_div">
     <div class="form_div">     
       <ion-label id="area" class="small_lbl">Area:</ion-label>
-      <ion-input type="text" placeholder="Area"></ion-input>
+      <ion-input  [(ngModel)]="area" type="text" placeholder="Area"></ion-input>
       <ion-label class="small_lbl">Budget:</ion-label>
-      <ion-range aria-label="budget" [dualKnobs]="true" [ticks]="true" [snaps]="true" [min]="500000" [max]="8000000" [step]="500000" [pin]="true"></ion-range>
-      <ion-select aria-label="bedrooms" placeholder="Bedrooms">
+      <ion-range  [(ngModel)]="budget" aria-label="budget" [dualKnobs]="true" [ticks]="true" [snaps]="true" [min]="500000" [max]="8000000" [step]="500000" [pin]="true"></ion-range>
+      <ion-select [(ngModel)]="bedrooms" aria-label="bedrooms" placeholder="Bedrooms">
         <ion-select-option value="1">1</ion-select-option>
         <ion-select-option value="2">2</ion-select-option>
         <ion-select-option value="3">3</ion-select-option>
         <ion-select-option value="4">4</ion-select-option>
         <ion-select-option value="5">5</ion-select-option>
       </ion-select>
-      <ion-select aria-label="bathrooms" placeholder="Bathrooms">
+      <ion-select [(ngModel)]="bathrooms" aria-label="bathrooms" placeholder="Bathrooms">
         <ion-select-option value="1">1</ion-select-option>
         <ion-select-option value="2">2</ion-select-option>
         <ion-select-option value="3">3</ion-select-option>
         <ion-select-option value="4">4</ion-select-option>
         <ion-select-option value="5">5</ion-select-option>
       </ion-select>
-      <ion-select aria-label="parking-bays" placeholder="Parking bays">
+      <ion-select [(ngModel)]="garages" aria-label="parking-bays" placeholder="Parking bays">
         <ion-select-option value="1">1</ion-select-option>
         <ion-select-option value="2">2</ion-select-option>
         <ion-select-option value="3">3</ion-select-option>
