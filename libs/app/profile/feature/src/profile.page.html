@@ -17,7 +17,7 @@
     <!-- <i class="fa fa-ellipsis-v settings" aria-hidden="true"></i> -->
   
     <ion-card-header>
-      <ion-card-subtitle>User's Email address</ion-card-subtitle>
+      <ion-card-subtitle>{{user.email}}</ion-card-subtitle>
       <ion-card-subtitle name="userName">{{user.username}}</ion-card-subtitle>
     </ion-card-header>
     <!-- <ion-button name="Edit" fill="clear" routerLink="/editprof" routerDirection="root">Edit Profile Information</ion-button> -->
@@ -38,26 +38,26 @@
         <ion-label class="small_lbl">Area:</ion-label><br>
         <ion-chip class="area_chip">
           <i class="fa fa-map-marker icon" aria-hidden="true"></i>
-          <ion-label>Woodstock</ion-label>
+          <ion-label>{{preferences.location}}</ion-label>
         </ion-chip>
         <ion-chip class="area_chip">
           <i class="fa fa-map-marker icon" aria-hidden="true"></i>
-          <ion-label>Zonnebloem</ion-label>
+          <ion-label>{{preferences.location}}</ion-label>
         </ion-chip>
       </div>
       <div class="general_container">
         <ion-label class="small_lbl">General:</ion-label><br>
         <ion-chip class="general_chip">
           <i class="fa fa-bed icon" aria-hidden="true"></i>
-          <ion-label>3</ion-label>
+          <ion-label>{{preferences.bedrooms}}</ion-label>
         </ion-chip>
         <ion-chip class="general_chip">
           <i class="fa fa-bath icon" aria-hidden="true"></i>
-          <ion-label>2</ion-label>
+          <ion-label>{{preferences.bathrooms}}</ion-label>
         </ion-chip>
         <ion-chip class="general_chip">
           <i class="fa fa-car icon" aria-hidden="true"></i>
-          <ion-label>2</ion-label>
+          <ion-label>{{preferences.garages}}</ion-label>
         </ion-chip>
       </div>
       <div class="ameneties_container">

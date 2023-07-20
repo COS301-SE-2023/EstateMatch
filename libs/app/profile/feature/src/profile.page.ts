@@ -28,8 +28,8 @@ export class ProfilePage {
     location: 'string', // Need to add location array on API side
     budget: 1000000, // Need to add max on API side
     bedrooms: 1,
-    bathrooms: 1,
-    garages: 1,
+    bathrooms: 2,
+    garages: 3,
     extras: []
   };
 
