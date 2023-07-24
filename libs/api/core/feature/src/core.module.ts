@@ -7,6 +7,7 @@ import { AuthenticationModule } from '@estate-match/api/authentication/feature';
 import { UserModule } from '@estate-match/api/users/feature'
 import { SearchModule } from '@estate-match/api/search/feature';
 import { WebScraperModule } from '@estate-match/api/webscraper/feature';
+import { TensorflowModule } from '@estate-match/api/ai/feature';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { WebScraperModule } from '@estate-match/api/webscraper/feature';
     UserModule,
     SearchModule,
     WebScraperModule,
+    TensorflowModule,
   ],
   controllers: [CoreController],
 })
