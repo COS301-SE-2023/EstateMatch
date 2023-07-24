@@ -1624,9 +1624,9 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@capacitor/core@^5.36.0":
-  version "5.2.2-nightly-20230717T150519.0"
-  resolved "https://registry.yarnpkg.com/@capacitor/core/-/core-5.2.2-nightly-20230717T150519.0.tgz#2ceb20b6fd4a3abd2fe9169973b3a227841aeec5"
-  integrity sha512-rNH7nKmENswk2uvGwelEKLepg+xd2Ju104zKd8eNotDEGf4rkE+RWw8E4THeqyPvsKlvwmsIf8kh0M6CMYEaww==
+  version "5.2.3-nightly-20230721T150502.0"
+  resolved "https://registry.yarnpkg.com/@capacitor/core/-/core-5.2.3-nightly-20230721T150502.0.tgz#9936c14369329b34830157434e8bdd412e5aa6bc"
+  integrity sha512-6yzMX0A8AX/WpEpDweBf/isjPJvZkpPn/DcnrEm/IzCdyvBtTKfG8tA4bc3/2+C8Miw3oZ/dYA6yyqlDAoVINg==
   dependencies:
     tslib "^2.1.0"
 
