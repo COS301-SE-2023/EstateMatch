@@ -22,6 +22,7 @@ ion-card[name="displayContainer"]{
     height: 78vh;
     border-radius: 5%;
     background-color: #fbfcfa;
+    overflow-y: scroll;
 }
 
 ion-card-subtitle[name="Subtitle"]{
@@ -33,22 +34,6 @@ ion-card-subtitle[name="Subtitle"]{
     background-color: #f3f1f1;
 }
 
-ion-label{
-    font-size: large;
-}
-
-ion-badge{
-    background-color: #E7604D;
-    --color: white ;
-    margin-top: 2%;
-    margin-left: 3%;
-    // padding: 1.5%;
-    width: 25%;
-}
-
-#furnished{
-    margin-left: 17%;
-}
 
 ion-range{
     margin: 5%;
@@ -77,16 +62,20 @@ ion-select{
     --padding-start: 8px;
 }
 
+
+ion-chip{
+    background-color: #E7604D;
+    color: white;
+    text-align: center !important;
+    margin-top: 2%;
+    margin-left: 3%;
+    width: 45%;
+    font-size: 14px !important;
+    // display: block !important;
+}
+
 select{
     font-size: large;
-}
-
-.AreaContainer{
-    padding-top: 8%; 
-}
-
-.TagsContainer{
-    padding-top: 8%; 
 }
 
 button[name="Save"]{
@@ -120,11 +109,6 @@ button[name="Cancel"]{
     flex-direction: column;
     justify-content: space-between;
     background-color: #ffffff;
-    
-
-    ion-label {
-        display: block;
-    }
 
     .form_div{
         width: 100%;
@@ -145,6 +129,14 @@ button[name="Cancel"]{
             margin-bottom: 10px;
             --padding-start: 8px;
             width: 90%;
+        }
+    }
+    
+    .ameneties_container{
+        ion-label{
+            width: 100%;
+            display: block !important;
+            text-align: center !important;
         }
     }
 

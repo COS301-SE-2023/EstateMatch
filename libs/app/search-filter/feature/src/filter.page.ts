@@ -49,6 +49,10 @@ export class FilterPage {
       const furnished = document.getElementById('furnished');
       if(furnished)
         furnished.style.backgroundColor = '#E7604D';
+
+      const lounge = document.getElementById('lounge');
+      if(lounge)
+        lounge.style.backgroundColor = '#E7604D';
     }
 
     async searchProperties(){

@@ -37,11 +37,30 @@
                 </ion-select>
               </div>
               <div class="ameneties_container">
-                <ion-badge id="pool" (click)="pick('pool')">Pool</ion-badge>
-                <ion-badge id="study" (click)="pick('study')">Study</ion-badge>
-                <ion-badge id="aircon" (click)="pick('aircon')">Aircon</ion-badge>
-                <ion-badge id="furnished" (click)="pick('furnished')">Furnished</ion-badge>
-                <ion-badge id="pet" (click)="pick('pet')">Pet-Friendly</ion-badge>
+                <ion-chip id="pool" (click)="pick('pool')" class="ameneties_chip">
+                  <i class="fa fa-plus icon" aria-hidden="true"></i>
+                  <ion-label>Pool</ion-label>
+                </ion-chip>
+                <ion-chip id="study" (click)="pick('study')" class="ameneties_chip">
+                  <i class="fa fa-plus icon" aria-hidden="true"></i>
+                  <ion-label>Study</ion-label>
+                </ion-chip>
+                <ion-chip id="aircon" (click)="pick('aircon')" class="ameneties_chip">
+                  <i class="fa fa-plus icon" aria-hidden="true"></i>
+                  <ion-label>Aircon</ion-label>
+                </ion-chip>
+                <ion-chip id="furnished" (click)="pick('furnished')" class="ameneties_chip">
+                  <i class="fa fa-plus icon" aria-hidden="true"></i>
+                  <ion-label>Furnished</ion-label>
+                </ion-chip>
+                <ion-chip id="pet" (click)="pick('pet')" class="ameneties_chip">
+                  <i class="fa fa-plus icon" aria-hidden="true"></i>
+                  <ion-label>Pet-Friendly</ion-label>
+                </ion-chip>
+                <ion-chip id="lounge" (click)="pick('lounge')" class="ameneties_chip">
+                  <i class="fa fa-plus icon" aria-hidden="true"></i>
+                  <ion-label>Lounge</ion-label>
+                </ion-chip>
               </div>
               <div class="button_container" name="buttonContainer" style="text-align:center;">
                 <button (click)="searchProperties()" name="Save" fill="default"routerLink="/search" routerDirection="root">Save</button>  
