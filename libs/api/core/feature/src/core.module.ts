@@ -9,11 +9,11 @@ import { SearchModule } from '@estate-match/api/search/feature';
 import { WebScraperModule } from '@estate-match/api/webscraper/feature';
 
 
-const DATA_BASE_CONNECTION = process.env['DATA_BASE_CONNECTION'] || ''; 
+const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || ''; 
 
 @Module({
   imports: [
-    MongooseModule.forRoot(DATA_BASE_CONNECTION),
+    MongooseModule.forRoot(DATABASE_CONNECTION),
     PreferenceModule,
     PropertiesModule,
     AuthenticationModule,
