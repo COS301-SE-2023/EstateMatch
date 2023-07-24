@@ -78,6 +78,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('@estate-match/app/search-filter/feature').then((m) => m.FilterModule),
   },
+  {
+    path: 'splash',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/splash-page/feature').then((m) => m.SplashModule),
+  },
 ];
 
 @NgModule({

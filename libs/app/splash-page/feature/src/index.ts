@@ -1,1 +1,3 @@
-export * from './lib/app-splash-page-feature';
+export * from './splash.module';
+export * from './splash.page';
+export * from './splash.routing';
