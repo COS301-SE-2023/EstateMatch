@@ -9,15 +9,6 @@ ion-toolbar {
     fill:none;
 }
 
-ion-col{
-    width: 50%;
-    text-align: left;
-}
-
-ion-row{
-    padding-left: 10%;
-}
-
 ion-card[name="displayContainer"]{
     height: 78vh;
     border-radius: 5%;
@@ -100,6 +91,13 @@ button[name="Cancel"]{
 
 .dropdown{
     padding-top: 8%; 
+}
+
+.info-icon{
+    width: 25px;
+    height: 25px;
+    margin-top: 30%;
+    align-content: center;
 }
 
 .main_content_div{

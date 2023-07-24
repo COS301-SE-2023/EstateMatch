@@ -16,13 +16,51 @@
               <div class="form_div">     
                 <ion-label class="small_lbl">Budget:</ion-label>
                 <ion-range [(ngModel)]="budget" aria-label="budget" [dualKnobs]="true" [ticks]="true" [snaps]="true" [min]="500000" [max]="8000000" [step]="500000" [pin]="true"></ion-range>
-                <ion-select [(ngModel)]="bedrooms" aria-label="bedrooms" placeholder="Bedrooms">
-                  <ion-select-option value="1">1</ion-select-option>
-                  <ion-select-option value="2">2</ion-select-option>
-                  <ion-select-option value="3">3</ion-select-option>
-                  <ion-select-option value="4">4</ion-select-option>
-                  <ion-select-option value="5">5</ion-select-option>
-                </ion-select>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="2">
+                      <img class="info-icon" src="assets/bed.png"><br>
+                    </ion-col>
+                    <ion-col size="10">
+                      <ion-select [(ngModel)]="bedrooms" aria-label="bedrooms" placeholder="Bedrooms">
+                        <ion-select-option value="1">1</ion-select-option>
+                        <ion-select-option value="2">2</ion-select-option>
+                        <ion-select-option value="3">3</ion-select-option>
+                        <ion-select-option value="4">4</ion-select-option>
+                        <ion-select-option value="5">5</ion-select-option>
+                      </ion-select>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="2">
+                      <img class="info-icon" src="assets/bath.png"><br>
+                    </ion-col>
+                    <ion-col size="10">
+                      <ion-select [(ngModel)]="bathrooms" aria-label="bathrooms" placeholder="Bathrooms">
+                        <ion-select-option value="1">1</ion-select-option>
+                        <ion-select-option value="2">2</ion-select-option>
+                        <ion-select-option value="3">3</ion-select-option>
+                        <ion-select-option value="4">4</ion-select-option>
+                        <ion-select-option value="5">5</ion-select-option>
+                      </ion-select>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="2">
+                      <img  class="info-icon" src="assets/car.png"><br>
+                    </ion-col>
+                    <ion-col size="10">
+                      <ion-select [(ngModel)]="garages" aria-label="parking-bays" placeholder="Parking bays">
+                        <ion-select-option value="1">1</ion-select-option>
+                        <ion-select-option value="2">2</ion-select-option>
+                        <ion-select-option value="3">3</ion-select-option>
+                      </ion-select>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+                
+<!-- 
+                <img class="info-icon" src="assets/bath.png"><br>
                 <ion-select [(ngModel)]="bathrooms" aria-label="bathrooms" placeholder="Bathrooms">
                   <ion-select-option value="1">1</ion-select-option>
                   <ion-select-option value="2">2</ion-select-option>
@@ -30,11 +68,12 @@
                   <ion-select-option value="4">4</ion-select-option>
                   <ion-select-option value="5">5</ion-select-option>
                 </ion-select>
+                <img  class="info-icon" src="assets/car.png"><br>
                 <ion-select [(ngModel)]="garages" aria-label="parking-bays" placeholder="Parking bays">
                   <ion-select-option value="1">1</ion-select-option>
                   <ion-select-option value="2">2</ion-select-option>
                   <ion-select-option value="3">3</ion-select-option>
-                </ion-select>
+                </ion-select> -->
               </div>
               <div class="ameneties_container">
                 <ion-chip id="pool" (click)="pick('pool')" class="ameneties_chip">
