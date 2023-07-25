@@ -15,14 +15,6 @@ export class PropertiesController {
     return this.propertiesService.getData();
   }
 
-  /*@Post(':cardId/swipe')
-  async swipeCard(
-    @Body('userId') userId: string,
-    @Body('action') action: 'like' | 'dislike',
-  ): Promise<void> {
-    await this.cardService.swipeCard(userId, cardId, action);
-  }*/
-
   @Post('/dislike')
   async dislikeProperty(@Body() property: IDislikePropertyRequest){
     return await this.propertiesService.dislikeProperty(property);
@@ -47,5 +39,10 @@ export class PropertiesController {
   @Post('/createProperty')
   async createProperty(@Body() property: ICreatePropertyRequest) {
     return await this.propertiesService.createProperty(property);
+  }
+
+  @Post('propertyCheck')
+  async propertyCheck(@Body() user: string){
+    return await this.propertiesService.propertyCheck(user);
   }
 }
