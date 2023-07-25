@@ -17,22 +17,30 @@ button[name="Login"]{
     background-color: transparent;
     border-color: white;
     color:white;
-    border-radius: 45%;
+    border-radius: 5%;
     height: 50px;
     width: 40%;
     font-size: x-large;
     border-width: 4px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 60%;
 }
 
 button[name="Register"]{
     background-color: transparent;
     border-color: white;
     color:white;
-    border-radius: 45%;
+    border-radius: 5%;
     height: 50px;
     width: 40%;
     font-size: x-large;
     border-width: 4px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 70%;
 }
 div[name="buttonContainer"]{
     margin-left: auto;
