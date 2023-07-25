@@ -5,21 +5,24 @@
     <link rel="stylesheet" href="home.page.scss">
   </head>
 
-  <header>
-    <ion-toolbar>
-      <ion-title>Estate Match</ion-title>
-    </ion-toolbar>
-  </header>
+  <app-header>
+  </app-header>
 
 <body>  
 
   <ion-card name="DisplayCard">
-    <img name="HouseImage" [src]="images[currentDescriptionIndex]" />
+    <img name="HouseImage" [src]="properties[currentDescriptionIndex].images[lastImageIndex]" />
     <ion-card-header>
-      <ion-card-title>{{ area[currentDescriptionIndex] }}</ion-card-title>
+      <ion-card-title>{{ properties[currentDescriptionIndex].title }}</ion-card-title>
     </ion-card-header>
     <ion-card-content name="CardDescription" id="CardDescription">
-      {{ descriptions[currentDescriptionIndex] }}
+      Price: {{ properties[currentDescriptionIndex].price }} <br>
+      Location: {{ properties[currentDescriptionIndex].location }} <br>
+      <button name="more-info" id="more-info" style="background-color:#246d88; height:40px; border-color: #246d88;border-radius: 100%; width:40px;" routerLink="/info" routerDirection="root">
+        <span style="font-size: 1.2em; color:white">
+        <i class="fas fa-info"></i>
+      </span>
+      </button>
     </ion-card-content>
   </ion-card>
   
@@ -39,24 +42,7 @@
     </button>
   </div>
 
-  <footer>
-    <div class="navbar">
-      <a class="active" href="home">
-        <i class="fas fa-home"></i>
-        <br>Home
-      </a>
-      <a>
-        <i class="fas fa-search"></i>
-        <br>Search
-      </a>
-      <a href="liked">
-        <i class="fas fa-star"></i>
-        <br>Liked
-      </a>
-      <a>
-        <i class="fas fa-user"></i>
-        <br>Profile
-      </a>
-      </div>
-  </footer>
+  <app-footer>
+    
+  </app-footer>
 </html> 

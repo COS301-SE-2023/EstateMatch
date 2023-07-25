@@ -1,0 +1,28 @@
+*{
+  font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
+.navbar {
+    background-color: #edebeb;
+    position: fixed;
+    bottom: 0;
+    max-height: 3.5em;
+    width: 100%;
+  }
+  
+  .navbar a {
+    padding-top: 12px;
+    padding-bottom: 16px;
+    width: 25%;
+    float: left;
+    display: block;
+    color: #131313;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+  }
+  
+  .navbar a.active {
+    background-color: #ffffff;
+    color: rgb(88, 163, 238);
+  }

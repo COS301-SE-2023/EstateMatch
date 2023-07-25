@@ -1,0 +1,78 @@
+*{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
+ion-header {
+    height:5rem;
+}
+ion-toolbar {
+    height:min-content;
+    fill:none;
+}
+ion-card[name="displayContainer"]{
+    height: 475px;
+    border-radius: 5%;
+}
+
+ion-card-subtitle[name="Subtitle"]{
+    padding-top: 8%;
+    text-align: center;
+    font-size: x-large;
+    color:black;
+}
+
+ion-input{
+    font-size: large;
+}
+
+ion-label{
+    font-size: large;
+}
+
+select{
+    font-size: large;
+}
+
+.AreaContainer{
+    padding-top: 8%; 
+}
+
+.TagsContainer{
+    padding-top: 8%; 
+}
+
+button[name="Save"]{
+    height: 50px;
+    color: rgb(255, 255, 255);
+    background-color: #67C390;
+    width: 40%;
+    border-color: #67C390;
+    border-radius: 5%;
+    font-size: 1.5em;
+}
+
+button[name="Cancel"]{
+    height: 50px;
+    color: rgb(255, 255, 255);
+    background-color: #E7604D;
+    width: 40%;
+    border-color: #E7604D;
+    border-radius: 5%;
+    font-size: 1.5em;
+    top:90%;
+}
+
+.dropdown{
+    padding-top: 8%; 
+}
+
+ion-col{
+    width: 50%;
+    text-align: left;
+}
+
+ion-row{
+    padding-left: 10%;
+}
+div[name="Spacing"]{
+    height: 20px;
+}

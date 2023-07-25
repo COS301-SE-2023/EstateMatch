@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="search.page.scss">
+    </head>
+
+<header>
+    <app-header></app-header>
+</header>
+
+
+<body>
+    <ion-searchbar [(ngModel)]="location" name="searchBar" id="searchBar" inputmode="search" type="text" show-cancel-button="never" animated style="font-size: 1.1em; color:black"></ion-searchbar>
+    <button name="filter-button" id="filter-button" style="background-color:#246d88; height:35px; border-color:#246d88 ;border-radius: 100%; width:35px;" (click)="setFilters(location)">
+        <span style="font-size: 1.1em; color:white">
+            <i class="fas fa-filter"></i>
+        </span>
+    </button>
+    <div id="container" style="display: none;">
+      <ion-card name="DisplayCard">
+        <img name="HouseImage" [src]="properties[currentDescriptionIndex].images[lastImageIndex]" />
+        <button name="more-info" id="more-info" style="background-color:#246d88; height:40px; border-color: #246d88;border-radius: 100%; width:40px;" routerLink="/info" routerDirection="root">
+          <span style="font-size: 1.2em; color:white">
+          <i class="fas fa-info"></i>
+        </span>
+        </button>
+        <ion-card-header>
+          <ion-card-title>{{properties[currentDescriptionIndex].title}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content name="CardDescription" id="CardDescription">
+          Price: {{properties[currentDescriptionIndex].price}}<br>
+          Location: {{properties[currentDescriptionIndex].location}} <br>
+        </ion-card-content>
+      </ion-card>
+
+      <div id="button-container" style="text-align:center;">
+        <button (click) = "dislikeHouse()" id="dislike-button" style="background-color:#F0422A; height:60px; border-color:#F0422A ;border-radius: 100%; width:60px;">
+          <span style="font-size: 1.7em; color:white">
+            <i class="fas fa-times"></i>
+        </span>
+        </button>
+        &nbsp;
+        <button (click) = "likeHouse()" id="like-button" style="background-color:#67C390; height:60px; border-color: #67C390;border-radius: 100%; width:60px;">
+          <span style="font-size: 1.7em; color:white">
+          <i class="fas fa-heart"></i>
+        </span>
+        </button>
+      </div>
+    </div>
+    
+</body>
+
+
+<footer>
+    <app-footer></app-footer>
+</footer>        

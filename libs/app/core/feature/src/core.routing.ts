@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'preferences',
+    redirectTo: 'login',
     loadChildren: () =>
       import('@estate-match/app/home/feature').then((m) => m.HomeModule),
   },
@@ -29,6 +29,54 @@ const routes: Routes = [
     pathMatch: 'full',
     loadChildren: () =>
       import('@estate-match/app/liked/feature').then((m) => m.LikedModule),
+  },
+  {
+    path: 'profile',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/profile/feature').then((m) => m.ProfileModule),
+  },
+  {
+    path: 'editprof',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/edit-profile/feature').then((m) => m.EditProfileModule),
+  },
+  {
+    path: 'login',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/login/feature').then((m) => m.LoginModule),
+  },
+  {
+    path: 'register',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/register/feature').then((m) => m.RegisterModule),
+  },
+  {
+    path: 'map',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/map/feature').then((m) => m.MapModule),
+  },
+  {
+    path: 'info',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/more-info/feature').then((m) => m.InfoModule),
+  },
+  {
+    path: 'search',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/search/feature').then((m) => m.SearchModule),
+  },
+  {
+    path: 'filter',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/search-filter/feature').then((m) => m.FilterModule),
   },
 ];
 
