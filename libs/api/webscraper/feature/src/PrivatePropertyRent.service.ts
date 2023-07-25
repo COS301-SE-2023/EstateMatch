@@ -3,20 +3,20 @@ import * as puppeteer from 'puppeteer';
 
 
 @Injectable()
-export class PrivatePropertySaleService {
-  public async PrivatePropertySalescrape(location: string): Promise<any[]> {
+export class PrivatePropertyRentService {
+  public async PrivatePropertyRentscrape(location: string): Promise<any[]> {
     // Launch Puppeteer and open new page
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
-    const navigationTimeout = 180000;
+    const navigationTimeout = 60000;
 
     // Go to target web page
-    /*await page.goto('https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59', {
+    /*await page.goto('https://www.privateproperty.co.za/to-rent/western-cape/cape-town/cape-town-city-bowl/59', {
       timeout: navigationTimeout,
     });*/
 
-    await page.goto('https://www.privateproperty.co.za/for-sale', {
+    await page.goto('https://www.privateproperty.co.za/to-rent', {
       timeout: navigationTimeout,
     });
 
@@ -38,34 +38,25 @@ export class PrivatePropertySaleService {
         suggestion.dispatchEvent(clickEvent);
       }
     }, suggestionSelector);
-
-    await page.waitForNavigation();
-
-    //console.log(page.url());
-
+    
 
     // Wait for the results container to load 
-    await page.waitForSelector('.resultsItemsContainer', {
-      timeout: navigationTimeout,
-    });
-
+    await page.waitForSelector('.resultsItemsContainer');
 
     const pageLinks = (await page.$$eval('.pagination a.pageNumber', (pagination) => pagination.map((page) => page.getAttribute('href') || ''))).filter(url => url !== "#");
 
     const lastPageLink = pageLinks[pageLinks.length - 2];
     const pageNumber = parseInt(lastPageLink.slice(-2));
 
-
-    let propertyURLs: string[] = [];
-
+    var propertyURLs: string[] = [];
     const pages = await browser.newPage();
 
-    for(let i = 1; i <= 5; i++)
+    for(let i = 1; i <= 3; i++)
     {
       if(i === 1)
       {
 
-        await pages.goto("https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59", {
+        await pages.goto("https://www.privateproperty.co.za/to-rent/western-cape/cape-town/cape-town-city-bowl/59", {
           timeout: navigationTimeout,
         });
 
@@ -76,7 +67,7 @@ export class PrivatePropertySaleService {
 
       else
       {
-        await pages.goto('https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59?page=' + i.toString(), {
+        await pages.goto('https://www.privateproperty.co.za/to-rent/western-cape/cape-town/cape-town-city-bowl/59?page=' + i.toString(), {
           timeout: navigationTimeout,
         });
 
@@ -109,12 +100,10 @@ export class PrivatePropertySaleService {
       const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
       
       // Initialize variables for storing bedrooms, bathrooms, garages, and amenities 
-
-      let bedrooms;
-      let bathrooms;
-      let garages;
-      const amenities: string[] = [];
-
+      var bedrooms;
+      var bathrooms;
+      var garages;
+      var amenities: string[] = [];
 
     
 
@@ -158,9 +147,7 @@ export class PrivatePropertySaleService {
         }
       }
 
-
-      const type = 'Sale';
-
+      const type = 'Rent';
     
       // Close the property page
       await propertyPage.close();
@@ -189,3 +176,4 @@ export class PrivatePropertySaleService {
   return filteredPropertyListings;
 }
 }
+        
