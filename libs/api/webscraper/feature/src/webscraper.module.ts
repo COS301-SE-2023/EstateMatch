@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { WebScraperController } from "./webscraper.controller";
-import { WebScraperService } from "./webscraper.service";
+import { WebScraperService } from "./PrivatePropertySales.service";
 import { PropertiesService } from "@estate-match/api/properties/feature";
 import { CqrsModule } from "@nestjs/cqrs";
 

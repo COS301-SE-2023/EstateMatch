@@ -1,5 +1,5 @@
 import { Controller, Get } from "@nestjs/common";
-import { WebScraperService } from "./webscraper.service";
+import { WebScraperService } from "./PrivatePropertySales.service";
 import { PropertiesService } from "@estate-match/api/properties/feature";
 import { ICreatePropertyRequest, IProperty } from "@estate-match/api/properties/util";
 

@@ -1,3 +1,3 @@
 export * from './webscraper.controller';
-export * from './webscraper.service';
+export * from './PrivatePropertySales.service';
 export * from './webscraper.module';
