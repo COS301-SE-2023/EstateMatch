@@ -84,6 +84,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('@estate-match/app/splash-page/feature').then((m) => m.SplashModule),
   },
+  {
+    path: 'load',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/loading-page/feature').then((m) => m.LoadModule),
+  },
 ];
 
 @NgModule({
