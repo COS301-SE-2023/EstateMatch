@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
-import { IProperty } from '@estate-match/api/properties/util';
+import { ILikeProperty } from '@estate-match/api/properties/util';
 
 @Component({
   selector: 'ms-liked-page',
@@ -12,7 +12,7 @@ export class LikedPage {
   constructor(private http: HttpClient,
     private toastController: ToastController) { }
 
-  likedProperties: IProperty[] = [];
+  likedProperties: ILikeProperty[] = [];
   async ngOnInit() {
     const url = 'api/getLikedProperties';
     const body = {
@@ -20,7 +20,7 @@ export class LikedPage {
     }
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.likedProperties = await this.http.post(url, body, { headers }).toPromise() as IProperty[];
+    this.likedProperties = await this.http.post(url, body, { headers }).toPromise() as ILikeProperty[];
 
     console.log(this.likedProperties);
   }

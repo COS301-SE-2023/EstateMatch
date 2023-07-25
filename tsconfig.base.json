@@ -15,6 +15,18 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@estate-match/api/authentication/data-access": [
+        "libs/api/authentication/data-access/src/index.ts"
+      ],
+      "@estate-match/api/authentication/feature": [
+        "libs/api/authentication/feature/src/index.ts"
+      ],
+      "@estate-match/api/authentication/schema": [
+        "libs/api/authentication/schema/src/index.ts"
+      ],
+      "@estate-match/api/authentication/util": [
+        "libs/api/authentication/util/src/index.ts"
+      ],
       "@estate-match/api/core/feature": ["libs/api/core/feature/src/index.ts"],
       "@estate-match/api/prefrences/data-access": [
         "libs/api/prefrences/data-access/src/index.ts"
@@ -22,6 +34,7 @@
       "@estate-match/api/prefrences/feature": [
         "libs/api/prefrences/feature/src/index.ts"
       ],
+      
       "@estate-match/api/prefrences/schema": [
         "libs/api/prefrences/schema/src/index.ts"
       ],
@@ -40,6 +53,22 @@
       "@estate-match/api/properties/util": [
         "libs/api/properties/util/src/index.ts"
       ],
+      "@estate-match/api/users/data-access": [
+        "libs/api/users/data-access/src/index.ts"
+      ],
+      "@estate-match/api/users/feature": [
+        "libs/api/users/feature/src/index.ts"
+      ],
+      "@estate-match/api/users/schema": ["libs/api/users/schema/src/index.ts"],
+      "@estate-match/api/users/util": ["libs/api/users/util/src/index.ts"],
+      "@estate-match/api/search/data-access": [
+        "libs/api/search/data-access/src/index.ts"
+      ],
+      
+      "@estate-match/api/search/feature": [
+        "libs/api/search/feature/src/index.ts"
+      ],
+      "@estate-match/api/search/util": ["libs/api/search/util/src/index.ts"],
       "@estate-match/api/webscaper/util--unit-test-runner=jest": [
         "libs/api/webscaper/util--unit-test-runner=jest/src/index.ts"
       ],
@@ -58,11 +87,25 @@
       "@estate-match/apo/webscaper/util--unit-test-runner=jest": [
         "libs/apo/webscaper/util--unit-test-runner=jest/src/index.ts"
       ],
+      
       "@estate-match/app/core/data-access": [
         "libs/app/core/data-access/src/index.ts"
       ],
       "@estate-match/app/core/feature": ["libs/app/core/feature/src/index.ts"],
       "@estate-match/app/core/util": ["libs/app/core/util/src/index.ts"],
+
+      "@estate-match/app/edit-profile/feature": [
+        "libs/app/edit-profile/feature/src/index.ts"],
+
+      "@estate-match/app/header-footer/data-access": [
+        "libs/app/header-footer/data-access/src/index.ts"
+      ],
+      "@estate-match/app/header-footer/feature": [
+        "libs/app/header-footer/feature/src/index.ts"
+      ],
+      "@estate-match/app/header-footer/util--unit-test-runner=jest": [
+        "libs/app/header-footer/util--unit-test-runner=jest/src/index.ts"
+      ],
       "@estate-match/app/home/data-access": [
         "libs/app/home/data-access/src/index.ts"
       ],
@@ -73,8 +116,39 @@
       "@estate-match/app/liked/feature": [
         "libs/app/liked/feature/src/index.ts"
       ],
+      
+      "@estate-match/app/login/feature": [
+        "libs/app/login/feature/src/index.ts"
+      ],
+      "@estate-match/app/map/data-access": [
+        "libs/app/map/data-access/src/index.ts"
+      ],
+      "@estate-match/app/map/feature": ["libs/app/map/feature/src/index.ts"],
       "@estate-match/app/preferences/feature": [
         "libs/app/preferences/feature/src/index.ts"
+      ],
+      "@estate-match/app/profile/feature": [
+        "libs/app/profile/feature/src/index.ts"],
+      "@estate-match/app/register/feature": [
+        "libs/app/register/feature/src/index.ts"],
+
+      "@estate-match/app/more-info/data-access": [
+        "libs/app/more-info/data-access/src/index.ts"
+      ],
+      "@estate-match/app/more-info/feature": [
+        "libs/app/more-info/feature/src/index.ts"
+      ],
+      "@estate-match/app/more-info/util--unit-test-runner=jest": [
+        "libs/app/more-info/util--unit-test-runner=jest/src/index.ts"
+      ],
+      "@estate-match/app/preferences/feature": [
+        "libs/app/preferences/feature/src/index.ts"
+      ],
+      "@estate-match/app/search-filter/feature": [
+        "libs/app/search-filter/feature/src/index.ts"
+      ],
+      "@estate-match/app/search/feature": [
+        "libs/app/search/feature/src/index.ts"
       ]
     }
   },
