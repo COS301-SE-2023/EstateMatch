@@ -163,6 +163,7 @@ export class PrivatePropertyRentService {
         imageURLs,
         location,
         amenities, 
+        type,
       };
     })
   );

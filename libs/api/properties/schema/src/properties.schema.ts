@@ -12,7 +12,7 @@ export const PropertiesSchema = new mongoose.Schema({
 
 
     //what Adam wants
-    title : String,
+    type : String,
    // HouseType : Rent/Sale
 
     images: [String],
@@ -30,7 +30,7 @@ export interface PropertiesModel {
 
 
     //what Adam wants
-    title : string,
+    type : string,
     // HouseType : Rent/Sale
 
     images: string[],

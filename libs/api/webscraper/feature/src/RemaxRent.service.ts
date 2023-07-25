@@ -139,7 +139,8 @@ export class RemaxRentService {
         garages,
         imageURLs,
         location,
-        amenities, 
+        amenities,
+        type,
       };
     })
   );

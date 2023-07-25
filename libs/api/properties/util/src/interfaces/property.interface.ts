@@ -7,4 +7,5 @@ export interface IProperty{
     garages: number | null,
     amenities: string[],
     images: string[],
+    type : string,
 }

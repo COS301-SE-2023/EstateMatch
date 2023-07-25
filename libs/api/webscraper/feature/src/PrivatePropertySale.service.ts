@@ -175,7 +175,8 @@ export class PrivatePropertySaleService {
         garages,
         imageURLs,
         location,
-        amenities, 
+        amenities,
+        type,
       };
     })
   );

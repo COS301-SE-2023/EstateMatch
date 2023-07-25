@@ -136,7 +136,8 @@ export class RemaxSaleService {
         garages,
         imageURLs,
         location,
-        amenities, 
+        amenities,
+        type,
       };
     })
   );
