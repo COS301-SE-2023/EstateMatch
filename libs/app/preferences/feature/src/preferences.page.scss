@@ -9,19 +9,11 @@ ion-toolbar {
     fill:none;
 }
 
-ion-col{
-    width: 50%;
-    text-align: left;
-}
-
-ion-row{
-    padding-left: 10%;
-}
-
 ion-card[name="displayContainer"]{
     height: 87vh;
     border-radius: 5%;
     background-color: #fbfcfa;
+    overflow-y: scroll;
 }
 
 ion-card-subtitle[name="Subtitle"]{
@@ -33,17 +25,15 @@ ion-card-subtitle[name="Subtitle"]{
     background-color: #f3f1f1;
 }
 
-ion-label{
-    font-size: large;
-}
-
-ion-badge{
+ion-chip{
     background-color: #E7604D;
-    --color: white ;
+    color: white;
+    text-align: center !important;
     margin-top: 2%;
     margin-left: 3%;
-    // padding: 1.5%;
-    width: 25%;
+    width: 45%;
+    font-size: 14px !important;
+    // display: block !important;
 }
 
 #furnished{
@@ -121,6 +111,14 @@ ion-select{
         padding-bottom: 30px;
         ion-label {
             margin-bottom: 0%;
+        }
+    }
+
+    .ameneties_container{
+        ion-label{
+            width: 100%;
+            display: block !important;
+            text-align: center !important;
         }
     }
 
