@@ -22,27 +22,6 @@ export class PropertiesService
       return { message: 'Likes and dislikes api' };
     }
     constructor(private readonly commandBus: CommandBus){}
-  /*constructor(
-    @InjectModel('Card') private readonly cardModel: Model<Card>,
-    @InjectModel('User') private readonly userModel: Model<User>,
-  ) {}
-
-  async swipeCard(userId: string, cardId: string, action: 'like' | 'dislike'): Promise<void> {
-    const card = await this.cardModel.findById(cardId);
-    const user = await this.userModel.findById(userId);
-
-    if (!card || !user) {
-      throw new Error('Card or User not found');
-    }
-
-    if (action === 'like') {
-      // Add card ID to user's liked items
-      user.likedItems.push(cardId);
-    }
-
-    // Save changes to the user
-    await user.save();
-  }*/
 
   async dislikeProperty(
     request: IDislikePropertyRequest
