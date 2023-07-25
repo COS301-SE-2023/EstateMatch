@@ -5,19 +5,14 @@
 
 
 <header>
-  <ion-toolbar name="ToolBar">
-    <ion-title>Estate Match</ion-title>
-  </ion-toolbar>
+  <app-header></app-header>
 </header>
 
 
   <ion-card name="displayContainer">
     <ion-card-subtitle name="Subtitle">Register</ion-card-subtitle>
-      <!-- <ion-content> -->
         <div class="main_content_div">
-          
           <div class="form_div">
-            
             <ion-label class="small_lbl">First Name</ion-label>
             <ion-input [(ngModel)]="fname" type="text" placeholder="Enter First Name"></ion-input>
 
@@ -43,10 +38,8 @@
           </div>
       
           <div class="bottom_div">
-            <ion-label (click)="login()">Already have an account? Login.</ion-label>
+            <ion-label>Already have an account?<ion-label (click)="login()" id="login">Login</ion-label></ion-label>
           </div>
       
         </div>
-      <!-- </ion-content> -->
-        
   </ion-card>

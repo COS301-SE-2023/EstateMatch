@@ -5,177 +5,89 @@
 
 
 <header>
-  <ion-toolbar name="ToolBar">
-    <ion-title>Estate Match</ion-title>
-  </ion-toolbar>
+  <app-header></app-header>
 </header>
 
 <ion-card name="displayContainer">
-    <ion-card-subtitle name="Subtitle">Preferences</ion-card-subtitle>
-<div id="CardCentering">
-
-    <div>
-      <div class="AreaContainer">  
-        <ion-grid>
-          <ion-row>
-            <ion-col>    
-          <ion-input name="AreaInput" label="Area:" type="text" [(ngModel)]="area" placeholder="Enter area here"></ion-input>    
-           </ion-col>
+  <ion-card-subtitle name="Subtitle">Preferences</ion-card-subtitle>
+  <div class="main_content_div">
+    <div class="form_div">     
+      <ion-label id="area" class="small_lbl">Area:</ion-label>
+      <ion-input  [(ngModel)]="area" type="text" placeholder="Area"></ion-input>
+      <ion-label class="small_lbl">Budget:</ion-label>
+      <ion-range  [(ngModel)]="budget" aria-label="budget" [dualKnobs]="true" [ticks]="true" [snaps]="true" [min]="500000" [max]="8000000" [step]="500000" [pin]="true"></ion-range>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2">
+            <img class="info-icon" src="assets/bed.png"><br>
+          </ion-col>
+          <ion-col size="10">
+            <ion-select [(ngModel)]="bedrooms" aria-label="bedrooms" placeholder="Bedrooms">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2">
+            <img class="info-icon" src="assets/bath.png"><br>
+          </ion-col>
+          <ion-col size="10">
+            <ion-select [(ngModel)]="bathrooms" aria-label="bathrooms" placeholder="Bathrooms">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2">
+            <img  class="info-icon" src="assets/car.png"><br>
+          </ion-col>
+          <ion-col size="10">
+            <ion-select [(ngModel)]="garages" aria-label="parking-bays" placeholder="Parking bays">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+            </ion-select>
+          </ion-col>
         </ion-row>
       </ion-grid>
-        </div>
     </div>
-
-    <div class="dropdown" id="BudgetContainer">
-    <ion-grid>
-    <ion-row>
-      <ion-col>
-      <ion-label for="Budget">Budget: R</ion-label>
-      </ion-col>
-
-      <ion-col>
-      <select class="dropdownColor" [(ngModel)]="budget" label="Budget">
-        <option value="100 000">100 000</option>
-        <option value="150 000">150 000</option>
-        <option value="200 000">200 000</option>
-        <option value="250 000">250 000</option>
-        <option value="300 000">300 000</option>
-        <option value="350 000">350 000</option>
-        <option value="400 000">400 000</option>
-        <option value="450 000">450 000</option>
-        <option value="500 000">500 000</option>
-        <option value="550 000">550 000</option>
-        <option value="600 000">600 000</option>
-        <option value="650 000">650 000</option>
-        <option value="700 000">700 000</option>
-        <option value="750 000">750 000</option>
-        <option value="800 000">800 000</option>
-        <option value="850 000">850 000</option>
-        <option value="900 000">900 000</option>
-        <option value="950 000">950 000</option>
-        <option value="1 000 000">1 000 000</option>
-        <option value="1 100 000">1 100 000</option>
-        <option value="1 150 000">1 150 000</option>
-        <option value="1 200 000">1 200 000</option>
-        <option value="1 250 000">1 250 000</option>
-        <option value="1 300 000">1 300 000</option>
-        <option value="1 350 000">1 350 000</option>
-        <option value="1 400 000">1 400 000</option>
-        <option value="1 450 000">1 450 000</option>
-        <option value="1 500 000">1 500 000</option>
-        <option value="1 550 000">1 550 000</option>
-        <option value="1 650 000">1 600 000</option>
-        <option value="1 650 000">1 650 000</option>
-        <option value="1 700 000">1 700 000</option>
-        <option value="1 750 000">1 750 000</option>
-        <option value="1 800 000">1 800 000</option>
-        <option value="1 850 000">1 850 000</option>
-        <option value="1 900 000">1 900 000</option>
-        <option value="1 950 000">1 950 000</option>
-        <option value="2 000 000">2 000 000</option>
-      </select>
-    </ion-col>
-    </ion-row>
-    </ion-grid>
+    <div class="ameneties_container">
+      <ion-chip id="pool" (click)="pick('pool')" class="ameneties_chip">
+        <i class="fa fa-plus icon" aria-hidden="true"></i>
+        <ion-label>Pool</ion-label>
+      </ion-chip>
+      <ion-chip id="study" (click)="pick('study')" class="ameneties_chip">
+        <i class="fa fa-plus icon" aria-hidden="true"></i>
+        <ion-label>Study</ion-label>
+      </ion-chip>
+      <ion-chip id="aircon" (click)="pick('aircon')" class="ameneties_chip">
+        <i class="fa fa-plus icon" aria-hidden="true"></i>
+        <ion-label>Aircon</ion-label>
+      </ion-chip>
+      <ion-chip id="furnished" (click)="pick('furnished')" class="ameneties_chip">
+        <i class="fa fa-plus icon" aria-hidden="true"></i>
+        <ion-label>Furnished</ion-label>
+      </ion-chip>
+      <ion-chip id="pet" (click)="pick('pet')" class="ameneties_chip">
+        <i class="fa fa-plus icon" aria-hidden="true"></i>
+        <ion-label>Pet-Friendly</ion-label>
+      </ion-chip>
+      <ion-chip id="lounge" (click)="pick('lounge')" class="ameneties_chip">
+        <i class="fa fa-plus icon" aria-hidden="true"></i>
+        <ion-label>Lounge</ion-label>
+      </ion-chip>
     </div>
+    <div class="button_container" name="buttonContainer" style="text-align:center;">
+      <button (click)="setPreferences()" class="buttons" fill="default"routerLink="/home" routerDirection="root">Set Preferences</button>
+    </div>  
+  </div>  
 
-      <div class="TagsContainer">
-        <ion-grid>
-        <ion-row>
-        <ion-col>
-        <ion-label for="Bedrooms" class="labels">Bedrooms</ion-label>
-        </ion-col>
-        <ion-col>
-        <select label="Bedrooms" [(ngModel)]="bedrooms">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>       
-        </select>
-        </ion-col> 
-        </ion-row>
-
-        <ion-row>
-        <ion-col>
-        <ion-label for="Bathrooms" class="labels">Bathrooms</ion-label>
-        </ion-col>
-
-        <ion-col>
-        <select label="Bathrooms" [(ngModel)]="bathrooms">
-          <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-        </ion-col>
-        </ion-row>
-        
-        <ion-row>
-        <ion-col>
-        <ion-label for="Garage" class="labels">Parking</ion-label>
-        </ion-col>
-        
-        <ion-col>
-        <select label="Garage" [(ngModel)]="garages">
-          <option value="1">1</option>
-          <option value="2">2</option>            
-        </select>
-        </ion-col>
-        </ion-row>
-        
-        <br><br>
-        <ion-row>
-        <ion-col>
-        <ion-input label="Extra: " type="text" placeholder="Enter text here" [(ngModel)]="extras"></ion-input>
-        </ion-col>
-        </ion-row>
-        </ion-grid>
-      </div>
-</div>
 </ion-card>
-
-<div class="buttonDiv">
-  <button (click)="setPreferences()" class="buttons" fill="default"routerLink="/home" routerDirection="root">Set Preferences</button>
-</div>
-
-<!-- <footer>
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="tab1">
-        <span style="font-size: 1.3em; ">
-        <i class="fas fa-home fa-lg"></i>
-        </span>
-        <span style="font-size:1.5em; ">
-        <ion-label>Home</ion-label>
-      </span>
-      </ion-tab-button>
-
-      <ion-tab-button tab="tab2">
-        <span style="font-size: 1.3em; ">
-          <i class="fas fa-search fa-lg"></i>
-          </span>
-          <span style="font-size:1.5em; ">
-          <ion-label>Search</ion-label>
-        </span>
-      </ion-tab-button>
-
-      <ion-tab-button tab="tab3">
-        <span style="font-size: 1.3em;">
-          <i class="fas fa-star fa-lg"></i>
-          </span>
-          <span style="font-size:1.5em;">
-          <ion-label>Liked</ion-label>
-        </span>
-      </ion-tab-button>
-
-      <ion-tab-button tab="tab4">
-        <span style="font-size: 1.3em; color:rgb(118, 148, 238)">
-          <i class="fas fa-user fa-lg"></i>
-          </span>
-          <span style="font-size:1.5em; color:rgb(118, 148, 238)">
-          <ion-label>Profile</ion-label>
-          </span>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs> 
-</footer> -->

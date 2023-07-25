@@ -3,32 +3,61 @@ import * as puppeteer from 'puppeteer';
 
 
 @Injectable()
-export class WebScraperService {
-  public async scrape(): Promise<any[]> {
+export class PrivatePropertySaleService {
+  public async PrivatePropertySalescrape(location: string): Promise<any[]> {
     // Launch Puppeteer and open new page
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    //await page.goto('https://www.property24.com/for-sale/cape-town/western-cape/432');
 
-    const navigationTimeout = 60000;
+    const navigationTimeout = 180000;
 
     // Go to target web page
-    await page.goto('https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59', {
+    /*await page.goto('https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59', {
+      timeout: navigationTimeout,
+    });*/
+
+    await page.goto('https://www.privateproperty.co.za/for-sale', {
       timeout: navigationTimeout,
     });
 
-    
-    //await page.waitForSelector('.js_listingResultsContainer');
+    await page.waitForSelector('.floatingSearchContainer');
+
+    await page.type('.formWrapper input', "Woodstock");
+
+    await page.waitForSelector('.autocomplete-suggestions');
+
+    const suggestionSelector = '.autocomplete-suggestion';
+    await page.evaluate((selector) => {
+      const suggestion = document.querySelector(selector);
+      if (suggestion) {
+        const clickEvent = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          view: window,
+        });
+        suggestion.dispatchEvent(clickEvent);
+      }
+    }, suggestionSelector);
+
+    await page.waitForNavigation();
+
+    //console.log(page.url());
+
 
     // Wait for the results container to load 
-    await page.waitForSelector('.resultsItemsContainer');
+    await page.waitForSelector('.resultsItemsContainer', {
+      timeout: navigationTimeout,
+    });
+
 
     const pageLinks = (await page.$$eval('.pagination a.pageNumber', (pagination) => pagination.map((page) => page.getAttribute('href') || ''))).filter(url => url !== "#");
 
     const lastPageLink = pageLinks[pageLinks.length - 2];
     const pageNumber = parseInt(lastPageLink.slice(-2));
 
+
     let propertyURLs: string[] = [];
+
     const pages = await browser.newPage();
 
     for(let i = 1; i <= 5; i++)
@@ -80,10 +109,12 @@ export class WebScraperService {
       const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
       
       // Initialize variables for storing bedrooms, bathrooms, garages, and amenities 
+
       let bedrooms;
       let bathrooms;
       let garages;
       const amenities: string[] = [];
+
 
     
 
@@ -126,6 +157,10 @@ export class WebScraperService {
           imageURLs[i] = imageURLs[i]?.slice(0, lastDotIndex) + "_dhd" + imageURLs[i]?.slice(lastDotIndex);
         }
       }
+
+
+      const type = 'Sale';
+
     
       // Close the property page
       await propertyPage.close();
