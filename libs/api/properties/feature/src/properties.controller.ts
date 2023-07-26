@@ -41,7 +41,7 @@ export class PropertiesController {
     return await this.propertiesService.createProperty(property);
   }
 
-  @Post('propertyCheck')
+  @Post('/propertyCheck')
   async propertyCheck(@Body() user: ICheckPropertyRequest){
     return await this.propertiesService.propertyCheck(user);
   }
