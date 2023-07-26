@@ -2,6 +2,7 @@ import { Component, ViewChild} from '@angular/core';
 import * as L from 'leaflet';
 import { Geolocation} from '@ionic-native/geolocation'
 import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
+import {fetch } from 'node-fetch';
 
 
 @Component({
