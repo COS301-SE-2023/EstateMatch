@@ -2,7 +2,7 @@ import { Component, ViewChild} from '@angular/core';
 import * as L from 'leaflet';
 import { Geolocation} from '@ionic-native/geolocation'
 import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
-import {fetch } from 'node-fetch';
+import fetch from 'node-fetch';
 
 
 @Component({
@@ -116,7 +116,7 @@ import {fetch } from 'node-fetch';
 
   setPropertyLocation(){
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const fetch = this.require('node-fetch');
+    const fetch = require('node-fetch');
     const address = 'Baldersgade 3B, 2200 Copenhagen, Denmark';
 
     fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=dcd92e44986d482085e39a946d3cebbb`)
