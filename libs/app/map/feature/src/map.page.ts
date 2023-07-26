@@ -31,7 +31,7 @@ import fetch from 'node-fetch';
       async ngOnInit() {
         const coordinates = await Geolocation.getCurrentPosition();
 
-        this.setPropertyLocation();
+        this.setPropertyLocation('Baldersgade 3B, 2200 Copenhagen, Denmark');
 
         
         this.map=L.map('map',{
@@ -114,17 +114,21 @@ import fetch from 'node-fetch';
   }
 
 
-  setPropertyLocation(){
+  setPropertyLocation(address: any){
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const fetch = require('node-fetch');
-    const address = 'Baldersgade 3B, 2200 Copenhagen, Denmark';
+    // const address = 'Baldersgade 3B, 2200 Copenhagen, Denmark';
 
-    fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=dcd92e44986d482085e39a946d3cebbb`)
+    fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=0ddaaa18ee5f47b1b80e36cd0d3e0395`)
     .then((resp: { json: () => any; }) => resp.json())
     .then((geocodingResult: any) => {
       console.log(geocodingResult);
+
+      return geocodingResult.features[0].geometry.coordinates;
     });
-      }
+
+    
+  }
 
   
 
