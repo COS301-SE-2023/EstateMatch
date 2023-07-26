@@ -203,15 +203,31 @@ export class HomePage implements AfterViewInit{
 
   async propertyCheck(){
     const url = 'api/propertyCheck';
+    const username = sessionStorage.getItem('username');
     const body = {
-      user: sessionStorage.getItem('username')
+      user: username,
     }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const newPropertiesNeeded = await this.http.post(url, body, { headers }).toPromise() as {empty: boolean};
 
     if(newPropertiesNeeded){
       if(newPropertiesNeeded.empty){
-        //Need to run the web scraper
+        //Somehow check if new user or not
+
+        const url = 'api/getPreferences';
+        const prefBody = { user : username };
+        let location;
+        if (username) {
+          try {
+            const response = await this.http.post(url, prefBody, { headers }).toPromise() as IPreference;
+            location = response.location;
+          } catch (error) {
+            console.error('Error fetching user data:', error);
+          }
+        }
+
+        //Use location here
+        //Need to run the web scraper 
       }
     }
   }
