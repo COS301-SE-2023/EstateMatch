@@ -20,6 +20,8 @@ import fetch from 'node-fetch';
       userLat: number;
       userLong: number;
       foundAddress: any;
+      
+      
 
       constructor() {
         this.locationLat=0;
@@ -57,6 +59,8 @@ import fetch from 'node-fetch';
       this.map.addLayer(layer);
 
       const marker = L.marker([coordinates.coords.latitude, coordinates.coords.longitude]).addTo(this.map);
+
+ 
 
       marker.bindPopup("<b>Your Current Location.</b><br />").openPopup();
 
