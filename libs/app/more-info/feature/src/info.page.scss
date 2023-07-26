@@ -37,6 +37,11 @@ ion-chip{
     color: white;
     width: 93%;
     text-align: center;
+
+    ion-label{
+        width: 100%;
+        text-align: center;
+    }
 }
 
 
@@ -136,7 +141,7 @@ img[name="HouseImage"]{
     align-items: center;
     float: left;
     justify-content: center;
-    margin-top: 3%;
+    margin-top: 5%;
     margin-left: 29.5%;
 }
 
@@ -149,6 +154,6 @@ img[name="HouseImage"]{
     float: right;
     align-items: center;
     justify-content: center;
-    margin-top: 3%;
+    margin-top: 5%;
     margin-right: 29.5%;
 }
