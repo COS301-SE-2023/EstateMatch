@@ -14,9 +14,9 @@ const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'app'),
-    }),
+    // ServeStaticModule.forRoot({
+    //   rootPath: join(__dirname, '..', 'app'),
+    // }),
     MongooseModule.forRoot(DATABASE_CONNECTION),
     PreferenceModule,
     PropertiesModule,

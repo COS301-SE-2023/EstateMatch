@@ -3,11 +3,11 @@ import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { CoreModule } from '@estate-match/app/core/feature';
 
-// const ENVIRONMENT = 'production';
+const ENVIRONMENT = 'production';
 
-// if (ENVIRONMENT === 'production') {
-//   enableProdMode();
-// }
+if (ENVIRONMENT === 'production') {
+  enableProdMode();
+}
 
 platformBrowserDynamic()
   .bootstrapModule(CoreModule)
