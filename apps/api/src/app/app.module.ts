@@ -8,7 +8,7 @@ import { join } from 'path';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'app'),
+      rootPath: join(__dirname, '..', '..', 'dist', 'apps', 'app'),
     }),
   ],
   controllers: [AppController],
