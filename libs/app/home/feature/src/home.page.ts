@@ -176,15 +176,11 @@ export class HomePage implements AfterViewInit{
       const gesture: Gesture = this.gestureCtrl.create({
         el: card.nativeElement,
         gestureName: 'move',
-        onStart: ev => {
-          this.logStart();
-        },
         onMove: ev => {
           card.nativeElement.style.transform = `translateX(${ev.deltaX}px)`;
           // card.nativeElement.style.transform = `translateX(${ev.deltaX}px) rotate(${ev.deltaX / 10}deg)`;
         },
         onEnd: ev => {
-          this.logEnd();
           card.nativeElement.style.transition = '.5s ease-out';
           if(ev.deltaX > 150){
             this.makeToast('Property Liked')
@@ -202,14 +198,6 @@ export class HomePage implements AfterViewInit{
 
       gesture.enable(true);
     }
-  }
-
-  logStart() {
-    console.log('Swipe started');
-  }
-
-  logEnd() {
-    console.log('Swipe ended');
   }
 }
 
