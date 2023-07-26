@@ -24,6 +24,7 @@
     "@nestjs/mongoose": "^9.2.2",
     "@nestjs/passport": "^9.0.3",
     "@nestjs/platform-express": "^9.1.1",
+    "@nestjs/serve-static": "^4.0.0",
     "@nx/angular": "16.1.0",
     "@nxtend/ionic-angular": "^13.1.0",
     "axios": "^1.0.0",
