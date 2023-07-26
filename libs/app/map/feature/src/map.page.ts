@@ -11,6 +11,8 @@ import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
 })
   export class MapPage {
 
+      require: any;
+
       map!:L.Map
       locationLat: number;
       locationLong: number;
@@ -27,6 +29,8 @@ import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
 
       async ngOnInit() {
         const coordinates = await Geolocation.getCurrentPosition();
+
+        this.setPropertyLocation();
 
         
         this.map=L.map('map',{
@@ -108,28 +112,19 @@ import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
     this.ngOnInit();
   }
 
-//   reverse(location: L.LatLngLiteral, scale: number, cb: GeocodingCallback, context?: any) {
-//     try {
-//       const code = this.options.OpenLocationCode.encode(
-//         location.lat,
-//         location.lng,
-//         this.options.codeLength
-//       );
-//       const result = {
-//         name: code,
-//         center: L.latLng(location.lat, location.lng),
-//         bbox: L.latLngBounds(
-//           L.latLng(location.lat, location.lng),
-//           L.latLng(location.lat, location.lng)
-//         )
-//       };
-//       cb.call(context, [result]);
-//     } catch (e) {
-//       console.warn(e); // eslint-disable-line no-console
-//       cb.call(context, []);
-//     }
-//   }
-// }
+
+  setPropertyLocation(){
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const fetch = this.require('node-fetch');
+    const address = 'Baldersgade 3B, 2200 Copenhagen, Denmark';
+
+    fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=dcd92e44986d482085e39a946d3cebbb`)
+    .then((resp: { json: () => any; }) => resp.json())
+    .then((geocodingResult: any) => {
+      console.log(geocodingResult);
+    });
+      }
+
   
 
 }
