@@ -84,7 +84,7 @@ import fetch from 'node-fetch';
 
   setMarker(lat: any, long: any){
     const mark=L.marker([lat,long]).addTo(this.map);
-    mark.bindPopup("<b>Selected Location. "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
+    mark.bindPopup("<b>Selected Location: "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
   }
 
   reverseGeocode(reverseGeocodeURL:any,lat: any, long: any){
