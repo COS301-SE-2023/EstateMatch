@@ -1,10 +1,10 @@
 // export * from '@estate-match/api/core/feature';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { CoreModule  } from '@estate-match/api/core/feature';
+import { AppModule } from './app/app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(CoreModule);
+  const app = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env['PORT'] || 3000;

@@ -10,6 +10,7 @@ import { join } from 'path';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'app'),
     }),
+    CoreModule,
   ],
   controllers: [AppController],
   providers: [CoreModule],
