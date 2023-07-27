@@ -7,18 +7,19 @@
   }
 
 .main_content_div{
-    //width: 100%;
+    width: 100%;
 
     ion-label {
         display: block;
     }
 
     .white_div{
-        padding-top: 10%;
+        padding-top: 8%;
         width:85%;
         position: fixed;
-        height: 70%;
+        height: 73%;
         background-color: #fbfcfa;
+        //margin:auto;
     }
 
     .small_lbl{
@@ -29,7 +30,7 @@
         margin-left: 5%;
         border: 1px solid #707070;
         border-radius: 5px;
-        margin-bottom: 10px;
+        margin-bottom: 5%;
         width: 90%;
         --padding-start: 8px;
     }
