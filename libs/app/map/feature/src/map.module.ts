@@ -6,6 +6,8 @@ import { MapRouting } from './map.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Plugins } from '@capacitor/core';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 const { Geolocation } = Plugins;
 
@@ -15,9 +17,12 @@ const { Geolocation } = Plugins;
     IonicModule,
     MapRouting, 
     FormsModule, 
-    HttpClientModule
+    HttpClientModule,
   ],
-  declarations: [MapPage],
+  declarations: [
+    MapPage,
+    HeaderComponent,
+    FooterComponent,],
 })
 
 export class MapModule {}
