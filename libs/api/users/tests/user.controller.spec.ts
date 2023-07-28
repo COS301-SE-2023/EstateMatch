@@ -18,7 +18,7 @@ describe('UserController (Integration)', () => {
   beforeEach(async () => {
     const module = await Test.createTestingModule({
       imports : [
-        //MongooseModule.forRoot({ ":"});
+        MongooseModule.forRoot('mongodb+srv://teambluecos301:Wtm7JJS8dY0g7vmQ@estate-match.sxjhyyy.mongodb.net/estate-match-db?retryWrites=true&w=majority'),
         MongooseModule.forFeature([{ name: 'User', schema: UserSchema },
                                   {name: 'Prefrences', schema: PrefrencesSchema},
                         ]),
@@ -34,6 +34,18 @@ describe('UserController (Integration)', () => {
     expect(userService).toBeTruthy();
   }
   );
+
+  it('should create a user', async () => {
+    const user: UserModel = {
+      username : 'INTUsername',
+      email : 'INTEmail',
+      firstName : 'INTFirstname',
+      lastName : 'INTLastname',
+    };
+
+    const createdUser = await userService.createUser(user);
+    expect(createdUser).toEqual(user);
+  });
 });
 
 //   beforeEach(async () => {

@@ -12,6 +12,11 @@ export class UserService {
         return await this.commandBus.execute<
             GetUserCommand, IGetUserResponse>(new GetUserCommand(request));
     }
+
+    async createUser(request: ISetUserRequest): Promise<ISetUserResponse> {
+        return await this.commandBus.execute<
+            SetUserCommand, ISetUserResponse>(new SetUserCommand(request));
+    }
     
     async setUser(request: ISetUserRequest): Promise<ISetUserResponse> {
        return await this.commandBus.execute<
