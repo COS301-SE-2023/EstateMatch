@@ -27,7 +27,13 @@ describe('UserController (Integration)', () => {
       providers: [UserService],
     }).compile();
 
+    userService = module.get(UserService);
   });
+
+  it('should be defined', () => {
+    expect(userService).toBeTruthy();
+  }
+  );
 });
 
 //   beforeEach(async () => {
