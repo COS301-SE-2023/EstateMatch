@@ -8,6 +8,7 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { Module } from 'module';
+import { PrefrencesSchema } from '../../prefrences/schema/src';
 
 describe('UserController (Integration)', () => {
   let app: INestApplication;
@@ -18,8 +19,8 @@ describe('UserController (Integration)', () => {
     const module = await Test.createTestingModule({
       imports : [
         //MongooseModule.forRoot({ ":"});
-        MongooseModule.forFeature([{ name: 'User', schema: UserSchema }
-                                  {}
+        MongooseModule.forFeature([{ name: 'User', schema: UserSchema },
+                                  {name: 'Prefrences', schema: PrefrencesSchema},
                         ]),
       ],
       controllers: [UserController],
