@@ -1,7 +1,8 @@
 import * as mongoose from 'mongoose';
+import {UserSchema, UserModel} from '@estate-match/api/users/schema';
 
 export const PrefrencesSchema = new mongoose.Schema({
-    user : {type: String, required: true},
+    user : UserSchema,
     budget : Number,
     location : String,
     bedrooms : Number,
@@ -12,7 +13,7 @@ export const PrefrencesSchema = new mongoose.Schema({
 
 //our model
 export interface PrefrencesModel  {
-    user : string;
+    user : UserModel;
     budget : number;
     location : string;
     bedrooms : number;
