@@ -1,9 +1,10 @@
+import "text-encoding-utf-8"
 import { MongooseModule } from "@nestjs/mongoose";
 import { Test } from "@nestjs/testing";
 import { PrefrencesSchema } from '../../../prefrences/schema/src';
 import { UserSchema } from '../../schema/src';
 import { UserService } from '.';
-import "text-encoding-utf-8"
+
 
 describe('UserService (Integration)', () => {
     let service : UserService;
@@ -25,6 +26,7 @@ describe('UserService (Integration)', () => {
 
     it('should be defined', () => {
         expect(service).toBeDefined();
+        expect(service).toBeTruthy();
     });
 
 });
