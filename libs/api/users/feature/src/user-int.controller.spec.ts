@@ -10,6 +10,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import { Module } from 'module';
 import { PrefrencesSchema } from '../../../prefrences/schema/src';
 
+
 describe('UserController (Integration)', () => {
   let app: INestApplication;
   let mongodb: MongoMemoryServer;
@@ -35,17 +36,7 @@ describe('UserController (Integration)', () => {
   }
   );
 
-  // it('should create a user', async () => {
-  //   const user: UserModel = {
-  //     username : 'INTUsername',
-  //     email : 'INTEmail',
-  //     firstName : 'INTFirstname',
-  //     lastName : 'INTLastname',
-  //   };
-
-  //   const createdUser = await userService.createUser(user);
-  //   expect(createdUser).toEqual(user);
-  // });
+  
 });
 
 //   beforeEach(async () => {
@@ -77,6 +68,18 @@ describe('UserController (Integration)', () => {
 //       .expect(200);
 //     expect(response.body).toEqual([]);
 //   });
+
+// it('should create a user', async () => {
+  //   const user: UserModel = {
+  //     username : 'INTUsername',
+  //     email : 'INTEmail',
+  //     firstName : 'INTFirstname',
+  //     lastName : 'INTLastname',
+  //   };
+
+  //   const createdUser = await userService.createUser(user);
+  //   expect(createdUser).toEqual(user);
+  // });
 
 //   it('/users (POST) - should create a user', async () => {
 //     const userData = {
