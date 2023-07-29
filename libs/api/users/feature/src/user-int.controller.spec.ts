@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { MongooseModule } from '@nestjs/mongoose';
+import 'text-encoding-utf-8';
 import { UserController } from '.';
 import { UserSchema } from '../../schema/src';
 import { UserService } from '.';
@@ -10,11 +11,14 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import { Module } from 'module';
 import { PrefrencesSchema } from '../../../prefrences/schema/src';
 
+import { CommandBus } from '@nestjs/cqrs';
 
 describe('UserController (Integration)', () => {
-  let app: INestApplication;
+  let app: TestingModule;
   let mongodb: MongoMemoryServer;
   let userService: UserService;
+  let controller: UserController;
+  let commandBus: CommandBus;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
@@ -25,14 +29,30 @@ describe('UserController (Integration)', () => {
                         ]),
       ],
       controllers: [UserController],
-      providers: [UserService],
+      providers: [
+        UserService,
+        {
+          provide: CommandBus,
+          useValue: {
+            execute: jest.fn(),
+          },
+        }
+      ],
     }).compile();
 
-    userService = module.get(UserService);
+    userService = module.get<UserService>(UserService);
+    commandBus = module.get<CommandBus>(CommandBus);
   });
 
   it('should be defined', () => {
     expect(userService).toBeTruthy();
+  }
+  );
+
+  it('should get user', async () => {
+    expect(
+      await userService.getUser({ user: 'TestUsername' }),
+    ).toBeDefined();
   }
   );
 
