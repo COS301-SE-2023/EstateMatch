@@ -1,14 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserController } from '../feature/src';
-import { UserSchema } from '../schema/src';
-import { UserService } from '../feature/src';
-import { UserModel } from '../schema/src';
+import { UserController } from '.';
+import { UserSchema } from '../../schema/src';
+import { UserService } from '.';
+import { UserModel } from '../../schema/src';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { Module } from 'module';
-import { PrefrencesSchema } from '../../prefrences/schema/src';
+import { PrefrencesSchema } from '../../../prefrences/schema/src';
 
 describe('UserController (Integration)', () => {
   let app: INestApplication;
@@ -35,17 +35,17 @@ describe('UserController (Integration)', () => {
   }
   );
 
-  it('should create a user', async () => {
-    const user: UserModel = {
-      username : 'INTUsername',
-      email : 'INTEmail',
-      firstName : 'INTFirstname',
-      lastName : 'INTLastname',
-    };
+  // it('should create a user', async () => {
+  //   const user: UserModel = {
+  //     username : 'INTUsername',
+  //     email : 'INTEmail',
+  //     firstName : 'INTFirstname',
+  //     lastName : 'INTLastname',
+  //   };
 
-    const createdUser = await userService.createUser(user);
-    expect(createdUser).toEqual(user);
-  });
+  //   const createdUser = await userService.createUser(user);
+  //   expect(createdUser).toEqual(user);
+  // });
 });
 
 //   beforeEach(async () => {

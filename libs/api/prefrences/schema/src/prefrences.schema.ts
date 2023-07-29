@@ -2,24 +2,28 @@ import * as mongoose from 'mongoose';
 import {UserSchema, UserModel} from '@estate-match/api/users/schema';
 
 export const PrefrencesSchema = new mongoose.Schema({
-    user : UserSchema,
+    user : {type: String , required: true},
     budget : Number,
     location : String,
     bedrooms : Number,
     bathrooms : Number,
     garages : Number,
     extras : [String],
+
+    username : {type: UserSchema, required: true}
 });
 
 //our model
 export interface PrefrencesModel  {
-    user : UserModel;
+    user : string;
     budget : number;
     location : string;
     bedrooms : number;
     bathrooms : number;
     garages : number;
     extras : string[],
+
+    username : UserModel;
 }
 
 // import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
