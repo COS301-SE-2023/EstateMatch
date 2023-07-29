@@ -10,7 +10,7 @@ export const PrefrencesSchema = new mongoose.Schema({
     garages : Number,
     extras : [String],
 
-    username : {type: UserSchema, required: true}
+    //username : {type: UserSchema, required: true}
 });
 
 //our model
@@ -23,7 +23,7 @@ export interface PrefrencesModel  {
     garages : number;
     extras : string[],
 
-    username : UserModel;
+    //username : UserModel;
 }
 
 // import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
