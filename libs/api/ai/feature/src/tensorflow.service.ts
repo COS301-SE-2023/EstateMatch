@@ -138,7 +138,7 @@ export class TensorflowService {
     const predictions = this.model?.predict(batchedImage) as tensorflow.Tensor;
     const predictedClass = predictions.argMax(1).dataSync()[0];
 
-    console.log('Predictions:', predictions.dataSync()); // Debug statement
+    //console.log('Predictions:', predictions.dataSync()); // Debug statement
 
     return predictedClass;
   }
