@@ -2,6 +2,7 @@ import { AIPrefrencesModel } from "@estate-match/api/prefrences/schema";
 import { Inject, Injectable, NotImplementedException } from "@nestjs/common";
 import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
+import { IAIPreference } from "@estate-match/api/prefrences/util";
 
 @Injectable()
 export class AIPreferencesRepository {
@@ -12,8 +13,14 @@ export class AIPreferencesRepository {
         return result ? result.toObject() : null;
     }   
 
-    async create(aiPrefrences : AIPrefrencesModel) : Promise<AIPrefrencesModel> {
-        const createdPrefrences = new this.aiPrefrencesModel(aiPrefrences);
+    async create(aiPrefrences : IAIPreference) : Promise<AIPrefrencesModel> {
+        const newRecord: AIPrefrencesModel = {
+            user: aiPrefrences.user,
+            colourDataPoints: [aiPrefrences.colour],
+            colour: aiPrefrences.colour,
+        }
+
+        const createdPrefrences = new this.aiPrefrencesModel(newRecord);
         return createdPrefrences.save();
     }
 

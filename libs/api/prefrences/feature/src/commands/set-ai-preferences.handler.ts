@@ -12,6 +12,7 @@ export class SetAIPreferencesHandler implements ICommandHandler<SetAIPreferences
     async execute(command: SetAIPreferencesCommand): Promise<any> {
         const request = command.request;
         const preferences = request.preferences; 
+    
 
         //Query the database for the user's AI preferences
         const userAIPreferences = await this.repository.findOne(preferences.user);
