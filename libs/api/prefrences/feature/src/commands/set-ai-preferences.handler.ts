@@ -18,9 +18,17 @@ export class SetAIPreferencesHandler implements ICommandHandler<SetAIPreferences
         const userAIPreferences = await this.repository.findOne(preferences.user);
         if(!userAIPreferences) {
             //If the user's AI preferences do not exist, create them
-            await this.repository.create(preferences);
+            const result = await this.repository.create(preferences);
+            if(result){
+                const response: ISetAIPreferencesResponse = {updated: true};
+                return response;
+            }
         }else{
-            await this.repository.update(preferences.user, preferences);
+            const result = await this.repository.update(preferences.user, preferences);
+            if(result){
+                const response: ISetAIPreferencesResponse = {updated: true};
+                return response;
+            }
         }
     }
 }
