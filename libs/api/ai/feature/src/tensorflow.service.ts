@@ -28,7 +28,7 @@ export class TensorflowService {
       }
     }
 
-    async identifyFeelFromURL(imageUrl: string): Promise<string> {
+    async identifyFeelFromURL(imageUrl: string[]): Promise<string> {
 
       await this.modelLoaded; // Wait for the model to load
 

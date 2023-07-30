@@ -6,7 +6,7 @@ export class TensorflowController {
     constructor(private readonly tensorflowService: TensorflowService) {}
 
     @Post('/identify-feel')
-    async identifyFeel(@Body() body: {imageUrl: string}) {
+    async identifyFeel(@Body() body: {imageUrl: string[]}) {
         const {imageUrl} = body;
         const result = await this.tensorflowService.identifyFeelFromURL(imageUrl);
         return result;

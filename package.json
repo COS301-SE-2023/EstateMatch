@@ -87,7 +87,7 @@
     "jest-environment-jsdom": "^29.4.1",
     "jest-environment-node": "^29.4.1",
     "jest-preset-angular": "~13.1.0",
-    "jimp": "^0.22.8",
+    "jimp": "^0.22.10",
     "nx": "16.1.0",
     "nx-cloud": "latest",
     "prettier": "^2.6.2",
