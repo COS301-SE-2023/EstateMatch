@@ -12,6 +12,10 @@ import {
     CreatePropertyHandler
 } from './commands';
 
+import {
+    CheckPropertyHandler
+} from './queries';
+
 export const CommandHandlers = [
     DislikePropertyHandler,
     LikePropertyHandler,
@@ -20,9 +24,13 @@ export const CommandHandlers = [
     CreatePropertyHandler
 ];
 
+export const QueryHandlers = [
+    CheckPropertyHandler
+];
+
 @Module({
   imports: [CqrsModule, PropertiesDataAccessModule],
-  providers: [PropertiesService, ...CommandHandlers],
+  providers: [PropertiesService, ...CommandHandlers, ...QueryHandlers],
   controllers: [PropertiesController],
   exports: [PropertiesService]
 })

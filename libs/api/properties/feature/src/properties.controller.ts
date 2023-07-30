@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
 import { PropertiesService } from './properties.service';
-import { IDislikePropertyRequest } from '@estate-match/api/properties/util';
+import { ICheckPropertyRequest, IDislikePropertyRequest } from '@estate-match/api/properties/util';
 import { ILikePropertyRequest } from '@estate-match/api/properties/util';
 import { IGetPropertyRequest } from '@estate-match/api/properties/util';
 import { IGetLikedPropertiesRequest } from '@estate-match/api/properties/util';
@@ -14,14 +14,6 @@ export class PropertiesController {
   getData() {
     return this.propertiesService.getData();
   }
-
-  /*@Post(':cardId/swipe')
-  async swipeCard(
-    @Body('userId') userId: string,
-    @Body('action') action: 'like' | 'dislike',
-  ): Promise<void> {
-    await this.cardService.swipeCard(userId, cardId, action);
-  }*/
 
   @Post('/dislike')
   async dislikeProperty(@Body() property: IDislikePropertyRequest){
@@ -47,5 +39,10 @@ export class PropertiesController {
   @Post('/createProperty')
   async createProperty(@Body() property: ICreatePropertyRequest) {
     return await this.propertiesService.createProperty(property);
+  }
+
+  @Post('/propertyCheck')
+  async propertyCheck(@Body() user: ICheckPropertyRequest){
+    return await this.propertiesService.propertyCheck(user);
   }
 }

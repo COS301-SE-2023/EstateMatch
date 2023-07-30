@@ -4,22 +4,28 @@ import { PropertiesService } from './properties.service';
 import { IDislikePropertyRequest, IDislikePropertyResponse, ILikePropertyRequest, ILikePropertyResponse } from '@estate-match/api/properties/util';
 import { IGetLikedPropertiesRequest, IGetLikedPropertiesResponse } from '@estate-match/api/properties/util';
 import { IProperty, ILikeProperty } from '@estate-match/api/properties/util';
-import { CommandBus } from '@nestjs/cqrs';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
 
 describe('PropertiesController', () => {
   let app: TestingModule;
   let controller: PropertiesController;
   let service: PropertiesService;
   let commandBusMock: { execute: jest.Mock };
+  let queryBusMock: { execute: jest.Mock };
 
   beforeAll(async () => {
     commandBusMock = { execute: jest.fn() };
+    queryBusMock = { execute: jest.fn() };
     app = await Test.createTestingModule({
       controllers: [PropertiesController],
       providers: [PropertiesService,
         {
             provide: CommandBus,
             useValue: commandBusMock,
+        },
+        {
+          provide: QueryBus,
+          useValue: queryBusMock,
         }],
     }).compile();
 
