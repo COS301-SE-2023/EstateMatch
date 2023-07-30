@@ -15,4 +15,7 @@ export class PreferenceController {
     async postData(@Body() preferences: ISetPreferencesRequest){
         return await this.service.setPreferences(preferences);
     }
+
+    // @Post('/setAIPreferences')
+    
 }
