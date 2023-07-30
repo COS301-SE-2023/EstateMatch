@@ -115,6 +115,7 @@ export class HomePage implements AfterViewInit{
     }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http.post(url, body, { headers }).subscribe((response) => {
+      console.log(response);
       console.log('success');
     });
     await this.makeToast('Property Liked');
@@ -124,6 +125,15 @@ export class HomePage implements AfterViewInit{
     // if (this.currentDescriptionIndex >= this.descriptions.length) {
     //   this.currentDescriptionIndex = 0;
     // }
+    const url2 = 'api/identify-feel';
+    const body2 = {
+      imageUrl: currProperty.images
+    };
+
+    this.http.post(url2, body2, { headers }).subscribe((response) => {
+      console.log(response);
+    });
+
   }
 
   async dislikeHouse() {
