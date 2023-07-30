@@ -18,6 +18,8 @@ export class SetAIPreferencesHandler implements ICommandHandler<SetAIPreferences
         if(!userAIPreferences) {
             //If the user's AI preferences do not exist, create them
             await this.repository.create(preferences);
+        }else{
+            console.log(userAIPreferences);
         }
     }
 }
