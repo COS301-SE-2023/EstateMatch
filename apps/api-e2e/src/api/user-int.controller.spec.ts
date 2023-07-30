@@ -81,25 +81,47 @@ describe('UserController (integration)', () => {
     await app.close();
   });
 
-  describe('GET /users', () => {
-    it('should return an array of users', async () => {
+  describe('setting a user', () => {
+    it('should set a user', async () => {
       const user1 = {
         username: 'user1',
         //password: 'password1',
         email: 'user1@gmail.com',
         firstName: 'user1',
         lastName: 'user1',
-      }
+      };
 
       const response = await request(app.getHttpServer())
         .post('/setUser')
-        .send({user: user1})
+        .send({ user: user1 });
 
       expect(response.status).toBe(201);
       expect(response.body).toMatchObject(user1);
-    })
+    });
   });
 
+  describe('getting a user', () => {
+    it('should get a user', async () => {
+      const user1 = {
+        //password: 'password1',
+        email: 'user1@gmail.com',
+        firstName: 'user1',
+        lastName: 'user1',
+        username: 'user1',
+      };
+
+      await dbConnection.collection('users').insertOne(user1);
+
+      const response = await request(app.getHttpServer())
+        .post('/getUser')
+        .send({ username: user1.username });
+
+      expect(response.status).toBe(201);
+      //const data = { ...response.body};
+
+      //expect(response.body).toMatchObject(user1);
+    });
+  });
 });
 
 //await dbConnection.collection('comment').insertOne(commentDtoStub());
