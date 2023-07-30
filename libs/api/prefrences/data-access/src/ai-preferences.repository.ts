@@ -57,7 +57,5 @@ export class AIPreferencesRepository {
             userAIPreferences.colour = max;
             return await userAIPreferences.save();
         }
-
-        return null;
     }
 }
