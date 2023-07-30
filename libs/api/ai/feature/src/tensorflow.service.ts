@@ -37,36 +37,18 @@ export class TensorflowService {
       }
       const predictions: string[] = [];
 
-      const imageUrls = ["https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-7160804_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-29035859_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-17106470_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-61549932_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-32524510_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-96787670_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-84216206_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-49490620_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-14192455_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-41391600_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-64333825_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-85858315_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-1654516_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-40162161_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-24487838_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-63113105_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-86253315_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-71604203_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-118070_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-27618645_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-43543644_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-92999193_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-43953264_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-22001078_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-37383758_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-61210692_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-99207207_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-97620092_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-98777044_dhd.jpg",
-      "https://helium.privateproperty.co.za/live-za-images/property/635/30/9360635/images/property-9360635-66352018_dhd.jpg"]
+      const imageUrls = [ "https://helium.privateproperty.co.za/live-za-images/property/355/31/9062355/images/property-9062355-13913363_dhd.jpg",
+      "https://helium.privateproperty.co.za/live-za-images/property/355/31/9062355/images/property-9062355-31593408_dhd.jpg",
+      "https://helium.privateproperty.co.za/live-za-images/property/355/31/9062355/images/property-9062355-59717672_dhd.jpg",
+      "https://helium.privateproperty.co.za/live-za-images/property/355/31/9062355/images/property-9062355-15356270_dhd.jpg",
+      "https://helium.privateproperty.co.za/live-za-images/property/355/31/9062355/images/property-9062355-84248749_dhd.jpg",
+      "https://helium.privateproperty.co.za/live-za-images/property/355/31/9062355/images/property-9062355-92489071_dhd.jpg",
+      "https://helium.privateproperty.co.za/live-za-images/property/355/31/9062355/images/property-9062355-97015663_dhd.jpg",
+      "https://helium.privateproperty.co.za/live-za-images/property/355/31/9062355/images/property-9062355-27663947_dhd.jpg",
+      "https://helium.privateproperty.co.za/live-za-images/property/355/31/9062355/images/property-9062355-5885776_dhd.jpg",
+      "https://helium.privateproperty.co.za/live-za-images/property/355/31/9062355/images/property-9062355-72238659_dhd.jpg",
+      "https://helium.privateproperty.co.za/live-za-images/property/355/31/9062355/images/property-9062355-95659448_dhd.jpg",
+      "https://helium.privateproperty.co.za/live-za-images/property/355/31/9062355/images/property-9062355-12347195_dhd.jpg"]
 
       for (const imageUrl of imageUrls) {
         const imageBuffer = await this.downloadImage(imageUrl);
@@ -74,7 +56,7 @@ export class TensorflowService {
         const predictedClass = await this.classifyImage(tensor);
   
         // Replace these classes with whatever feel categories you want to use
-        const feelClasses = ['Light', 'Dark', 'Colorful'];
+        const feelClasses = ['Light', 'Dark'];
         const predictionLabel = feelClasses[predictedClass];
         predictions.push(predictionLabel);
       }
