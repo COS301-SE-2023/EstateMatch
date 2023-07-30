@@ -66,8 +66,8 @@ export class PreferencesPage {
       preferences:{
         user: sessionStorage.getItem('username'),
         location: this.area,
-        minBudget: parseInt(this.budget.lower),
-        maxBudget: parseInt(this.budget.upper),
+        budgetMin: parseInt(this.budget.lower),
+        budgetMax: parseInt(this.budget.upper),
         bedrooms: (this.bedrooms),
         bathrooms: (this.bathrooms),
         garages: (this.garages),
@@ -75,6 +75,7 @@ export class PreferencesPage {
       }
     }
 
+    console.log(body);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -112,6 +113,5 @@ export class PreferencesPage {
       }
         
     }
-    
   }
 }

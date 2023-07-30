@@ -2,7 +2,8 @@ import * as mongoose from 'mongoose';
 
 export const PrefrencesSchema = new mongoose.Schema({
     user : {type: String, required: true},
-    budget : Number,
+    budgetMin : Number,
+    budgetMax : Number,
     location : String,
     bedrooms : Number,
     bathrooms : Number,
@@ -13,7 +14,8 @@ export const PrefrencesSchema = new mongoose.Schema({
 //our model
 export interface PrefrencesModel  {
     user : string;
-    budget : number;
+    budgetMin : number;
+    budgetMax : number;
     location : string;
     bedrooms : number;
     bathrooms : number;
