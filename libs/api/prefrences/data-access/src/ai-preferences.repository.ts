@@ -24,12 +24,30 @@ export class AIPreferencesRepository {
         return createdPrefrences.save();
     }
 
-    async update(id : string, prefrences : AIPrefrencesModel) : Promise<AIPrefrencesModel | null> {
-        const updatedPrefrences = await this.aiPrefrencesModel.updateOne({user: id}, prefrences, {new : true}).exec();
-        if(updatedPrefrences.modifiedCount >= 1) {
-            return prefrences;
-        }else{
+    async update(id : string, prefrences : IAIPreference) : Promise<AIPrefrencesModel | null> {
+        const userAIPreferences = await this.aiPrefrencesModel.findOne({user: id});
+
+        if(!userAIPreferences) {
             return null;
+        }else{
+            userAIPreferences.colourDataPoints.push(prefrences.colour);
+            const colourDataPoints = userAIPreferences.colourDataPoints;
+            let colourful = 0;
+            let light = 0;
+            let dark = 0;
+            for(let i = 0; i < colourDataPoints.length; i++) {
+                if(colourDataPoints[i] === 'Colourful') {
+                    colourful++;
+                }else if(colourDataPoints[i] === 'Light'){
+                    light++;
+                }else{
+                    dark++;
+                }
+            }
+
+            return await userAIPreferences.save();
         }
+
+        return null;
     }
 }
