@@ -44,7 +44,17 @@ export class AIPreferencesRepository {
                     dark++;
                 }
             }
-
+            let max;
+            if(colourful !== light && Math.max(colourful, light) === colourful && colourful !== dark && Math.max(colourful, dark) === colourful) {
+                max = 'Colourful';
+            }else if(light !== colourful && Math.max(light, colourful) === light && light !== dark && Math.max(light, dark) === light) {
+                max = 'Light';
+            }else if(dark !== colourful && Math.max(dark, colourful) === dark && dark !== light && Math.max(dark, light) === dark){
+                max = 'Dark';
+            }else{
+                max = userAIPreferences.colour;
+            }
+            userAIPreferences.colour = max;
             return await userAIPreferences.save();
         }
 
