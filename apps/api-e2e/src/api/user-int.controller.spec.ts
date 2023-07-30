@@ -4,8 +4,8 @@ import request from 'supertest';
 import { CoreModule } from './core.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import mongoose, { Schema, Document, Connection } from 'mongoose';
-
-const dbUrl = 'mongodb+srv://teambluecos301:EQKMQ6y5tUKbChCp@testingcluster.sblumex.mongodb.net/?retryWrites=true&w=majority';
+const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
+const dbUrl = DATABASE_CONNECTION;
 
 const connectToDatabase = async () => {
   try {

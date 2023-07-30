@@ -7,10 +7,10 @@ import { AuthenticationModule } from '@estate-match/api/authentication/feature';
 import { UserModule } from '@estate-match/api/users/feature'
 import { SearchModule } from '@estate-match/api/search/feature';
 import { WebScraperModule } from '@estate-match/api/webscraper/feature';
-
+const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://teambluecos301:EQKMQ6y5tUKbChCp@testingcluster.sblumex.mongodb.net/?retryWrites=true&w=majority',{
+    MongooseModule.forRoot(DATABASE_CONNECTION,{
         useNewUrlParser: true,
         useUnifiedTopology: true,
     }),
