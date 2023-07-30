@@ -78,8 +78,12 @@ export class HomePage implements AfterViewInit{
     const body = {
       filters: {
         location: this.userPreferences.location,
-        minBudget: this.userPreferences.budgetMin, 
-        maxBudget: this.userPreferences.budgetMax,      //Need to add max budget    
+        budgetMin: this.userPreferences.budgetMin,
+        budgetMax: this.userPreferences.budgetMax,
+        bedrooms: this.userPreferences.bedrooms,
+        bathrooms: this.userPreferences.bathrooms,
+        garages: this.userPreferences.garages,
+        amenities: this.userPreferences.extras
       }
     }
 
