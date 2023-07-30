@@ -7,9 +7,10 @@ import { InjectModel } from "@nestjs/mongoose";
 export class AIPreferencesRepository {
     constructor(@InjectModel('Prefrences') private readonly aiPrefrencesModel : Model<AIPrefrencesModel>){}
 
-   async findOne() : Promise<AIPrefrencesModel[]> {
+   async findOne(user: string) : Promise<AIPrefrencesModel | null> {
     console.log("findAll");
-    return await this.aiPrefrencesModel.find().exec();
+    const result =  await this.aiPrefrencesModel.findOne({user: user});
+    return result ? result.toObject() : null;
    }   
 
 //    async create(aiPrefrences : AIPrefrencesModel) : Promise<AIPrefrencesModel> {
