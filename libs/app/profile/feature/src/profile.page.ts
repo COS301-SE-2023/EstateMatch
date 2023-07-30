@@ -31,7 +31,8 @@ export class ProfilePage {
   preferences: IPreference = {
     user: 'string',
     location: 'string', // Need to add location array on API side
-    budget: 1000000, // Need to add max on API side
+    budgetMin: 1000000, // Need to add max on API side
+    budgetMax: 10000000,
     bedrooms: 1,
     bathrooms: 2,
     garages: 3,
