@@ -7,10 +7,12 @@ import { AuthenticationModule } from '@estate-match/api/authentication/feature';
 import { UserModule } from '@estate-match/api/users/feature'
 import { SearchModule } from '@estate-match/api/search/feature';
 import { WebScraperModule } from '@estate-match/api/webscraper/feature';
+import { TensorflowModule } from '@estate-match/api/ai/feature';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
 const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
+
 
 @Module({
   imports: [
@@ -24,6 +26,7 @@ const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
     UserModule,
     SearchModule,
     WebScraperModule,
+    TensorflowModule,
   ],
   controllers: [CoreController],
 })
