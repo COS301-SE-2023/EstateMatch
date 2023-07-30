@@ -11,7 +11,6 @@ export class CheckPropertyHandler implements IQueryHandler<CheckPropertyQuery, I
 
   async execute(query: CheckPropertyQuery) : Promise<any> {
     const request = query.request;
-    console.log(request);
     //Query repo
     return {empty: true};
   }

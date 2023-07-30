@@ -12,7 +12,6 @@ export class UserRepository {
     }
 
     async findOne(id : string) : Promise<UserModel | null> {
-        console.log(id);
         const result = await this.userModel.findOne({username: id});
         return result ? result.toObject() : null;
     }
@@ -37,12 +36,9 @@ export class UserRepository {
     
             } 
 
-            console.log(updateUserData);
             //perform update
             await this.userModel.updateOne({username: id}, updateUserData);
             return true;
-
-            
         } catch (error) {
             console.log(error);
             return false;
