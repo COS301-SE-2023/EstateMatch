@@ -101,3 +101,5 @@ describe('UserController (integration)', () => {
   });
 
 });
+
+//await dbConnection.collection('comment').insertOne(commentDtoStub());
