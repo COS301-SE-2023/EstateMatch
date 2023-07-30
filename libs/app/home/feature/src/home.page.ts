@@ -115,7 +115,6 @@ export class HomePage implements AfterViewInit{
     }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http.post(url, body, { headers }).subscribe((response) => {
-      console.log(response);
       console.log('success');
     });
     await this.makeToast('Property Liked');
@@ -130,10 +129,17 @@ export class HomePage implements AfterViewInit{
       imageUrl: currProperty.images
     };
 
-    this.http.post(url2, body2, { headers }).subscribe((response) => {
-      console.log(response);
-    });
+    const aiColour = await this.http.post(url2, body2, { headers }).toPromise() as {colour: string};
 
+    const aiUrl = 'api/setAIPreferences';
+    const aiBody = {
+      user: sessionStorage.getItem('username'),
+      colour: aiColour.colour
+    }
+
+    this.http.post(aiUrl, aiBody, { headers }).subscribe((response) => {
+      console.log('response');
+    });
   }
 
   async dislikeHouse() {
