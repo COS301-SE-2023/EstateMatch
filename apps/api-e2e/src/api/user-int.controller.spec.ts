@@ -81,15 +81,17 @@ describe('UserController (integration)', () => {
     await app.close();
   });
 
-  describe('setting a user', () => {
+  describe('User Testing', () => {
+
+    const user1 = {
+      //password: 'password1',
+      email: 'user1@gmail.com',
+      firstName: 'user1',
+      lastName: 'user1',
+      username: 'user1',
+    };
+
     it('should set a user', async () => {
-      const user1 = {
-        username: 'user1',
-        //password: 'password1',
-        email: 'user1@gmail.com',
-        firstName: 'user1',
-        lastName: 'user1',
-      };
 
       const response = await request(app.getHttpServer())
         .post('/setUser')
@@ -98,19 +100,10 @@ describe('UserController (integration)', () => {
       expect(response.status).toBe(201);
       expect(response.body).toMatchObject(user1);
     });
-  });
 
-  describe('getting a user', () => {
     it('should get a user', async () => {
-      const user1 = {
-        //password: 'password1',
-        email: 'user1@gmail.com',
-        firstName: 'user1',
-        lastName: 'user1',
-        username: 'user1',
-      };
 
-      await dbConnection.collection('users').insertOne(user1);
+     await dbConnection.collection('users').insertOne(user1);
 
       const response = await request(app.getHttpServer())
         .post('/getUser')
@@ -121,7 +114,53 @@ describe('UserController (integration)', () => {
 
       //expect(response.body).toMatchObject(user1);
     });
+
+    it('should update a user', async () => {
+        
+        await dbConnection.collection('users').insertOne(user1);
+  
+        const updatedUser = {
+          //password: 'password1',
+          firstname : 'TestUser1',
+          lastname : 'TestUser1',
+          email: 'TestUser1@gmail.com',
+          username: 'TestUser1',
+        };
+
+        const response = await request(app.getHttpServer())
+          .post('/updateUser')
+          .send({ 
+            username: user1.username,
+            user: updatedUser 
+          });
+
+        expect(response.status).toBe(201);
+
+        const userData = response.body;
+        
+        const email = userData['email'];
+        const firstname = userData['firstname'];
+        const lastname = userData['lastname'];
+        const username = userData['username'];
+
+        const data = {
+          email,
+          firstname,
+          lastname,
+          username,
+        };
+
+       // expect(data).toMatchObject(updatedUser);
+
+        //expect(response.body).toMatchObject(updatedUser);
+
+        });
+
   });
+
+  // describe('getting a user', () => {
+   
+  // });
 });
 
 //await dbConnection.collection('comment').insertOne(commentDtoStub());
