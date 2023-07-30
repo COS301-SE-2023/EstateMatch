@@ -129,16 +129,18 @@ export class HomePage implements AfterViewInit{
       imageUrl: currProperty.images
     };
 
-    const aiColour = await this.http.post(url2, body2, { headers }).toPromise() as {colour: string};
+    const aiPref = await this.http.post(url2, body2, { headers }).toPromise() as {result: string};
 
     const aiUrl = 'api/setAIPreferences';
     const aiBody = {
-      user: sessionStorage.getItem('username'),
-      colour: aiColour.colour
+      preferences: {
+        user: sessionStorage.getItem('username'),
+        colour: aiPref.result        
+      }
     }
 
     this.http.post(aiUrl, aiBody, { headers }).subscribe((response) => {
-      console.log('response');
+      console.log(response);
     });
   }
 
