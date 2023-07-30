@@ -87,6 +87,7 @@ export class HomePage implements AfterViewInit{
     // this.properties = this.properties.slice(0,3);
     this.lastImageIndex = this.properties[0].images.length - 1;
     // this.ngAfterViewInit();
+    this.propertyCheck();
   }
 
   ngAfterViewInit(){
@@ -176,15 +177,11 @@ export class HomePage implements AfterViewInit{
       const gesture: Gesture = this.gestureCtrl.create({
         el: card.nativeElement,
         gestureName: 'move',
-        onStart: ev => {
-          this.logStart();
-        },
         onMove: ev => {
           card.nativeElement.style.transform = `translateX(${ev.deltaX}px)`;
           // card.nativeElement.style.transform = `translateX(${ev.deltaX}px) rotate(${ev.deltaX / 10}deg)`;
         },
         onEnd: ev => {
-          this.logEnd();
           card.nativeElement.style.transition = '.5s ease-out';
           if(ev.deltaX > 150){
             this.makeToast('Property Liked')
@@ -204,12 +201,35 @@ export class HomePage implements AfterViewInit{
     }
   }
 
-  logStart() {
-    console.log('Swipe started');
-  }
+  async propertyCheck(){
+    const url = 'api/propertyCheck';
+    const username = sessionStorage.getItem('username');
+    const body = {
+      user: username,
+    }
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const newPropertiesNeeded = await this.http.post(url, body, { headers }).toPromise() as {empty: boolean};
 
-  logEnd() {
-    console.log('Swipe ended');
+    if(newPropertiesNeeded){
+      if(newPropertiesNeeded.empty){
+        //Somehow check if new user or not
+
+        const url = 'api/getPreferences';
+        const prefBody = { user : username };
+        let location;
+        if (username) {
+          try {
+            const response = await this.http.post(url, prefBody, { headers }).toPromise() as IPreference;
+            location = response.location;
+          } catch (error) {
+            console.error('Error fetching user data:', error);
+          }
+        }
+
+        //Use location here
+        //Need to run the web scraper 
+      }
+    }
   }
 }
 

@@ -32,6 +32,23 @@ ion-item {
     // font-weight: bold;
 }
 
+ion-chip{
+    background-color: #67C390;
+    color: white;
+    width: 93%;
+    text-align: center;
+
+    ion-label{
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+.ameneties_chip{
+    width: 45% !important;
+}
+
 .back-icon{
     width: 24px;
     height: 24px;
@@ -124,7 +141,7 @@ img[name="HouseImage"]{
     align-items: center;
     float: left;
     justify-content: center;
-    margin-top: 3%;
+    margin-top: 5%;
     margin-left: 29.5%;
 }
 
@@ -137,6 +154,6 @@ img[name="HouseImage"]{
     float: right;
     align-items: center;
     justify-content: center;
-    margin-top: 3%;
+    margin-top: 5%;
     margin-right: 29.5%;
 }

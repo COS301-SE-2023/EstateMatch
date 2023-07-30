@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { DislikePropertyCommand, IDislikePropertyRequest, IDislikePropertyResponse } from '@estate-match/api/properties/util';
+import { CheckPropertyQuery, DislikePropertyCommand, ICheckPropertyRequest, ICheckPropertyResponse, IDislikePropertyRequest, IDislikePropertyResponse } from '@estate-match/api/properties/util';
 import { LikePropertyCommand, ILikePropertyRequest, ILikePropertyResponse } from '@estate-match/api/properties/util';
 import { IGetLikedPropertiesRequest, IGetLikedPropertiesResponse, GetLikedPropertiesCommand,  } from '@estate-match/api/properties/util';
 import { GetPropertiesCommand, IGetPropertyRequest, IGetPropertyResponse } from '@estate-match/api/properties/util';
-import { CommandBus } from '@nestjs/cqrs';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
 
 //create property imports 
 import { ICreatePropertyRequest, ICreatePropertyResponse, CreatePropertyCommand } from '@estate-match/api/properties/util';
@@ -21,28 +21,8 @@ export class PropertiesService
 
       return { message: 'Likes and dislikes api' };
     }
-    constructor(private readonly commandBus: CommandBus){}
-  /*constructor(
-    @InjectModel('Card') private readonly cardModel: Model<Card>,
-    @InjectModel('User') private readonly userModel: Model<User>,
-  ) {}
-
-  async swipeCard(userId: string, cardId: string, action: 'like' | 'dislike'): Promise<void> {
-    const card = await this.cardModel.findById(cardId);
-    const user = await this.userModel.findById(userId);
-
-    if (!card || !user) {
-      throw new Error('Card or User not found');
-    }
-
-    if (action === 'like') {
-      // Add card ID to user's liked items
-      user.likedItems.push(cardId);
-    }
-
-    // Save changes to the user
-    await user.save();
-  }*/
+    constructor(private readonly commandBus: CommandBus,
+                private readonly queryBus: QueryBus){}
 
   async dislikeProperty(
     request: IDislikePropertyRequest
@@ -89,5 +69,14 @@ export class PropertiesService
           CreatePropertyCommand,
           ICreatePropertyResponse
       >(new CreatePropertyCommand(request));
+  }
+
+  async propertyCheck(
+    request: ICheckPropertyRequest
+  ): Promise<ICheckPropertyResponse> {
+      return await this.queryBus.execute<
+          CheckPropertyQuery,
+          ICheckPropertyResponse
+      >(new CheckPropertyQuery(request));
   }
 }

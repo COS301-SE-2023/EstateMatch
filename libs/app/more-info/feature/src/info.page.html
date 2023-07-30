@@ -43,12 +43,11 @@
             </ion-grid> 
             <!-- <ion-label class="sub-heading">Description</ion-label>   -->
             <p class="description">{{ property.title }}</p>   <!-- Need to add description-->  
-            <ion-label class="sub-heading">Ameneties</ion-label>  
-            <ion-list *ngFor="let a of property.amenities"> 
-              <ion-item>
-                <ion-label>{{ a }}</ion-label>
-              </ion-item>
-            </ion-list>
+            <ion-label class="sub-heading">Ameneties</ion-label><br>  
+            <ion-chip class="ameneties_chip" *ngFor="let a of property.amenities">
+              <i class="fa fa-plus icon" aria-hidden="true"></i>
+              <ion-label>{{ a }}</ion-label>
+            </ion-chip>
 
             <div id="button-container" style="text-align:center;">
               <button id="dislike-button" style="background-color:#F0422A; height:60px; border-color:#F0422A ;border-radius: 100%; width:60px;">
