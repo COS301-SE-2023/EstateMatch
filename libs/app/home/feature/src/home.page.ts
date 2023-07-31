@@ -141,6 +141,10 @@ export class HomePage implements AfterViewInit{
 
     await this.makeToast('Property Liked');
 
+    setTimeout(() => {
+      console.log("timer");
+      }, 1000);
+
   // Set a timeout to hide the heart icon after 1 second (1000 milliseconds)
 
     this.showLikeIcon(0);
