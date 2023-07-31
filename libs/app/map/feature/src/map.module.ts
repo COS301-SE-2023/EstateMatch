@@ -5,6 +5,7 @@ import { MapPage } from './map.page';
 import { MapRouting } from './map.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule, 
     HttpClientModule
   ],
-  declarations: [MapPage],
+  declarations: [MapPage, HeaderComponent],
 })
 
 export class MapModule {}
