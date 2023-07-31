@@ -64,6 +64,8 @@ export class HomePage implements AfterViewInit{
 
   temp: any = [];
 
+  showLikeIcon = false;
+
   async ngOnInit() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     //Get preferences
@@ -116,6 +118,13 @@ export class HomePage implements AfterViewInit{
     this.http.post(url, body, { headers }).subscribe((response) => {
       console.log('success');
     });
+
+    //showing the heart icon.
+    this.showLikeIcon = true;
+    setTimeout(() => {
+      this.showLikeIcon = false;
+    }, 2000);
+
     await this.makeToast('Property Liked');
 
     this.currentDescriptionIndex++;
