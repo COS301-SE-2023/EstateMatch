@@ -88,7 +88,8 @@ export class PreferencesPage {
 
     
 
-    this.makeToast('Your initial prefrences set!');
+    this.makeToast('Your prefrences are updated!');
+    this.router.navigate(['/profile'], {replaceUrl: true});
   }
 
   async makeToast(message: any){
