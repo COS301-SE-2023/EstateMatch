@@ -1,7 +1,8 @@
 export interface IPreference {
     user: string;
     location: string;
-    budget: number;
+    budgetMin: number;
+    budgetMax: number;
     bedrooms: number;
     bathrooms: number;
     garages: number;

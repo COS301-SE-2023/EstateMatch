@@ -78,8 +78,12 @@ export class HomePage implements AfterViewInit{
     const body = {
       filters: {
         location: this.userPreferences.location,
-        minBudget: this.userPreferences.budget, 
-        maxBudget: 100000000,      //Need to add max budget    
+        budgetMin: this.userPreferences.budgetMin,
+        budgetMax: this.userPreferences.budgetMax,
+        bedrooms: this.userPreferences.bedrooms,
+        bathrooms: this.userPreferences.bathrooms,
+        garages: this.userPreferences.garages,
+        amenities: this.userPreferences.extras
       }
     }
 
@@ -124,6 +128,24 @@ export class HomePage implements AfterViewInit{
     // if (this.currentDescriptionIndex >= this.descriptions.length) {
     //   this.currentDescriptionIndex = 0;
     // }
+    const url2 = 'api/identify-feel';
+    const body2 = {
+      imageUrl: currProperty.images
+    };
+
+    const aiPref = await this.http.post(url2, body2, { headers }).toPromise() as {result: string};
+
+    const aiUrl = 'api/setAIPreferences';
+    const aiBody = {
+      preferences: {
+        user: sessionStorage.getItem('username'),
+        colour: aiPref.result        
+      }
+    }
+
+    this.http.post(aiUrl, aiBody, { headers }).subscribe((response) => {
+      console.log(response);
+    });
   }
 
   async dislikeHouse() {
