@@ -97,6 +97,14 @@ export class HomePage implements AfterViewInit{
     this.swipeEvent(cardArray);
   }
 
+  hideLikeIcon() {
+    this.showLikeIcon = false;
+  }
+  
+  hideCrossIcon() {
+    this.showCross = false;
+  }
+
   async likeHouse() { 
     const url = 'api/like';
     const currProperty = this.properties[this.currentDescriptionIndex];
@@ -127,7 +135,7 @@ export class HomePage implements AfterViewInit{
 
   // Set a timeout to hide the heart icon after 1 second (1000 milliseconds)
     setTimeout(() => {
-    this.showLikeIcon = false;
+    this.hideLikeIcon();
     }, 1000);
 
     this.currentDescriptionIndex++;
@@ -164,7 +172,7 @@ export class HomePage implements AfterViewInit{
     await this.makeToast('Property Disliked');
 
     setTimeout(() => {
-      this.showCross = false;
+      this.hideCrossIcon();
       }, 1000);
 
     this.currentDescriptionIndex++;
