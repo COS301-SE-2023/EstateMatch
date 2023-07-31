@@ -33,38 +33,40 @@ const connectToDatabase = async () => {
   }
 };
 
-//create preference interface 
+//create preference interface
 interface PrefrencesModel extends Document {
-    user : string;
-    budget : number;
-    location : string;
-    bedrooms : number;
-    bathrooms : number;
-    garages : number;
-    extras : string[],
+  user: string;
+  budget: number;
+  location: string;
+  bedrooms: number;
+  bathrooms: number;
+  garages: number;
+  extras: string[];
 
-    //username : UserModel;
+  //username : UserModel;
 }
 
 const PreferenceSchema = new Schema({
-    user : {type: String , required: true},
-    budget : Number,
-    location : String,
-    bedrooms : Number,
-    bathrooms : Number,
-    garages : Number,
-    extras : [String],
-})
+  user: { type: String, required: true },
+  budget: Number,
+  location: String,
+  bedrooms: Number,
+  bathrooms: Number,
+  garages: Number,
+  extras: [String],
+});
 
 describe('Preference Controller (Integration)', () => {
-    let app: INestApplication;
+  let app: INestApplication;
   let dbConnection: Connection;
 
   const setupTestApp = async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [
         CoreModule,
-        MongooseModule.forFeature([{ name: 'Preference', schema: PreferenceSchema }]),
+        MongooseModule.forFeature([
+          { name: 'Preference', schema: PreferenceSchema },
+        ]),
       ],
     }).compile();
 
@@ -75,7 +77,7 @@ describe('Preference Controller (Integration)', () => {
   };
 
   afterEach(async () => {
-    await dbConnection.collection('users').deleteMany({});
+    await dbConnection.collection('prefrences').deleteMany({});
   });
 
   beforeAll(async () => {
@@ -86,4 +88,36 @@ describe('Preference Controller (Integration)', () => {
     await app.close();
   });
 
+  describe('Preference Testing', () => {
+    const user1 = {
+      //password: 'password1',
+      email: 'user1@gmail.com',
+      firstName: 'user1',
+      lastName: 'user1',
+      username: 'user1',
+    };
+
+    
+
+    const UserPreference = {
+      user: user1.username,
+      budget: 550000,
+      location: 'Woodstock',
+      bedrooms: 2,
+      bathrooms: 3,
+      garages: 1,
+      extras: ['Pool'],
+    };
+
+    it('should set preference', async () => {
+        await dbConnection.collection('users').insertOne(user1);
+        
+      const response = await request(app.getHttpServer())
+        .post('/setPreferences')
+        .send({ perference: UserPreference });
+
+      expect(response.status).toBe(201);
+      expect(response.body).toMatchObject(UserPreference);
+    });
+  });
 });
