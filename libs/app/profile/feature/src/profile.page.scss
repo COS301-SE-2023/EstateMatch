@@ -56,7 +56,7 @@ ion-button[name="Logout"]{
   align-items: center;
   justify-content: center;
   color: #E75C48;
-  font-size: 14px;
+  font-size: 4vw;
   margin: 0% !important;
 }
 
@@ -67,6 +67,7 @@ ion-button[name="Logout"]{
   height: 18%;
   margin-left: -3%;
   fill: clear;
+  font-size: 4vw;
 }
 
 ion-card[name="Preferences"]{

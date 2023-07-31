@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Gesture, GestureController, IonCard, Platform, ToastController } from '@ionic/angular';
 import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
@@ -25,6 +25,8 @@ interface Property {
 export class HomePage implements AfterViewInit{
 
   @ViewChildren(IonCard, {read: ElementRef}) cards!: QueryList<ElementRef>;
+  @ViewChild('heartPicRef', { static: true }) heartPicRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('crossPicRef', { static: true }) crossPicRef!: ElementRef<HTMLDivElement>;
 
   constructor(private http: HttpClient,
     private toastController: ToastController,
@@ -64,6 +66,9 @@ export class HomePage implements AfterViewInit{
 
   temp: any = [];
 
+ // showLikeIcon = false;
+ // showCross = false; 
+
   async ngOnInit() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     //Get preferences
@@ -99,6 +104,20 @@ export class HomePage implements AfterViewInit{
     this.swipeEvent(cardArray);
   }
 
+  showLikeIcon(newOpacity: number) {
+    const divElement = this.heartPicRef.nativeElement;
+    divElement.style.opacity = String(newOpacity); 
+  }
+  
+  showCrossIcon(newOpacity: number) {
+    const divElement = this.crossPicRef.nativeElement;
+    divElement.style.opacity = String(newOpacity); 
+  }
+
+  delayedFunction() {
+    console.log('Delayed function executed.');
+  }
+
   async likeHouse() { 
     const url = 'api/like';
     const currProperty = this.properties[this.currentDescriptionIndex];
@@ -121,7 +140,19 @@ export class HomePage implements AfterViewInit{
     this.http.post(url, body, { headers }).subscribe((response) => {
       console.log('success');
     });
-    await this.makeToast('Property Liked');
+
+    //showing the heart icon.
+    this.showLikeIcon(1);
+
+    //await this.makeToast('Property Liked');
+
+    setTimeout(() => {
+      console.log("timer");
+      this.showLikeIcon(0);
+      }, 1000);
+
+  // Set a timeout to hide the heart icon after 1 second (1000 milliseconds)
+
 
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
@@ -169,7 +200,16 @@ export class HomePage implements AfterViewInit{
     this.http.post(url, body, { headers }).subscribe((response) => {
       console.log('success');
     });
-    await this.makeToast('Property Disliked');
+
+    this.showCrossIcon(1);
+
+    //await this.makeToast('Property Disliked');
+
+    setTimeout(() => {
+      console.log("timer");
+      this.showCrossIcon(0);
+      }, 1000);
+
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
 
@@ -206,11 +246,11 @@ export class HomePage implements AfterViewInit{
         onEnd: ev => {
           card.nativeElement.style.transition = '.5s ease-out';
           if(ev.deltaX > 150){
-            this.makeToast('Property Liked')
+            //this.makeToast('Property Liked')
             // card.nativeElement.style.transform = `translateX(${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
             this.likeHouse();
           }else if(ev.deltaX < -150){
-            this.makeToast('Property Disliked')
+            //this.makeToast('Property Disliked')
             // card.nativeElement.style.transform = `translateX(-${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
             this.dislikeHouse();
           }
@@ -259,10 +299,3 @@ export class HomePage implements AfterViewInit{
     
   }
 }
-
-
-
-
-
-
-

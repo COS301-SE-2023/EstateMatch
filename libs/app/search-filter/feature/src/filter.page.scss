@@ -10,7 +10,7 @@ ion-toolbar {
 }
 
 ion-card[name="displayContainer"]{
-    height: 78vh;
+    height: 80vh;
     border-radius: 5%;
     background-color: #fbfcfa;
     overflow-y: scroll;
@@ -58,7 +58,7 @@ ion-chip{
     background-color: #E7604D;
     color: white;
     text-align: center !important;
-    margin-top: 2%;
+    margin-top: 1.5%;
     margin-left: 3%;
     width: 45%;
     font-size: 14px !important;
@@ -80,6 +80,7 @@ button[name="Save"]{
 }
 
 button[name="Cancel"]{
+    margin-top: 8px;
     height: 50px;
     color: rgb(255, 255, 255);
     background-color: #E7604D;
@@ -102,7 +103,7 @@ button[name="Cancel"]{
 
 .main_content_div{
     width: 100%;
-    height: 60vh;
+    height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -156,7 +157,7 @@ button[name="Cancel"]{
         margin-left: auto;
         margin-right: auto;
         color: white; 
-        margin-bottom: -3%;
+        margin-bottom: -4%;
     }
 
     .button_container{
