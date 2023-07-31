@@ -100,7 +100,7 @@ describe('Preference Controller (Integration)', () => {
     
 
     const UserPreference = {
-      user: user1.username,
+      user:'user1',
       budget: 550000,
       location: 'Woodstock',
       bedrooms: 2,
@@ -111,13 +111,25 @@ describe('Preference Controller (Integration)', () => {
 
     it('should set preference', async () => {
         await dbConnection.collection('users').insertOne(user1);
-        
+
       const response = await request(app.getHttpServer())
         .post('/setPreferences')
         .send({ perference: UserPreference });
 
       expect(response.status).toBe(201);
       expect(response.body).toMatchObject(UserPreference);
+    });
+
+    it('should get preference', async () => {
+        await dbConnection.collection('users').insertOne(user1);
+
+      const response = await request(app.getHttpServer())
+        .post('/getPreferences')
+        .send({ username: user1.username });
+
+      expect(response.status).toBe(201);
+      //expect(response.body).toMatchObject(UserPreference);
+
     });
   });
 });
