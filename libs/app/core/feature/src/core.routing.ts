@@ -8,9 +8,8 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'login',
     loadChildren: () =>
-      import('@estate-match/app/home/feature').then((m) => m.HomeModule),
+      import('@estate-match/app/login/feature').then((m) => m.LoginModule),
   },
   {
     path: 'preferences',

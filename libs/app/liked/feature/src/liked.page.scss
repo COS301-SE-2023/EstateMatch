@@ -29,6 +29,89 @@ ion-card[name="DisplayCard"] {
 
 *{
     font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
+
+ion-content{
+  --background: #EFF0F5;
+}
+.main_content_div{
+  width: 100%;
+
+  ion-label {
+      display: block;
   }
+
+  // .white_div{
+  //     width: 100%;
+  //     padding: 16px;
+  //     border-top-left-radius: 35px;
+  //     border-top-right-radius: 35px;
+  //     margin-top: -30px;
+  //     position: fixed;
+  //     overflow: scroll;
+  //     background: #EFF0F5;
+  //     height: 60vh;
+  // }
+
+  .main_list_div{
+      color: gray;
+      margin-top: 5%;
+      padding-left: 10%;
+      .card_div{
+          display: flex;
+          width: 85%;
+          padding: 10px;
+          border-radius: 10px;
+          box-shadow: 0px 3px 6px rgba(0,0,0,0.3);
+          box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+
+          margin-bottom: 15px;
+
+          .image_div{
+              width: 120px;
+              height: 120px;
+              min-width: 120px;
+              border-radius: 10px;
+              margin-left: -25px;
+              box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+          }
+
+          .detail_div{
+              padding-left: 10px;
+              width: 100%;
+
+              .city{
+                  font-size: 18px;
+                  margin-top: 5%;
+                  margin-left: 3%;
+              }
+              .price{
+                  font-family: 'semi-bold';
+                  font-size: 16px;
+                  margin-top: 2%;
+                  margin-bottom: 5%;
+                  margin-left: 3%;
+              }
+
+              ion-grid{
+                  padding: 0;
+                  ion-col{
+                      text-align: center;
+                      border-right: 1px solid lightgray;
+                      padding-bottom: 0px;
+
+                      img{
+                          width: 20px;
+                      }
+                      ion-label {
+                          font-size: 12px;
+                          color: gray;
+                      }
+                  }
+              }
+          }
+      }
+  }
+}
 
   

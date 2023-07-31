@@ -15,6 +15,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@estate-match/api/ai/data-access": [
+        "libs/api/ai/data-access/src/index.ts"
+      ],
+      "@estate-match/api/ai/feature": ["libs/api/ai/feature/src/index.ts"],
+      "@estate-match/api/ai/util": ["libs/api/ai/util/src/index.ts"],
+      "@estate-match/api/ai/util--unit-test-runner=jest": [
+        "libs/api/ai/util--unit-test-runner=jest/src/index.ts"
+      ],
       "@estate-match/api/authentication/data-access": [
         "libs/api/authentication/data-access/src/index.ts"
       ],
