@@ -67,7 +67,7 @@ export class HomePage implements AfterViewInit{
   temp: any = [];
 
  // showLikeIcon = false;
-  showCross = false; 
+ // showCross = false; 
 
   async ngOnInit() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -104,8 +104,13 @@ export class HomePage implements AfterViewInit{
     divElement.style.opacity = String(newOpacity); 
   }
   
-  hideCrossIcon() {
-    this.showCross = false;
+  showCrossIcon(newOpacity: number) {
+    const divElement = this.crossPicRef.nativeElement;
+    divElement.style.opacity = String(newOpacity); 
+  }
+
+  delayedFunction() {
+    console.log('Delayed function executed.');
   }
 
   async likeHouse() { 
@@ -137,13 +142,8 @@ export class HomePage implements AfterViewInit{
     await this.makeToast('Property Liked');
 
   // Set a timeout to hide the heart icon after 1 second (1000 milliseconds)
-    setTimeout(() => {
-      console.log("timer");
-    }, 2000);
 
     this.showLikeIcon(0);
-
-    
 
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
@@ -174,13 +174,15 @@ export class HomePage implements AfterViewInit{
       console.log('success');
     });
 
-    this.showCross = true;
+    this.showCrossIcon(1);
 
     await this.makeToast('Property Disliked');
 
     setTimeout(() => {
-      this.hideCrossIcon();
+      console.log("timer");
       }, 1000);
+
+    this.showCrossIcon(0);
 
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
