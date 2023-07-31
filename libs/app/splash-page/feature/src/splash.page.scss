@@ -1,0 +1,57 @@
+html {
+    height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    //background: #898898;
+    background-repeat:no-repeat;
+    background: -webkit-linear-gradient( #67C390, #F0422A);
+    background: -moz-linear-gradient( #67C390, #F0422A);
+    background: -ms-linear-gradient(#67C390, #F0422A);
+    background: -o-linear-gradient( #67C390, #F0422A);
+    background: linear-gradient(#67C390, #F0422A);
+}
+
+button[name="Login"]{
+    background-color: transparent;
+    border-color: white;
+    color:white;
+    border-radius: 5%;
+    height: 60px;
+    width: 48%;
+    font-size: x-large;
+    border-width: 4px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 60%;
+}
+
+button[name="Register"]{
+    background-color: transparent;
+    border-color: white;
+    color:white;
+    border-radius: 5%;
+    height: 60px;
+    width: 48%;
+    font-size: x-large;
+    border-width: 4px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 70%;
+}
+div[name="buttonContainer"]{
+    margin-left: auto;
+    margin-right: auto; 
+    display: block;
+}
+
+img[name="Logo"]{
+    width: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20%;
+}

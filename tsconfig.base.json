@@ -120,6 +120,9 @@
       "@estate-match/app/liked/feature": [
         "libs/app/liked/feature/src/index.ts"
       ],
+      "@estate-match/app/loading-page/feature": [
+        "libs/app/loading-page/feature/src/index.ts"
+      ],
       "@estate-match/app/login/feature": [
         "libs/app/login/feature/src/index.ts"
       ],
@@ -150,6 +153,9 @@
       ],
       "@estate-match/app/search/feature": [
         "libs/app/search/feature/src/index.ts"
+      ],
+      "@estate-match/app/splash-page/feature": [
+        "libs/app/splash-page/feature/src/index.ts"
       ]
     }
   },
