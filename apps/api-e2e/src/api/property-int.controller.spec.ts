@@ -34,31 +34,31 @@ const connectToDatabase = async () => {
 };
 
 interface PropertiesModel extends Document {
-    title: string,
-    location: string,
-    price: number,
-    bedrooms: number,
-    bathrooms: number,
-    garages: number | null,
-    amenities: string[],
-    images: string[],
-  
-    //username : UserModel;
-  }
-  
-  const PropertiesSchema = new Schema<PropertiesModel>({
-    title: {type: String, required: true},
-    location: {type: String, required: true},
-    price: Number,
-    bedrooms: Number,
-    bathrooms: Number,
-    garages: Number,
-    amenities: [String],
-    images: [String],
-  });
+  title: string;
+  location: string;
+  price: number;
+  bedrooms: number;
+  bathrooms: number;
+  garages: number | null;
+  amenities: string[];
+  images: string[];
 
-  describe('Properties Controller (Integration)', () => {
-    let app: INestApplication;
+  //username : UserModel;
+}
+
+const PropertiesSchema = new Schema<PropertiesModel>({
+  title: { type: String, required: true },
+  location: { type: String, required: true },
+  price: Number,
+  bedrooms: Number,
+  bathrooms: Number,
+  garages: Number,
+  amenities: [String],
+  images: [String],
+});
+
+describe('Properties Controller (Integration)', () => {
+  let app: INestApplication;
   let dbConnection: Connection;
 
   const setupTestApp = async () => {
@@ -109,40 +109,49 @@ interface PropertiesModel extends Document {
     };
 
     const UserProperty = {
-        user: user1.username,
-        address: 'test',
-        price: 1000,
-        bedrooms: 1,
-        bathrooms: 1,
-        garages: 1,
-        amenities: [],
-        liked: true,
-        image: 'test image'
-    }
+      user: user1.username,
+      address: 'test',
+      price: 1000,
+      bedrooms: 1,
+      bathrooms: 1,
+      garages: 1,
+      amenities: [],
+      liked: true,
+      image: 'test image',
+    };
 
     it('should like a property', async () => {
-        const response = await request(app.getHttpServer())
+      const response = await request(app.getHttpServer())
         .post('/dislike')
         .send({ property: UserProperty });
 
-        console.log("DISLIKE PROPERTY: "+JSON.stringify(response.body));
+      console.log('DISLIKE PROPERTY: ' + JSON.stringify(response.body));
 
-        const check = {
-            message: "property disliked"
-        }
+      const check = {
+        message: 'property disliked',
+      };
 
-        const data = JSON.stringify(response.body);
-
-
+      const data = JSON.stringify(response.body);
 
       expect(response.status).toBe(201);
       expect(check).toMatchObject(response.body);
-
     });
 
+    it('should dislike a property', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/like')
+        .send({ property: UserProperty });
 
+      console.log('LIKE PROPERTY: ' + JSON.stringify(response.body));
 
+      const check = {
+        message: 'property liked',
+      };
 
-});
+      const data = JSON.stringify(response.body);
 
+      expect(response.status).toBe(201);
+      expect(check).toMatchObject(response.body);
+    });
   });
+});
