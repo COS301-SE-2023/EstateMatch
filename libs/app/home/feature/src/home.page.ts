@@ -25,8 +25,8 @@ interface Property {
 export class HomePage implements AfterViewInit{
 
   @ViewChildren(IonCard, {read: ElementRef}) cards!: QueryList<ElementRef>;
-  @ViewChild('heartPic', { static: true }) heartPicRef!: ElementRef<HTMLDivElement>;
-  @ViewChild('crossPic', { static: true }) crossPicRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('heartPicRef', { static: true }) heartPicRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('crossPicRef', { static: true }) crossPicRef!: ElementRef<HTMLDivElement>;
 
   constructor(private http: HttpClient,
     private toastController: ToastController,
@@ -143,11 +143,11 @@ export class HomePage implements AfterViewInit{
 
     setTimeout(() => {
       console.log("timer");
+      this.showLikeIcon(0);
       }, 1000);
 
   // Set a timeout to hide the heart icon after 1 second (1000 milliseconds)
 
-    this.showLikeIcon(0);
 
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
@@ -184,9 +184,8 @@ export class HomePage implements AfterViewInit{
 
     setTimeout(() => {
       console.log("timer");
+      this.showCrossIcon(0);
       }, 1000);
-
-    this.showCrossIcon(0);
 
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
@@ -253,10 +252,3 @@ export class HomePage implements AfterViewInit{
     console.log('Swipe ended');
   }
 }
-
-
-
-
-
-
-
