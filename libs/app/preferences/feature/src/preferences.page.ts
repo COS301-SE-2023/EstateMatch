@@ -26,10 +26,10 @@ export class PreferencesPage {
 
   ngOnInit() {
 
-    // this.route.queryParams.subscribe((params) => {
-    //   this.area = params['data'];
-    //   console.log(this.area);
-    // });
+    this.route.queryParams.subscribe((params) => {
+      this.area = params['data'];
+      console.log(this.area);
+    });
 
     // const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 

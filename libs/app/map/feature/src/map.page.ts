@@ -23,6 +23,7 @@ import { ActivatedRoute, Router } from '@angular/router';
       foundAddress: any;
       propertyLat: number;
       propertyLong: number;
+      selectedAddress: string;
       
       
 
@@ -34,6 +35,7 @@ import { ActivatedRoute, Router } from '@angular/router';
         this.userLong=0;
         this.propertyLat=0;
         this.propertyLong=0;
+        this.selectedAddress='';
       }
 
       async ngOnInit() {
@@ -131,7 +133,7 @@ import { ActivatedRoute, Router } from '@angular/router';
         // const marker = L.marker(new L.LatLng(foundAddress.properties.lat, foundAddress.properties.lon)).addTo(this.map);
         this.setLatLong(lat,long);
         this.setMarker(lat,long)
-        
+        this.selectedAddress = this.foundAddress.properties.city;
       });
   }
 
@@ -178,7 +180,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   }
 
   confirmLocation(){
-    this.router.navigate(['/preferences'], {replaceUrl: true});
+    this.router.navigate(['/preferences'], { queryParams:{data: this.selectedAddress}, replaceUrl: true});
   }  
 
 }
