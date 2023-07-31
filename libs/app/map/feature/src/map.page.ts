@@ -177,6 +177,8 @@ import { ActivatedRoute, Router } from '@angular/router';
     mark.bindPopup("<b>Property Location: "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
   }
 
-  
+  confirmLocation(){
+    this.router.navigate(['/preferences'], {replaceUrl: true});
+  }  
 
 }

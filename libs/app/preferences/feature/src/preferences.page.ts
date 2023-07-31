@@ -114,4 +114,8 @@ export class PreferencesPage {
         
     }
   }
+
+  openMap(){
+    this.router.navigate(['/map'], {replaceUrl: true});
+  }
 }
