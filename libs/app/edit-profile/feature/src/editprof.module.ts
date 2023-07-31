@@ -6,6 +6,8 @@ import { EditProfilePage } from './editprof.page';
 import { EditProfileRouting } from './editprof.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -15,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule, 
     HttpClientModule
   ],
-  declarations: [EditProfilePage],
+  declarations: [EditProfilePage, HeaderComponent, FooterComponent],
 })
 
 export class EditProfileModule {}

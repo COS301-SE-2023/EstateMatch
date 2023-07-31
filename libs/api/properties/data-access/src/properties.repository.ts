@@ -33,12 +33,19 @@ export class PropertiesRepository {
 
     // get properties based on the preferences of the user
     async getPropertiesByPreferences(preference : IPropSearch): Promise<PropertiesModel[] | null> {
-        return this.propertiesModel.find({$and: [{price: {$lte: preference.maxBudget}}, {price: {$gte: preference.minBudget}},
-            //  {bedrooms: {$gte: userPreference.bedrooms}}, 
-            //  {bathrooms: {$gte: userPreference.bathrooms}}, 
-            //  {garages: {$gte: userPreference.garages}},
-             {location: {$eq: preference.location}},
-            // {extras: {$in: userPreference.extras}}
+        const result = await this.propertiesModel.find({$and: [{price: {$lte: preference.budgetMax}}, {price: {$gte: preference.budgetMin}},
+            // {bedrooms: {$gte: preference.bedrooms}}, 
+            // {bathrooms: {$gte: preference.bathrooms}}, 
+            // {garages: {$gte: preference.garages}},
+            {location: {$eq: preference.location}},
+            // {amenities: {$in: preference.amenities}}
             ]}).exec();
+
+        console.log('getPropertiesByPreferences result: ', result);
+
+        if(!result) {
+            return null;
+        }
+            return result;
     }
 }

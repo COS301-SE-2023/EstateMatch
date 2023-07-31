@@ -1,0 +1,16 @@
+*{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
+ion-header[name="TopHeader"] {
+    height:7rem;
+}
+ion-toolbar[name="TopToolBar"] {
+    --background: #f3f1f1
+}
+.logo{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    margin-top: 7%;
+}

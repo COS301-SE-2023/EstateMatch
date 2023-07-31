@@ -22,8 +22,19 @@ export class PreferencesRepository {
     }
 
     async update(id : string, prefrences : PrefrencesModel) : Promise<PrefrencesModel | null> {
-        const updatedPrefrences = await this.prefrencesModel.findByIdAndUpdate(id, prefrences, {new : true}).exec();
-        return updatedPrefrences ? updatedPrefrences.toObject() : null;
+        const updatedPrefrences = await this.prefrencesModel.findOne({user: id});
+        if(!updatedPrefrences) {
+            return null;
+        }else{
+            updatedPrefrences.budgetMin = prefrences.budgetMin;
+            updatedPrefrences.budgetMax = prefrences.budgetMax;
+            updatedPrefrences.location = prefrences.location;
+            updatedPrefrences.bedrooms = prefrences.bedrooms;
+            updatedPrefrences.bathrooms = prefrences.bathrooms;
+            updatedPrefrences.garages = prefrences.garages;
+            updatedPrefrences.extras = prefrences.extras;
+            return await updatedPrefrences.save();
+        }
     }
 
     

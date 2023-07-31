@@ -12,8 +12,8 @@ export class SearchService{
         request: ISearchRequest
     ): Promise<ISearchResponse>{
         return await this.queryBus.execute<
-        SearchQuery,
-        ISearchResponse
+            SearchQuery,
+            ISearchResponse
         >(new SearchQuery(request))
     }
 }

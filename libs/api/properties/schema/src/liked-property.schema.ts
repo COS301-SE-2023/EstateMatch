@@ -6,7 +6,7 @@ export const LikedPropertiesSchema = new mongoose.Schema({
     price: Number,
     bedrooms: Number,
     bathrooms: Number,
-    garages: Number,
+    garages: Number || null,
     amenities: [String],
     liked: Boolean,
     image: String
@@ -19,7 +19,7 @@ export interface LikedPropertiesModel {
     price: number,
     bedrooms: number,
     bathrooms: number,
-    garages: number,
+    garages: number | null,
     amenities: string[],
     liked: boolean,
     image: string
