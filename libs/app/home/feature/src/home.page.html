@@ -22,7 +22,7 @@
     </div>
     
       <div class="card-content">
-        <i class="fa fa-map-marker icon" aria-hidden="true"></i>
+        <i (click)=openInMap() class="fa fa-map-marker icon" aria-hidden="true"></i>
         <ion-label class="city">{{ properties[currentDescriptionIndex].location }}</ion-label><br>
         <i class="fa fa-credit-card icon" aria-hidden="true"></i>
         <ion-label class="price">R{{ properties[currentDescriptionIndex].price }}</ion-label>

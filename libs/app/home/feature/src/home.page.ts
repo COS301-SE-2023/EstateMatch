@@ -253,6 +253,11 @@ export class HomePage implements AfterViewInit{
       }
     }
   }
+
+  openInMap(){
+    this.router.navigate(['/map'], { queryParams: { data: this.properties[this.currentDescriptionIndex].location }, replaceUrl: true});
+    
+  }
 }
 
 

@@ -3,6 +3,7 @@ import * as L from 'leaflet';
 import { Geolocation} from '@ionic-native/geolocation'
 import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
 import fetch from 'node-fetch';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -20,20 +21,32 @@ import fetch from 'node-fetch';
       userLat: number;
       userLong: number;
       foundAddress: any;
+      propertyLat: number;
+      propertyLong: number;
       
       
 
-      constructor() {
+      constructor(private route: ActivatedRoute,
+        private readonly router: Router,) {
         this.locationLat=0;
         this.locationLong=0;
         this.userLat=0;
         this.userLong=0;
+        this.propertyLat=0;
+        this.propertyLong=0;
       }
 
       async ngOnInit() {
+        this.route.queryParams.subscribe(async (params) =>{
+          if(params['data'] != null){
+            this.setPropertyLocation(params['data']);
+          }
+            this.router.navigate([], { queryParams: {} });
+        });
+
         const coordinates = await Geolocation.getCurrentPosition();
 
-        this.setPropertyLocation('Baldersgade 3B, 2200 Copenhagen, Denmark');
+        // this.setPropertyLocation('Baldersgade 3B, 2200 Copenhagen, Denmark');
 
         
         this.map=L.map('map',{
@@ -135,7 +148,7 @@ import fetch from 'node-fetch';
   }
 
 
-  setPropertyLocation(address: any){
+  async setPropertyLocation(address: any){
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const fetch = require('node-fetch');
     // const address = 'Baldersgade 3B, 2200 Copenhagen, Denmark';
@@ -144,11 +157,13 @@ import fetch from 'node-fetch';
     .then((resp: { json: () => any; }) => resp.json())
     .then((geocodingResult: any) => {
       console.log(geocodingResult);
+      this.propertyLat = geocodingResult.features[0].geometry.coordinates[0];
+      this.propertyLong = geocodingResult.features[0].geometry.coordinates[1];
 
-      return geocodingResult.features[0].geometry.coordinates;
+      this.setMarker(this.propertyLat,this.propertyLong);
     });
 
-    
+    // return [0,0]
   }
 
   
