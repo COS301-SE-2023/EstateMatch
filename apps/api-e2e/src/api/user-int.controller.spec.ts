@@ -43,7 +43,7 @@ interface User extends Document {
 }
 
 //create user schema
-const UserSchema = new Schema ({
+const UserSchema = new Schema<User> ({
   username: { type: String, required: true },
   //password: { type: String, required: true },
   email: { type: String, required: true },
@@ -150,7 +150,7 @@ describe('UserController (integration)', () => {
           username,
         };
 
-       // expect(data).toMatchObject(updatedUser);
+        //expect(data).toMatchObject(updatedUser);
 
         //expect(response.body).toMatchObject(updatedUser);
 
