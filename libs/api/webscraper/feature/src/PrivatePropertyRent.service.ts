@@ -139,13 +139,13 @@ export class PrivatePropertyRentService {
       const imageURLs = (await propertyPage.$$eval('.imageGrid a', (imagesElement) => imagesElement.map((image) => image.dataset['background']))).filter(url => url !== null && url !== undefined);
       
       // Modify image URLs to include "_dhd" before the file extension
-      for (let i = 0; i < imageURLs.length; i++) {
+      /*for (let i = 0; i < imageURLs.length; i++) {
         const lastDotIndex = imageURLs[i]?.lastIndexOf(".");
         if (lastDotIndex !== -1) 
         {
           imageURLs[i] = imageURLs[i]?.slice(0, lastDotIndex) + "_dhd" + imageURLs[i]?.slice(lastDotIndex);
         }
-      }
+      }*/
 
       const type = 'Rent';
     
