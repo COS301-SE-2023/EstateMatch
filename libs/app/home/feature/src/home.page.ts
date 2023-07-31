@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Gesture, GestureController, IonCard, Platform, ToastController } from '@ionic/angular';
 import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
@@ -25,6 +25,8 @@ interface Property {
 export class HomePage implements AfterViewInit{
 
   @ViewChildren(IonCard, {read: ElementRef}) cards!: QueryList<ElementRef>;
+  @ViewChild('heartPic', { static: true }) heartPicRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('crossPic', { static: true }) crossPicRef!: ElementRef<HTMLDivElement>;
 
   constructor(private http: HttpClient,
     private toastController: ToastController,
@@ -64,7 +66,7 @@ export class HomePage implements AfterViewInit{
 
   temp: any = [];
 
-  showLikeIcon = false;
+ // showLikeIcon = false;
   showCross = false; 
 
   async ngOnInit() {
@@ -97,8 +99,9 @@ export class HomePage implements AfterViewInit{
     this.swipeEvent(cardArray);
   }
 
-  hideLikeIcon() {
-    this.showLikeIcon = false;
+  showLikeIcon(newOpacity: number) {
+    const divElement = this.heartPicRef.nativeElement;
+    divElement.style.opacity = String(newOpacity); 
   }
   
   hideCrossIcon() {
@@ -129,14 +132,18 @@ export class HomePage implements AfterViewInit{
     });
 
     //showing the heart icon.
-    this.showLikeIcon = true;
+    this.showLikeIcon(1);
 
     await this.makeToast('Property Liked');
 
   // Set a timeout to hide the heart icon after 1 second (1000 milliseconds)
     setTimeout(() => {
-    this.hideLikeIcon();
-    }, 1000);
+      console.log("timer");
+    }, 2000);
+
+    this.showLikeIcon(0);
+
+    
 
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
