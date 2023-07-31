@@ -9,7 +9,7 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     loadChildren: () =>
-      import('@estate-match/app/login/feature').then((m) => m.LoginModule),
+      import('@estate-match/app/splash-page/feature').then((m) => m.SplashModule),
   },
   {
     path: 'preferences',
