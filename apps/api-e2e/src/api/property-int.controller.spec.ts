@@ -56,3 +56,93 @@ interface PropertiesModel extends Document {
     amenities: [String],
     images: [String],
   });
+
+  describe('Properties Controller (Integration)', () => {
+    let app: INestApplication;
+  let dbConnection: Connection;
+
+  const setupTestApp = async () => {
+    const moduleFixture: TestingModule = await Test.createTestingModule({
+      imports: [
+        CoreModule,
+        MongooseModule.forFeature([
+          { name: 'Properties', schema: PropertiesSchema },
+        ]),
+      ],
+    }).compile();
+
+    app = moduleFixture.createNestApplication();
+    await app.init();
+
+    dbConnection = await connectToDatabase();
+  };
+
+  afterEach(async () => {
+    await dbConnection.collection('prefrences').deleteMany({});
+  });
+
+  beforeAll(async () => {
+    await setupTestApp();
+  });
+
+  afterAll(async () => {
+    await app.close();
+  });
+
+  describe('Preference Testing', () => {
+    const user1 = {
+      //password: 'password1',
+      email: 'user1@gmail.com',
+      firstName: 'user1',
+      lastName: 'user1',
+      username: 'user1',
+    };
+
+    const UserPreference = {
+      user: user1.username,
+      budget: 550000,
+      location: 'Woodstock',
+      bedrooms: 2,
+      bathrooms: 3,
+      garages: 1,
+      extras: ['Pool'],
+    };
+
+    const UserProperty = {
+        user: user1.username,
+        address: 'test',
+        price: 1000,
+        bedrooms: 1,
+        bathrooms: 1,
+        garages: 1,
+        amenities: [],
+        liked: true,
+        image: 'test image'
+    }
+
+    it('should like a property', async () => {
+        const response = await request(app.getHttpServer())
+        .post('/dislike')
+        .send({ property: UserProperty });
+
+        console.log("DISLIKE PROPERTY: "+JSON.stringify(response.body));
+
+        const check = {
+            message: "property disliked"
+        }
+
+        const data = JSON.stringify(response.body);
+
+
+
+      expect(response.status).toBe(201);
+      expect(check).toMatchObject(response.body);
+
+    });
+
+
+
+
+});
+
+  });
