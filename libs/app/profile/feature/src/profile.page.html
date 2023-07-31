@@ -13,7 +13,7 @@
 
   <ion-card name="ProfileInfo">
     <img name ="ProfilePhoto" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-    <ion-button name="Logout" fill="clear" routerLink="/login" routerDirection="root" (click)="logout()">Log Out</ion-button>
+    <ion-button name="Logout" fill="clear" routerLink="/splash" routerDirection="root" (click)="logout()">Log Out</ion-button>
     <!-- <i class="fa fa-ellipsis-v settings" aria-hidden="true"></i> -->
   
     <ion-card-header>
@@ -31,7 +31,7 @@
         <ion-label class="small_lbl">Budget:</ion-label>
         <ion-chip>
           <i class="fa fa-credit-card icon" aria-hidden="true"></i>
-          <ion-label> R{{preferences.budget}} - R{{preferences.budget}} </ion-label>
+          <ion-label> R{{preferences.budgetMin}} - R{{preferences.budgetMax}} </ion-label>
         </ion-chip>
       </div>
       <div class="area_container">
@@ -80,39 +80,10 @@
         </ion-chip> -->
       </div>
       <button name="PrefEdit" routerLink="/preferences" routerDirection="root">Edit</button>
-      <!-- <p name="PrefSubtitle">Budget:</p> 
-      <ion-chip>Starting point: R 1 500 000</ion-chip>
-      <ion-chip>End point: R 3 000 000</ion-chip> 
-      <p name="PrefSubtitle">Areas:</p>
-      <ion-chip>Ballito, Dolphin Coast</ion-chip>
-      <ion-chip>Brooklyn, Pretoria</ion-chip> 
-      <p name="PrefSubtitle">Other:</p> 
-      <ion-chip>3 Bedroom</ion-chip>
-      <ion-chip>2 Bathroom</ion-chip>
-      <ion-chip>Pet Friendly</ion-chip>
-      <ion-chip>Garden</ion-chip> -->
     </ion-card-content>  
   </ion-card>
 
   <footer>
-    <!-- <div class="navbar">
-      <a href="home">
-        <i class="fas fa-home"></i>
-        <br>Home
-      </a>
-      <a href="search">
-        <i class="fas fa-search"></i>
-        <br>Search
-      </a>
-      <a href="liked">
-        <i class="fas fa-star"></i>
-        <br>Liked
-      </a>
-      <a class="active" href="profile">
-        <i class="fas fa-user"></i>
-        <br>Profile
-      </a>
-      </div> -->
       <app-footer></app-footer>
   </footer>
 </html> 

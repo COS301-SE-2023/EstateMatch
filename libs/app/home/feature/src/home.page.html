@@ -22,6 +22,7 @@
     </div>
     
       <div class="card-content">
+
         <div #heartPicRef style="opacity: 0;">
           <svg width="200px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <svg:path
@@ -41,6 +42,9 @@
 
 
         <i class="fa fa-map-marker icon" aria-hidden="true"></i>
+
+        <i (click)=openInMap() class="fa fa-map-marker icon" aria-hidden="true"></i>
+
         <ion-label class="city">{{ properties[currentDescriptionIndex].location }}</ion-label><br>
         <i class="fa fa-credit-card icon" aria-hidden="true"></i>
         <ion-label class="price">R{{ properties[currentDescriptionIndex].price }}</ion-label>

@@ -1,6 +1,9 @@
 import { Component, ViewChild} from '@angular/core';
 import * as L from 'leaflet';
 import { Geolocation} from '@ionic-native/geolocation'
+import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
+import fetch from 'node-fetch';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -10,21 +13,40 @@ import { Geolocation} from '@ionic-native/geolocation'
 })
   export class MapPage {
 
+      require: any;
+
       map!:L.Map
       locationLat: number;
       locationLong: number;
       userLat: number;
       userLong: number;
+      foundAddress: any;
+      propertyLat: number;
+      propertyLong: number;
+      
+      
 
-      constructor() {
+      constructor(private route: ActivatedRoute,
+        private readonly router: Router,) {
         this.locationLat=0;
         this.locationLong=0;
         this.userLat=0;
         this.userLong=0;
+        this.propertyLat=0;
+        this.propertyLong=0;
       }
 
       async ngOnInit() {
+        this.route.queryParams.subscribe(async (params) =>{
+          if(params['data'] != null){
+            this.setPropertyLocation(params['data']);
+          }
+            this.router.navigate([], { queryParams: {} });
+        });
+
         const coordinates = await Geolocation.getCurrentPosition();
+
+        // this.setPropertyLocation('Baldersgade 3B, 2200 Copenhagen, Denmark');
 
         
         this.map=L.map('map',{
@@ -49,20 +71,68 @@ import { Geolocation} from '@ionic-native/geolocation'
 
       this.map.addLayer(layer);
 
-      const marker = L.marker([coordinates.coords.latitude, coordinates.coords.longitude]).addTo(this.map);
+
+      const customIcon = L.icon({
+        iconUrl: 'assets/marker.png', 
+        iconSize: [15,25]
+      });
+
+      const marker = L.marker([coordinates.coords.latitude, coordinates.coords.longitude],{
+        icon: customIcon
+      }).addTo(this.map);
+
+ 
 
       marker.bindPopup("<b>Your Current Location.</b><br />").openPopup();
 
       L.control.scale().addTo(this.map);
 
       this.map.once('click', (e) => {
-        this.setLatLong(e.latlng.lat, e.latlng.lng);
-        const mark=L.marker([e.latlng.lat, e.latlng.lng]).addTo(this.map);
-        mark.bindPopup("<b>Selected Location. Lattitude: "+e.latlng.lat+". Longtitude: "+e.latlng.lng+"</b><br />").openPopup();
+        
+       
+
+        const reverseGeocodingUrl = 'https://api.geoapify.com/v1/geocode/reverse?lat='+e.latlng.lat+'&lon='+e.latlng.lng+'&apiKey=dcd92e44986d482085e39a946d3cebbb';
+
+        this.reverseGeocode(reverseGeocodingUrl,e.latlng.lat,e.latlng.lng);
+
+        
       });
 
       
+      
     
+  }
+
+  setMarker(lat: any, long: any){
+    const customIcon = L.icon({
+      iconUrl: 'assets/marker.png', 
+      iconSize: [15,25]
+    });
+
+
+    const mark=L.marker([lat,long],
+      {
+        icon: customIcon
+      }).addTo(this.map);
+    mark.bindPopup("<b>Selected Location: "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
+  }
+
+  reverseGeocode(reverseGeocodeURL:any,lat: any, long: any){
+    fetch(reverseGeocodeURL).then(result => result.json())
+        .then(featureCollection => {
+        if (featureCollection.features.length === 0) {
+          console.log("The address is not found");
+          return;
+        }
+
+        this.foundAddress = featureCollection.features[0];
+        console.log("The address is: ", this.foundAddress.properties);
+        console.log("The address is: ", this.foundAddress.properties.city);
+        // const marker = L.marker(new L.LatLng(foundAddress.properties.lat, foundAddress.properties.lon)).addTo(this.map);
+        this.setLatLong(lat,long);
+        this.setMarker(lat,long)
+        
+      });
   }
 
 
@@ -76,8 +146,26 @@ import { Geolocation} from '@ionic-native/geolocation'
     this.map.remove();
     this.ngOnInit();
   }
+
+
+  async setPropertyLocation(address: any){
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const fetch = require('node-fetch');
+    // const address = 'Baldersgade 3B, 2200 Copenhagen, Denmark';
+
+    fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=0ddaaa18ee5f47b1b80e36cd0d3e0395`)
+    .then((resp: { json: () => any; }) => resp.json())
+    .then((geocodingResult: any) => {
+      console.log(geocodingResult);
+      this.propertyLat = geocodingResult.features[0].geometry.coordinates[0];
+      this.propertyLong = geocodingResult.features[0].geometry.coordinates[1];
+
+      this.setMarker(this.propertyLat,this.propertyLong);
+    });
+
+    // return [0,0]
+  }
+
   
 
 }
-
-

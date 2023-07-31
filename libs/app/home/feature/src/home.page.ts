@@ -83,8 +83,12 @@ export class HomePage implements AfterViewInit{
     const body = {
       filters: {
         location: this.userPreferences.location,
-        minBudget: this.userPreferences.budget, 
-        maxBudget: 100000000,      //Need to add max budget    
+        budgetMin: this.userPreferences.budgetMin,
+        budgetMax: this.userPreferences.budgetMax,
+        bedrooms: this.userPreferences.bedrooms,
+        bathrooms: this.userPreferences.bathrooms,
+        garages: this.userPreferences.garages,
+        amenities: this.userPreferences.extras
       }
     }
 
@@ -92,6 +96,7 @@ export class HomePage implements AfterViewInit{
     // this.properties = this.properties.slice(0,3);
     this.lastImageIndex = this.properties[0].images.length - 1;
     // this.ngAfterViewInit();
+    this.propertyCheck();
   }
 
   ngAfterViewInit(){
@@ -154,6 +159,24 @@ export class HomePage implements AfterViewInit{
     // if (this.currentDescriptionIndex >= this.descriptions.length) {
     //   this.currentDescriptionIndex = 0;
     // }
+    const url2 = 'api/identify-feel';
+    const body2 = {
+      imageUrl: currProperty.images
+    };
+
+    const aiPref = await this.http.post(url2, body2, { headers }).toPromise() as {result: string};
+
+    const aiUrl = 'api/setAIPreferences';
+    const aiBody = {
+      preferences: {
+        user: sessionStorage.getItem('username'),
+        colour: aiPref.result        
+      }
+    }
+
+    this.http.post(aiUrl, aiBody, { headers }).subscribe((response) => {
+      console.log(response);
+    });
   }
 
   async dislikeHouse() {
@@ -216,15 +239,11 @@ export class HomePage implements AfterViewInit{
       const gesture: Gesture = this.gestureCtrl.create({
         el: card.nativeElement,
         gestureName: 'move',
-        onStart: ev => {
-          this.logStart();
-        },
         onMove: ev => {
           card.nativeElement.style.transform = `translateX(${ev.deltaX}px)`;
           // card.nativeElement.style.transform = `translateX(${ev.deltaX}px) rotate(${ev.deltaX / 10}deg)`;
         },
         onEnd: ev => {
-          this.logEnd();
           card.nativeElement.style.transition = '.5s ease-out';
           if(ev.deltaX > 150){
             //this.makeToast('Property Liked')
@@ -244,11 +263,39 @@ export class HomePage implements AfterViewInit{
     }
   }
 
-  logStart() {
-    console.log('Swipe started');
+  async propertyCheck(){
+    const url = 'api/propertyCheck';
+    const username = sessionStorage.getItem('username');
+    const body = {
+      user: username,
+    }
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const newPropertiesNeeded = await this.http.post(url, body, { headers }).toPromise() as {empty: boolean};
+
+    if(newPropertiesNeeded){
+      if(newPropertiesNeeded.empty){
+        //Somehow check if new user or not
+
+        const url = 'api/getPreferences';
+        const prefBody = { user : username };
+        let location;
+        if (username) {
+          try {
+            const response = await this.http.post(url, prefBody, { headers }).toPromise() as IPreference;
+            location = response.location;
+          } catch (error) {
+            console.error('Error fetching user data:', error);
+          }
+        }
+
+        //Use location here
+        //Need to run the web scraper 
+      }
+    }
   }
 
-  logEnd() {
-    console.log('Swipe ended');
+  openInMap(){
+    this.router.navigate(['/map'], { queryParams: { data: this.properties[this.currentDescriptionIndex].location }, replaceUrl: true});
+    
   }
 }

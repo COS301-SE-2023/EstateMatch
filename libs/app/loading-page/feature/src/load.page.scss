@@ -1,0 +1,21 @@
+div[name="buttonContainer"]{
+    margin-left: auto;
+    margin-right: auto; 
+    display: block;
+}
+
+img[name="Logo"]{
+    width: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20%;
+}
+ion-spinner[name="circular"]{
+    height: 90px;
+}
+div[name="Container"]{
+    margin-left: auto;
+    margin-right: auto; 
+    display: block;
+}

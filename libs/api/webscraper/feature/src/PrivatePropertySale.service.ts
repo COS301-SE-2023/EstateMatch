@@ -53,7 +53,7 @@ export class PrivatePropertySaleService {
     const pageLinks = (await page.$$eval('.pagination a.pageNumber', (pagination) => pagination.map((page) => page.getAttribute('href') || ''))).filter(url => url !== "#");
 
     const lastPageLink = pageLinks[pageLinks.length - 2];
-    const pageNumber = parseInt(lastPageLink.slice(-2));
+    //const pageNumber = parseInt(lastPageLink.slice(-2));
 
 
     let propertyURLs: string[] = [];

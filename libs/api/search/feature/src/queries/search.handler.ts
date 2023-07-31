@@ -16,9 +16,12 @@ export class SearchHandler implements IQueryHandler<SearchQuery, ISearchResponse
     const request = query.request; 
     const searchPropReq: IPropSearch = {
       location: request.filters.location,
-      minBudget: request.filters.minBudget,
-      maxBudget: request.filters.maxBudget,
-      type: request.filters.type,
+      budgetMin: request.filters.budgetMin,
+      budgetMax: request.filters.budgetMax,
+      bedrooms: request.filters.bedrooms,
+      bathrooms: request.filters.bathrooms,
+      garages: request.filters.garages,
+      amenities: request.filters.amenities
     };   
     return this.repository.getPropertiesByPreferences(searchPropReq);
   }

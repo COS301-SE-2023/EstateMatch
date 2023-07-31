@@ -1,4 +1,4 @@
-@import "~leaflet/dist/leaflet.css";
+// @import "~leaflet/dist/leaflet.css";
 
 :root {
     --ion-color-secondary: #67C390;
@@ -25,4 +25,10 @@
     border-color: #67C390;
     border-radius: 5%;
     width: 165px;
+}
+
+.popup{
+    text-align: center;
+    font-size: 50;
+    color: #005a00;
 }
