@@ -110,8 +110,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     // console.log(this.propertyLocation);
     const coords = await this.setPropertyLocation(this.propertyLocation);
     // console.log(coords); 
-    console.log(this.propertyLat);
-    console.log(this.propertyLong);
+    this.setPropertyMarker(coords[0],coords[1]);
   }
 
   setMarker(lat: any, long: any){
@@ -164,26 +163,37 @@ import { ActivatedRoute, Router } from '@angular/router';
     const fetch = require('node-fetch');
     // const address = 'Baldersgade 3B, 2200 Copenhagen, Denmark';
 
-    fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=0ddaaa18ee5f47b1b80e36cd0d3e0395`)
-    .then(async (resp: { json: () => any; }) => resp.json())
-    .then(async (geocodingResult: any) => {
-      console.log(geocodingResult);
-      this.propertyLat = geocodingResult.features[0].geometry.coordinates[0];
-      this.propertyLong = geocodingResult.features[0].geometry.coordinates[1];
+    const response = await fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=0ddaaa18ee5f47b1b80e36cd0d3e0395`);
+    const geocodingResult = await response.json();
+    this.propertyLat = geocodingResult.features[0].geometry.coordinates[0];
+    this.propertyLong = geocodingResult.features[0].geometry.coordinates[1];
 
 
-      // await this.setMarker(this.propertyLat,this.propertyLong);
-      // this.setPropertyMarker(this.propertyLat,this.propertyLong);
-      return [this.propertyLat,this.propertyLong];
-    });
+    // await this.setMarker(this.propertyLat,this.propertyLong);
+    // this.setPropertyMarker(this.propertyLat,this.propertyLong);
+    return [this.propertyLat,this.propertyLong];
+    // fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=0ddaaa18ee5f47b1b80e36cd0d3e0395`)
+    // .then(async (resp: { json: () => any; }) => resp.json())
+    // .then(async (geocodingResult: any) => {
+    //   console.log(geocodingResult);
 
-    return [0,0]
+    // });
+
+    // return [0,0]
   }
 
-  async setPropertyMarker(lat: any, long: any){
-    const mark=L.marker([lat,long]).addTo(this.map);
-    
-    mark.bindPopup("<b>Property Location: "+this.propertyLocation+"</b><br />").openPopup();
+  setPropertyMarker(lat: any, long: any){
+    const customIcon = L.icon({
+      iconUrl: 'assets/marker.png', 
+      iconSize: [15,25]
+    });
+
+
+    const mark=L.marker([lat,long],
+      {
+        icon: customIcon
+      }).addTo(this.map);
+    mark.bindPopup("<b>Selected Location: "+this.propertyLocation+"</b><br />").openPopup();
   }
 
   confirmLocation(){
