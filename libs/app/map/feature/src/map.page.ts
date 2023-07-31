@@ -58,7 +58,15 @@ import fetch from 'node-fetch';
 
       this.map.addLayer(layer);
 
-      const marker = L.marker([coordinates.coords.latitude, coordinates.coords.longitude]).addTo(this.map);
+
+      const customIcon = L.icon({
+        iconUrl: 'assets/marker-icon.png', 
+        iconSize: [38,95]
+      });
+
+      const marker = L.marker([coordinates.coords.latitude, coordinates.coords.longitude],{
+        icon: customIcon
+      }).addTo(this.map);
 
  
 
