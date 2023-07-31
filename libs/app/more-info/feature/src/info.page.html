@@ -42,7 +42,7 @@
               </ion-row>
             </ion-grid> 
             <!-- <ion-label class="sub-heading">Description</ion-label>   -->
-            <p class="description">{{ property.title }}</p>   <!-- Need to add description-->  
+            <p class="description">{{property.title}} {{ propertyDescription }}</p>   <!-- Need to add description-->  
             <ion-label class="sub-heading">Ameneties</ion-label><br>  
             <ion-chip class="ameneties_chip" *ngFor="let a of property.amenities">
               <i class="fa fa-plus icon" aria-hidden="true"></i>
