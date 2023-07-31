@@ -160,10 +160,21 @@ import { ActivatedRoute, Router } from '@angular/router';
       this.propertyLat = geocodingResult.features[0].geometry.coordinates[0];
       this.propertyLong = geocodingResult.features[0].geometry.coordinates[1];
 
-      this.setMarker(this.propertyLat,this.propertyLong);
+      console.log(address);
+
+      // this.setMarker(this.propertyLat,this.propertyLong);
+      this.setPropertyMarker(this.propertyLat,this.propertyLong);
+
+      return [this.propertyLat,this.propertyLong];
     });
 
     // return [0,0]
+  }
+
+  async setPropertyMarker(lat: any, long: any){
+    const mark=L.marker([lat,long]).addTo(this.map);
+    
+    mark.bindPopup("<b>Property Location: "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
   }
 
   
