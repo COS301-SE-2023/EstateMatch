@@ -4,8 +4,8 @@ import request from 'supertest';
 import { CoreModule } from './core.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import mongoose, { Schema, Document, Connection } from 'mongoose';
-const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
-const dbUrl = DATABASE_CONNECTION;
+const TEST_CONNECTION = process.env['TEST_CONNECTION'] || '';
+const dbUrl = TEST_CONNECTION;
 
 const connectToDatabase = async () => {
   try {
@@ -98,15 +98,15 @@ describe('Properties Controller (Integration)', () => {
       username: 'user1',
     };
 
-    const UserPreference = {
-      user: user1.username,
-      budget: 550000,
-      location: 'Woodstock',
-      bedrooms: 2,
-      bathrooms: 3,
-      garages: 1,
-      extras: ['Pool'],
-    };
+    // const UserPreference = {
+    //   user: user1.username,
+    //   budget: 550000,
+    //   location: 'Woodstock',
+    //   bedrooms: 2,
+    //   bathrooms: 3,
+    //   garages: 1,
+    //   extras: ['Pool'],
+    // };
 
     const UserProperty = {
       user: user1.username,
@@ -131,7 +131,7 @@ describe('Properties Controller (Integration)', () => {
         message: 'property disliked',
       };
 
-      const data = JSON.stringify(response.body);
+      //const data = JSON.stringify(response.body);
 
       expect(response.status).toBe(201);
       expect(check).toMatchObject(response.body);
@@ -148,7 +148,7 @@ describe('Properties Controller (Integration)', () => {
         message: 'property liked',
       };
 
-      const data = JSON.stringify(response.body);
+      //const data = JSON.stringify(response.body);
 
       expect(response.status).toBe(201);
       expect(check).toMatchObject(response.body);

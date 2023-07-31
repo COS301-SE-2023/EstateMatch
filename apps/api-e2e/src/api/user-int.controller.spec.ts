@@ -4,8 +4,8 @@ import request from 'supertest';
 import { CoreModule } from './core.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import mongoose, { Schema, Document, Connection } from 'mongoose';
-const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
-const dbUrl = DATABASE_CONNECTION;
+const TEST_CONNECTION = process.env['TEST_CONNECTION'] || '';
+const dbUrl = TEST_CONNECTION;
 
 const connectToDatabase = async () => {
   try {
@@ -110,6 +110,8 @@ describe('UserController (integration)', () => {
         .send({ username: user1.username });
 
       expect(response.status).toBe(201);
+      const data = JSON.stringify(response.body);
+      console.log("Response data:"+data);
       //const data = { ...response.body};
 
       //expect(response.body).toMatchObject(user1);
