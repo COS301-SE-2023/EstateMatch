@@ -65,6 +65,7 @@ export class HomePage implements AfterViewInit{
   temp: any = [];
 
   showLikeIcon = false;
+  showCross = false; 
 
   async ngOnInit() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -121,11 +122,13 @@ export class HomePage implements AfterViewInit{
 
     //showing the heart icon.
     this.showLikeIcon = true;
-    setTimeout(() => {
-      this.showLikeIcon = false;
-    }, 2000);
 
     await this.makeToast('Property Liked');
+
+  // Set a timeout to hide the heart icon after 1 second (1000 milliseconds)
+    setTimeout(() => {
+    this.showLikeIcon = false;
+    }, 1000);
 
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
@@ -155,7 +158,15 @@ export class HomePage implements AfterViewInit{
     this.http.post(url, body, { headers }).subscribe((response) => {
       console.log('success');
     });
+
+    this.showCross = true;
+
     await this.makeToast('Property Disliked');
+
+    setTimeout(() => {
+      this.showCross = false;
+      }, 1000);
+
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
 

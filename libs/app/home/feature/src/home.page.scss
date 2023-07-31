@@ -135,3 +135,10 @@ button[name="more-info"]{
     align-items: center;
     justify-content: center;
 }
+
+svg {
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    width: 55%;
+    margin-left:22%;
+  }
