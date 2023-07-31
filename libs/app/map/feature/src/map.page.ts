@@ -60,8 +60,8 @@ import fetch from 'node-fetch';
 
 
       const customIcon = L.icon({
-        iconUrl: 'assets/marker-icon.png', 
-        iconSize: [38,95]
+        iconUrl: 'assets/marker.png', 
+        iconSize: [15,25]
       });
 
       const marker = L.marker([coordinates.coords.latitude, coordinates.coords.longitude],{
@@ -91,7 +91,16 @@ import fetch from 'node-fetch';
   }
 
   setMarker(lat: any, long: any){
-    const mark=L.marker([lat,long]).addTo(this.map);
+    const customIcon = L.icon({
+      iconUrl: 'assets/marker.png', 
+      iconSize: [15,25]
+    });
+
+
+    const mark=L.marker([lat,long],
+      {
+        icon: customIcon
+      }).addTo(this.map);
     mark.bindPopup("<b>Selected Location: "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
   }
 
