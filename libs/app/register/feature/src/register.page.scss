@@ -19,7 +19,7 @@ ion-content{
 }
 
 ion-card[name="displayContainer"]{
-    height: 85vh;
+    height: 80vh;
     border-radius: 5%;
     background-color: #fbfcfa;
     overflow-y: scroll;
@@ -105,16 +105,17 @@ ion-row{
     }
 
     .bottom_div{
-        margin: 5%;
+        margin-top: 30%;
         padding: 1%;
         font-size: 16px;
-        margin-left: 13%;
+        text-align:left;
+        margin-left: 12%;
         // position: absolute;
         // top: 100%;
 
         #login{
-            margin-right: 13%;
-            margin-left: 0% !important;
+            margin-right: 20%;
+          //  margin-left: 0% !important;
             float: right;
             color: #67C390;
         }
