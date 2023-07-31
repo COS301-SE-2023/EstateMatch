@@ -5,7 +5,6 @@ import { LoginPage } from './login.page';
 import { LoginRouting } from './login.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   imports: [
@@ -15,7 +14,7 @@ import { HeaderComponent } from './components/header/header.component';
     FormsModule, 
     HttpClientModule
   ],
-  declarations: [LoginPage, HeaderComponent],
+  declarations: [LoginPage],
 })
 
 export class LoginModule {}

@@ -1,9 +1,8 @@
-import { AfterViewInit, Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Gesture, GestureController, IonCard, Platform, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
 import { IPreference } from '@estate-match/api/prefrences/util';
-import { Router } from '@angular/router';
 
 interface Property {
   user: string;
@@ -22,15 +21,9 @@ interface Property {
   styleUrls: ['./home.page.scss'],
 })
 
-export class HomePage implements AfterViewInit{
-
-  @ViewChildren(IonCard, {read: ElementRef}) cards!: QueryList<ElementRef>;
-
+export class HomePage {
   constructor(private http: HttpClient,
-    private toastController: ToastController,
-    private router: Router,
-    private gestureCtrl: GestureController,
-    private plt: Platform) {}
+    private toastController: ToastController) {}
 
 
   // descriptions: string[] = ['R5 000 000. Three Bedroom and Two Bathrooms.',
@@ -56,13 +49,8 @@ export class HomePage implements AfterViewInit{
   }];
   lastImageIndex = 0;
   currentDescriptionIndex = 0;
-
-  tempPower = 0;
-  tempActive = false;
-
+  
   userPreferences!: IPreference;
-
-  temp: any = [];
 
   async ngOnInit() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -73,6 +61,7 @@ export class HomePage implements AfterViewInit{
     }
 
     this.userPreferences = await this.http.post(prefURL, prefBody, { headers }).toPromise() as IPreference;
+    console.log(this.userPreferences);
     //Search
     const url = 'api/search';
     const body = {
@@ -84,19 +73,13 @@ export class HomePage implements AfterViewInit{
     }
 
     this.properties = await this.http.post(url, body, { headers }).toPromise() as IProperty[];
-    // this.properties = this.properties.slice(0,3);
     this.lastImageIndex = this.properties[0].images.length - 1;
-    // this.ngAfterViewInit();
-    this.propertyCheck();
-  }
-
-  ngAfterViewInit(){
-    const cardArray = this.cards.toArray();
-    this.swipeEvent(cardArray);
   }
 
   async likeHouse() { 
     const url = 'api/like';
+
+
     const currProperty = this.properties[this.currentDescriptionIndex];
     const likedProperty: ILikeProperty = {
       user: sessionStorage.getItem('username')!,
@@ -118,6 +101,8 @@ export class HomePage implements AfterViewInit{
       console.log('success');
     });
     await this.makeToast('Property Liked');
+    console.log(this.properties[this.currentDescriptionIndex]);
+
 
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
@@ -147,6 +132,7 @@ export class HomePage implements AfterViewInit{
     this.http.post(url, body, { headers }).subscribe((response) => {
       console.log('success');
     });
+    console.log(this.properties[this.currentDescriptionIndex]);
     await this.makeToast('Property Disliked');
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
@@ -165,72 +151,9 @@ export class HomePage implements AfterViewInit{
     toast.present();
   }
 
-  async moreInfo() {
-    const encodedData = JSON.stringify(this.properties[this.currentDescriptionIndex]);
-    this.router.navigate(['/info'], { queryParams: { data: encodedData}, replaceUrl: true});
-  }
-
-  async swipeEvent(cardArray: any) {
-    for(let i = 0; i < cardArray.length; i++){
-      console.log(cardArray[i]);
-      const card = cardArray[i];
-      const gesture: Gesture = this.gestureCtrl.create({
-        el: card.nativeElement,
-        gestureName: 'move',
-        onMove: ev => {
-          card.nativeElement.style.transform = `translateX(${ev.deltaX}px)`;
-          // card.nativeElement.style.transform = `translateX(${ev.deltaX}px) rotate(${ev.deltaX / 10}deg)`;
-        },
-        onEnd: ev => {
-          card.nativeElement.style.transition = '.5s ease-out';
-          if(ev.deltaX > 150){
-            this.makeToast('Property Liked')
-            // card.nativeElement.style.transform = `translateX(${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
-            this.likeHouse();
-          }else if(ev.deltaX < -150){
-            this.makeToast('Property Disliked')
-            // card.nativeElement.style.transform = `translateX(-${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
-            this.dislikeHouse();
-          }
-
-          card.nativeElement.style.transform = ''; 
-        }
-      });
-
-      gesture.enable(true);
-    }
-  }
-
-  async propertyCheck(){
-    const url = 'api/propertyCheck';
-    const username = sessionStorage.getItem('username');
-    const body = {
-      user: username,
-    }
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const newPropertiesNeeded = await this.http.post(url, body, { headers }).toPromise() as {empty: boolean};
-
-    if(newPropertiesNeeded){
-      if(newPropertiesNeeded.empty){
-        //Somehow check if new user or not
-
-        const url = 'api/getPreferences';
-        const prefBody = { user : username };
-        let location;
-        if (username) {
-          try {
-            const response = await this.http.post(url, prefBody, { headers }).toPromise() as IPreference;
-            location = response.location;
-          } catch (error) {
-            console.error('Error fetching user data:', error);
-          }
-        }
-
-        //Use location here
-        //Need to run the web scraper 
-      }
-    }
-  }
+  // async moreInfo() {
+    
+  // }
 }
 
 

@@ -7,11 +7,10 @@ import { InfoRouting } from './info.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  imports: [CommonModule, IonicModule, InfoRouting, HttpClientModule, FormsModule],
+  imports: [CommonModule, IonicModule, InfoRouting, HttpClientModule],
   declarations: [InfoPage, HeaderComponent, FooterComponent],
   exports: [InfoPage],
 })

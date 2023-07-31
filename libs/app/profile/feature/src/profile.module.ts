@@ -6,8 +6,6 @@ import { ProfilePage } from './profile.page';
 import { ProfileRouting } from './profile.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -15,9 +13,9 @@ import { FooterComponent } from './components/footer/footer.component';
     IonicModule,
     ProfileRouting, 
     FormsModule, 
-    HttpClientModule,
+    HttpClientModule
   ],
-  declarations: [ProfilePage, HeaderComponent, FooterComponent],
+  declarations: [ProfilePage],
 })
 
 export class ProfileModule {}

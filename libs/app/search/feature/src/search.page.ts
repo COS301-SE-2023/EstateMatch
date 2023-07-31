@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Gesture, GestureController, IonCard, Platform, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
 
@@ -11,15 +11,11 @@ import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
   styleUrls: ['./search.page.scss'],
 })
 
-export class SearchPage implements AfterViewInit{
-
-  @ViewChildren(IonCard, {read: ElementRef}) cards!: QueryList<ElementRef>;
-
+export class SearchPage {
   constructor(private http: HttpClient,
     private toastController: ToastController,
     private route: ActivatedRoute,
-    private readonly router: Router,
-    private gestureCtrl: GestureController,) {}
+    private readonly router: Router) {}
 
     location = '';
     properties: IProperty[] = [{
@@ -41,6 +37,7 @@ export class SearchPage implements AfterViewInit{
     }
 
     ngOnInit() {
+
       this.route.queryParams.subscribe(params => {
         if(params['data'] != null){
           this.properties = JSON.parse(params['data']);
@@ -48,11 +45,6 @@ export class SearchPage implements AfterViewInit{
         }
           this.router.navigate([], { queryParams: {} });
       });
-    }
-
-    ngAfterViewInit(){
-      const cardArray = this.cards.toArray();
-      this.swipeEvent(cardArray);
     }
 
     async likeHouse() { 
@@ -129,40 +121,4 @@ export class SearchPage implements AfterViewInit{
       })
       toast.present();
     }
-
-    async moreInfo() {
-      this.router.navigate(['/info'], { replaceUrl: true });
-    }
-
-    async swipeEvent(cardArray: any) {
-      for(let i = 0; i < cardArray.length; i++){
-        console.log(cardArray[i]);
-        const card = cardArray[i];
-        const gesture: Gesture = this.gestureCtrl.create({
-          el: card.nativeElement,
-          gestureName: 'swipe',
-          onMove: ev => {
-            card.nativeElement.style.transform = `translateX(${ev.deltaX}px)`;
-            // card.nativeElement.style.transform = `translateX(${ev.deltaX}px) rotate(${ev.deltaX / 10}deg)`;
-          },
-          onEnd: ev => {
-            card.nativeElement.style.transition = '.5s ease-out';
-            if(ev.deltaX > 150){
-              this.makeToast('Property Liked')
-              // card.nativeElement.style.transform = `translateX(${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
-              this.likeHouse();
-            }else if(ev.deltaX < -150){
-              this.makeToast('Property Disliked')
-              // card.nativeElement.style.transform = `translateX(-${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
-              this.dislikeHouse();
-            }
-  
-            card.nativeElement.style.transform = ''; 
-          }
-        });
-  
-        gesture.enable(true);
-      }
-    }
-  
 }

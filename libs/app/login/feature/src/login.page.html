@@ -5,7 +5,9 @@
 
 
 <header>
-  <app-header></app-header>
+  <ion-toolbar name="ToolBar">
+    <ion-title>Estate Match</ion-title>
+  </ion-toolbar>
 </header>
 
 
@@ -29,11 +31,10 @@
         </div>
     
         <div class="bottom_div">
-          <ion-label>Don't have an account?<ion-label (click)="signup()" id="sign_up">Sign Up.</ion-label></ion-label>
+          <ion-label (click)="signup()">Don't have an account ? Sign Up.</ion-label>
         </div>
     
       </div>
-</ion-card>
     
     
 

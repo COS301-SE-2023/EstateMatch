@@ -6,84 +6,62 @@
   </head>
 
   <header>
-    <app-header></app-header>
+    <ion-toolbar>
+      <ion-title>Estate Match</ion-title>
+    </ion-toolbar>
   </header>
 
-
-
-  <ion-card name="ProfileInfo">
+  <ion-button name="Logout" fill="clear" routerLink="/login" routerDirection="root" (click)="logout()">Log Out</ion-button>
+  <div name="ProfilePhoto">
     <img name ="ProfilePhoto" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-    <ion-button name="Logout" fill="clear" routerLink="/login" routerDirection="root" (click)="logout()">Log Out</ion-button>
-    <!-- <i class="fa fa-ellipsis-v settings" aria-hidden="true"></i> -->
-  
+  </div>
+
+  <div name="ProfileInfo">
     <ion-card-header>
-      <ion-card-subtitle>{{user.email}}</ion-card-subtitle>
-      <ion-card-subtitle name="userName">{{user.username}}</ion-card-subtitle>
+      <ion-button name="Edit" fill="clear" routerLink="/editprof" routerDirection="root">Edit Profile Information</ion-button>
+      <ion-card-subtitle>User's Email address</ion-card-subtitle>
+      <ion-card-subtitle name="userName">User's Name</ion-card-subtitle>
     </ion-card-header>
-    <!-- <ion-button name="Edit" fill="clear" routerLink="/editprof" routerDirection="root">Edit Profile Information</ion-button> -->
-    <ion-button class="edit_prof" fill="clear" routerLink="/editprof" routerDirection="root">Edit Profile Information</ion-button>
-  </ion-card>
+  </div>
 
   <ion-card name="Preferences">
-    <ion-card-subtitle name="Subtitle">Preferences</ion-card-subtitle>
+    
     <ion-card-content>
-      <div class="budget_container">
-        <ion-label class="small_lbl">Budget:</ion-label>
-        <ion-chip>
-          <i class="fa fa-credit-card icon" aria-hidden="true"></i>
-          <ion-label> R{{preferences.budget}} - R{{preferences.budget}} </ion-label>
-        </ion-chip>
-      </div>
-      <div class="area_container">
-        <ion-label class="small_lbl">Area:</ion-label><br>
-        <ion-chip class="area_chip">
-          <i class="fa fa-map-marker icon" aria-hidden="true"></i>
-          <ion-label>{{preferences.location}}</ion-label>
-        </ion-chip>
-        <!-- <ion-chip class="area_chip">
-          <i class="fa fa-map-marker icon" aria-hidden="true"></i>
-          <ion-label>{{preferences.location}}</ion-label>
-        </ion-chip> -->
-      </div>
-      <div class="general_container">
-        <ion-label class="small_lbl">General:</ion-label><br>
-        <ion-chip class="general_chip">
-          <i class="fa fa-bed icon" aria-hidden="true"></i>
-          <ion-label>{{preferences.bedrooms}}</ion-label>
-        </ion-chip>
-        <ion-chip class="general_chip">
-          <i class="fa fa-bath icon" aria-hidden="true"></i>
-          <ion-label>{{preferences.bathrooms}}</ion-label>
-        </ion-chip>
-        <ion-chip class="general_chip">
-          <i class="fa fa-car icon" aria-hidden="true"></i>
-          <ion-label>{{preferences.garages}}</ion-label>
-        </ion-chip>
-      </div>
-      <div class="ameneties_container">
-        <ion-label class="small_lbl">Ameneties:</ion-label><br>
-        <ion-chip class="ameneties_chip" *ngFor="let a of preferences.extras">
-          <i class="fa fa-plus icon" aria-hidden="true"></i>
-          <ion-label>{{a}}</ion-label>
-        </ion-chip>
-        <!-- <ion-chip class="ameneties_chip">
-          <i class="fa fa-plus icon" aria-hidden="true"></i>
-          <ion-label>Study</ion-label>
-        </ion-chip>
-        <ion-chip class="ameneties_chip">
-          <i class="fa fa-plus icon" aria-hidden="true"></i>
-          <ion-label>Pet-Friendly</ion-label>
-        </ion-chip>
-        <ion-chip class="ameneties_chip">
-          <i class="fa fa-plus icon" aria-hidden="true"></i>
-          <ion-label>Pool</ion-label>
-        </ion-chip> -->
-      </div>
+      <p name="titlePref">Preferences</p>
       <button name="PrefEdit" routerLink="/preferences" routerDirection="root">Edit</button>
+  
+      <p name="PrefSubtitle">Budget:</p> 
+      <ion-chip>Starting point: R 1 500 000</ion-chip>
+      <ion-chip>End point: R 3 000 000</ion-chip> 
+      <p name="PrefSubtitle">Areas:</p>
+      <ion-chip>Ballito, Dolphin Coast</ion-chip>
+      <ion-chip>Brooklyn, Pretoria</ion-chip> 
+      <p name="PrefSubtitle">Other:</p> 
+      <ion-chip>3 Bedroom</ion-chip>
+      <ion-chip>2 Bathroom</ion-chip>
+      <ion-chip>Pet Friendly</ion-chip>
+      <ion-chip>Garden</ion-chip>
     </ion-card-content>  
   </ion-card>
 
   <footer>
-      <app-footer></app-footer>
+    <div class="navbar">
+      <a href="home">
+        <i class="fas fa-home"></i>
+        <br>Home
+      </a>
+      <a href="search">
+        <i class="fas fa-search"></i>
+        <br>Search
+      </a>
+      <a href="liked">
+        <i class="fas fa-star"></i>
+        <br>Liked
+      </a>
+      <a class="active" href="profile">
+        <i class="fas fa-user"></i>
+        <br>Profile
+      </a>
+      </div>
   </footer>
 </html> 

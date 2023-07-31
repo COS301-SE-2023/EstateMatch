@@ -4,8 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start:api:dev": "yarn nx run api:serve --configuration=development",
-    "start:app:dev": "yarn nx run app:serve --configuration=development",
-    "build:prod": "yarn nx run api:build --configuration=production && yarn nx run app:build --configuration=production"
+    "start:app:dev": "yarn nx run app:serve --configuration=development"
   },
   "private": true,
   "dependencies": {
@@ -26,22 +25,17 @@
     "@nestjs/mongoose": "^9.2.2",
     "@nestjs/passport": "^9.0.3",
     "@nestjs/platform-express": "^9.1.1",
-    "@nestjs/serve-static": "^4.0.0",
     "@nx/angular": "16.1.0",
     "@nxtend/ionic-angular": "^13.1.0",
-    "@tensorflow/tfjs": "^4.8.0",
-    "@tensorflow/tfjs-node": "3.18.0",
     "axios": "^1.0.0",
     "bcrypt": "^5.1.0",
     "fast-text-encoding": "^1.0.6",
-    "googleapis": "^123.0.0",
     "leaflet": "^1.9.4",
     "mongoose": "^7.1.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",
-    "sharp": "^0.32.4",
     "text-encoding-utf-8": "^1.0.2",
     "tslib": "^2.5.1",
     "zone.js": "~0.13.0"
@@ -70,7 +64,6 @@
     "@nx/webpack": "16.1.0",
     "@nx/workspace": "16.1.0",
     "@schematics/angular": "~16.0.0",
-    "@tensorflow-models/mobilenet": "^2.1.0",
     "@types/bcrypt": "^5.0.0",
     "@types/jest": "^29.4.0",
     "@types/leaflet": "^1.9.3",
@@ -78,7 +71,6 @@
     "@types/passport-local": "^1.0.35",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
-    "canvas": "^2.11.2",
     "cypress": "^12.11.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
@@ -87,17 +79,12 @@
     "jest-environment-jsdom": "^29.4.1",
     "jest-environment-node": "^29.4.1",
     "jest-preset-angular": "~13.1.0",
-    "jimp": "^0.22.8",
     "nx": "16.1.0",
     "nx-cloud": "latest",
     "prettier": "^2.6.2",
     "puppeteer": "^20.7.3",
-    "tfjs": "^0.6.0",
     "ts-jest": "^29.1.0",
-    "ts-node": "^10.9.1",
+    "ts-node": "10.9.1",
     "typescript": "~5.0.2"
-  },
-  "engines": {
-    "node": ">18.0.0"
   }
 }

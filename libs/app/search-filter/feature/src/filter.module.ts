@@ -6,8 +6,6 @@ import { FilterPage } from './filter.page';
 import { FilterRouting } from './filter.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -17,7 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
     FormsModule, 
     HttpClientModule
   ],
-  declarations: [FilterPage, HeaderComponent, FooterComponent],
+  declarations: [FilterPage],
 })
 
 export class FilterModule {}

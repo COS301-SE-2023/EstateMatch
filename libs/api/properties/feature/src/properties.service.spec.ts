@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PropertiesService } from './properties.service';
-import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { CommandBus } from '@nestjs/cqrs';
 import {
     ILikePropertyRequest,
     ILikePropertyResponse,
@@ -16,7 +16,6 @@ import {
 describe('PropertiesService', () => {
   let service: PropertiesService;
   let commandBus: CommandBus;
-  let queryBus: QueryBus;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -24,12 +23,6 @@ describe('PropertiesService', () => {
         PropertiesService,
         {
           provide: CommandBus,
-          useValue: {
-            execute: jest.fn(),
-          },
-        },
-        {
-          provide: QueryBus,
           useValue: {
             execute: jest.fn(),
           },
