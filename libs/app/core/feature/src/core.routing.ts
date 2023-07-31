@@ -10,7 +10,7 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: 'login',
     loadChildren: () =>
-      import('@estate-match/app/home/feature').then((m) => m.HomeModule),
+      import('@estate-match/app/splash-page/feature').then((m) => m.SplashModule),
   },
   {
     path: 'preferences',
@@ -77,6 +77,18 @@ const routes: Routes = [
     pathMatch: 'full',
     loadChildren: () =>
       import('@estate-match/app/search-filter/feature').then((m) => m.FilterModule),
+  },
+  {
+    path: 'splash',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/splash-page/feature').then((m) => m.SplashModule),
+  },
+  {
+    path: 'load',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/loading-page/feature').then((m) => m.LoadModule),
   },
 ];
 
