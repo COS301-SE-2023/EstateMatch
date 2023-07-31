@@ -139,7 +139,7 @@ export class HomePage implements AfterViewInit{
     //showing the heart icon.
     this.showLikeIcon(1);
 
-    await this.makeToast('Property Liked');
+    //await this.makeToast('Property Liked');
 
     setTimeout(() => {
       console.log("timer");
@@ -180,7 +180,7 @@ export class HomePage implements AfterViewInit{
 
     this.showCrossIcon(1);
 
-    await this.makeToast('Property Disliked');
+    //await this.makeToast('Property Disliked');
 
     setTimeout(() => {
       console.log("timer");
@@ -227,11 +227,11 @@ export class HomePage implements AfterViewInit{
           this.logEnd();
           card.nativeElement.style.transition = '.5s ease-out';
           if(ev.deltaX > 150){
-            this.makeToast('Property Liked')
+            //this.makeToast('Property Liked')
             // card.nativeElement.style.transform = `translateX(${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
             this.likeHouse();
           }else if(ev.deltaX < -150){
-            this.makeToast('Property Disliked')
+            //this.makeToast('Property Disliked')
             // card.nativeElement.style.transform = `translateX(-${+this.plt.width() * 1.5}px) rotate(${ev.deltaX / 10}deg)`;
             this.dislikeHouse();
           }
