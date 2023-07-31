@@ -29,10 +29,13 @@ describe('SearchService', () => {
   it('should return an array of properties', async () => {
     const request: ISearchRequest = { 
         filters: {
-            location: 'My Test Location',
-            minBudget: 10000,
-            maxBudget: 20000,
-            type: 'My Test Type',
+          location: 'test',
+          budgetMin: 10000000,
+          budgetMax: 20000000,
+          bedrooms: 1,
+          bathrooms: 2,
+          garages: 1 ,
+          amenities: [],
         }
     };
 

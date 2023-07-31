@@ -36,10 +36,13 @@ describe('SearchController', () => {
     it('should search for properties in the database that meet certain critertia', async () => {
       const search: ISearchRequest = {
         filters: {
-            location: 'My Test Location',
-            minBudget: 10000,
-            maxBudget: 20000,
-            type: 'My Test Type',
+          location: 'test',
+          budgetMin: 10000000,
+          budgetMax: 20000000,
+          bedrooms: 1,
+          bathrooms: 2,
+          garages: 1 ,
+          amenities: [],
         }
       };
 

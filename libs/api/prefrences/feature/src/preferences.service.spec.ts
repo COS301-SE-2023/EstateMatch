@@ -37,7 +37,8 @@ describe('PreferenceService', () => {
         preferences: {
             user: 'test',
             location: 'test',
-            budget: 1000,
+            budgetMin: 1000,
+            budgetMax: 10000,
             bedrooms: 1,
             bathrooms: 1,
             garages: 1,
@@ -58,7 +59,8 @@ describe('PreferenceService', () => {
         preferences: {
             user: 'test',
             location: 'test',
-            budget: 1000,
+            budgetMin: 1000,
+            budgetMax: 10000,
             bedrooms: 1,
             bathrooms: 1,
             garages: 1,
@@ -69,7 +71,8 @@ describe('PreferenceService', () => {
         preferences: {
             user: 'test',
             location: 'test',
-            budget: 1000,
+            budgetMin: 1000,
+            budgetMax: 10000,
             bedrooms: 1,
             bathrooms: 1,
             garages: 1,

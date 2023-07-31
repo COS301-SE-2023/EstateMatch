@@ -107,10 +107,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   }
 
   async ngAfterViewInit(){
-    // console.log(this.propertyLocation);
-    const coords = await this.setPropertyLocation(this.propertyLocation);
-    // console.log(coords); 
-    this.setPropertyMarker(coords[0],coords[1]);
+    console.log('Init');
+    // const coords = await this.setPropertyLocation(this.propertyLocation);
+    // // console.log(coords); 
+    // this.setPropertyMarker(coords[0],coords[1]);
   }
 
   setMarker(lat: any, long: any){
