@@ -1,4 +1,4 @@
-import { Component, ViewChild} from '@angular/core';
+import { AfterContentChecked, AfterViewInit, Component, ViewChild} from '@angular/core';
 import * as L from 'leaflet';
 import { Geolocation} from '@ionic-native/geolocation'
 import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './map.page.html',
   styleUrls: ['./map.page.scss'],
 })
-  export class MapPage {
+  export class MapPage implements AfterViewInit {
 
       require: any;
 
@@ -23,6 +23,8 @@ import { ActivatedRoute, Router } from '@angular/router';
       foundAddress: any;
       propertyLat: number;
       propertyLong: number;
+      selectedAddress: string;
+      propertyLocation: any;
       
       
 
@@ -34,14 +36,15 @@ import { ActivatedRoute, Router } from '@angular/router';
         this.userLong=0;
         this.propertyLat=0;
         this.propertyLong=0;
+        this.selectedAddress='';
       }
 
       async ngOnInit() {
         this.route.queryParams.subscribe(async (params) =>{
           if(params['data'] != null){
-            this.setPropertyLocation(params['data']);
+            this.propertyLocation = params['data'];
           }
-            this.router.navigate([], { queryParams: {} });
+            // this.router.navigate([], { queryParams: {} });
         });
 
         const coordinates = await Geolocation.getCurrentPosition();
@@ -103,6 +106,13 @@ import { ActivatedRoute, Router } from '@angular/router';
     
   }
 
+  async ngAfterViewInit(){
+    // console.log(this.propertyLocation);
+    const coords = await this.setPropertyLocation(this.propertyLocation);
+    // console.log(coords); 
+    this.setPropertyMarker(coords[0],coords[1]);
+  }
+
   setMarker(lat: any, long: any){
     const customIcon = L.icon({
       iconUrl: 'assets/marker.png', 
@@ -131,7 +141,7 @@ import { ActivatedRoute, Router } from '@angular/router';
         // const marker = L.marker(new L.LatLng(foundAddress.properties.lat, foundAddress.properties.lon)).addTo(this.map);
         this.setLatLong(lat,long);
         this.setMarker(lat,long)
-        
+        this.selectedAddress = this.foundAddress.properties.city;
       });
   }
 
@@ -153,19 +163,41 @@ import { ActivatedRoute, Router } from '@angular/router';
     const fetch = require('node-fetch');
     // const address = 'Baldersgade 3B, 2200 Copenhagen, Denmark';
 
-    fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=0ddaaa18ee5f47b1b80e36cd0d3e0395`)
-    .then((resp: { json: () => any; }) => resp.json())
-    .then((geocodingResult: any) => {
-      console.log(geocodingResult);
-      this.propertyLat = geocodingResult.features[0].geometry.coordinates[0];
-      this.propertyLong = geocodingResult.features[0].geometry.coordinates[1];
+    const response = await fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=0ddaaa18ee5f47b1b80e36cd0d3e0395`);
+    const geocodingResult = await response.json();
+    this.propertyLat = geocodingResult.features[0].geometry.coordinates[0];
+    this.propertyLong = geocodingResult.features[0].geometry.coordinates[1];
 
-      this.setMarker(this.propertyLat,this.propertyLong);
-    });
+
+    // await this.setMarker(this.propertyLat,this.propertyLong);
+    // this.setPropertyMarker(this.propertyLat,this.propertyLong);
+    return [this.propertyLat,this.propertyLong];
+    // fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=0ddaaa18ee5f47b1b80e36cd0d3e0395`)
+    // .then(async (resp: { json: () => any; }) => resp.json())
+    // .then(async (geocodingResult: any) => {
+    //   console.log(geocodingResult);
+
+    // });
 
     // return [0,0]
   }
 
-  
+  setPropertyMarker(lat: any, long: any){
+    const customIcon = L.icon({
+      iconUrl: 'assets/marker.png', 
+      iconSize: [15,25]
+    });
+
+
+    const mark=L.marker([lat,long],
+      {
+        icon: customIcon
+      }).addTo(this.map);
+    mark.bindPopup("<b>Selected Location: "+this.propertyLocation+"</b><br />").openPopup();
+  }
+
+  confirmLocation(){
+    this.router.navigate(['/preferences'], { queryParams:{data: this.selectedAddress}, replaceUrl: true});
+  }  
 
 }

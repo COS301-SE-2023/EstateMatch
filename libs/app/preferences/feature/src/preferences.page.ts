@@ -26,10 +26,10 @@ export class PreferencesPage {
 
   ngOnInit() {
 
-    // this.route.queryParams.subscribe((params) => {
-    //   this.area = params['data'];
-    //   console.log(this.area);
-    // });
+    this.route.queryParams.subscribe((params) => {
+      this.area = params['data'];
+      console.log(this.area);
+    });
 
     // const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
@@ -88,7 +88,8 @@ export class PreferencesPage {
 
     
 
-    this.makeToast('Your initial prefrences set!');
+    this.makeToast('Your prefrences are updated!');
+    this.router.navigate(['/profile'], {replaceUrl: true});
   }
 
   async makeToast(message: any){
@@ -113,5 +114,9 @@ export class PreferencesPage {
       }
         
     }
+  }
+
+  openMap(){
+    this.router.navigate(['/map'], {replaceUrl: true});
   }
 }

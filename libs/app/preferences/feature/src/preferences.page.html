@@ -11,9 +11,18 @@
 <ion-card name="displayContainer">
   <ion-card-subtitle name="Subtitle">Preferences</ion-card-subtitle>
   <div class="main_content_div">
-    <div class="form_div">     
+    <div class="form_div">
       <ion-label id="area" class="small_lbl">Area:</ion-label>
-      <ion-input  [(ngModel)]="area" type="text" placeholder="Area"></ion-input>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2">
+            <i (click)="openMap()" class="fa fa-map map-icon" aria-hidden="true"></i>
+          </ion-col>
+          <ion-col size="10">
+            <ion-input  [(ngModel)]="area" type="text" placeholder="Area"></ion-input>
+          </ion-col>          
+        </ion-row>
+      </ion-grid>     
       <ion-label class="small_lbl">Budget:</ion-label>
       <ion-range  [(ngModel)]="budget" aria-label="budget" [dualKnobs]="true" [ticks]="true" [snaps]="true" [min]="500000" [max]="8000000" [step]="500000" [pin]="true"></ion-range>
       <ion-grid>
@@ -86,7 +95,7 @@
       </ion-chip>
     </div>
     <div class="button_container" name="buttonContainer" style="text-align:center;">
-      <button (click)="setPreferences()" class="buttons" fill="default" routerLink="/home" routerDirection="root">Set Preferences</button>
+      <button (click)="setPreferences()" class="buttons" fill="default" >Set Preferences</button>
     </div>  
   </div>  
 

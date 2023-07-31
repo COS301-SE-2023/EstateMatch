@@ -9,7 +9,7 @@ export class PrivatePropertyRentService {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
-    const navigationTimeout = 60000;
+    const navigationTimeout = 180000;
 
     // Go to target web page
     /*await page.goto('https://www.privateproperty.co.za/to-rent/western-cape/cape-town/cape-town-city-bowl/59', {
@@ -41,7 +41,9 @@ export class PrivatePropertyRentService {
     
 
     // Wait for the results container to load 
-    await page.waitForSelector('.resultsItemsContainer');
+    await page.waitForSelector('.resultsItemsContainer', {
+      timeout: navigationTimeout,
+    });
 
     const pageLinks = (await page.$$eval('.pagination a.pageNumber', (pagination) => pagination.map((page) => page.getAttribute('href') || ''))).filter(url => url !== "#");
 
@@ -139,13 +141,13 @@ export class PrivatePropertyRentService {
       const imageURLs = (await propertyPage.$$eval('.imageGrid a', (imagesElement) => imagesElement.map((image) => image.dataset['background']))).filter(url => url !== null && url !== undefined);
       
       // Modify image URLs to include "_dhd" before the file extension
-      for (let i = 0; i < imageURLs.length; i++) {
+      /*for (let i = 0; i < imageURLs.length; i++) {
         const lastDotIndex = imageURLs[i]?.lastIndexOf(".");
         if (lastDotIndex !== -1) 
         {
           imageURLs[i] = imageURLs[i]?.slice(0, lastDotIndex) + "_dhd" + imageURLs[i]?.slice(lastDotIndex);
         }
-      }
+      }*/
 
       const type = 'Rent';
     
