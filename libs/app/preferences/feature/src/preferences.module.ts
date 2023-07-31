@@ -6,6 +6,7 @@ import { PreferencesPage } from './preferences.page';
 import { PreferencesRouting } from './preferences.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule, 
     HttpClientModule
   ],
-  declarations: [PreferencesPage],
+  declarations: [PreferencesPage, HeaderComponent],
 })
 
 export class PreferencesModule {}
