@@ -1,4 +1,4 @@
-import { Component, ViewChild} from '@angular/core';
+import { AfterContentChecked, AfterViewInit, Component, ViewChild} from '@angular/core';
 import * as L from 'leaflet';
 import { Geolocation} from '@ionic-native/geolocation'
 import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './map.page.html',
   styleUrls: ['./map.page.scss'],
 })
-  export class MapPage {
+  export class MapPage implements AfterViewInit {
 
       require: any;
 
@@ -24,6 +24,7 @@ import { ActivatedRoute, Router } from '@angular/router';
       propertyLat: number;
       propertyLong: number;
       selectedAddress: string;
+      propertyLocation: any;
       
       
 
@@ -41,9 +42,9 @@ import { ActivatedRoute, Router } from '@angular/router';
       async ngOnInit() {
         this.route.queryParams.subscribe(async (params) =>{
           if(params['data'] != null){
-            this.setPropertyLocation(params['data']);
+            this.propertyLocation = params['data'];
           }
-            this.router.navigate([], { queryParams: {} });
+            // this.router.navigate([], { queryParams: {} });
         });
 
         const coordinates = await Geolocation.getCurrentPosition();
@@ -105,6 +106,14 @@ import { ActivatedRoute, Router } from '@angular/router';
     
   }
 
+  async ngAfterViewInit(){
+    // console.log(this.propertyLocation);
+    const coords = await this.setPropertyLocation(this.propertyLocation);
+    // console.log(coords); 
+    console.log(this.propertyLat);
+    console.log(this.propertyLong);
+  }
+
   setMarker(lat: any, long: any){
     const customIcon = L.icon({
       iconUrl: 'assets/marker.png', 
@@ -156,27 +165,25 @@ import { ActivatedRoute, Router } from '@angular/router';
     // const address = 'Baldersgade 3B, 2200 Copenhagen, Denmark';
 
     fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=0ddaaa18ee5f47b1b80e36cd0d3e0395`)
-    .then((resp: { json: () => any; }) => resp.json())
-    .then((geocodingResult: any) => {
+    .then(async (resp: { json: () => any; }) => resp.json())
+    .then(async (geocodingResult: any) => {
       console.log(geocodingResult);
       this.propertyLat = geocodingResult.features[0].geometry.coordinates[0];
       this.propertyLong = geocodingResult.features[0].geometry.coordinates[1];
 
-      console.log(address);
 
-      // this.setMarker(this.propertyLat,this.propertyLong);
-      this.setPropertyMarker(this.propertyLat,this.propertyLong);
-
+      // await this.setMarker(this.propertyLat,this.propertyLong);
+      // this.setPropertyMarker(this.propertyLat,this.propertyLong);
       return [this.propertyLat,this.propertyLong];
     });
 
-    // return [0,0]
+    return [0,0]
   }
 
   async setPropertyMarker(lat: any, long: any){
     const mark=L.marker([lat,long]).addTo(this.map);
     
-    mark.bindPopup("<b>Property Location: "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
+    mark.bindPopup("<b>Property Location: "+this.propertyLocation+"</b><br />").openPopup();
   }
 
   confirmLocation(){
