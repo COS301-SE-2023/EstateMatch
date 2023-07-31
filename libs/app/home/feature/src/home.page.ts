@@ -4,6 +4,7 @@ import { Gesture, GestureController, IonCard, Platform, ToastController } from '
 import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
 import { IPreference } from '@estate-match/api/prefrences/util';
 import { Router } from '@angular/router';
+import { time } from 'console';
 
 interface Property {
   user: string;
@@ -142,14 +143,14 @@ export class HomePage implements AfterViewInit{
     });
 
     //showing the heart icon.
-    this.showLikeIcon(1);
+    // this.showLikeIcon(1);
 
-    //await this.makeToast('Property Liked');
+    await this.makeToast('Property Liked');
 
-    setTimeout(() => {
-      console.log("timer");
-      this.showLikeIcon(0);
-      }, 1000);
+    // setTimeout(() => {
+    //   console.log("timer");
+    //   this.showLikeIcon(0);
+    //   }, 1000);
 
   // Set a timeout to hide the heart icon after 1 second (1000 milliseconds)
 
@@ -201,15 +202,17 @@ export class HomePage implements AfterViewInit{
       console.log('success');
     });
 
-    this.showCrossIcon(1);
+    // this.showCrossIcon(1);
 
-    //await this.makeToast('Property Disliked');
+    await this.makeToast('Property Disliked');
 
-    setTimeout(() => {
-      console.log("timer");
-      this.showCrossIcon(0);
-      }, 1000);
+    // const timeout = setTimeout(() => {
+    //   console.log("timer");
+    //   this.showCrossIcon(0);
+    //   }, 1000);
 
+    // clearTimeout(timeout);
+    // this.showCrossIcon(0);
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
 
