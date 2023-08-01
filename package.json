@@ -51,6 +51,7 @@
     "@angular/cli": "~16.0.0",
     "@angular/compiler-cli": "~16.0.0",
     "@angular/language-service": "~16.0.0",
+    "@babel/preset-typescript": "^7.22.5",
     "@nestjs/cqrs": "^9.0.3",
     "@nestjs/schematics": "^9.1.0",
     "@nestjs/testing": "^10.1.0",
