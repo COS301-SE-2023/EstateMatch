@@ -5,7 +5,7 @@
   "scripts": {
     "start:api:dev": "yarn nx run api:serve --configuration=development",
     "start:app:dev": "yarn nx run app:serve --configuration=development",
-    "test:all": "yarn nx run-many --target=test --all --skip-nx-cache --parallel --coverage && yarn nx e2e api-e2e"
+    "test:all": "yarn nx run-many --target=test --all --skip-nx-cache --parallel --coverage && yarn nx e2e api-e2e --skip-nx-cache"
   },
   "private": true,
   "dependencies": {
