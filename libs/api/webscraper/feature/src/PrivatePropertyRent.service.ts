@@ -50,7 +50,7 @@ export class PrivatePropertyRentService {
     const lastPageLink = pageLinks[pageLinks.length - 2];
     const pageNumber = parseInt(lastPageLink.slice(-2));
 
-    var propertyURLs: string[] = [];
+    let propertyURLs: string[] = [];
     const pages = await browser.newPage();
 
     for(let i = 1; i <= 3; i++)
@@ -102,10 +102,10 @@ export class PrivatePropertyRentService {
       const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
       
       // Initialize variables for storing bedrooms, bathrooms, garages, and amenities 
-      var bedrooms;
-      var bathrooms;
-      var garages;
-      var amenities: string[] = [];
+      let bedrooms;
+      let bathrooms;
+      let garages;
+      const amenities: string[] = [];
 
     
 
