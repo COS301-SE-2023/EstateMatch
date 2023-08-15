@@ -53,7 +53,7 @@ export class RemaxRentService {
     const lastPageLink = pageLinks[pageLinks.length - 2];
     //const pageNumber = parseInt(lastPageLink.slice(-2));
 
-    var propertyURLs: string[] = [];
+    let propertyURLs: string[] = [];
     const pages = await browser.newPage();
 
     for(let i = 1; i <= 2; i++)
@@ -107,8 +107,8 @@ export class RemaxRentService {
       const amenities = await propertyPage.$$eval('.mobi-features-list li', (elements) =>elements.map((el) => el.textContent?.trim() || ''));
 
       // Initialize variables for storing bedrooms, bathrooms, garages, and amenities 
-      var bathrooms;
-      var garages;
+      let bathrooms;
+      let garages;
 
       if (keyVals.length < 2)
       {
