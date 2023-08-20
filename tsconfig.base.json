@@ -93,6 +93,7 @@
       "@estate-match/apo/webscaper/util--unit-test-runner=jest": [
         "libs/apo/webscaper/util--unit-test-runner=jest/src/index.ts"
       ],
+      "@estate-match/app/chat/feature": ["libs/app/chat/feature/src/index.ts"],
       "@estate-match/app/core/data-access": [
         "libs/app/core/data-access/src/index.ts"
       ],
