@@ -1,6 +1,6 @@
 import { IChat } from "../interfaces";
 
-export interface IUpdateUserRequest {
+export interface IUpdateChatRequest {
     username: string;
     message: IChat;
 }
