@@ -1,0 +1,21 @@
+*{
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+}
+input[name="message"]{
+    width: 60%; 
+    height: 45px;
+    margin-top: 50%;
+
+}
+div[name="Container"]{
+    align-items: center;
+    margin-bottom: 10%;
+}
+button[name="send-button"]{
+
+}
+div[name="header"]{
+    border: 2px;
+    font-size: x-large;
+    text-align: center;
+}
