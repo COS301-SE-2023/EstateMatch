@@ -1,25 +1,25 @@
 import { Module } from '@nestjs/common';
-import { UserController } from './user.controller';
-import { UserService } from './chat.service';
+import { ChatController } from './chat.controller';
+import { ChatService } from './chat.service';
 import { CqrsModule } from '@nestjs/cqrs';
-import { UserModule as UserDataAccessModule } from '@estate-match/api/users/data-access';
+import { ChatModule as UserDataAccessModule } from '@estate-match/api/chat/data-access';
 
 import {
-    GetUserHandler,
-    SetUserHandler,
-    UpdateUserHandler
+    GetChatHandler,
+    SetChatHandler,
+    UpdateChatHandler
 } from './commands';
 
 export const CommandHandlers = [
-    GetUserHandler,
-    SetUserHandler,
-    UpdateUserHandler
+    GetChatHandler,
+    SetChatHandler,
+    UpdateChatHandler
 ];
 
 @Module({
   imports: [CqrsModule, UserDataAccessModule],
-  providers: [UserService, ...CommandHandlers],
-  controllers: [UserController],
-  exports: [UserService]
+  providers: [ChatService, ...CommandHandlers],
+  controllers: [ChatController],
+  exports: [ChatService]
 })
 export class UserModule {}

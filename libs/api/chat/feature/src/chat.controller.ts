@@ -9,16 +9,16 @@ export class ChatController {
     
     @Post('/getChat')
     async getUser(@Body() request: IGetChatRequest) {
-        return await this.chatService.getUser(request);
+        return await this.chatService.getChat(request);
     }
     
     @Post('/setChat')
     async setUser(@Body() request: ISetChatRequest) {
-        return await this.chatService.setUser(request);
+        return await this.chatService.setChat(request);
     }
 
     @Post('/updateChat')
     async updateUser(@Body() request: IUpdateChatRequest) {
-        return await this.chatService.updateUser(request);
+        return await this.chatService.updateChat(request);
     }
 }

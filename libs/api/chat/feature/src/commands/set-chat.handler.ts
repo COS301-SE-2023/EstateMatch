@@ -1,15 +1,15 @@
-import { UserRepository } from "@estate-match/api/users/data-access";
-import { SetUserCommand, ISetUserResponse } from "@estate-match/api/users/util";
+import { ChatRepository } from "@estate-match/api/chat/data-access";
+import { SetChatCommand, ISetChatResponse } from "@estate-match/api/chat/util";
 import { CommandHandler, ICommandHandler, EventPublisher } from "@nestjs/cqrs";
 
-@CommandHandler(SetUserCommand)
-export class SetUserHandler implements ICommandHandler<SetUserCommand, ISetUserResponse> {
+@CommandHandler(SetChatCommand)
+export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatResponse> {
     constructor(
-        private readonly userRepository: UserRepository,
+        private readonly userRepository: ChatRepository,
         private readonly publisher: EventPublisher
     ) {}
     
-    async execute(command: SetUserCommand): Promise<any> {
+    async execute(command: SetChatCommand): Promise<any> {
        
     }
 }

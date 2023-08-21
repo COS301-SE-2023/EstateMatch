@@ -3,7 +3,7 @@ import { GetChatCommand, IGetChatResponse } from "@estate-match/api/chat/util";
 import { CommandHandler, ICommandHandler, EventPublisher } from "@nestjs/cqrs";
 
 @CommandHandler(GetChatCommand)
-export class GetUserHandler implements ICommandHandler<GetChatCommand, IGetChatResponse> {
+export class GetChatHandler implements ICommandHandler<GetChatCommand, IGetChatResponse> {
     constructor(
         private readonly userRepository: UserRepository,
         private readonly publisher: EventPublisher

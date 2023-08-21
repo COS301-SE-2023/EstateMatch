@@ -5,7 +5,7 @@ import { UpdateChatCommand, IUpdateChatRequest, IUpdateChatResponse } from '@est
 import { CommandBus } from '@nestjs/cqrs';
 
 @Injectable()
-export class UserService {
+export class ChatService {
     constructor(private readonly commandBus: CommandBus) {}
     
     async getChat(request: IGetChatRequest): Promise<IGetChatResponse> {
