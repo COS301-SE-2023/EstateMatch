@@ -12,10 +12,20 @@ div[name="Container"]{
     margin-bottom: 10%;
 }
 button[name="send-button"]{
-
+    
 }
-div[name="header"]{
-    border: 2px;
-    font-size: x-large;
+ion-card[name="displayContainer"]{
+    height: 84vh;
+    border-radius: 5%;
+    background-color: #fbfcfa;
+    overflow-y: scroll;
+}
+
+ion-card-subtitle[name="Subtitle"]{
+    padding-top: 3%;
+    padding-bottom: 3%;
     text-align: center;
+    font-size: x-large;
+    color:#999999;
+    background-color: #f3f1f1;
 }
