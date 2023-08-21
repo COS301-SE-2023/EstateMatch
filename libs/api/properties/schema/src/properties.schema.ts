@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose';
+//import { IUser as user} from '@estate-match/api/users/util';
 
 export const PropertiesSchema = new mongoose.Schema({
     //propertyId:  {type: String, required: true},
@@ -17,6 +18,13 @@ export const PropertiesSchema = new mongoose.Schema({
 
     images: [String],
 
+    //making the properties user specific
+    userId: {type: String, required: true},
+    username: {type: String, required: true},
+    seen : {type: Boolean, required: true, default: false},
+    //userSchema : {type : user}
+
+
 });
 
 export interface PropertiesModel {
@@ -34,5 +42,11 @@ export interface PropertiesModel {
     // HouseType : Rent/Sale
 
     images: string[],
+
+    //making the properties user specific
+    userId: string,
+    username: string,
+    seen : boolean,
+
 
 }
