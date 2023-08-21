@@ -1,5 +1,5 @@
-import { IChatRequest } from "../requests";
+import { IGetChatRequest } from "../requests";
 
-export class GetUserCommand {
-    constructor(public request: IChatRequest) {}
+export class GetChatCommand {
+    constructor(public request: IGetChatRequest) {}
 }
