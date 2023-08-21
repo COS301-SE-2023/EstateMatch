@@ -1,5 +1,5 @@
 import {IChat} from '../interfaces/chat.interface';
 
-export interface IGetChatResponse {
+export interface ISetChatResponse {
     message: IChat;
 }
