@@ -30,7 +30,12 @@ export class SearchPage implements AfterViewInit{
       bathrooms: 1,
       garages: 1,
       amenities: [],
-      images: []}
+      images: [],
+      //added user specific fields
+      userId: '001',
+      username: 'TestUsername',
+      seen: false
+    }
     ];
     
     lastImageIndex = 0;
