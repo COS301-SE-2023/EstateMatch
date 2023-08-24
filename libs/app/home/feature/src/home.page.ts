@@ -56,6 +56,10 @@ export class HomePage implements AfterViewInit{
     garages: 1,
     amenities: [],
     images: this.images,
+    //added user specific fields
+    userId: '001',
+    username: 'TestUsername',
+    seen: false
   }];
   lastImageIndex = 0;
   currentDescriptionIndex = 0;
