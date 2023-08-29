@@ -47,6 +47,33 @@ describe('ChatService', () => {
         );
         expect(result).toEqual(commandResponse);
     });
+
+    it('should a chat to the database', async () => {
+        const request: ISetChatRequest = { 
+            chat: {
+                id: 'testID',
+                username: 'testuser',
+                message: 'test message'
+            }
+        };
+
+        const commandResponse: ISetChatResponse = { 
+            chat: {
+                id: 'testID',
+                username: 'testuser',
+                message: 'test message'
+            }
+        };
+
+        (commandBus.execute as jest.Mock).mockResolvedValue(commandResponse);
+        const result = await service.setChat(request);
+        expect(commandBus.execute).toHaveBeenCalledWith(
+            expect.any(SetChatCommand),
+        );
+        expect(result).toEqual(commandResponse);
+    });
+
+    
 });
 
 
