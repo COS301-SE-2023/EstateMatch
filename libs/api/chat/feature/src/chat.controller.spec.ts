@@ -7,3 +7,22 @@ import { IGetChatRequest, IGetChatResponse, ISetChatRequest, ISetChatResponse, I
 describe('ChatController', () => {
   
 });
+
+
+describe('setChat', () => {
+    const request: ISetChatRequest = {
+        chat: {
+            id: 'testID',
+            username: 'testuser',
+            message: 'test message'
+        }
+    };
+});
+
+describe('getChat', () => {
+    const request: IGetChatRequest = {
+        chat: {
+            username: 'testuser'
+        }
+    };
+})
