@@ -73,7 +73,30 @@ describe('ChatService', () => {
         expect(result).toEqual(commandResponse);
     });
 
-    
+    it('should update a chat in the database', async () => {
+        const request: IUpdateChatRequest = { 
+            chat: {
+                id: 'testID',
+                username: 'testuser',
+                message: 'test message'
+            }
+        };
+
+        const commandResponse: IUpdateChatResponse = { 
+            chat: {
+                id: 'testID',
+                username: 'testuser',
+                message: 'test message'
+            }
+        };
+
+        (commandBus.execute as jest.Mock).mockResolvedValue(commandResponse);
+        const result = await service.updateChat(request);
+        expect(commandBus.execute).toHaveBeenCalledWith(
+            expect.any(UpdateChatCommand),
+        );
+        expect(result).toEqual(commandResponse);
+    });
 });
 
 
