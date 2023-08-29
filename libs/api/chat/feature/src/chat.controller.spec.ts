@@ -17,6 +17,15 @@ describe('setChat', () => {
             message: 'test message'
         }
     };
+
+    const expectedResult: IGetChatResponse = {
+        chat: {
+            id: 'testID',
+            username: 'testuser',
+            message: 'test message'
+        }
+    };
+    
 });
 
 describe('getChat', () => {
@@ -24,5 +33,29 @@ describe('getChat', () => {
         chat: {
             username: 'testuser'
         }
+    };
+
+    const expectedResult: IGetChatResponse = {
+        chat: {
+            id: 'testID',
+            username: 'testuser',
+            message: 'test message'
+        }
+    };
+})
+
+describe('updateChat', () => {
+
+    const request: IUpdateChatRequest = {
+        username: 'testuser',
+        chat: {
+            id: 'testID',
+            username: 'testuser',
+            message: 'test message'
+        }
+    };
+
+    const expectedResult: IUpdateChatResponse = {
+        success: true
     };
 })
