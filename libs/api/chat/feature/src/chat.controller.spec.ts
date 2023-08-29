@@ -47,9 +47,7 @@ describe('ChatController', () => {
     
     describe('getChat', () => {
         const request: IGetChatRequest = {
-            chat: {
-                username: 'testuser'
-            }
+            user: 'testuser'
         };
     
         const expectedResult: IGetChatResponse = {
@@ -75,6 +73,5 @@ describe('ChatController', () => {
         const expectedResult: IUpdateChatResponse = {
             success: true
         };
-    })
     });
 });

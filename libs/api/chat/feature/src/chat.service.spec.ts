@@ -27,9 +27,7 @@ describe('ChatService', () => {
 
     it('should return a chat', async () => {
         const request: IGetChatRequest = { 
-            chat: {
-                username: 'testuser'
-            }
+            user: 'testuser'
         };
 
         const commandResponse: IGetChatResponse = { 
@@ -75,6 +73,7 @@ describe('ChatService', () => {
 
     it('should update a chat in the database', async () => {
         const request: IUpdateChatRequest = { 
+            username: 'testuser',
             chat: {
                 id: 'testID',
                 username: 'testuser',
@@ -83,11 +82,7 @@ describe('ChatService', () => {
         };
 
         const commandResponse: IUpdateChatResponse = { 
-            chat: {
-                id: 'testID',
-                username: 'testuser',
-                message: 'test message'
-            }
+            success: true
         };
 
         (commandBus.execute as jest.Mock).mockResolvedValue(commandResponse);
