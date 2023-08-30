@@ -1,4 +1,4 @@
-import {Controller, Post, Body, Get} from '@nestjs/common';
+import {Controller, Post, Body} from '@nestjs/common';
 import {ChatService} from './chat.service';
 import { IGetChatRequest } from '@estate-match/api/chat/util';
 import { ISetChatRequest} from '@estate-match/api/chat/util';

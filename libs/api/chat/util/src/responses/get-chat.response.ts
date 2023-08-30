@@ -1,4 +1,4 @@
-import {IChat} from '../interfaces/chat.interface';
+import {IChat} from '../interfaces';
 
 export interface IGetChatResponse {
     chat: IChat;

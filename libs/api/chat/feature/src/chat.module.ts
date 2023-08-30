@@ -22,4 +22,4 @@ export const CommandHandlers = [
   controllers: [ChatController],
   exports: [ChatService]
 })
-export class UserModule {}
+export class ChatModule {}

@@ -34,6 +34,7 @@
     "bcrypt": "^5.1.0",
     "fast-text-encoding": "^1.0.6",
     "googleapis": "^123.0.0",
+    "langchain": "^0.0.137",
     "leaflet": "^1.9.4",
     "mongoose": "^7.1.1",
     "node-gyp": "^9.4.0",
