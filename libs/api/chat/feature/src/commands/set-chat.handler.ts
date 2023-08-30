@@ -12,6 +12,32 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     ) {}
     
     async execute(command: SetChatCommand): Promise<any> {
-       console.log(command.request.chat.message);
+
+        const fullPrompt = PromptTemplate.fromTemplate(
+            `{introduction} {example}`
+        );
+
+        const introPrompt = PromptTemplate.fromTemplate(
+            `Hello, {username} please describe your ideal home.`
+        );
+
+        const examplePrompt = PromptTemplate.fromTemplate(
+            `For example, you could say: {message}`
+        );
+        
+        const composedPrompt = new PipelinePromptTemplate({
+            pipelinePrompts: [
+                {name: 'introduction', prompt: introPrompt},
+                {name: 'example', prompt: examplePrompt}
+            ],
+            finalPrompt: fullPrompt
+        });
+
+        const finalPrompt = await composedPrompt.format({
+            username: command.request.chat.username,
+            message: command.request.chat.message
+        });
+
+        console.log(finalPrompt);
     }
 }
