@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ChatController } from './chat.controller';
 import { ChatService } from './chat.service';
 import { CqrsModule } from '@nestjs/cqrs';
-import { ChatModule as UserDataAccessModule } from '@estate-match/api/chat/data-access';
+// import { ChatModule as UserDataAccessModule } from '@estate-match/api/chat/data-access';
 
 import {
     GetChatHandler,
@@ -17,7 +17,7 @@ export const CommandHandlers = [
 ];
 
 @Module({
-  imports: [CqrsModule, UserDataAccessModule],
+  imports: [CqrsModule],
   providers: [ChatService, ...CommandHandlers],
   controllers: [ChatController],
   exports: [ChatService]
