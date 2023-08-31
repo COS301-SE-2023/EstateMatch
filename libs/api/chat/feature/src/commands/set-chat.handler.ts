@@ -28,9 +28,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         // });
 
         const chat = new HuggingFaceInference({
-            model: "google/flan-t5-base",
+            model: "gpt2",
             apiKey: process.env['HF_API_LLM'],
-            temperature: 0.2,
         });
 
         const chatPrompt = new PromptTemplate({
@@ -48,5 +47,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             question: "Which NFL team won the Super Bowl in the 2010 season?",
         });
         console.log(resB);
+        // const res = await model.call("When is the 2023 Rugby World Cup?");
+        // console.log({ res });
     }
 }
