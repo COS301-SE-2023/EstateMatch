@@ -28,19 +28,15 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         // });
 
         const chat = new HuggingFaceInference({
-            model: "t5-base",
-            temperature: 0.5,
-            maxTokens: 256,
+            model: "google/flan-t5-base",
             apiKey: process.env['HF_API_LLM'],
-            
+            temperature: 0.2,
         });
 
-        const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-          SystemMessagePromptTemplate.fromTemplate(
-            "You are a helpful assistant that translates {input_language}"
-          ),
-          HumanMessagePromptTemplate.fromTemplate("{text}"),
-        ]);
+        const chatPrompt = new PromptTemplate({
+            template: "Q: {question}",
+            inputVariables: ["question"],
+        });
 
         const chainB = new LLMChain({
           prompt: chatPrompt,
@@ -49,8 +45,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         });
 
         const resB = await chainB.call({
-          input_language: "English",
-          text: "My name is Wolfgang and I live in Berlin",
+            question: "Which NFL team won the Super Bowl in the 2010 season?",
         });
         console.log(resB);
     }
