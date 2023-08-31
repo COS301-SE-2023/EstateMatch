@@ -3,12 +3,12 @@
   }
   
   textarea[name="message"] {
-    width: 65%;
+    width: 80%;
     height: 40px;
     margin-top: 2%;
-    margin-right: 5%;
-    margin-left: 5%;
-    font-size: large;
+    margin-right: 2%;
+    margin-left: 2%;
+    font-size: x-large;
     border: 1px solid #000000;
     border-radius: 5px;
     padding-left: 8px;
@@ -16,7 +16,7 @@
   }
   
   div[name="MessageBox"] {
-    height: 80%;
+    height: 40rem;
     width: 90%;
     margin-left: 5%;
     margin-top: 5%;
