@@ -1,7 +1,17 @@
 // import { ChatRepository } from "@estate-match/api/chat/data-access";
 import { SetChatCommand, ISetChatResponse } from "@estate-match/api/chat/util";
 import { CommandHandler, ICommandHandler, EventPublisher } from "@nestjs/cqrs";
-import { PromptTemplate, PipelinePromptTemplate } from "langchain/prompts";
+import { 
+    ChatPromptTemplate,
+    PromptTemplate,
+    HumanMessagePromptTemplate,
+    SystemMessagePromptTemplate, } from "langchain/prompts";
+import { LLMChain } from "langchain/chains";
+import { ChatOpenAI } from "langchain/chat_models/openai";
+import { HfInference } from '@huggingface/inference';
+import { HuggingFaceInference } from 'langchain/llms/hf';
+
+const hf = new HfInference(process.env['HF_API_LLM"']);
 
 
 @CommandHandler(SetChatCommand)
@@ -12,32 +22,32 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     ) {}
     
     async execute(command: SetChatCommand): Promise<any> {
+        // const featureExtractorTemplate = new PromptTemplate({
+        //     template: "You are a assistant that recieve a description of a house and you need to extract the key features of the house. The description is: {description}",
+        //     inputVariables: ["description"],
+        // });
 
-        const fullPrompt = PromptTemplate.fromTemplate(
-            `{introduction} {example}`
-        );
-
-        const introPrompt = PromptTemplate.fromTemplate(
-            `Hello, {username} please describe your ideal home.`
-        );
-
-        const examplePrompt = PromptTemplate.fromTemplate(
-            `For example, you could say: {message}`
-        );
-        
-        const composedPrompt = new PipelinePromptTemplate({
-            pipelinePrompts: [
-                {name: 'introduction', prompt: introPrompt},
-                {name: 'example', prompt: examplePrompt}
-            ],
-            finalPrompt: fullPrompt
+        const chat = new HuggingFaceInference({
+            model: "gpt2",
+            apiKey: process.env['HF_API_LLM'],
         });
 
-        const finalPrompt = await composedPrompt.format({
-            username: command.request.chat.username,
-            message: command.request.chat.message
+        const chatPrompt = new PromptTemplate({
+            template: "Q: {question}",
+            inputVariables: ["question"],
         });
 
-        console.log(finalPrompt);
+        const chainB = new LLMChain({
+          prompt: chatPrompt,
+          llm: chat,
+
+        });
+
+        const resB = await chainB.call({
+            question: "Which NFL team won the Super Bowl in the 2010 season?",
+        });
+        console.log(resB);
+        // const res = await model.call("When is the 2023 Rugby World Cup?");
+        // console.log({ res });
     }
 }
