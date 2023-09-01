@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { TensorflowService } from './ImageToText.service';
-import { TensorflowController } from './ImageToText.controller';
+import { ImageToTextService } from './ImageToText.service';
+import { ImageToTextController } from './ImageToText.controller';
 import { CqrsModule } from '@nestjs/cqrs';
 
 @Module({
     imports: [CqrsModule],
-    controllers: [TensorflowController],
-    providers: [TensorflowService],
-    exports: [TensorflowService]
+    controllers: [ImageToTextController],
+    providers: [ImageToTextService],
+    exports: [ImageToTextService]
 })
-export class TensorflowModule {}
+export class ImageToTextModule {}

@@ -1,14 +1,14 @@
 import {Controller, Post, Body} from '@nestjs/common';
-import {TensorflowService} from './ImageToText.service';
+import {ImageToTextService} from './ImageToText.service';
 
 @Controller()
-export class TensorflowController {
-    constructor(private readonly tensorflowService: TensorflowService) {}
+export class ImageToTextController {
+    constructor(private readonly imagetotextService: ImageToTextService) {}
 
-    @Post('/identify-feel')
-    async identifyFeel(@Body() body: {imageUrl: string[]}) {
+    @Post('/image-to-text')
+    async imageToText(@Body() body: {imageUrl: string}) {
         const {imageUrl} = body;
-        const result = await this.tensorflowService.identifyFeelFromURL(imageUrl);
-        return {result: result};
+        const result = await this.imagetotextService.analyzeImage(imageUrl);
+        return result;
     }
 }
