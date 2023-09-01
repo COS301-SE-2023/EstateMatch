@@ -16,7 +16,7 @@
   }
   
   div[name="MessageBox"] {
-    height: 40rem;
+    height: 43rem;
     width: 90%;
     margin-left: 5%;
     margin-top: 5%;
@@ -54,4 +54,23 @@
     color: #999999;
     background-color: #f3f1f1;
   }
+  img {
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+.container {
+    border: 2px solid #67C390;
+    background-color: #67C390;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 60px;
+    margin-bottom: 10px;;
+  }
   
+.darker {
+    margin-top: 1%;
+    border-color: #E75C48;
+    background-color: #E75C48;
+  }
