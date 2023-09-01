@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { TensorflowService } from './tensorflow.service';
-import { TensorflowController } from './tensorflow.controller';
+import { TensorflowService } from './ImageToText.service';
+import { TensorflowController } from './ImageToText.controller';
 import { CqrsModule } from '@nestjs/cqrs';
 
 @Module({

@@ -1,5 +1,5 @@
 import {Controller, Post, Body} from '@nestjs/common';
-import {TensorflowService} from './tensorflow.service';
+import {TensorflowService} from './ImageToText.service';
 
 @Controller()
 export class TensorflowController {
