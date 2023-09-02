@@ -27,7 +27,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     
     async execute(command: SetChatCommand): Promise<any> {
         const featureExtractorTemplate = new PromptTemplate({
-            template: "You are a assistant that recieve a description of a house and you need to extract the key features of the house. The description is: {description}",
+            template: "Extract the key features out of the house description. Skip any basic features that all homes have and rather focus on the extra details. Limit it to 3 words per feature. The description is: {description}",
             inputVariables: ["description"],
         });
 
