@@ -31,29 +31,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             inputVariables: ["description"],
         });
 
-        // const chat = new HuggingFaceInference({
-        //     model: "google/flan-t5-base",
-        //     apiKey: process.env['HF_API_LLM'],
-        //     maxTokens: 10,
-        // });
-
-        // const chatPrompt = new PromptTemplate({
-        //     template: "Q: {question}",
-        //     inputVariables: ["question"],
-        // });
-
-        // const chainB = new LLMChain({
-        //   prompt: chatPrompt,
-        //   llm: chat,
-
-        // });
-
-        // const resB = await chainB.call({
-        //     question: "Which NFL team won the Super Bowl in the 2010 season?",
-        // });
-        // console.log(resB);
-
-        // We can also construct an LLMChain from a ChatPromptTemplate and a chat model.
         const chat = new OpenAI({
             modelName: "text-davinci-002",
             temperature: 0,
@@ -66,18 +43,14 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         // ),
         // HumanMessagePromptTemplate.fromTemplate("{text}"),
         // ]);
-        const chainB = new LLMChain({
+        const chain = new LLMChain({
             prompt: featureExtractorTemplate,
             llm: chat,
         });
 
-        // console.log(command.request.chat.message);
-
-        const resB = await chainB.call({
+        const characteristics = await chain.call({
             description: command.request.chat.message,
-        });
-        console.log({ resB });
-        // const res = await model.call("When is the 2023 Rugby World Cup?");
-        // console.log({ res });
+        })
+        console.log({ characteristics });
     }
 }
