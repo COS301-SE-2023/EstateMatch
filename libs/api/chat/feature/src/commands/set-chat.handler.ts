@@ -51,6 +51,9 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const characteristics = await chain.call({
             description: command.request.chat.message,
         })
-        console.log({ characteristics });
+
+        const characteristicsA = characteristics['text'].split('\n-');
+
+        console.log( characteristics['text'] );
     }
 }
