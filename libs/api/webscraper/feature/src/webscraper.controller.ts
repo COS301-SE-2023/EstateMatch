@@ -34,6 +34,8 @@ export class WebScraperController {
             //  userId: properties[i].userId,
             //  username: properties[i].username,
             //  seen : properties[i].seen,
+
+            user : properties[i].user
         }
           const request: ICreatePropertyRequest = {
             property: property
@@ -64,6 +66,8 @@ export class WebScraperController {
           //  userId: properties[i].userId,
           //  username: properties[i].username,
           //  seen : properties[i].seen,
+
+          user : properties[i].user
       }
         const request: ICreatePropertyRequest = {
           property: property
@@ -94,6 +98,8 @@ export class WebScraperController {
           //  userId: properties[i].userId,
           //  username: properties[i].username,
           //  seen : properties[i].seen,
+
+          user : properties[i].user
       }
         const request: ICreatePropertyRequest = {
           property: property
@@ -124,6 +130,8 @@ export class WebScraperController {
             // userId: properties[i].userId,
             // username: properties[i].username,
             // seen : properties[i].seen,
+
+            user : properties[i].user
         }
           const request: ICreatePropertyRequest = {
             property: property

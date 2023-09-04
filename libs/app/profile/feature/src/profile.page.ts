@@ -26,6 +26,7 @@ export class ProfilePage {
     username: 'string',
     email: 'string',
     //password: 'string'
+    properties: [],
   };
 
   preferences: IPreference = {

@@ -60,6 +60,7 @@ export class HomePage implements AfterViewInit{
     // userId: '001',
     // username: 'TestUsername',
     // seen: false
+    user: 'TestUsername'
   }];
   lastImageIndex = 0;
   currentDescriptionIndex = 0;
