@@ -12,4 +12,7 @@ export interface IProperty{
     // userId: string,
     // username: string,
     // seen : boolean,
+
+    //used references to make the properties user specific
+    user : string //hold the id of the user
 }
