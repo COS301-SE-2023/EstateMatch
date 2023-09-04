@@ -52,8 +52,15 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             description: command.request.chat.message,
         })
 
-        const characteristicsA = characteristics['text'].split('\n-');
+        const characteristicsA = characteristics['text'].split('\n-'); //This is what will be used for the model
 
-        console.log( characteristics['text'] );
+        const response: ISetChatResponse = {
+            chat: {
+                username: command.request.chat.username,
+                message: 'Based on your description, I have extracted the following features: ' + characteristics['text']
+            }
+        };
+
+        return response;
     }
 }
