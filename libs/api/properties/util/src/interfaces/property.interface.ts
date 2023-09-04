@@ -8,8 +8,8 @@ export interface IProperty{
     amenities: string[],
     images: string[],
 
-    //added user specific fields
-    userId: string,
-    username: string,
-    seen : boolean,
+    // //added user specific fields
+    // userId: string,
+    // username: string,
+    // seen : boolean,
 }

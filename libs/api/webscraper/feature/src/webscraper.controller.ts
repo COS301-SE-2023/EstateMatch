@@ -30,10 +30,10 @@ export class WebScraperController {
             amenities: properties[i].amenities,
             images: properties[i].imageURLs,
 
-             //user specific fields
-             userId: properties[i].userId,
-             username: properties[i].username,
-             seen : properties[i].seen,
+            //  //user specific fields
+            //  userId: properties[i].userId,
+            //  username: properties[i].username,
+            //  seen : properties[i].seen,
         }
           const request: ICreatePropertyRequest = {
             property: property
@@ -60,10 +60,10 @@ export class WebScraperController {
           amenities: properties[i].amenities,
           images: properties[i].imageURLs,
 
-           //user specific fields
-           userId: properties[i].userId,
-           username: properties[i].username,
-           seen : properties[i].seen,
+          //  //user specific fields
+          //  userId: properties[i].userId,
+          //  username: properties[i].username,
+          //  seen : properties[i].seen,
       }
         const request: ICreatePropertyRequest = {
           property: property
@@ -90,10 +90,10 @@ export class WebScraperController {
           amenities: properties[i].amenities,
           images: properties[i].imageURLs,
 
-           //user specific fields
-           userId: properties[i].userId,
-           username: properties[i].username,
-           seen : properties[i].seen,
+          //  //user specific fields
+          //  userId: properties[i].userId,
+          //  username: properties[i].username,
+          //  seen : properties[i].seen,
       }
         const request: ICreatePropertyRequest = {
           property: property
@@ -120,10 +120,10 @@ export class WebScraperController {
             amenities: properties[i].amenities,
             images: properties[i].imageURLs,
 
-            //user specific fields
-            userId: properties[i].userId,
-            username: properties[i].username,
-            seen : properties[i].seen,
+            // //user specific fields
+            // userId: properties[i].userId,
+            // username: properties[i].username,
+            // seen : properties[i].seen,
         }
           const request: ICreatePropertyRequest = {
             property: property

@@ -18,11 +18,12 @@ export const PropertiesSchema = new mongoose.Schema({
 
     images: [String],
 
-    //making the properties user specific
-    userId: {type: String, required: true},
-    username: {type: String, required: true},
-    seen : {type: Boolean, required: true, default: false},
-    //userSchema : {type : user}
+    //used embedded documents to make the properties user specific (not what we want)
+    // //making the properties user specific
+    // userId: {type: String, required: true},
+    // username: {type: String, required: true},
+    // seen : {type: Boolean, required: true, default: false},
+    // //userSchema : {type : user}
 
 
 });
@@ -43,10 +44,10 @@ export interface PropertiesModel {
 
     images: string[],
 
-    //making the properties user specific
-    userId: string,
-    username: string,
-    seen : boolean,
+    // //making the properties user specific
+    // userId: string,
+    // username: string,
+    // seen : boolean,
 
 
 }

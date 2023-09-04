@@ -31,10 +31,10 @@ export class SearchPage implements AfterViewInit{
       garages: 1,
       amenities: [],
       images: [],
-      //added user specific fields
-      userId: '001',
-      username: 'TestUsername',
-      seen: false
+      // //added user specific fields
+      // userId: '001',
+      // username: 'TestUsername',
+      // seen: false
     }
     ];
     
