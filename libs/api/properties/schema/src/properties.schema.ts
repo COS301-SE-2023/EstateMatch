@@ -25,6 +25,9 @@ export const PropertiesSchema = new mongoose.Schema({
     // seen : {type: Boolean, required: true, default: false},
     // //userSchema : {type : user}
 
+    //used references to make the properties user specific
+    user : {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+
 
 });
 
@@ -48,6 +51,9 @@ export interface PropertiesModel {
     // userId: string,
     // username: string,
     // seen : boolean,
+
+    //used references to make the properties user specific
+    user : string //hold the id of the user
 
 
 }
