@@ -1,22 +1,13 @@
 // import { ChatRepository } from "@estate-match/api/chat/data-access";
 import { SetChatCommand, ISetChatResponse } from "@estate-match/api/chat/util";
 import { CommandHandler, ICommandHandler, EventPublisher } from "@nestjs/cqrs";
-import { 
-    ChatPromptTemplate,
-    PromptTemplate,
-    HumanMessagePromptTemplate,
-    SystemMessagePromptTemplate, } from "langchain/prompts";
+import { PromptTemplate } from "langchain/prompts";
 import { LLMChain } from "langchain/chains";
-import { ChatOpenAI } from "langchain/chat_models/openai";
 import { OpenAI } from "langchain/llms/openai";
-import { HfInference } from '@huggingface/inference';
-import { HuggingFaceInference } from 'langchain/llms/hf';
+import { BufferMemory } from "langchain/memory";
+
 import * as dotenv from 'dotenv';
 dotenv.config();
-
-
-const hf = new HfInference(process.env['HF_API_LLM"']);
-
 
 @CommandHandler(SetChatCommand)
 export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatResponse> {
@@ -37,6 +28,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             maxTokens: 100,
         });
 
+        const memory = new BufferMemory();
+
         // const chatPrompt = ChatPromptTemplate.fromPromptMessages([
         // SystemMessagePromptTemplate.fromTemplate(
         //     "You are a helpful assistant that translates {input_language} to {output_language}."
@@ -46,6 +39,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const chain = new LLMChain({
             prompt: featureExtractorTemplate,
             llm: chat,
+            memory: memory,
         });
 
         const characteristics = await chain.call({
