@@ -18,7 +18,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     
     async execute(command: SetChatCommand): Promise<any> {
         const featureExtractorTemplate = new PromptTemplate({
-            template: "Extract the key features out of the house description. Skip any basic features that all homes have and rather focus on the extra details. Limit it to 3 words per feature. The description is: {description}",
+            template: "Extract the key features out of the house description. Skip any basic features that all homes have and rather focus on the extra details. Limit it to 3 words per feature. The description is: {description}. If anything is unclear, ask the user for more details.",
             inputVariables: ["description"],
         });
 
@@ -42,11 +42,14 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             prompt: featureExtractorTemplate,
             llm: chat,
             memory: memory,
+            verbose: true,
         });
 
         const characteristics = await chain.call({
             description: command.request.chat.message,
         })
+
+        console.log(characteristics);
 
         const characteristicsA = characteristics['text'].split('\n-'); //This is what will be used for the model
 
