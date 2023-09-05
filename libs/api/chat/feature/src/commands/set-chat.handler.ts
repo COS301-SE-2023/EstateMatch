@@ -4,7 +4,7 @@ import { CommandHandler, ICommandHandler, EventPublisher } from "@nestjs/cqrs";
 import { PromptTemplate } from "langchain/prompts";
 import { LLMChain } from "langchain/chains";
 import { OpenAI } from "langchain/llms/openai";
-import { BufferMemory } from "langchain/memory";
+import { BufferWindowMemory  } from "langchain/memory";
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -28,7 +28,9 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             maxTokens: 100,
         });
 
-        const memory = new BufferMemory();
+        const memory = new BufferWindowMemory({
+            k: 5
+        });
 
         // const chatPrompt = ChatPromptTemplate.fromPromptMessages([
         // SystemMessagePromptTemplate.fromTemplate(
