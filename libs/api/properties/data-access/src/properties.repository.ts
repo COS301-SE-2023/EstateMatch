@@ -13,15 +13,66 @@ export class PropertiesRepository {
     ) {}
 
     async createProperty(property: PropertiesModel): Promise<PropertiesModel> {
+        // const createdProperty = new this.propertiesModel(property);
+        // //check if the property already exists by address before saving
+        // const propertyExists = await this.propertiesModel.findOne({address: property.location}).exec();
+        // if(propertyExists) {
+        //     throw new Error('Property already exists'); //change this to check if the property is already in the users list of properties
+        //     //else if the property is not in the users list of properties, add it to the list
+        //     //else if property exist but need to add user 
+        // }
+
+        // return createdProperty.save();
+
+        //New Property
         const createdProperty = new this.propertiesModel(property);
         //check if the property already exists by address before saving
         const propertyExists = await this.propertiesModel.findOne({address: property.location}).exec();
         if(propertyExists) {
-            throw new Error('Property already exists'); //change this to check if the property is already in the users list of properties
-            //else if the property is not in the users list of properties, add it to the list
-            //else if property exist but need to add user 
-        }
+            //property exist for new user
+            //check if user exist
+            const userExists = await this.propertiesModel.findOne({user: property.user}).exec();
+            if(userExists) {
+                //do nothing for existing user and property
+                throw new Error('Property already exists for this existing user');
+            }
+            else {
+                //add user to existing property
+                const updatedProperty = await this.propertiesModel.findOneAndUpdate({address: property.location}, {user: property.user}).exec();
 
+                if (updatedProperty) {
+                //add property to user
+                const updatedUser = await this.preferenceModel.findOneAndUpdate({user: property.user}, {$push: {properties: updatedProperty._id}}).exec();
+                
+                    if (updatedUser) {
+                        updatedUser.save();
+                    } else {
+                        console.log('User not found');
+                    }
+                } else {
+                console.log('Property not found');
+                }
+            }
+            
+        }
+        else {
+            //property does not exist
+            //add property to property collection and user collection
+            const updatedProperty = await createdProperty.save();
+            if (updatedProperty) {
+                //add property to user
+                const updatedUser = await this.preferenceModel.findOneAndUpdate({user: property.user}, {$push: {properties: updatedProperty._id}}).exec();
+                
+                    if (updatedUser) {
+                        updatedUser.save();
+                    } else {
+                        console.log('User not found');
+                    }
+                } else {
+                console.log('Property not found');
+                }
+            
+        }
         return createdProperty.save();
     }
 
