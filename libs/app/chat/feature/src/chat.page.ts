@@ -16,7 +16,7 @@ export class ChatPage {
     private route: ActivatedRoute) { }
 
     userMessage = '';
-    botMessage = '';
+    botMessage  = '';
 
     async sendChatMessage() {
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -31,8 +31,9 @@ export class ChatPage {
         }
       }
 
-      this.botMessage = await this.http.post(chatUrl, body, { headers }).toPromise() as string;
-      console.log(this.botMessage);
+      const response = await this.http.post(chatUrl, body, { headers }).toPromise() as {chat: {username: string, message: string}};
+      
+      this.botMessage = response.chat.message;
 
     }
 }

@@ -10,18 +10,18 @@
         <div name="displayContainer">
         <div name="MessageBox">
             <div class="container">
-                <p>Hello. How are you today?</p>
+                <p>{{userMessage}}</p>
                 <span>11:00</span>
               </div>
               
               <div class="container darker">
-                <p>Hey! I'm fine. Thanks for asking!</p>
+                <p>{{botMessage}}</p>
                 <span>11:01</span>
               </div>
         </div>
         <span name="Container">
-        <textarea name="message"></textarea>
-        <button id="send-button" name="send-button" style="background-color:#67C390; height:40px; border-color: #67C390;border-radius: 100%;width: 40px;" >
+        <textarea [(ngModel)]="userMessage" name="message"></textarea>
+        <button (click)="sendChatMessage()" id="send-button" name="send-button" style="background-color:#67C390; height:40px; border-color: #67C390;border-radius: 100%;width: 40px;" >
             <span style="font-size: 1.7em; color:white">
                 <i class="fas fa-paper-plane"></i>
           </span>
