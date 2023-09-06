@@ -17,6 +17,7 @@ export class ChatPage {
 
     userMessage = '';
     botMessage  = '';
+    userSentMessage = '';
 
     async sendChatMessage() {
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -34,6 +35,7 @@ export class ChatPage {
       const response = await this.http.post(chatUrl, body, { headers }).toPromise() as {chat: {username: string, message: string}};
       
       this.botMessage = response.chat.message;
+      this.userSentMessage = this.userMessage;
 
     }
 }
