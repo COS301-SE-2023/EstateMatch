@@ -14,5 +14,5 @@ export interface IProperty{
     // seen : boolean,
 
     //used references to make the properties user specific
-    user : string //hold the id of the user
+    user : string[]//hold the id of the user
 }
