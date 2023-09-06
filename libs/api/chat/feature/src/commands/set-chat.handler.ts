@@ -1,22 +1,13 @@
 // import { ChatRepository } from "@estate-match/api/chat/data-access";
 import { SetChatCommand, ISetChatResponse } from "@estate-match/api/chat/util";
 import { CommandHandler, ICommandHandler, EventPublisher } from "@nestjs/cqrs";
-import { 
-    ChatPromptTemplate,
-    PromptTemplate,
-    HumanMessagePromptTemplate,
-    SystemMessagePromptTemplate, } from "langchain/prompts";
+import { PromptTemplate } from "langchain/prompts";
 import { LLMChain } from "langchain/chains";
-import { ChatOpenAI } from "langchain/chat_models/openai";
 import { OpenAI } from "langchain/llms/openai";
-import { HfInference } from '@huggingface/inference';
-import { HuggingFaceInference } from 'langchain/llms/hf';
+import { BufferWindowMemory  } from "langchain/memory";
+
 import * as dotenv from 'dotenv';
 dotenv.config();
-
-
-const hf = new HfInference(process.env['HF_API_LLM"']);
-
 
 @CommandHandler(SetChatCommand)
 export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatResponse> {
@@ -27,7 +18,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     
     async execute(command: SetChatCommand): Promise<any> {
         const featureExtractorTemplate = new PromptTemplate({
-            template: "Extract the key features out of the house description. Skip any basic features that all homes have and rather focus on the extra details. Limit it to 3 words per feature. The description is: {description}",
+            template: "Extract the key features out of the house description. Skip any basic features that all homes have and rather focus on the extra details. Limit it to 3 words per feature. The description is: {description}. If anything is unclear, ask the user for more details.",
             inputVariables: ["description"],
         });
 
@@ -35,6 +26,10 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             modelName: "text-davinci-002",
             temperature: 0,
             maxTokens: 100,
+        });
+
+        const memory = new BufferWindowMemory({
+            k: 5
         });
 
         // const chatPrompt = ChatPromptTemplate.fromPromptMessages([
@@ -46,11 +41,15 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const chain = new LLMChain({
             prompt: featureExtractorTemplate,
             llm: chat,
+            memory: memory,
+            verbose: true,
         });
 
         const characteristics = await chain.call({
             description: command.request.chat.message,
         })
+
+        console.log(characteristics);
 
         const characteristicsA = characteristics['text'].split('\n-'); //This is what will be used for the model
 
