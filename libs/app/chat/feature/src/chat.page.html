@@ -5,31 +5,31 @@
  <link rel="stylesheet" href="chat.page.scss">
 </head>
 
-    <app-header></app-header>
-    <body>
-        <div name="displayContainer">
-        <div name="MessageBox">
-            <div class="container">
-                <img src="https://ionicframework.com/docs/img/demos/card-media.png" alt="Avatar" style="width:100%;">
-                <p>{{userSentMessage}}</p>
-                <span class="time-right">11:00</span>
-              </div>
-              
-              <div class="container darker">
-                <img src="https://static.vecteezy.com/system/resources/previews/010/054/157/original/chat-bot-robot-avatar-in-circle-round-shape-isolated-on-white-background-stock-illustration-ai-technology-futuristic-helper-communication-conversation-concept-in-flat-style-vector.jpg" alt="Avatar" class="right" style="width:100%;">
-                <p>{{botMessage}}</p>
-                <span class="time-left">11:01</span>
-              </div>
-        </div>
-        <span name="Container">
-        <textarea [(ngModel)]="userMessage" name="message"></textarea>
-        <button (click)="sendChatMessage()" id="send-button" name="send-button" style="background-color:#67C390; height:40px; border-color: #67C390;border-radius: 100%;width: 40px;" >
-            <span style="font-size: 1.7em; color:white">
-                <i class="fas fa-paper-plane"></i>
-          </span>
-          </button>
-        </span>
+<app-header></app-header>
+<body>
+  <div name="displayContainer">
+    <div name="MessageBox">
+      <div class="container" *ngFor="let message of messages">
+        <img src="https://ionicframework.com/docs/img/demos/card-media.png" alt="Avatar" style="width:100%;">
+        <p>{{ message.text }}</p>
+        <span class="time-right">{{ message.time }}</span>
+      </div>
+      
+      <div class="container darker" *ngFor="let message of messages">
+        <img src="https://static.vecteezy.com/system/resources/previews/010/054/157/original/chat-bot-robot-avatar-in-circle-round-shape-isolated-on-white-background-stock-illustration-ai-technology-futuristic-helper-communication-conversation-concept-in-flat-style-vector.jpg" alt="Avatar" class="right" style="width:100%;">
+        <p>{{ message.text }}</p>
+        <span class="time-left">{{ message.time }}</span>
+      </div>
     </div>
-    </body>
-    <app-footer></app-footer>
+    <span name="Container">
+      <textarea [(ngModel)]="userMessage" name="message"></textarea>
+      <button (click)="sendChatMessage()" id="send-button" name="send-button" style="background-color:#67C390; height:40px; border-color: #67C390;border-radius: 100%;width: 40px;">
+        <span style="font-size: 1.7em; color:white">
+          <i class="fas fa-paper-plane"></i>
+        </span>
+      </button>
+    </span>
+  </div>
+</body>
+<app-footer></app-footer>
 </html>    
