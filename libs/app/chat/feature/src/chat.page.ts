@@ -16,7 +16,7 @@ export class ChatPage {
   ) {}
 
   userMessage = '';
-  messages: { text: string; time: string; }[] = [];
+  messages: { text: string; time: string; userType: 'user' | 'bot' }[] = [];
 
   async sendChatMessage() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -36,11 +36,13 @@ export class ChatPage {
     this.messages.push({
       text: this.userMessage,
       time: this.getCurrentTime(),
+      userType: 'user',
     });
 
     this.messages.push({
       text: response.chat.message,
       time: this.getCurrentTime(),
+      userType: 'bot',
     });
 
     this.userMessage = '';
