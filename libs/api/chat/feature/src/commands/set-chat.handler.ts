@@ -1,7 +1,20 @@
 // import { ChatRepository } from "@estate-match/api/chat/data-access";
 import { SetChatCommand, ISetChatResponse } from "@estate-match/api/chat/util";
 import { CommandHandler, ICommandHandler, EventPublisher } from "@nestjs/cqrs";
-import { PromptTemplate } from "langchain/prompts";
+import {
+    ChatPromptTemplate,
+    PromptTemplate,
+    SystemMessagePromptTemplate,
+    AIMessagePromptTemplate,
+    HumanMessagePromptTemplate,
+} from "langchain/prompts";
+
+import {
+    AIMessage,
+    HumanMessage,
+    SystemMessage,
+} from "langchain/schema";
+
 import { LLMChain } from "langchain/chains";
 import { OpenAI } from "langchain/llms/openai";
 import { BufferWindowMemory  } from "langchain/memory";
@@ -17,6 +30,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     ) {}
     
     async execute(command: SetChatCommand): Promise<any> {
+
         const featureExtractorTemplate = new PromptTemplate({
             template: "You are an assistant that should get the characteristics of a users dream home based on a description they provide. The description is: {description}." +
             "You need to extract at least 5 characteristics of the home. The characteristics to extract are suppose to be finer details for example if the user description states they like wood floors, " +
@@ -24,6 +38,20 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             "at least 5 characteristics, you must ask the user for more information.",
             inputVariables: ["description"],
         });
+
+        const chatBotExtractorTemplate =  SystemMessagePromptTemplate.fromTemplate("You are an assistant that should get the characteristics of a users dream home based on a description they provide. The description is: {description}." +
+        "You need to extract at least 5 characteristics of the home. The characteristics to extract are suppose to be finer details for example if the user description states they like wood floors, " +
+        "Try and pin point the colour of wood floors they like and if they like it in all the rooms. If you can not extract this information, you can ask the user for more information. If you can not extract " +
+        "at least 5 characteristics, you must ask the user for more information.");
+
+        const humanTemplate = "{description}";
+        const humanMessagePrompt = HumanMessagePromptTemplate.fromTemplate(humanTemplate);
+
+        const chatTemplate = ChatPromptTemplate.fromPromptMessages<{
+            description: string;
+        }>([
+            chatBotExtractorTemplate,
+            humanMessagePrompt])
 
         const chat = new OpenAI({
             modelName: "text-davinci-002",
@@ -34,6 +62,12 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const memory = new BufferWindowMemory({
             k: 5
         });
+
+        const formattedChat = await chatTemplate.formatMessages({
+            description: command.request.chat.message,
+        })
+
+        console.log(formattedChat);
 
         // const chatPrompt = ChatPromptTemplate.fromPromptMessages([
         // SystemMessagePromptTemplate.fromTemplate(
@@ -48,13 +82,13 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             verbose: true,
         });
 
-        const characteristics = await chain.call({
-            description: command.request.chat.message,
-        })
+        // const characteristics = await chain.call({
+        //     description: command.request.chat.message,
+        // })
 
-        console.log(characteristics);
+        // console.log(characteristics);
 
-        const characteristicsA = characteristics['text'].split('\n-'); //This is what will be used for the model
+        // const characteristicsA = characteristics['text'].split('\n-'); //This is what will be used for the model
 
         const response: ISetChatResponse = {
             chat: {
