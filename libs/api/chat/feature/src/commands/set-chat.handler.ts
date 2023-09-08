@@ -43,7 +43,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
             SystemMessagePromptTemplate.fromTemplate(
-                "You are an assistant that extract key characteristics of a user description of their dream house. If you can not extract at least 5 characteristics, you must ask the user for more information."
+                "You are an assistant that extract key characteristics of a user description of their dream house. If you can not extract at least 5 characteristics, you must ask the user for more information and provide possible examples."
             ),
             new MessagesPlaceholder('history'),
             HumanMessagePromptTemplate.fromTemplate("{description}"),
