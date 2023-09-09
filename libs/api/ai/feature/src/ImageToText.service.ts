@@ -11,48 +11,54 @@ export class ImageToTextService {
     this.apiUrl = 'https://vision.googleapis.com/v1/images:annotate';
   }
 
-  async analyzeImage(imageUri: string) {
-    try {
-      const response = await axios.post(
-        `${this.apiUrl}?key=${this.apiKey}`,
-        {
-          requests: [
-            {
-              image: {
-                source: {
-                  imageUri,
+  async analyzeImages(imageUrls: string[]) {
+    const results = [];
+
+    for (const imageUri of imageUrls) {
+      try {
+        const response = await axios.post(
+          `${this.apiUrl}?key=${this.apiKey}`,
+          {
+            requests: [
+              {
+                image: {
+                  source: {
+                    imageUri,
+                  },
                 },
+                features: [
+                  {
+                    type: 'LABEL_DETECTION',
+                    maxResults: 10,
+                  },
+                  {
+                    type: 'IMAGE_PROPERTIES',
+                  },
+                  {
+                    type: 'OBJECT_LOCALIZATION',
+                  },
+                ],
               },
-              features: [
-                {
-                  type: 'LABEL_DETECTION',
-                  maxResults: 10,
-                },
-                {
-                  type: 'IMAGE_PROPERTIES',
-                },
-                {
-                  type: 'OBJECT_LOCALIZATION',
-                },
-              ],
-            },
-          ],
-        }
-      );
+            ],
+          }
+        );
 
-      const [result] = response.data.responses;
-      const labels = result.labelAnnotations || [];
-      const imageProperties = result.imagePropertiesAnnotation || {};
-      const objectLocalization = result.localizedObjectAnnotations || [];
+        const [result] = response.data.responses;
+        const labels = result.labelAnnotations || [];
+        const imageProperties = result.imagePropertiesAnnotation || {};
+        const objectLocalization = result.localizedObjectAnnotations || [];
 
-      return {
-        labels,
-        imageProperties,
-        objectLocalization,
-      };
-    } catch (error) {
-      console.error('Google Vision API error:', error);
-      throw error;
+        results.push({
+          labels,
+          imageProperties,
+          objectLocalization,
+        });
+      } catch (error) {
+        console.error('Google Vision API error:', error);
+        throw error;
+      }
     }
+
+    return results;
   }
 }
