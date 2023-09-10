@@ -113,6 +113,66 @@ import { ActivatedRoute, Router } from '@angular/router';
     // this.setPropertyMarker(coords[0],coords[1]);
   }
 
+  setSchoolMarker(lat: any, long: any){
+    const customIcon = L.icon({
+      iconUrl: 'assets/school.png', 
+      iconSize: [15,25]
+    });
+
+
+    const mark=L.marker([lat,long],
+      {
+        icon: customIcon
+      }).addTo(this.map);
+    mark.bindPopup("<b>School: "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
+  }
+
+
+  setMarketMarker(lat: any, long: any){
+    const customIcon = L.icon({
+      iconUrl: 'assets/supermarket.png', 
+      iconSize: [15,25]
+    });
+
+
+    const mark=L.marker([lat,long],
+      {
+        icon: customIcon
+      }).addTo(this.map);
+    mark.bindPopup("<b>Supermarket: "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
+  }
+
+
+  setGasstationMarker(lat: any, long: any){
+    const customIcon = L.icon({
+      iconUrl: 'assets/gas.png', 
+      iconSize: [15,25]
+    });
+
+
+    const mark=L.marker([lat,long],
+      {
+        icon: customIcon
+      }).addTo(this.map);
+    mark.bindPopup("<b>Gas station: "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
+  }
+
+
+  setMallMarker(lat: any, long: any){
+    const customIcon = L.icon({
+      iconUrl: 'assets/gas.png', 
+      iconSize: [15,25]
+    });
+
+
+    const mark=L.marker([lat,long],
+      {
+        icon: customIcon
+      }).addTo(this.map);
+    mark.bindPopup("<b>Mall: "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
+  }
+
+
   setMarker(lat: any, long: any){
     const customIcon = L.icon({
       iconUrl: 'assets/marker.png', 
