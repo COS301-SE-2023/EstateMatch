@@ -12,6 +12,7 @@ import {
 import {
     ChatAgent,
     initializeAgentExecutorWithOptions,
+    AgentExecutor,
 } from "langchain/agents";
 
 import {
@@ -65,6 +66,14 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         ];
 
         const agent = ChatAgent.fromLLMAndTools(chat, tools);
+
+        const agentExecutor = AgentExecutor.fromAgentAndTools({
+            agent: agent,
+            tools: tools,
+        });
+
+        const testRes = await agentExecutor.run("How many people live in the US in 2023?");
+        console.log(testRes);
 
         const res = await conversationChain.call({
             description: command.request.chat.message,
