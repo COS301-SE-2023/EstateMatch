@@ -5,13 +5,13 @@ import { CqrsModule } from '@nestjs/cqrs';
 // import { ChatModule as UserDataAccessModule } from '@estate-match/api/chat/data-access';
 
 import {
-    GetChatHandler,
+    StartChatHandler,
     SetChatHandler,
     UpdateChatHandler
 } from './commands';
 
 export const CommandHandlers = [
-    GetChatHandler,
+    StartChatHandler,
     SetChatHandler,
     UpdateChatHandler
 ];
