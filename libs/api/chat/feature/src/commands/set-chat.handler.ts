@@ -33,17 +33,20 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     
     async execute(command: SetChatCommand): Promise<any> {
 
-        const featureExtractorTemplate = new PromptTemplate({
-            template: "You are an assistant that should get the characteristics of a users dream home based on a description they provide. The description is: {description}." +
-            "You need to extract at least 5 characteristics of the home. The characteristics to extract are suppose to be finer details for example if the user description states they like wood floors, " +
-            "Try and pin point the colour of wood floors they like and if they like it in all the rooms. If you can not extract this information, you can ask the user for more information. If you can not extract " +
-            "at least 5 characteristics, you must ask the user for more information.",
-            inputVariables: ["description"],
-        });
+        // const featureExtractorTemplate = new PromptTemplate({
+        //     template: "You are an assistant that should get the characteristics of a users dream home based on a description they provide. The description is: {description}." +
+        //     "You need to extract at least 5 characteristics of the home. The characteristics to extract are suppose to be finer details for example if the user description states they like wood floors, " +
+        //     "Try and pin point the colour of wood floors they like and if they like it in all the rooms. If you can not extract this information, you can ask the user for more information. If you can not extract " +
+        //     "at least 5 characteristics, you must ask the user for more information.",
+        //     inputVariables: ["description"],
+        // });
 
         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
             SystemMessagePromptTemplate.fromTemplate(
-                "You are an assistant that extract key characteristics of a user description of their dream house. If you can not extract at least 5 characteristics, you must ask the user for more information and provide possible examples."
+                "You are an assistant that extract key characteristics of a user description of their dream house. " + 
+                "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
+
+                "If their description is very vague, ask them to be more spesific. Provide the user with with examples of spesific descriptions."
             ),
             new MessagesPlaceholder('history'),
             HumanMessagePromptTemplate.fromTemplate("{description}"),
@@ -67,27 +70,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         });
 
         console.log(res);
-
-        // const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-        // SystemMessagePromptTemplate.fromTemplate(
-        //     "You are a helpful assistant that translates {input_language} to {output_language}."
-        // ),
-        // HumanMessagePromptTemplate.fromTemplate("{text}"),
-        // ]);
-        // const chain = new LLMChain({
-        //     prompt: featureExtractorTemplate,
-        //     llm: chat,
-        //     memory: memory,
-        //     verbose: true,
-        // });
-
-        // const characteristics = await chain.call({
-        //     description: command.request.chat.message,
-        // })
-
-        // console.log(characteristics);
-
-        // const characteristicsA = characteristics['text'].split('\n-'); //This is what will be used for the model
 
         const response: ISetChatResponse = {
             chat: {
