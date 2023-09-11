@@ -17,6 +17,23 @@ export class ChatPage {
 
   userMessage = '';
   messages: { text: string; time: string; userType: 'user' | 'bot' }[] = [];
+  
+  async ngOnInit(){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = 'api/startChat';
+
+    const body = {
+      username: sessionStorage.getItem('username')
+    }
+
+    const response = await this.http.post(url, body, { headers }).toPromise() as { message: string };
+
+    this.messages.push({
+      text: response.message,
+      time: this.getCurrentTime(),
+      userType: 'bot',
+    });
+  }
 
   async sendChatMessage() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -24,7 +41,7 @@ export class ChatPage {
 
     const body = {
       chat: {
-        username: localStorage.getItem('username'),
+        username: sessionStorage.getItem('username'),
         message: this.userMessage,
       },
     };
