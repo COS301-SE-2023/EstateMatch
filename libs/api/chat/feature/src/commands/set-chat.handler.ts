@@ -3,7 +3,6 @@ import { SetChatCommand, ISetChatResponse } from "@estate-match/api/chat/util";
 import { CommandHandler, ICommandHandler, EventPublisher } from "@nestjs/cqrs";
 import {
     ChatPromptTemplate,
-    PromptTemplate,
     SystemMessagePromptTemplate,
     AIMessagePromptTemplate,
     HumanMessagePromptTemplate,
@@ -11,15 +10,17 @@ import {
 } from "langchain/prompts";
 
 import {
-    AIMessage,
-    HumanMessage,
-    SystemMessage,
-} from "langchain/schema";
+    ChatAgent,
+    initializeAgentExecutorWithOptions,
+} from "langchain/agents";
 
-import { LLMChain, ConversationChain } from "langchain/chains";
-import { OpenAI } from "langchain/llms/openai";
+import {
+    SerpAPI
+} from "langchain/tools";
+
+import { ConversationChain } from "langchain/chains";
 import { ChatOpenAI} from "langchain/chat_models/openai";
-import { BufferMemory, BufferWindowMemory  } from "langchain/memory";
+import { BufferWindowMemory  } from "langchain/memory";
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -56,6 +57,14 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             llm: chat,
         })
 
+        const tools = [
+            new SerpAPI(process.env["SERP_API_KEY"], {
+                hl: "en",
+                gl: "us",
+            })
+        ];
+
+        const agent = ChatAgent.fromLLMAndTools(chat, tools);
 
         const res = await conversationChain.call({
             description: command.request.chat.message,
