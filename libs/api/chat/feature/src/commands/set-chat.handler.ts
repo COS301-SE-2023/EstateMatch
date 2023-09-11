@@ -46,7 +46,9 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             HumanMessagePromptTemplate.fromTemplate("{description}"),
         ]);
 
-        const chat = new ChatOpenAI({});
+        const chat = new ChatOpenAI({
+            temperature: 0,
+        });
 
         const conversationChain = new ConversationChain({
             memory: new BufferWindowMemory({
@@ -75,16 +77,17 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const testRes = await agentExecutor.run("How many people live in the US in 2023?");
         console.log(testRes);
 
-        const res = await conversationChain.call({
-            description: command.request.chat.message,
-        }) as { response: string};
+        // const res = await conversationChain.call({
+        //     description: command.request.chat.message,
+        // }) as { response: string};
 
         // console.log(res);
 
         const response: ISetChatResponse = {
             chat: {
                 username: command.request.chat.username,
-                message: res.response
+                message: "Under construction"
+                // message: res.response
             }
         };
 
