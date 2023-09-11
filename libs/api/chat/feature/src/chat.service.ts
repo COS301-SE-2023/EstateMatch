@@ -1,5 +1,5 @@
 import {Injectable} from '@nestjs/common';
-import { GetChatCommand, IGetChatRequest, IGetChatResponse } from '@estate-match/api/chat/util';
+import { StartChatCommand, IStartChatRequest, IStartChatResponse } from '@estate-match/api/chat/util';
 import { SetChatCommand, ISetChatRequest, ISetChatResponse } from '@estate-match/api/chat/util';
 import { UpdateChatCommand, IUpdateChatRequest, IUpdateChatResponse } from '@estate-match/api/chat/util';
 import { CommandBus } from '@nestjs/cqrs';
@@ -8,9 +8,9 @@ import { CommandBus } from '@nestjs/cqrs';
 export class ChatService {
     constructor(private readonly commandBus: CommandBus) {}
     
-    async getChat(request: IGetChatRequest): Promise<IGetChatResponse> {
+    async startChat(request: IStartChatRequest): Promise<IStartChatResponse> {
         return await this.commandBus.execute<
-            GetChatCommand, IGetChatResponse>(new GetChatCommand(request));
+            StartChatCommand, IStartChatResponse>(new StartChatCommand(request));
     }
     
     async setChat(request: ISetChatRequest): Promise<ISetChatResponse> {

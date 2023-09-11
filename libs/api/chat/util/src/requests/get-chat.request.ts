@@ -1,3 +1,3 @@
-export interface IGetChatRequest {
+export interface IStartChatRequest {
     user: string;
 }

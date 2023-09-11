@@ -1,5 +1,3 @@
-import {IChat} from '../interfaces';
-
-export interface IGetChatResponse {
-    chat: IChat;
+export interface IStartChatResponse {
+    message: string;
 }
