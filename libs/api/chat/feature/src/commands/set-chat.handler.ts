@@ -33,14 +33,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     
     async execute(command: SetChatCommand): Promise<any> {
 
-        // const featureExtractorTemplate = new PromptTemplate({
-        //     template: "You are an assistant that should get the characteristics of a users dream home based on a description they provide. The description is: {description}." +
-        //     "You need to extract at least 5 characteristics of the home. The characteristics to extract are suppose to be finer details for example if the user description states they like wood floors, " +
-        //     "Try and pin point the colour of wood floors they like and if they like it in all the rooms. If you can not extract this information, you can ask the user for more information. If you can not extract " +
-        //     "at least 5 characteristics, you must ask the user for more information.",
-        //     inputVariables: ["description"],
-        // });
-
         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
             SystemMessagePromptTemplate.fromTemplate(
                 "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
@@ -67,15 +59,14 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
         const res = await conversationChain.call({
             description: command.request.chat.message,
-        });
+        }) as { response: string};
 
-        console.log(res);
+        // console.log(res);
 
         const response: ISetChatResponse = {
             chat: {
                 username: command.request.chat.username,
-                message: 'Under construction'
-                // message: 'Based on your description, I have extracted the following features: ' + characteristics['text']
+                message: res.response
             }
         };
 
