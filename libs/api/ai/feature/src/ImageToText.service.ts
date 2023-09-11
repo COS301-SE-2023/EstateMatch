@@ -12,7 +12,10 @@ export class ImageToTextService {
   }
 
   async analyzeImages(imageUrls: string[]) {
-    const results = [];
+    const uniqueLabelDescriptions = new Set<string>();
+    let bestDominantColor: { red: number, green: number, blue: number } = { red: 0, green: 0, blue: 0 };
+    let bestScore = -1;
+
 
     for (const imageUri of imageUrls) {
       try {
@@ -29,13 +32,10 @@ export class ImageToTextService {
                 features: [
                   {
                     type: 'LABEL_DETECTION',
-                    maxResults: 10,
+                    maxResults: 20,
                   },
                   {
                     type: 'IMAGE_PROPERTIES',
-                  },
-                  {
-                    type: 'OBJECT_LOCALIZATION',
                   },
                 ],
               },
@@ -46,19 +46,28 @@ export class ImageToTextService {
         const [result] = response.data.responses;
         const labels = result.labelAnnotations || [];
         const imageProperties = result.imagePropertiesAnnotation || {};
-        const objectLocalization = result.localizedObjectAnnotations || [];
 
-        results.push({
-          labels,
-          imageProperties,
-          objectLocalization,
+        labels.forEach((label: { description: string }) => {
+          const description = label.description;
+          uniqueLabelDescriptions.add(description);
         });
+
+        // Find and extract the RGB values of the dominant color with the best score
+        const dominantColors = imageProperties.dominantColors?.colors || [];
+        dominantColors.sort((a: { score: number }, b: { score: number }) => b.score - a.score);
+        if (dominantColors[0]?.score > bestScore) {
+          bestDominantColor = { ...dominantColors[0].color };
+          bestScore = dominantColors[0].score;
+        }
       } catch (error) {
         console.error('Google Vision API error:', error);
         throw error;
       }
     }
 
-    return results;
+    return {
+      labelDescriptions: Array.from(uniqueLabelDescriptions),
+      bestDominantColor,
+    };
   }
 }
