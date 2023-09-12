@@ -16,7 +16,8 @@ import {
 } from "langchain/agents";
 
 import {
-    SerpAPI
+    SerpAPI,
+    DynamicTool
 } from "langchain/tools";
 
 import { Calculator } from "langchain/tools/calculator";
@@ -68,17 +69,30 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                 gl: "us",
             }),
             new Calculator(),
+            new DynamicTool({
+                name: "get-user-preference-model",
+                description: "Call this agent when the user asks for a recommendation.",
+                func: this.getUserData,
+            })
         ];
+
 
         const agent = ChatAgent.fromLLMAndTools(chat, tools);
 
         const agentExecutor = await initializeAgentExecutorWithOptions(tools, chat, {
-            agentType: "chat-conversational-react-description", 
+            agentType: "zero-shot-react-description", 
             // verbose: true, 
         });
 
-        const testRes = await agentExecutor.run("What is 2 to the power of 0.321");
-        console.log(testRes);
+        console.log("Loaded agent.");
+
+        const input = `What will you recommend?`;
+      
+        console.log(`Executing with input "${input}"...`);
+      
+        const result = await agentExecutor.call({ input });
+      
+        console.log(`Got output ${result['output']}`);
 
         // const res = await conversationChain.call({
         //     description: command.request.chat.message,
@@ -95,5 +109,10 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         };
 
         return response;
+    }
+
+    async getUserData(): Promise<string> {
+        //Queries to Database here
+        return "I recommend this house";
     }
 }
