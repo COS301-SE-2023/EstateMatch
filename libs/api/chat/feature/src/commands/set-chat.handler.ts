@@ -19,6 +19,8 @@ import {
     SerpAPI
 } from "langchain/tools";
 
+import { Calculator } from "langchain/tools/calculator";
+
 import { ConversationChain } from "langchain/chains";
 import { ChatOpenAI} from "langchain/chat_models/openai";
 import { BufferWindowMemory  } from "langchain/memory";
@@ -61,20 +63,21 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         })
 
         const tools = [
-            new SerpAPI(process.env["SERP_API_KEY"], {
+            new SerpAPI(process.env["SERPAPI_API_KEY"], {
                 hl: "en",
                 gl: "us",
-            })
+            }),
+            new Calculator(),
         ];
 
         const agent = ChatAgent.fromLLMAndTools(chat, tools);
 
-        const agentExecutor = AgentExecutor.fromAgentAndTools({
-            agent: agent,
-            tools: tools,
+        const agentExecutor = await initializeAgentExecutorWithOptions(tools, chat, {
+            agentType: "chat-conversational-react-description", 
+            // verbose: true, 
         });
 
-        const testRes = await agentExecutor.run("How many people live in the US in 2023?");
+        const testRes = await agentExecutor.run("What is 2 to the power of 0.321");
         console.log(testRes);
 
         // const res = await conversationChain.call({
