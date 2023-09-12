@@ -62,12 +62,13 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             prompt: chatPrompt,
             llm: chat,
         })
+        const serpApi = new SerpAPI(process.env["SERPAPI_API_KEY"], {
+            hl: "en",
+            gl: "us",
+        });
 
         const tools = [
-            new SerpAPI(process.env["SERPAPI_API_KEY"], {
-                hl: "en",
-                gl: "us",
-            }),
+            serpApi,
             new Calculator(),
             new DynamicTool({
                 name: "get-user-preference-model",
@@ -80,19 +81,9 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const agent = ChatAgent.fromLLMAndTools(chat, tools);
 
         const agentExecutor = await initializeAgentExecutorWithOptions(tools, chat, {
-            agentType: "zero-shot-react-description", 
+            agentType: "chat-conversational-react-description", 
             // verbose: true, 
         });
-
-        console.log("Loaded agent.");
-
-        const input = `What will you recommend?`;
-      
-        console.log(`Executing with input "${input}"...`);
-      
-        const result = await agentExecutor.call({ input });
-      
-        console.log(`Got output ${result['output']}`);
 
         // const res = await conversationChain.call({
         //     description: command.request.chat.message,
