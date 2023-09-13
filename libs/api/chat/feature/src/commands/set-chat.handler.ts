@@ -92,21 +92,17 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         ];
 
         const agentExecutor = await initializeAgentExecutorWithOptions(tools, chat, {
-            agentType: "chat-conversational-react-description", 
+            agentType: "structured-chat-zero-shot-react-description", 
             memory: chatMemory,
             // agentArgs: {
             //     inputVariables: ["chat_history"]
             // }
             agentArgs: {
-                // systemMessage: "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
-                // "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
-                // "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
-                // "Always end by asking the user if they are happy with the characteristics you extracted.",
-                // humanMessage: "{description}",
-                systemMessage: "Provide the output exactly as returend by the tools",
-                inputVariables: ["chat_history"],
-            }
-            // verbose: true, 
+                inputVariables: ["input", "agent_scratchpad" ,"chat_history"],
+                memoryPrompts: [new MessagesPlaceholder("chat_history")]
+            },
+            verbose: true, 
+            maxIterations: 1
         });
 
         // const res = await conversationChain.call({
