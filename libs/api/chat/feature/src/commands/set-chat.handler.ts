@@ -68,13 +68,18 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         });
 
         const tools = [
-            serpApi,
-            new Calculator(),
+            // serpApi,
+            // new Calculator(),
             new DynamicTool({
-                name: "get-user-preference-model",
+                name: "recommendation",
                 description: "Call this agent when the user asks for a recommendation.",
-                func: this.getUserData,
-            })
+                func: this.giveUserReccomendation,
+            }),
+            new DynamicTool({
+                name: "preferences",
+                description: "Call this agent when the user asks what their preferences are.",
+                func: this.getUserPreferences
+            }),
         ];
 
 
@@ -102,8 +107,13 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         return response;
     }
 
-    async getUserData(): Promise<string> {
+    async giveUserReccomendation(): Promise<string> {
         //Queries to Database here
         return "I recommend this house";
+    }
+
+    async getUserPreferences(): Promise<string> {
+        //Queries to Database here
+        return "I like this house";
     }
 }
