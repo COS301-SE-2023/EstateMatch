@@ -13,6 +13,7 @@ import {
     ChatAgent,
     initializeAgentExecutorWithOptions,
     AgentExecutor,
+    LLMSingleActionAgent,
 } from "langchain/agents";
 
 import {
@@ -48,7 +49,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                 "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
                 "Always end by asking the user if they are happy with the characteristics you extracted."
             ),
-            new MessagesPlaceholder('history'),
+            new MessagesPlaceholder('chat_history'),
             HumanMessagePromptTemplate.fromTemplate("{description}"),
         ]);
 
@@ -59,7 +60,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const chatMemory = new BufferWindowMemory({
             chatHistory: this.chatMessageHistory,
             returnMessages: true,
-            memoryKey: "history",
+            memoryKey: "chat_history",
             k: 5,
         })
 
@@ -84,26 +85,28 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             }),
         ];
 
-
-        // const agent = ChatAgent.fromLLMAndTools(chat, tools);
-
         const agentExecutor = await initializeAgentExecutorWithOptions(tools, chat, {
             agentType: "chat-conversational-react-description", 
             memory: chatMemory,
+            // agentArgs: {
+            //     inputVariables: ["chat_history"]
+            // }
             agentArgs: {
                 systemMessage: "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
                 "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
                 "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
                 "Always end by asking the user if they are happy with the characteristics you extracted.",
-                humanMessage: "{description}",
-                inputVariables: ["description"],
+                // humanMessage: "{description}",
+                inputVariables: ["chat_history"],
             }
             // verbose: true, 
         });
 
-        const res = await agentExecutor.call({
-            inputVariables: { description: command.request.chat.message },
-        }) as { response: string};
+        // const res = await conversationChain.call({
+        //     description: command.request.chat.message
+        // }) as { response: string};
+
+        const res = await agentExecutor.call({input: command.request.chat.message})
 
         console.log(res);
         console.log(this.chatMessageHistory);
