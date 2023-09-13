@@ -67,7 +67,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             }),
             new DynamicTool({
                 name: "extract_characteristics",
-                description: "Call this agent when the user provides a description of their dream house.",
+                description: "Call this agent when the user provides a description of their dream house. This agent will extract key characteristics of the user's description.",
                 func: async () => {
                     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
                         SystemMessagePromptTemplate.fromTemplate(
@@ -85,9 +85,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                     })
             
                     const res = await conversationChain.call({description: command.request.chat.message}) as { response: string};
-                    
-                    // console.log("I got called");
-                    console.log(res.response);
+                
                     return res.response;
                 }
             }),
@@ -105,6 +103,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                 // "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
                 // "Always end by asking the user if they are happy with the characteristics you extracted.",
                 // humanMessage: "{description}",
+                systemMessage: "Provide the output exactly as returend by the tools",
                 inputVariables: ["chat_history"],
             }
             // verbose: true, 
