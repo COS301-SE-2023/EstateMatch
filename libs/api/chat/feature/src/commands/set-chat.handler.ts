@@ -25,6 +25,7 @@ import { BufferWindowMemory, ChatMessageHistory  } from "langchain/memory";
 import { AIPreferencesRepository } from "@estate-match/api/prefrences/data-access";
 
 import * as dotenv from 'dotenv';
+import { async } from "rxjs";
 dotenv.config();
 
 @CommandHandler(SetChatCommand)
@@ -49,31 +50,17 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             k: 5,
         })
 
-        // const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-        //     SystemMessagePromptTemplate.fromTemplate(
-        //         "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
-        //         "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
-        //         "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
-        //         "Always end by asking the user if they are happy with the characteristics you extracted."
-        //     ),
-        //     HumanMessagePromptTemplate.fromTemplate("{description}"),
-        // ]);
-
-        // const llm = new ConversationChain({
-        //     prompt: chatPrompt ,
-        //     llm: chat,
-        // })
-
-        // const res = await llm.call({description: command.request.chat.message}) as { response: string};
-
         const tools = [
             // serpApi,
             new Calculator(),
-            // new DynamicTool({
-            //     name: "recommendation",
-            //     description: "Call this agent when the user asks for a recommendation.",
-            //     func: this.giveUserReccomendation,
-            // }),
+            new DynamicTool({
+                name: "describe-user",
+                description: "Call this agent when the user asks to describe their dream house based on the chat history.",
+                func: async() => {
+                    return "Under construction"
+                },
+                returnDirect: true,
+            }),
             new DynamicTool({
                 name: "get-preferences",
                 description: "Call this agent when the user asks what their preferences are.",
