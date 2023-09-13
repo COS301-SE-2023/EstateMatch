@@ -5,7 +5,6 @@ import {
     ChatPromptTemplate,
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
-    MessagesPlaceholder
 } from "langchain/prompts";
 
 import {
@@ -19,18 +18,19 @@ import {
 
 import { Calculator } from "langchain/tools/calculator";
 
-import { ConversationChain, LLMChain } from "langchain/chains";
+import { ConversationChain } from "langchain/chains";
 import { ChatOpenAI} from "langchain/chat_models/openai";
 import { BufferWindowMemory, ChatMessageHistory  } from "langchain/memory";
 
+import { AIPreferencesRepository } from "@estate-match/api/prefrences/data-access";
+
 import * as dotenv from 'dotenv';
-import { memory } from "@tensorflow/tfjs-node";
 dotenv.config();
 
 @CommandHandler(SetChatCommand)
 export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatResponse> {
     constructor(
-        // private readonly userRepository: ChatRepository,
+        private readonly aiPreferenceRepo: AIPreferencesRepository,
         private readonly publisher: EventPublisher,
     ) {}
     
@@ -78,7 +78,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                 name: "get-preferences",
                 description: "Call this agent when the user asks what their preferences are.",
                 func: async() => {
-
+                    const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username);
+                    console.log(userAiPref);
                     return "Under Construction";
                 },
                 returnDirect: true,
