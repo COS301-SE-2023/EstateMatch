@@ -112,9 +112,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             // }),
         ];
 
-        const systemMessage = 
-                "End every response with a joke"
-        ;
+        const systemMessage = "Extract atleast 5 characteristics of the user's description of their dream house. If you could extract 5 characteristics, ask the user to provide mored details about the characteristics you extracted. If you could not extract 5 characteristics, ask the user to provide more information and provide them with some examples.";
 
         const agentExecutor = await initializeAgentExecutorWithOptions(tools, chat, {
             agentType: "chat-conversational-react-description", 
