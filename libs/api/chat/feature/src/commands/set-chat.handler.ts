@@ -56,13 +56,15 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             temperature: 0,
         });
 
+        const chatMemory = new BufferWindowMemory({
+            chatHistory: this.chatMessageHistory,
+            returnMessages: true,
+            memoryKey: "history",
+            k: 5,
+        })
+
         const conversationChain = new ConversationChain({
-            memory: new BufferWindowMemory({
-                chatHistory: this.chatMessageHistory,
-                returnMessages: true,
-                memoryKey: "history",
-                k: 5,
-            }),
+            memory: chatMemory,
             prompt: chatPrompt ,
             llm: chat,
         })
@@ -83,15 +85,24 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         ];
 
 
-        const agent = ChatAgent.fromLLMAndTools(chat, tools);
+        // const agent = ChatAgent.fromLLMAndTools(chat, tools);
 
         const agentExecutor = await initializeAgentExecutorWithOptions(tools, chat, {
             agentType: "chat-conversational-react-description", 
+            memory: chatMemory,
+            agentArgs: {
+                systemMessage: "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
+                "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
+                "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
+                "Always end by asking the user if they are happy with the characteristics you extracted.",
+                humanMessage: "{description}",
+                inputVariables: ["description"],
+            }
             // verbose: true, 
         });
 
-        const res = await conversationChain.call({
-            description: command.request.chat.message,
+        const res = await agentExecutor.call({
+            inputVariables: { description: command.request.chat.message },
         }) as { response: string};
 
         console.log(res);
