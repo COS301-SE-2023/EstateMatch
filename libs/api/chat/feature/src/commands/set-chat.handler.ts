@@ -90,40 +90,36 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                             "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
                             "Always end by asking the user if they are happy with the characteristics you extracted."
                         ),
-                        new MessagesPlaceholder("chat_history"),
+                        // new MessagesPlaceholder("chat_history"),
                         HumanMessagePromptTemplate.fromTemplate("{description}"),
                     ]);
             
                     const llm = new ConversationChain({
-                        memory: chatMemory,
+                        // memory: chatMemory,
                         prompt: chatPrompt ,
                         llm: chat,
                     })
             
                     const res = await llm.call({description: command.request.chat.message}) as { response: string};
-                    
-                    console.log(res);
-                    console.log(this.chatMessageHistory);
 
                     return res.response;
-                }
+                },
+                returnDirect: true,
             }),
         ];
 
-        const systemMessage = "You are a assistant that rely on the provide tools to help the user find their dream house. Use the tool responses as your output";
-
         const agentExecutor = await initializeAgentExecutorWithOptions(tools, chat, {
-            agentType: "chat-conversational-react-description"
+            agentType: "chat-conversational-react-description",
+            memory: chatMemory,
+            agentArgs: {
+                inputVariables: ["chat_history"]
+            }
+            // verbose: true,
         });
 
-        // const res = await conversationChain.call({
-        //     description: command.request.chat.message
-        // }) as { response: string};
-
         const res = await agentExecutor.call({input: command.request.chat.message})
-        // console.log(res);
-
-
+        console.log(res["output"]);
+        console.log(this.chatMessageHistory);
 
         const response: ISetChatResponse = {
             chat: {
