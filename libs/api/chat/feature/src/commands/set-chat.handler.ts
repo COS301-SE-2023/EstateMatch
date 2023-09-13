@@ -55,16 +55,16 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const tools = [
             // serpApi,
             // new Calculator(),
-            new DynamicTool({
-                name: "recommendation",
-                description: "Call this agent when the user asks for a recommendation.",
-                func: this.giveUserReccomendation,
-            }),
-            new DynamicTool({
-                name: "preferences",
-                description: "Call this agent when the user asks what their preferences are.",
-                func: this.getUserPreferences
-            }),
+            // new DynamicTool({
+            //     name: "recommendation",
+            //     description: "Call this agent when the user asks for a recommendation.",
+            //     func: this.giveUserReccomendation,
+            // }),
+            // new DynamicTool({
+            //     name: "preferences",
+            //     description: "Call this agent when the user asks what their preferences are.",
+            //     func: this.getUserPreferences
+            // }),
             new DynamicTool({
                 name: "extract_characteristics",
                 description: "Call this agent when the user provides a description of their dream house. This agent will extract key characteristics of the user's description.",
@@ -92,17 +92,14 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         ];
 
         const agentExecutor = await initializeAgentExecutorWithOptions(tools, chat, {
-            agentType: "structured-chat-zero-shot-react-description", 
+            agentType: "chat-conversational-react-description", 
             memory: chatMemory,
-            // agentArgs: {
-            //     inputVariables: ["chat_history"]
-            // }
             agentArgs: {
-                inputVariables: ["input", "agent_scratchpad" ,"chat_history"],
-                memoryPrompts: [new MessagesPlaceholder("chat_history")]
+                inputVariables: ["input", "chat_history"],
+                // memoryPrompts: [new MessagesPlaceholder("chat_history")]
             },
             verbose: true, 
-            maxIterations: 1
+            // maxIterations: 1
         });
 
         // const res = await conversationChain.call({
@@ -122,7 +119,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             }
         };
 
-        return response;
+        return response; 
     }
 
     async giveUserReccomendation(): Promise<string> {
