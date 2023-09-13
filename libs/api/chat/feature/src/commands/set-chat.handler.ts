@@ -79,8 +79,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                 description: "Call this agent when the user asks what their preferences are.",
                 func: async() => {
                     const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username);
-                    console.log(userAiPref);
-                    return "Under Construction";
+                    return "Based on the data we have collected from your liked properties, your colour preference is: " + userAiPref?.colour + ".";
                 },
                 returnDirect: true,
             }),
