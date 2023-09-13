@@ -24,7 +24,7 @@ import { Calculator } from "langchain/tools/calculator";
 
 import { ConversationChain } from "langchain/chains";
 import { ChatOpenAI} from "langchain/chat_models/openai";
-import { BufferWindowMemory  } from "langchain/memory";
+import { BufferWindowMemory, ChatMessageHistory  } from "langchain/memory";
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -33,10 +33,13 @@ dotenv.config();
 export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatResponse> {
     constructor(
         // private readonly userRepository: ChatRepository,
-        private readonly publisher: EventPublisher
+        private readonly publisher: EventPublisher,
     ) {}
     
+    chatMessageHistory = new ChatMessageHistory();
+
     async execute(command: SetChatCommand): Promise<any> {
+
 
         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
             SystemMessagePromptTemplate.fromTemplate(
@@ -55,17 +58,14 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
         const conversationChain = new ConversationChain({
             memory: new BufferWindowMemory({
+                chatHistory: this.chatMessageHistory,
                 returnMessages: true,
                 memoryKey: "history",
                 k: 5,
             }),
-            prompt: chatPrompt,
+            prompt: chatPrompt ,
             llm: chat,
         })
-        const serpApi = new SerpAPI(process.env["SERPAPI_API_KEY"], {
-            hl: "en",
-            gl: "us",
-        });
 
         const tools = [
             // serpApi,
@@ -90,11 +90,12 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             // verbose: true, 
         });
 
-        // const res = await conversationChain.call({
-        //     description: command.request.chat.message,
-        // }) as { response: string};
+        const res = await conversationChain.call({
+            description: command.request.chat.message,
+        }) as { response: string};
 
-        // console.log(res);
+        console.log(res);
+        console.log(this.chatMessageHistory);
 
         const response: ISetChatResponse = {
             chat: {
