@@ -74,13 +74,17 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             //     description: "Call this agent when the user asks for a recommendation.",
             //     func: this.giveUserReccomendation,
             // }),
-            // new DynamicTool({
-            //     name: "preferences",
-            //     description: "Call this agent when the user asks what their preferences are.",
-            //     func: this.getUserPreferences
-            // }),
             new DynamicTool({
-                name: "extract_characteristics",
+                name: "get-preferences",
+                description: "Call this agent when the user asks what their preferences are.",
+                func: async() => {
+
+                    return "Under Construction";
+                },
+                returnDirect: true,
+            }),
+            new DynamicTool({
+                name: "extract-characteristics",
                 description: "Call this agent when the user provides a description of their dream house. This agent will extract key characteristics of the user's description.",
                 func: async () => {
                     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
@@ -130,16 +134,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         };
 
         return response; 
-    }
-
-    async giveUserReccomendation(): Promise<string> {
-        //Queries to Database here
-        return "I recommend this house";
-    }
-
-    async getUserPreferences(): Promise<string> {
-        //Queries to Database here
-        return "I like this house";
     }
 
     // async extractCharacteristics(description: string): Promise<string> {
