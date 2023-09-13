@@ -25,7 +25,6 @@ import { BufferWindowMemory, ChatMessageHistory  } from "langchain/memory";
 import { AIPreferencesRepository } from "@estate-match/api/prefrences/data-access";
 
 import * as dotenv from 'dotenv';
-import { async } from "rxjs";
 dotenv.config();
 
 @CommandHandler(SetChatCommand)
@@ -108,9 +107,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             // verbose: true,
         });
 
-        const res = await agentExecutor.call({input: command.request.chat.message})
-        console.log(res["output"]);
-        console.log(this.chatMessageHistory);
+        const res = await agentExecutor.call({input: command.request.chat.message});
 
         const response: ISetChatResponse = {
             chat: {
