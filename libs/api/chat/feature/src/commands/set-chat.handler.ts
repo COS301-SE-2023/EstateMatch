@@ -5,6 +5,8 @@ import {
     ChatPromptTemplate,
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
+    MessagesPlaceholder,
+    AIMessagePromptTemplate
 } from "langchain/prompts";
 
 import {
@@ -56,6 +58,25 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                 name: "describe-user",
                 description: "Call this agent when the user asks to describe their dream house based on the chat history.",
                 func: async() => {
+                    const chatPrompt = ChatPromptTemplate.fromPromptMessages([
+                        SystemMessagePromptTemplate.fromTemplate(
+                            "You are an assistant that makes use of the chat memory form a description of the users dream House."
+                        ),
+                        // chatMemoryPlaceHolder,
+                        // AIMessagePromptTemplate.fromTemplate("{description}"),
+                        HumanMessagePromptTemplate.fromTemplate("{description}"),
+                    ]);
+
+                    const llm = new ConversationChain({
+                        // memory: chatMemory,
+                        prompt: chatPrompt ,
+                        llm: chat,
+                    });
+
+                    
+                    const res = await llm.call({description: "Ignore this"}) as { response: string};
+                    console.log(res);
+
                     return "Under construction"
                 },
                 returnDirect: true,
@@ -108,6 +129,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         });
 
         const res = await agentExecutor.call({input: command.request.chat.message});
+        // console.log(chatMemory.chatHistory.getMessages());
 
         const response: ISetChatResponse = {
             chat: {
