@@ -4,26 +4,18 @@ import { CommandHandler, ICommandHandler, EventPublisher } from "@nestjs/cqrs";
 import {
     ChatPromptTemplate,
     SystemMessagePromptTemplate,
-    AIMessagePromptTemplate,
     HumanMessagePromptTemplate,
     MessagesPlaceholder
 } from "langchain/prompts";
 
 import {
-    ChatAgent,
     initializeAgentExecutorWithOptions,
-    AgentExecutor,
-    LLMSingleActionAgent,
 } from "langchain/agents";
 
 import {
     SerpAPI,
     DynamicTool
 } from "langchain/tools";
-
-import {
-    SystemMessage,
-} from "langchain/schema"
 
 import { Calculator } from "langchain/tools/calculator";
 
@@ -32,6 +24,7 @@ import { ChatOpenAI} from "langchain/chat_models/openai";
 import { BufferWindowMemory, ChatMessageHistory  } from "langchain/memory";
 
 import * as dotenv from 'dotenv';
+import { memory } from "@tensorflow/tfjs-node";
 dotenv.config();
 
 @CommandHandler(SetChatCommand)
@@ -86,44 +79,41 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             //     description: "Call this agent when the user asks what their preferences are.",
             //     func: this.getUserPreferences
             // }),
-            // new DynamicTool({
-            //     name: "extract_characteristics",
-            //     description: "Call this agent when the user provides a description of their dream house. This agent will extract key characteristics of the user's description.",
-            //     func: async () => {
-            //         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-            //             SystemMessagePromptTemplate.fromTemplate(
-            //                 "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
-            //                 "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
-            //                 "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
-            //                 "Always end by asking the user if they are happy with the characteristics you extracted."
-            //             ),
-            //             HumanMessagePromptTemplate.fromTemplate("{description}"),
-            //         ]);
+            new DynamicTool({
+                name: "extract_characteristics",
+                description: "Call this agent when the user provides a description of their dream house. This agent will extract key characteristics of the user's description.",
+                func: async () => {
+                    const chatPrompt = ChatPromptTemplate.fromPromptMessages([
+                        SystemMessagePromptTemplate.fromTemplate(
+                            "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
+                            "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
+                            "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
+                            "Always end by asking the user if they are happy with the characteristics you extracted."
+                        ),
+                        new MessagesPlaceholder("chat_history"),
+                        HumanMessagePromptTemplate.fromTemplate("{description}"),
+                    ]);
             
-            //         const llm = new ConversationChain({
-            //             prompt: chatPrompt ,
-            //             llm: chat,
-            //         })
+                    const llm = new ConversationChain({
+                        memory: chatMemory,
+                        prompt: chatPrompt ,
+                        llm: chat,
+                    })
             
-            //         const res = await llm.call({description: command.request.chat.message}) as { response: string};
-                
-            //         return res.response;
-            //     }
-            // }),
+                    const res = await llm.call({description: command.request.chat.message}) as { response: string};
+                    
+                    console.log(res);
+                    console.log(this.chatMessageHistory);
+
+                    return res.response;
+                }
+            }),
         ];
 
-        const systemMessage = "Extract atleast 5 characteristics of the user's description of their dream house. If you could extract 5 characteristics, ask the user to provide mored details about the characteristics you extracted. If you could not extract 5 characteristics, ask the user to provide more information and provide them with some examples.";
+        const systemMessage = "You are a assistant that rely on the provide tools to help the user find their dream house. Use the tool responses as your output";
 
         const agentExecutor = await initializeAgentExecutorWithOptions(tools, chat, {
-            agentType: "chat-conversational-react-description", 
-            memory: chatMemory,
-            agentArgs: {
-                systemMessage: systemMessage,
-                inputVariables: ["input", "chat_history"],
-                // memoryPrompts: [new MessagesPlaceholder("chat_history")]
-            },
-            // verbose: true, 
-            // maxIterations: 1
+            agentType: "chat-conversational-react-description"
         });
 
         // const res = await conversationChain.call({
@@ -131,14 +121,14 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         // }) as { response: string};
 
         const res = await agentExecutor.call({input: command.request.chat.message})
+        // console.log(res);
 
-        console.log(res);
-        console.log(this.chatMessageHistory);
+
 
         const response: ISetChatResponse = {
             chat: {
                 username: command.request.chat.username,
-                message: "Under construction"
+                message: res["output"]
                 // message: res.response
             }
         };
