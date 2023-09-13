@@ -41,18 +41,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
     async execute(command: SetChatCommand): Promise<any> {
 
-
-        const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-            SystemMessagePromptTemplate.fromTemplate(
-                "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
-                "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
-                "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
-                "Always end by asking the user if they are happy with the characteristics you extracted."
-            ),
-            new MessagesPlaceholder('chat_history'),
-            HumanMessagePromptTemplate.fromTemplate("{description}"),
-        ]);
-
         const chat = new ChatOpenAI({
             temperature: 0,
         });
@@ -62,12 +50,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             returnMessages: true,
             memoryKey: "chat_history",
             k: 5,
-        })
-
-        const conversationChain = new ConversationChain({
-            memory: chatMemory,
-            prompt: chatPrompt ,
-            llm: chat,
         })
 
         const tools = [
@@ -83,6 +65,32 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                 description: "Call this agent when the user asks what their preferences are.",
                 func: this.getUserPreferences
             }),
+            new DynamicTool({
+                name: "extract_characteristics",
+                description: "Call this agent when the user provides a description of their dream house.",
+                func: async () => {
+                    const chatPrompt = ChatPromptTemplate.fromPromptMessages([
+                        SystemMessagePromptTemplate.fromTemplate(
+                            "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
+                            "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
+                            "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
+                            "Always end by asking the user if they are happy with the characteristics you extracted."
+                        ),
+                        HumanMessagePromptTemplate.fromTemplate("{description}"),
+                    ]);
+            
+                    const conversationChain = new ConversationChain({
+                        prompt: chatPrompt ,
+                        llm: chat,
+                    })
+            
+                    const res = await conversationChain.call({description: command.request.chat.message}) as { response: string};
+                    
+                    // console.log("I got called");
+                    console.log(res.response);
+                    return res.response;
+                }
+            }),
         ];
 
         const agentExecutor = await initializeAgentExecutorWithOptions(tools, chat, {
@@ -92,10 +100,10 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             //     inputVariables: ["chat_history"]
             // }
             agentArgs: {
-                systemMessage: "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
-                "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
-                "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
-                "Always end by asking the user if they are happy with the characteristics you extracted.",
+                // systemMessage: "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
+                // "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
+                // "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
+                // "Always end by asking the user if they are happy with the characteristics you extracted.",
                 // humanMessage: "{description}",
                 inputVariables: ["chat_history"],
             }
@@ -131,4 +139,29 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         //Queries to Database here
         return "I like this house";
     }
+
+    // async extractCharacteristics(description: string): Promise<string> {
+    //     const chat = new ChatOpenAI({
+    //         temperature: 0,
+    //     });
+
+    //     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
+    //         SystemMessagePromptTemplate.fromTemplate(
+    //             "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
+    //             "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
+    //             "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
+    //             "Always end by asking the user if they are happy with the characteristics you extracted."
+    //         ),
+    //         HumanMessagePromptTemplate.fromTemplate("{description}"),
+    //     ]);
+
+    //     const conversationChain = new ConversationChain({
+    //         prompt: chatPrompt ,
+    //         llm: chat,
+    //     })
+
+    //     const res = await conversationChain.call({description: description}) as { response: string};
+
+    //     return res.response;
+    // }
 }
