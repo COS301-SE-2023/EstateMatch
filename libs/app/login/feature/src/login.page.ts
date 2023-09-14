@@ -51,10 +51,10 @@ export class LoginPage {
         location: userPref.location,
       };
 
-      const remaxRent = await this.http.post(remaxRentURL, scraperBody, { headers });
-      const remaxSale = await this.http.post(remaxSaleURL, scraperBody, { headers });
-      const privatePropertyRent = await this.http.post(privatePropertyRentURL, scraperBody, { headers });
-      const privatePropertySale = await this.http.post(privatePropertySaleURL, scraperBody, { headers });
+      // const remaxRent = await this.http.post(remaxRentURL, scraperBody, { headers });
+      // const remaxSale = await this.http.post(remaxSaleURL, scraperBody, { headers });
+      // const privatePropertyRent = await this.http.post(privatePropertyRentURL, scraperBody, { headers });
+      // const privatePropertySale = await this.http.post(privatePropertySaleURL, scraperBody, { headers });
 
       this.router.navigate(['/home'], { replaceUrl: true });
     }else{
