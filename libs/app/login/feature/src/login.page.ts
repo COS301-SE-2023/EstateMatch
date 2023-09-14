@@ -42,13 +42,19 @@ export class LoginPage {
 
       const userPref = await this.http.post(getPrefURL, prefBody, { headers }).toPromise() as IPreference;
 
-      const remaxRentURL = 'api/RemaxRentScraper';
+      const remaxRentURL = 'api/RemaxRentScraper'; //need to add rent/buy to preferences
+      const remaxSaleURL = 'api/RemaxSaleScraper';
+      const privatePropertyRentURL = 'api/PrivatePropertyRentScraper';
+      const privatePropertySaleURL = 'api/PrivatePropertySaleScraper';
 
       const scraperBody = {
         location: userPref.location,
       };
 
       const remaxRent = await this.http.post(remaxRentURL, scraperBody, { headers });
+      const remaxSale = await this.http.post(remaxSaleURL, scraperBody, { headers });
+      const privatePropertyRent = await this.http.post(privatePropertyRentURL, scraperBody, { headers });
+      const privatePropertySale = await this.http.post(privatePropertySaleURL, scraperBody, { headers });
 
       this.router.navigate(['/home'], { replaceUrl: true });
     }else{
