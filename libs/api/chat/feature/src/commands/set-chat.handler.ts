@@ -20,13 +20,14 @@ import {
 
 import { Calculator } from "langchain/tools/calculator";
 
-import { ConversationChain } from "langchain/chains";
+import { ConversationChain, LLMChain } from "langchain/chains";
 import { ChatOpenAI} from "langchain/chat_models/openai";
 import { BufferWindowMemory, ChatMessageHistory  } from "langchain/memory";
 
 import { AIPreferencesRepository } from "@estate-match/api/prefrences/data-access";
 
 import * as dotenv from 'dotenv';
+import { cos } from "@tensorflow/tfjs-node";
 dotenv.config();
 
 @CommandHandler(SetChatCommand)
@@ -99,10 +100,28 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             //     returnDirect: true,
             // }),
             new DynamicTool({
-                name: "get-preferences",
+                name: "describe-user",
                 description: "Call this agent when the user asks to describe their dream house.",
                 func: async() => {
                     const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username);
+
+                    const chatPrompt = ChatPromptTemplate.fromPromptMessages([
+                        SystemMessagePromptTemplate.fromTemplate(
+                            "You are an assistant that get an array of descriptive words from the user based on their dream house. Your job is to write a description of the users dream house based on the descriptive words they provide."
+                        ),
+                        HumanMessagePromptTemplate.fromTemplate("{descriptive_words}"),
+                    ]);
+
+                    const llm = new LLMChain({
+                        llm: chat,
+                        prompt: chatPrompt,
+                    });
+
+                    const descriptive_words = [];
+                    descriptive_words.push(userAiPref?.colour);
+                    const res = await llm.call({descriptive_words: descriptive_words}) as { response: string};
+                    console.log(res.response);
+
                     return "Based on the data we have collected from your liked properties, your colour preference is: " + userAiPref?.colour + ".";
                 },
                 returnDirect: true,
