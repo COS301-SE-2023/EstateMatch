@@ -40,7 +40,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     chatMessagePlaceholder = new MessagesPlaceholder("chat_history");
 
     async execute(command: SetChatCommand): Promise<any> {
-        let ress: string;
         const chat = new ChatOpenAI({
             temperature: 0,
             streaming: true,
@@ -110,13 +109,13 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             }),
             new DynamicTool({
                 name: "extract-characteristics",
-                description: "Call this agent when the user provides a description of their dream house. This agent will extract key characteristics of the user's description.",
+                description: "Call this agent when the user provides a description of their dream house and when the user provide more information about characteristics of their dream house.",
                 func: async () => {
                     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
                         SystemMessagePromptTemplate.fromTemplate(
                             "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
-                            "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
-                            "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
+                            "Most importantly you must be able to extract atleast 5 characteristics, if you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
+                            // "Once you have extracted at least 5 characteristics, ask for more detail about those characteristics and provide detailed examples." +
                             "Always end by asking the user if they are happy with the characteristics you extracted."
                         ),
                         this.chatMessagePlaceholder,
