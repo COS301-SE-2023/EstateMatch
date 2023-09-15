@@ -178,7 +178,8 @@ export class ImageToTextService {
   "Peach",
   "Pattern",
   "Chest of drawers",
-  "Chest"
+  "Chest",
+  "Hardwood"
 ];
 
   constructor() {
