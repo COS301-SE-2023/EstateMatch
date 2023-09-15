@@ -100,62 +100,62 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             //     },
             //     returnDirect: true,
             // }),
-            new DynamicTool({
-                name: "describe-dream-house",
-                description: "Call this agent when the user asks to describe their dream house.",
-                func: async() => {
-                    const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username);
-                    const userPref = await this.preferencesRepo.findOne(command.request.chat.username);
+            // new DynamicTool({
+            //     name: "describe-dream-house",
+            //     description: "Call this agent when the user asks to describe their dream house.",
+            //     func: async() => {
+            //         const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username);
+            //         const userPref = await this.preferencesRepo.findOne(command.request.chat.username);
 
 
-                    const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-                        SystemMessagePromptTemplate.fromTemplate(
-                            "You are an assistant that get an array of descriptive words from the user based on their dream house. Your job is to write a description of the users dream house based on the descriptive words they provide." +
-                            "At the end of the description ask the user if the description is accurate or if they like to change or add anything to the description."
-                        ),
-                        HumanMessagePromptTemplate.fromTemplate("{descriptive_words}"),
-                    ]);
+            //         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
+            //             SystemMessagePromptTemplate.fromTemplate(
+            //                 "You are an assistant that get an array of descriptive words from the user based on their dream house. Your job is to write a description of the users dream house based on the descriptive words they provide." +
+            //                 "At the end of the description ask the user if the description is accurate or if they like to change or add anything to the description."
+            //             ),
+            //             HumanMessagePromptTemplate.fromTemplate("{descriptive_words}"),
+            //         ]);
 
-                    const llm = new ConversationChain({
-                        llm: chat,
-                        prompt: chatPrompt,
-                    });
+            //         const llm = new ConversationChain({
+            //             llm: chat,
+            //             prompt: chatPrompt,
+            //         });
 
-                    const descriptive_words = [];
-                    // descriptive_words.push(userAiPref?.colour);
-                    if(userPref){
-                        descriptive_words.push(userPref.location);
-                        descriptive_words.push(userPref.budgetMin);
-                        descriptive_words.push(userPref.budgetMax);
-                        descriptive_words.push(userPref.bedrooms);
-                        descriptive_words.push(userPref.bathrooms);
-                        descriptive_words.push(userPref.garages);
+            //         const descriptive_words = [];
+            //         // descriptive_words.push(userAiPref?.colour);
+            //         if(userPref){
+            //             descriptive_words.push(userPref.location);
+            //             descriptive_words.push(userPref.budgetMin);
+            //             descriptive_words.push(userPref.budgetMax);
+            //             descriptive_words.push(userPref.bedrooms);
+            //             descriptive_words.push(userPref.bathrooms);
+            //             descriptive_words.push(userPref.garages);
                         
-                        for(let i = 0; i < userPref.extras.length; i++) {
-                            descriptive_words.push(userPref.extras[i]);
-                        }
-                    }
+            //             for(let i = 0; i < userPref.extras.length; i++) {
+            //                 descriptive_words.push(userPref.extras[i]);
+            //             }
+            //         }
 
-                    descriptive_words.push("Hardwood floors");
-                    descriptive_words.push("Open floor plan");
-                    descriptive_words.push("High ceilings");
-                    descriptive_words.push("Large windows");
-                    const res = await llm.call({descriptive_words: descriptive_words}) as { response: string};
-                    console.log(res.response);
+            //         descriptive_words.push("Hardwood floors");
+            //         descriptive_words.push("Open floor plan");
+            //         descriptive_words.push("High ceilings");
+            //         descriptive_words.push("Large windows");
+            //         const res = await llm.call({descriptive_words: descriptive_words}) as { response: string};
+            //         console.log(res.response);
 
-                    return res.response;
-                },
-                returnDirect: true,
-            }),
+            //         return res.response;
+            //     },
+            //     returnDirect: true,
+            // }),
             new DynamicTool({
                 name: "extract-characteristics",
-                description: "Call this agent when the user provides a description of their dream house and when the user provide more information about characteristics of their dream house.",
+                description: "Call this agent when the user is providing information about characteristics of their dream house.",
                 func: async () => {
                     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
                         SystemMessagePromptTemplate.fromTemplate(
                             "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
-                            "Most importantly you must be able to extract atleast 5 characteristics, if you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
-                            // "Once you have extracted at least 5 characteristics, ask for more detail about those characteristics and provide detailed examples." +
+                            "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
+                            "If you have extracted at least 5 characteristics ask for more detail about those characteristics and provide detailed examples." +
                             "Always end by asking the user if they are happy with the characteristics you extracted."
                         ),
                         this.chatMessagePlaceholder,
@@ -170,7 +170,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
             
                     const res = await llm.call({description: command.request.chat.message}) as { response: string};
-                    console.log(chatMemory.chatHistory.getMessages());
 
                     return res.response;
                 },
