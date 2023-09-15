@@ -40,9 +40,17 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     chatMessagePlaceholder = new MessagesPlaceholder("chat_history");
 
     async execute(command: SetChatCommand): Promise<any> {
-
+        let ress: string;
         const chat = new ChatOpenAI({
             temperature: 0,
+            streaming: true,
+            callbacks: [
+                {
+                    handleLLMNewToken(token: string) {
+                        process.stdout.write(token);
+                    },
+                }
+            ]
         });
 
         const chatMemory = new BufferWindowMemory({
