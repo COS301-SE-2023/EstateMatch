@@ -27,7 +27,7 @@ export class PropertiesRepository {
         //New Property
         const createdProperty = new this.propertiesModel(property);
         //check if the property already exists by address before saving
-        const propertyExists = await this.propertiesModel.findOne({address: property.location}).exec();
+        const propertyExists = await this.propertiesModel.findOne({title: property.title}).exec(); 
         if(propertyExists) {
             //property exist for new user
             //check if user exist
