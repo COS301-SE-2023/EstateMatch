@@ -93,7 +93,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             // }),
             new DynamicTool({
                 name: "get-preferences",
-                description: "Call this agent when the user asks what their preferences are.",
+                description: "Call this agent when the user asks to describe their dream house.",
                 func: async() => {
                     const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username);
                     return "Based on the data we have collected from your liked properties, your colour preference is: " + userAiPref?.colour + ".";
