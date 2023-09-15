@@ -35,9 +35,7 @@ export class LoginPage {
       const getPrefURL = 'api/getPreferences';
 
       const prefBody = {
-        user:{
-          user: this.username,
-        }
+        user: this.username,
       }
 
       const userPref = await this.http.post(getPrefURL, prefBody, { headers }).toPromise() as IPreference;
