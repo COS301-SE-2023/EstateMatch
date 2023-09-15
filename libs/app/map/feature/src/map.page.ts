@@ -90,11 +90,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 
       L.control.scale().addTo(this.map);
 
-      const schools=fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+coordinates.coords.latitude+'%2C'+coordinates.coords.longitude+'&radius=1500&type=school&key=AIzaSyBz3ZemLu5F4s9mFHB7Va6t7TrQcX6CrYA',
-      {
+      const requestOptions={
         method: 'GET',
-        mode: 'no-cors' as any,
-      })
+        mode: 'no-cors'
+      }
+
+      const schools=await fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+coordinates.coords.latitude+'%2C'+coordinates.coords.longitude+'&radius=1500&type=school&key=AIzaSyBz3ZemLu5F4s9mFHB7Va6t7TrQcX6CrYA',
+      requestOptions
+      );
+
+      console.log(schools);
 
       this.map.once('click', (e) => {
         
