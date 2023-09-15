@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose';
+import { PropertiesModel , PropertiesSchema} from '@estate-match/api/properties/schema';
 
 export const UserSchema = new mongoose.Schema({
     // id : {type: String, required: true},
@@ -7,8 +8,8 @@ export const UserSchema = new mongoose.Schema({
     firstName : {type: String, required: true},
     lastName : {type: String, required: true},
 
-    //using references to make the properties user specific
-    properties: [{type: mongoose.Schema.Types.ObjectId, ref: 'Properties'}]
+    //using references to make the properties user specific by holding multiple titles of the properties
+    properties: [{type: mongoose.Schema.Types.ObjectId, ref: 'Properties'}] //hold the titles of the properties
 });
 
 export interface UserModel  {
@@ -19,5 +20,5 @@ export interface UserModel  {
     lastName : string;
 
     //using references to make the properties user specific
-    properties: string[]; //hold the ids of the properties
+    properties: string[]; //hold the titles of the properties
 }
