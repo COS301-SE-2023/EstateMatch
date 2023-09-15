@@ -26,7 +26,8 @@ export const PropertiesSchema = new mongoose.Schema({
     // //userSchema : {type : user}
 
     //used references to make the properties user specific
-    user : {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+    //hold array of user ids
+    user : [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}] //hold the id of the user
 
 
 });
