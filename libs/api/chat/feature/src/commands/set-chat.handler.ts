@@ -37,6 +37,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     ) {}
     
     chatMessageHistory = new ChatMessageHistory();
+    chatMessagePlaceholder = new MessagesPlaceholder("chat_history");
 
     async execute(command: SetChatCommand): Promise<any> {
 
@@ -55,32 +56,41 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             // serpApi,
             new Calculator(),
             new DynamicTool({
-                name: "describe-user",
-                description: "Call this agent when the user asks to describe their dream house based on the chat history.",
+                name: "follow-up",
+                description: "Call this agent when none of the other agents are suitable",
                 func: async() => {
-                    const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-                        SystemMessagePromptTemplate.fromTemplate(
-                            "You are an assistant that makes use of the chat memory form a description of the users dream House."
-                        ),
-                        // chatMemoryPlaceHolder,
-                        // AIMessagePromptTemplate.fromTemplate("{description}"),
-                        HumanMessagePromptTemplate.fromTemplate("{description}"),
-                    ]);
-
-                    const llm = new ConversationChain({
-                        // memory: chatMemory,
-                        prompt: chatPrompt ,
-                        llm: chat,
-                    });
-
-                    
-                    const res = await llm.call({description: "Ignore this"}) as { response: string};
-                    console.log(res);
-
-                    return "Under construction"
+                    console.log(chatMemory);
+                    return "The user provide more information about a property."
                 },
                 returnDirect: true,
             }),
+            // new DynamicTool({
+            //     name: "describe-user",
+            //     description: "Call this agent when the user asks to describe their dream house based on the chat history.",
+            //     func: async() => {
+            //         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
+            //             SystemMessagePromptTemplate.fromTemplate(
+            //                 "You are an assistant that makes use of the chat memory form a description of the users dream House."
+            //             ),
+            //             // chatMemoryPlaceHolder,
+            //             // AIMessagePromptTemplate.fromTemplate("{description}"),
+            //             HumanMessagePromptTemplate.fromTemplate("{description}"),
+            //         ]);
+
+            //         const llm = new ConversationChain({
+            //             // memory: chatMemory,
+            //             prompt: chatPrompt ,
+            //             llm: chat,
+            //         });
+
+                    
+            //         const res = await llm.call({description: "Ignore this"}) as { response: string};
+            //         console.log(res);
+
+            //         return "Under construction"
+            //     },
+            //     returnDirect: true,
+            // }),
             new DynamicTool({
                 name: "get-preferences",
                 description: "Call this agent when the user asks what their preferences are.",
@@ -101,17 +111,19 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                             "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
                             "Always end by asking the user if they are happy with the characteristics you extracted."
                         ),
-                        // new MessagesPlaceholder("chat_history"),
+                        this.chatMessagePlaceholder,
                         HumanMessagePromptTemplate.fromTemplate("{description}"),
                     ]);
             
                     const llm = new ConversationChain({
-                        // memory: chatMemory,
+                        memory: chatMemory,
                         prompt: chatPrompt ,
                         llm: chat,
                     })
+
             
                     const res = await llm.call({description: command.request.chat.message}) as { response: string};
+                    console.log(chatMemory.chatHistory.getMessages());
 
                     return res.response;
                 },
