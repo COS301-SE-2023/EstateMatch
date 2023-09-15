@@ -55,12 +55,17 @@
     background-color: #f3f1f1;
   }
 
+/* ... Previous CSS code ... */
+
 .container {
   font-size: large;
   border: 2px solid #67C390;
   background-color: #67C390;
   border-radius: 5px;
-  padding: 4%;
+  padding-top: 10px; /* Add padding to all sides */
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
   margin: 2px 0;
   width: 80%;
   float: right;
@@ -79,26 +84,35 @@
 }
 
 .container img {
-  padding-top: 2px;
+  padding-left: 1px; /* Add padding to all sides */
+  padding-right: 10px;
+  padding-bottom: 1px;
   float: left;
   max-width: 60px;
   height: 60px;
   width: 100%;
-  margin-right: 10px;
+ // margin-right: 10px;
   border-radius: 50%;
 }
 
 .container img.right {
-  float: left;
-  margin-right: 10px;
+  float: left; /* Adjust the float to right */
+  margin-right: 0; /* Remove margin-right */
+  margin-left: 5px; /* Add margin-left for spacing */
+}
+
+.container p {
+  margin: 0; /* Remove default margin */
 }
 
 .time-right {
   float: right;
   color: black;
+  clear: both; /* Add clear to prevent text overlap */
 }
 
 .time-left {
-  float: right;
+  float: right; /* Adjust the float to left */
   color: black;
+  clear: both; /* Add clear to prevent text overlap */
 }
