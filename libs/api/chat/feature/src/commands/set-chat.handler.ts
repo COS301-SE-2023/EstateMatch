@@ -66,7 +66,10 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         "A quaint, two-story abode adorned in pastel hues, nestled amid a lush garden, featuring a rustic porch, bay windows, and a charming shingle roof" + 
         // "User: The colour should be pink." + 
         "Why don't skeletons fight each other? They don't have the guts!" + 
-        ""; 
+        "Example 2:" +
+        "User: I like floors, open floor and a patio, big windows and a pool" + 
+        "Assistant: I cherish homes with stunning dark hardwoodfloors, an expansive open layout, a relaxing patio, ample natural light through big windows, and the icing on the cake—a sparkling pool." +
+        "I told my wife she was drawing her eyebrows too high. She looked surprised."; 
 
         const chatMemory = new BufferWindowMemory({
             chatHistory: this.chatMessageHistory,
