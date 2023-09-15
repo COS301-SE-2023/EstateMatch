@@ -16,8 +16,8 @@ export class AIPreferencesRepository {
     async create(aiPrefrences : IAIPreference) : Promise<AIPrefrencesModel> {
         const newRecord: AIPrefrencesModel = {
             user: aiPrefrences.user,
-            colourDataPoints: [aiPrefrences.colour],
-            colour: aiPrefrences.colour,
+            labelDataPoints: [aiPrefrences.labels],
+            labels: aiPrefrences.labels,
         }
 
         const createdPrefrences = new this.aiPrefrencesModel(newRecord);
@@ -30,31 +30,47 @@ export class AIPreferencesRepository {
         if(!userAIPreferences) {
             return null;
         }else{
-            userAIPreferences.colourDataPoints.push(prefrences.colour);
-            const colourDataPoints = userAIPreferences.colourDataPoints;
-            let colourful = 0;
-            let light = 0;
-            let dark = 0;
-            for(let i = 0; i < colourDataPoints.length; i++) {
-                if(colourDataPoints[i] === 'Colourful') {
-                    colourful++;
-                }else if(colourDataPoints[i] === 'Light'){
-                    light++;
-                }else{
-                    dark++;
+            userAIPreferences.labelDataPoints.push(prefrences.labels);
+            const labelDataPoints = userAIPreferences.labelDataPoints;
+            let buildingStyle = 0;
+            let floorMaterials = 0;
+            let interiorMaterials = 0;
+            let buildingArea = 0;
+            let buildingFeatures = 0;
+            for(let i = 0; i < labelDataPoints.length; i++) {
+                if(labelDataPoints[i] === 'Apartment' || labelDataPoints[i] === 'Urban design') {
+                    buildingStyle++;
+                }else if(labelDataPoints[i] === 'Laminate flooring' || labelDataPoints[i] === 'Wood flooring'){
+                    floorMaterials++;
+                }else if(labelDataPoints[i] === 'Neighbourhood' || labelDataPoints[i] === 'Residential area'){
+                    buildingArea++;
+                }else if(labelDataPoints[i] === 'Garden' || labelDataPoints[i] === 'Porch' || labelDataPoints[i] === 'Courtyard' || labelDataPoints[i] === 'Yard'|| labelDataPoints[i] === 'Natural landscape' || labelDataPoints[i] === 'Daylighting' ){
+                    buildingFeatures++;
+                }
+                else{
+                    interiorMaterials++;
                 }
             }
             let max;
-            if(colourful !== light && Math.max(colourful, light) === colourful && colourful !== dark && Math.max(colourful, dark) === colourful) {
-                max = 'Colourful';
-            }else if(light !== colourful && Math.max(light, colourful) === light && light !== dark && Math.max(light, dark) === light) {
-                max = 'Light';
-            }else if(dark !== colourful && Math.max(dark, colourful) === dark && dark !== light && Math.max(dark, light) === dark){
-                max = 'Dark';
-            }else{
-                max = userAIPreferences.colour;
+            if(buildingStyle !== floorMaterials && Math.max(buildingStyle, floorMaterials) === buildingStyle && buildingStyle !== interiorMaterials && Math.max(buildingStyle, interiorMaterials) === buildingStyle && buildingStyle !== buildingArea && Math.max(buildingStyle, buildingArea) === buildingStyle && buildingStyle !== buildingFeatures && Math.max(buildingStyle, buildingFeatures) === buildingStyle) {
+                max = 'Building Style';
             }
-            userAIPreferences.colour = max;
+            else if(floorMaterials !== interiorMaterials && Math.max(floorMaterials, interiorMaterials) === floorMaterials && floorMaterials !== buildingArea && Math.max(floorMaterials, buildingArea) === floorMaterials && floorMaterials !== buildingFeatures && Math.max(floorMaterials, buildingFeatures) === floorMaterials && floorMaterials !== buildingStyle && Math.max(floorMaterials, buildingStyle) === floorMaterials){
+                max = 'Floor Materials';
+            }
+            else if(interiorMaterials !== buildingArea && Math.max(interiorMaterials, buildingArea) === interiorMaterials && interiorMaterials !== buildingFeatures && Math.max(interiorMaterials, buildingFeatures) === interiorMaterials && interiorMaterials !== buildingStyle && Math.max(interiorMaterials, buildingStyle) === interiorMaterials && interiorMaterials !== floorMaterials && Math.max(interiorMaterials, floorMaterials) === interiorMaterials){
+                max = 'Interior Materials';
+            }
+            else if(buildingArea !== buildingFeatures && Math.max(buildingArea, buildingFeatures) === buildingArea && buildingArea !== buildingStyle && Math.max(buildingArea, buildingStyle) === buildingArea && buildingArea !== floorMaterials && Math.max(buildingArea, floorMaterials) === buildingArea && buildingArea !== interiorMaterials && Math.max(buildingArea, interiorMaterials) === buildingArea){
+                max = 'Building Area';
+            }
+            else if(buildingFeatures !== buildingStyle && Math.max(buildingFeatures, buildingStyle) === buildingFeatures && buildingFeatures !== floorMaterials && Math.max(buildingFeatures, floorMaterials) === buildingFeatures && buildingFeatures !== interiorMaterials && Math.max(buildingFeatures, interiorMaterials) === buildingFeatures && buildingFeatures !== buildingArea && Math.max(buildingFeatures, buildingArea) === buildingFeatures){
+                max = 'Building Features';
+            }
+            else{
+                max = userAIPreferences.labels;
+            }
+            userAIPreferences.labels = max;
             return await userAIPreferences.save();
         }
     }

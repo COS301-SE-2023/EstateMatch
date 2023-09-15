@@ -2,13 +2,13 @@ import * as mongoose from 'mongoose';
 
 export const AIPrefrencesSchema = new mongoose.Schema({
     user: String,
-    colourDataPoints: [String],
-    colour: String,
+    labelDataPoints: [String],
+    labels: String,
 });
 
 //our model
 export interface AIPrefrencesModel  {
     user : string;
-    colourDataPoints: string[];
-    colour : string;
+    labelDataPoints: string[];
+    labels : String;
 }
