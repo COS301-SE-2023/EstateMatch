@@ -54,6 +54,20 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             // ]
         });
 
+        const myTemplate = "You are a friendly assistant to help a user find their dream house, with the following tasks." + 
+        "1) Extract five or more charcateristics from a description." +
+        "2) If less than five characteristics are extracted, ask the user to provide more information about their dream house and provide them with a short example." +
+        "3) If five or more characteristics are extracted, ask the user to provide more information about those characteristics if they are not detailed enough." +
+        "4) End your response with a joke." + 
+        "Examples:" + 
+        "Example 1:" + 
+        "User: I want a house with a pool." +
+        "Assistant: I see you want a house with a pool. In order for me to be helpful I need at least five characteristics. Here is a nice example of possible description: "+ 
+        "A quaint, two-story abode adorned in pastel hues, nestled amid a lush garden, featuring a rustic porch, bay windows, and a charming shingle roof" + 
+        // "User: The colour should be pink." + 
+        "Why don't skeletons fight each other? They don't have the guts!" + 
+        ""; 
+
         const chatMemory = new BufferWindowMemory({
             chatHistory: this.chatMessageHistory,
             returnMessages: true,
@@ -147,16 +161,18 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             //     },
             //     returnDirect: true,
             // }),
+
+            // "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
+            // "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
+            // "If you have extracted at least 5 characteristics ask for more detail about those characteristics and provide detailed examples." +
+            // "Always end by asking the user if they are happy with the characteristics you extracted."
             new DynamicTool({
                 name: "extract-characteristics",
                 description: "Call this agent when the user is providing information about characteristics of their dream house.",
                 func: async () => {
                     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
                         SystemMessagePromptTemplate.fromTemplate(
-                            "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
-                            "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
-                            "If you have extracted at least 5 characteristics ask for more detail about those characteristics and provide detailed examples." +
-                            "Always end by asking the user if they are happy with the characteristics you extracted."
+                            myTemplate
                         ),
                         this.chatMessagePlaceholder,
                         HumanMessagePromptTemplate.fromTemplate("{description}"),
