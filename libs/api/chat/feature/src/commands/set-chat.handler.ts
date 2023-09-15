@@ -64,7 +64,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         "User: I want a house with a pool." +
         "Assistant: I see you want a house with a pool. In order for me to be helpful I need at least five characteristics. Here is a nice example of possible description: "+ 
         "A quaint, two-story abode adorned in pastel hues, nestled amid a lush garden, featuring a rustic porch, bay windows, and a charming shingle roof" + 
-        // "User: The colour should be pink." + 
         "Why don't skeletons fight each other? They don't have the guts!" + 
         "Example 2:" +
         "User: I like floors, open floor and a patio, big windows and a pool" + 
@@ -117,53 +116,53 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             //     },
             //     returnDirect: true,
             // }),
-            // new DynamicTool({
-            //     name: "describe-dream-house",
-            //     description: "Call this agent when the user asks to describe their dream house.",
-            //     func: async() => {
-            //         const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username);
-            //         const userPref = await this.preferencesRepo.findOne(command.request.chat.username);
+            new DynamicTool({
+                name: "describe-dream-house",
+                description: "Call this agent when the user asks to describe their dream house.",
+                func: async() => {
+                    const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username);
+                    const userPref = await this.preferencesRepo.findOne(command.request.chat.username);
 
 
-            //         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-            //             SystemMessagePromptTemplate.fromTemplate(
-            //                 "You are an assistant that get an array of descriptive words from the user based on their dream house. Your job is to write a description of the users dream house based on the descriptive words they provide." +
-            //                 "At the end of the description ask the user if the description is accurate or if they like to change or add anything to the description."
-            //             ),
-            //             HumanMessagePromptTemplate.fromTemplate("{descriptive_words}"),
-            //         ]);
+                    const chatPrompt = ChatPromptTemplate.fromPromptMessages([
+                        SystemMessagePromptTemplate.fromTemplate(
+                            "You are an assistant that get an array of descriptive words from the user based on their dream house. Your job is to write a description of the users dream house based on the descriptive words they provide." +
+                            "At the end of the description ask the user if the description is accurate or if they like to change or add anything to the description."
+                        ),
+                        HumanMessagePromptTemplate.fromTemplate("{descriptive_words}"),
+                    ]);
 
-            //         const llm = new ConversationChain({
-            //             llm: chat,
-            //             prompt: chatPrompt,
-            //         });
+                    const llm = new ConversationChain({
+                        llm: chat,
+                        prompt: chatPrompt,
+                    });
 
-            //         const descriptive_words = [];
-            //         // descriptive_words.push(userAiPref?.colour);
-            //         if(userPref){
-            //             descriptive_words.push(userPref.location);
-            //             descriptive_words.push(userPref.budgetMin);
-            //             descriptive_words.push(userPref.budgetMax);
-            //             descriptive_words.push(userPref.bedrooms);
-            //             descriptive_words.push(userPref.bathrooms);
-            //             descriptive_words.push(userPref.garages);
+                    const descriptive_words = [];
+                    // descriptive_words.push(userAiPref?.colour);
+                    if(userPref){
+                        descriptive_words.push(userPref.location);
+                        descriptive_words.push(userPref.budgetMin);
+                        descriptive_words.push(userPref.budgetMax);
+                        descriptive_words.push(userPref.bedrooms);
+                        descriptive_words.push(userPref.bathrooms);
+                        descriptive_words.push(userPref.garages);
                         
-            //             for(let i = 0; i < userPref.extras.length; i++) {
-            //                 descriptive_words.push(userPref.extras[i]);
-            //             }
-            //         }
+                        for(let i = 0; i < userPref.extras.length; i++) {
+                            descriptive_words.push(userPref.extras[i]);
+                        }
+                    }
 
-            //         descriptive_words.push("Hardwood floors");
-            //         descriptive_words.push("Open floor plan");
-            //         descriptive_words.push("High ceilings");
-            //         descriptive_words.push("Large windows");
-            //         const res = await llm.call({descriptive_words: descriptive_words}) as { response: string};
-            //         console.log(res.response);
+                    descriptive_words.push("Hardwood floors");
+                    descriptive_words.push("Open floor plan");
+                    descriptive_words.push("High ceilings");
+                    descriptive_words.push("Large windows");
+                    const res = await llm.call({descriptive_words: descriptive_words}) as { response: string};
+                    console.log(res.response);
 
-            //         return res.response;
-            //     },
-            //     returnDirect: true,
-            // }),
+                    return res.response;
+                },
+                returnDirect: true,
+            }),
 
             // "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
             // "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
