@@ -24,7 +24,7 @@ import { ConversationChain, LLMChain } from "langchain/chains";
 import { ChatOpenAI} from "langchain/chat_models/openai";
 import { BufferWindowMemory, ChatMessageHistory  } from "langchain/memory";
 
-import { AIPreferencesRepository } from "@estate-match/api/prefrences/data-access";
+import { AIPreferencesRepository, PreferencesRepository } from "@estate-match/api/prefrences/data-access";
 
 import * as dotenv from 'dotenv';
 import { cos } from "@tensorflow/tfjs-node";
@@ -34,6 +34,7 @@ dotenv.config();
 export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatResponse> {
     constructor(
         private readonly aiPreferenceRepo: AIPreferencesRepository,
+        private readonly preferencesRepo: PreferencesRepository,
         private readonly publisher: EventPublisher,
     ) {}
     
@@ -43,14 +44,14 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     async execute(command: SetChatCommand): Promise<any> {
         const chat = new ChatOpenAI({
             temperature: 0,
-            streaming: true,
-            callbacks: [
-                {
-                    handleLLMNewToken(token: string) {
-                        process.stdout.write(token);
-                    },
-                }
-            ]
+            // streaming: true,
+            // callbacks: [
+            //     {
+            //         handleLLMNewToken(token: string) {
+            //             process.stdout.write(token);
+            //         },
+            //     }
+            // ]
         });
 
         const chatMemory = new BufferWindowMemory({
@@ -100,29 +101,49 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             //     returnDirect: true,
             // }),
             new DynamicTool({
-                name: "describe-user",
+                name: "describe-dream-house",
                 description: "Call this agent when the user asks to describe their dream house.",
                 func: async() => {
                     const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username);
+                    const userPref = await this.preferencesRepo.findOne(command.request.chat.username);
+
 
                     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
                         SystemMessagePromptTemplate.fromTemplate(
-                            "You are an assistant that get an array of descriptive words from the user based on their dream house. Your job is to write a description of the users dream house based on the descriptive words they provide."
+                            "You are an assistant that get an array of descriptive words from the user based on their dream house. Your job is to write a description of the users dream house based on the descriptive words they provide." +
+                            "At the end of the description ask the user if the description is accurate or if they like to change or add anything to the description."
                         ),
                         HumanMessagePromptTemplate.fromTemplate("{descriptive_words}"),
                     ]);
 
-                    const llm = new LLMChain({
+                    const llm = new ConversationChain({
                         llm: chat,
                         prompt: chatPrompt,
                     });
 
                     const descriptive_words = [];
-                    descriptive_words.push(userAiPref?.colour);
+                    // descriptive_words.push(userAiPref?.colour);
+                    if(userPref){
+                        descriptive_words.push(userPref.location);
+                        descriptive_words.push(userPref.budgetMin);
+                        descriptive_words.push(userPref.budgetMax);
+                        descriptive_words.push(userPref.bedrooms);
+                        descriptive_words.push(userPref.bathrooms);
+                        descriptive_words.push(userPref.garages);
+                        
+                        for(let i = 0; i < userPref.extras.length; i++) {
+                            descriptive_words.push(userPref.extras[i]);
+                        }
+                    }
+
+                    descriptive_words.push("Hardwood floors");
+                    descriptive_words.push("Open floor plan");
+                    descriptive_words.push("High ceilings");
+                    descriptive_words.push("Large windows");
                     const res = await llm.call({descriptive_words: descriptive_words}) as { response: string};
                     console.log(res.response);
 
-                    return "Based on the data we have collected from your liked properties, your colour preference is: " + userAiPref?.colour + ".";
+                    return res.response;
                 },
                 returnDirect: true,
             }),
