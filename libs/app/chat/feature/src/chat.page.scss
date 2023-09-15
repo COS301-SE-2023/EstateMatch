@@ -56,11 +56,15 @@
   }
 
 .container {
+  font-size: large;
   border: 2px solid #67C390;
   background-color: #67C390;
   border-radius: 5px;
-  padding: 5px;
-  margin: 10px 0;
+  padding-top: 10px; 
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  margin: 2px 0;
   width: 80%;
   float: right;
 }
@@ -78,26 +82,34 @@
 }
 
 .container img {
-  padding-top: 2px;
+  padding-left: 1px; 
+  padding-right: 10px;
+  padding-bottom: 1px;
   float: left;
   max-width: 60px;
   height: 60px;
   width: 100%;
-  margin-right: 10px;
   border-radius: 50%;
 }
 
 .container img.right {
-  float: left;
-  margin-right: 10px;
+  float: left; 
+  margin-right: 0; 
+  margin-left: 5px;
+}
+
+.container p {
+  margin: 0; 
 }
 
 .time-right {
   float: right;
   color: black;
+  clear: both; 
 }
 
 .time-left {
-  float: right;
+  float: right; 
   color: black;
+  clear: both; 
 }
