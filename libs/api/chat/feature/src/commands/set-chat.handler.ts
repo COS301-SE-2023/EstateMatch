@@ -54,11 +54,12 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             // ]
         });
 
-        const myTemplate = "You are a friendly assistant to help a user find their dream house, with the following tasks." + 
+        const extractTemplate = "You are a friendly assistant to help a user find their dream house, with the following tasks." + 
         "1) Extract five or more charcateristics from a description." +
         "2) If less than five characteristics are extracted, ask the user to provide more information about their dream house and provide them with a short example." +
         "3) If five or more characteristics are extracted, ask the user to provide more information about those characteristics if they are not detailed enough." +
         "4) End your response with a joke." + 
+        "5) Limit response to 100 words."
         "Examples:" + 
         "Example 1:" + 
         "User: I want a house with a pool." +
@@ -80,42 +81,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const tools = [
             // serpApi,
             new Calculator(),
-            new DynamicTool({
-                name: "follow-up",
-                description: "Call this agent when none of the other agents are suitable",
-                func: async() => {
-                    console.log(chatMemory);
-                    return "The user provide more information about a property."
-                },
-                returnDirect: true,
-            }),
-            // new DynamicTool({
-            //     name: "describe-user",
-            //     description: "Call this agent when the user asks to describe their dream house based on the chat history.",
-            //     func: async() => {
-            //         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-            //             SystemMessagePromptTemplate.fromTemplate(
-            //                 "You are an assistant that makes use of the chat memory form a description of the users dream House."
-            //             ),
-            //             // chatMemoryPlaceHolder,
-            //             // AIMessagePromptTemplate.fromTemplate("{description}"),
-            //             HumanMessagePromptTemplate.fromTemplate("{description}"),
-            //         ]);
-
-            //         const llm = new ConversationChain({
-            //             // memory: chatMemory,
-            //             prompt: chatPrompt ,
-            //             llm: chat,
-            //         });
-
-                    
-            //         const res = await llm.call({description: "Ignore this"}) as { response: string};
-            //         console.log(res);
-
-            //         return "Under construction"
-            //     },
-            //     returnDirect: true,
-            // }),
             new DynamicTool({
                 name: "describe-dream-house",
                 description: "Call this agent when the user asks to describe their dream house.",
@@ -174,7 +139,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                 func: async () => {
                     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
                         SystemMessagePromptTemplate.fromTemplate(
-                            myTemplate
+                            extractTemplate
                         ),
                         this.chatMessagePlaceholder,
                         HumanMessagePromptTemplate.fromTemplate("{description}"),
