@@ -38,11 +38,17 @@ export class PropertiesRepository {
             }
             else {
                 //add user to existing property
-                const updatedProperty = await this.propertiesModel.findOneAndUpdate({address: property.location}, {user: property.user}).exec();
+                const updatedProperty = await this.propertiesModel.findOneAndUpdate(
+                    {title: property.title},
+                    {$addToSet: {user: property.user} }
+                    ).exec();
 
                 if (updatedProperty) {
                 //add property to user
-                const updatedUser = await this.preferenceModel.findOneAndUpdate({user: property.user}, {$push: {properties: updatedProperty._id}}).exec();
+                const updatedUser = await this.preferenceModel.findOneAndUpdate(
+                    {username: property.user}, 
+                    {$addToSet: {properties: updatedProperty.title}}
+                    ).exec();
                 
                     if (updatedUser) {
                         updatedUser.save();
@@ -59,10 +65,17 @@ export class PropertiesRepository {
             //property does not exist
             //add property to property collection and user collection
             const updatedProperty = await createdProperty.save();
+            const updatedUser = await this.preferenceModel.findOneAndUpdate(
+                {username: property.user},
+                {$addToSet: {properties: updatedProperty.title}}
+                ).exec();
             if (updatedProperty) {
                 //add property to user
-                const updatedUser = await this.preferenceModel.findOneAndUpdate({user: property.user}, {$push: {properties: updatedProperty._id}}).exec();
-                
+                const updatedUser = await this.preferenceModel.findOneAndUpdate(
+                    {username: property.user},
+                    {$addToSet: {properties: updatedProperty.title}}
+                    ).exec();
+                    
                     if (updatedUser) {
                         updatedUser.save();
                     } else {
