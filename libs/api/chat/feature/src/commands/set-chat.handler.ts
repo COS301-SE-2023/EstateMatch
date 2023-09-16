@@ -6,7 +6,8 @@ import {
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
     MessagesPlaceholder,
-    AIMessagePromptTemplate
+    AIMessagePromptTemplate,
+    PromptTemplate
 } from "langchain/prompts";
 
 import {
@@ -28,6 +29,7 @@ import { AIPreferencesRepository, PreferencesRepository } from "@estate-match/ap
 
 import * as dotenv from 'dotenv';
 import { cos } from "@tensorflow/tfjs-node";
+import { OpenAI } from "langchain/dist";
 dotenv.config();
 
 @CommandHandler(SetChatCommand)
@@ -60,7 +62,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         "3) If five or more characteristics are extracted, ask the user to provide more information about those characteristics if they are not detailed enough." +
         "4) When the user provide more information about the characteristics extract the extra information, provide them in a numbered list. End with a description of their dream house" + 
         "5) Limit response to 100 words." +
-        // "6) End your response with a joke." + 
         "Examples:" + 
         "Example 1:" + 
         "User: I want a house with a pool." +
@@ -94,7 +95,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                 name: "describe-dream-house",
                 description: "Call this agent only when the user asks you to describe their dream house.",
                 func: async() => {
-                    const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username);
+                    const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username); // need to incorporate this
                     const userPref = await this.preferencesRepo.findOne(command.request.chat.username);
                     console.log("Dream description agent");
 
@@ -218,4 +219,13 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
     //     return res.response;
     // }
+    async buildPreferenceModel(description: string): Promise<string> {
+        const model = new OpenAI({});
+        const myTemplate = ""
+        const prompt = PromptTemplate.fromTemplate(myTemplate);
+
+
+
+        return "Under construction";
+    }
 }
