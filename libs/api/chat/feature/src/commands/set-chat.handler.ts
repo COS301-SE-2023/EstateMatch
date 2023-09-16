@@ -140,10 +140,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                 returnDirect: true,
             }),
 
-            // "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
-            // "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
-            // "If you have extracted at least 5 characteristics ask for more detail about those characteristics and provide detailed examples." +
-            // "Always end by asking the user if they are happy with the characteristics you extracted."
             new DynamicTool({
                 name: "extract-characteristics",
                 description: "Call this agent when the user is providing information about characteristics of their dream house.",
@@ -196,36 +192,12 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         return response; 
     }
 
-    // async extractCharacteristics(description: string): Promise<string> {
-    //     const chat = new ChatOpenAI({
-    //         temperature: 0,
-    //     });
-
-    //     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-    //         SystemMessagePromptTemplate.fromTemplate(
-    //             "You are an assistant that extract key characteristics of a user description of their dream house. Do not expand on the extracted characteristics." + 
-    //             "If you can not extract at least 5 characteristics, you must ask the user to provide more information and provide them with some examples." +
-    //             "If the user provided enough information to extract at least 5 characteristics, always ask for more detail about those characteristics and provide detailed examples." +    
-    //             "Always end by asking the user if they are happy with the characteristics you extracted."
-    //         ),
-    //         HumanMessagePromptTemplate.fromTemplate("{description}"),
-    //     ]);
-
-    //     const conversationChain = new ConversationChain({
-    //         prompt: chatPrompt ,
-    //         llm: chat,
-    //     })
-
-    //     const res = await conversationChain.call({description: description}) as { response: string};
-
-    //     return res.response;
-    // }
     async buildPreferenceModel(description: string): Promise<string> {
         const model = new OpenAI({});
         const myTemplate = 
                 "You are an assistant that extract key characteristics of a description of a house." + 
                 "The description is: {description}" + 
-                "Limit each characteristic to 4 words and provide your response as a numbered list."; 
+                "Limit each characteristic to 4 words and provide your response as a bullet point list."; 
 
         const prompt = PromptTemplate.fromTemplate(myTemplate);
 
@@ -235,7 +207,9 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         });
 
         const res = await llm.call({description: description}) as { text: string};
-        console.log(res.text);
+        
+        const characteristics = res.text.split("\n");
+        console.log(characteristics);
 
         return "Under construction";
     }
