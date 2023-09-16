@@ -131,7 +131,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                     descriptive_words.push("High ceilings");
                     descriptive_words.push("Large windows");
                     const res = await llm.call({descriptive_words: descriptive_words}) as { response: string};
-                    console.log(res.response);
+                    console.log("Dream description agent");
 
                     return res.response;
                 },
@@ -162,6 +162,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
             
                     const res = await llm.call({description: command.request.chat.message}) as { response: string};
+                    console.log("Extract description agent");
 
                     return res.response;
                 },
