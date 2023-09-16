@@ -6,5 +6,5 @@ export interface IUser {
     username: string;
 
     //using references to make the properties user specific
-    properties: string[]; //hold the ids of the properties
+    properties: string[]; //hold the titles of the properties
 }
