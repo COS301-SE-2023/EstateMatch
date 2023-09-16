@@ -207,8 +207,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         });
 
         const res = await llm.call({description: description}) as { text: string};
-        
-        const characteristics = res.text.split("\n");
+        const temp = res.text.replace(/[\r\n]/gm, "");
+        const characteristics = temp.split("- ");
         console.log(characteristics);
 
         return "Under construction";
