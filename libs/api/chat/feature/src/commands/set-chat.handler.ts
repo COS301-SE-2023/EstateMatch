@@ -60,7 +60,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         "3) If five or more characteristics are extracted, ask the user to provide more information about those characteristics if they are not detailed enough." +
         "4) When the user provide more information about the characteristics extract the extra information, provide them in a numbered list. End with a description of their dream house" + 
         "5) Limit response to 100 words." +
-        "6) End your response with a joke." + 
+        // "6) End your response with a joke." + 
         "Examples:" + 
         "Example 1:" + 
         "User: I want a house with a pool." +
@@ -92,16 +92,16 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             new Calculator(),
             new DynamicTool({
                 name: "describe-dream-house",
-                description: "Call this agent when the user asks to describe their dream house.",
+                description: "Call this agent only when the user asks you to describe their dream house.",
                 func: async() => {
                     const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username);
                     const userPref = await this.preferencesRepo.findOne(command.request.chat.username);
-
+                    console.log("Dream description agent");
 
                     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
                         SystemMessagePromptTemplate.fromTemplate(
                             "You are an assistant that get an array of descriptive words from the user based on their dream house. Your job is to write a description of the users dream house based on the descriptive words they provide." +
-                            "At the end of the description ask the user if the description is accurate or if they like to change or add anything to the description."
+                            "At the end of the description ask the user if the description is accurate or if they like to change or add anything to the description. Limit your response to 150 words."
                         ),
                         HumanMessagePromptTemplate.fromTemplate("{descriptive_words}"),
                     ]);
@@ -131,7 +131,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                     descriptive_words.push("High ceilings");
                     descriptive_words.push("Large windows");
                     const res = await llm.call({descriptive_words: descriptive_words}) as { response: string};
-                    console.log("Dream description agent");
+
 
                     return res.response;
                 },
@@ -146,6 +146,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                 name: "extract-characteristics",
                 description: "Call this agent when the user is providing information about characteristics of their dream house.",
                 func: async () => {
+                    console.log("Extract description agent");
                     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
                         SystemMessagePromptTemplate.fromTemplate(
                             extractTemplate
@@ -162,7 +163,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
             
                     const res = await llm.call({description: command.request.chat.message}) as { response: string};
-                    console.log("Extract description agent");
+                    
 
                     return res.response;
                 },
