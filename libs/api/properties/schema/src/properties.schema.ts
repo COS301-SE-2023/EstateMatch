@@ -3,7 +3,7 @@ import * as mongoose from 'mongoose';
 
 export const PropertiesSchema = new mongoose.Schema({
     //propertyId:  {type: String, required: true},
-    title: {type: String, required: true},
+    title: {type: String, required: true, unique: true},
     location: {type: String, required: true},
     price: Number,
     bedrooms: Number,
@@ -27,7 +27,7 @@ export const PropertiesSchema = new mongoose.Schema({
 
     //used references to make the properties user specific
     //hold array of user ids
-    user : [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}] //hold the id of the user
+    user : [{type: String, ref: 'User'}] //hold the id of the user
 
 
 });
@@ -54,7 +54,7 @@ export interface PropertiesModel {
     // seen : boolean,
 
     //used references to make the properties user specific
-    user : string[] //hold the id of the user
+    user : string[] //hold the username of the user
 
 
 }
