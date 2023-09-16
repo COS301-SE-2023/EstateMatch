@@ -22,14 +22,13 @@ import {
 import { Calculator } from "langchain/tools/calculator";
 
 import { ConversationChain, LLMChain } from "langchain/chains";
-import { ChatOpenAI} from "langchain/chat_models/openai";
+import { ChatOpenAI } from "langchain/chat_models/openai";
+import { OpenAI } from "langchain/llms/openai";
 import { BufferWindowMemory, ChatMessageHistory  } from "langchain/memory";
 
 import { AIPreferencesRepository, PreferencesRepository } from "@estate-match/api/prefrences/data-access";
 
 import * as dotenv from 'dotenv';
-import { cos } from "@tensorflow/tfjs-node";
-import { OpenAI } from "langchain/dist";
 dotenv.config();
 
 @CommandHandler(SetChatCommand)
@@ -55,6 +54,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             //     }
             // ]
         });
+
+        const test = await this.buildPreferenceModel("I like a house with a pool, a patio, large windows, and a big kitchen.");
 
         const extractTemplate = "You are a friendly assistant to help a user find their dream house, with the following tasks." + 
         "1) Extract five or more charcateristics from a description." +
@@ -221,7 +222,11 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     // }
     async buildPreferenceModel(description: string): Promise<string> {
         const model = new OpenAI({});
-        const myTemplate = ""
+        const myTemplate = 
+                "You are an assistant that extract key characteristics of a description of a house." + 
+                "The description is: {description}" + 
+                "Limit each characteristic to 4 words and provide your response as a numbered list."; 
+
         const prompt = PromptTemplate.fromTemplate(myTemplate);
 
         const llm = new LLMChain({
@@ -229,8 +234,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             prompt: prompt,
         });
 
-        const res = await llm.call({description: description}) as { response: string};
-        console.log(res.response);
+        const res = await llm.call({description: description}) as { text: string};
+        console.log(res.text);
 
         return "Under construction";
     }
