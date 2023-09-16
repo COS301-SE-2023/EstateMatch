@@ -92,19 +92,34 @@ export class AIPreferencesRepository {
             userAIPreferences.buildingTypeDataPoints.push(prefrences.buildingType);
             const buildingTypeDataPoints = userAIPreferences.buildingTypeDataPoints;
             let apartment = 0;
+            let commercialBuilding = 0;
+            let pentHouse = 0;
 
             for(let i = 0; i < buildingTypeDataPoints.length; i++) {
                 if(buildingTypeDataPoints[i] === 'Apartment') {
                     apartment++;
                 }
+                else if(buildingTypeDataPoints[i] === 'Commercial building') {
+                    commercialBuilding++;
+                }
+                else if(buildingTypeDataPoints[i] === 'Penthouse apartment') {
+                    pentHouse++;
+                }
             }
             let maxBuildingType;
-            if(apartment !== 0) {
+            if(apartment !== commercialBuilding && Math.max(apartment, commercialBuilding) === apartment && apartment !== pentHouse && Math.max(apartment, pentHouse) === apartment) {
                 maxBuildingType = 'Apartment';
+            }
+            else if(commercialBuilding !== apartment && Math.max(commercialBuilding, apartment) === commercialBuilding && commercialBuilding !== pentHouse && Math.max(commercialBuilding, pentHouse) === commercialBuilding) {
+                maxBuildingType = 'Commercial building';
+            }
+            else if(pentHouse !== apartment && Math.max(pentHouse, apartment) === pentHouse && pentHouse !== commercialBuilding && Math.max(pentHouse, commercialBuilding) === pentHouse) {
+                maxBuildingType = 'Penthouse apartment';
             }
             else{
                 maxBuildingType = userAIPreferences.buildingType;
             }
+
             userAIPreferences.buildingType = maxBuildingType;
 
             userAIPreferences.buildingAreaDataPoints.push(prefrences.buildingArea);
@@ -116,7 +131,7 @@ export class AIPreferencesRepository {
             for(let i = 0; i < buildingAreaDataPoints.length; i++) {
                 if(buildingAreaDataPoints[i] === 'Neighborhood') {
                     neighborhood++;
-                }else if(buildingAreaDataPoints[i] === 'Residential') {
+                }else if(buildingAreaDataPoints[i] === 'Residential' || buildingAreaDataPoints[i] === 'Residential area') {
                     residential++;
                 }else if(buildingAreaDataPoints[i] === 'Suburb') {
                     suburb++;
@@ -143,6 +158,7 @@ export class AIPreferencesRepository {
             let courtyard = 0;
             let swimmingPool = 0;
             let porch = 0;
+            let diningRoom = 0;
 
             for(let i = 0; i < buildingFeaturesDataPoints.length; i++) {
                 if(buildingFeaturesDataPoints[i] === 'Garden') {
@@ -153,19 +169,21 @@ export class AIPreferencesRepository {
                     swimmingPool++;
                 }else if(buildingFeaturesDataPoints[i] === 'Porch') {
                     porch++;
+                }else if(buildingFeaturesDataPoints[i] === 'Dining room') {
+                    diningRoom++;
                 }
             }
             let maxBuildingFeatures;
-            if(garden !== courtyard && Math.max(garden, courtyard) === garden && garden !== swimmingPool && Math.max(garden, swimmingPool) === garden && garden !== porch && Math.max(garden, porch) === garden) {
+            if(garden !== courtyard && Math.max(garden, courtyard) === garden && garden !== swimmingPool && Math.max(garden, swimmingPool) === garden && garden !== porch && Math.max(garden, porch) === garden && garden !== diningRoom && Math.max(garden, diningRoom) === garden) {
                 maxBuildingFeatures = 'Garden';
             }
-            else if(courtyard !== garden && Math.max(courtyard, garden) === courtyard && courtyard !== swimmingPool && Math.max(courtyard, swimmingPool) === courtyard && courtyard !== porch && Math.max(courtyard, porch) === courtyard) {
+            else if(courtyard !== garden && Math.max(courtyard, garden) === courtyard && courtyard !== swimmingPool && Math.max(courtyard, swimmingPool) === courtyard && courtyard !== porch && Math.max(courtyard, porch) === courtyard && courtyard !== diningRoom && Math.max(courtyard, diningRoom) === courtyard) {
                 maxBuildingFeatures = 'Courtyard';
             }
-            else if(swimmingPool !== garden && Math.max(swimmingPool, garden) === swimmingPool && swimmingPool !== courtyard && Math.max(swimmingPool,courtyard) === swimmingPool && swimmingPool !== porch && Math.max(swimmingPool, porch) === swimmingPool) {
+            else if(swimmingPool !== garden && Math.max(swimmingPool, garden) === swimmingPool && swimmingPool !== courtyard && Math.max(swimmingPool,courtyard) === swimmingPool && swimmingPool !== porch && Math.max(swimmingPool, porch) === swimmingPool && swimmingPool !== diningRoom && Math.max(swimmingPool, diningRoom) === swimmingPool) {
                 maxBuildingFeatures = 'Swimming pool';
             }
-            else if(porch !== garden && Math.max(porch, garden) === porch && porch !== courtyard && Math.max(porch,courtyard) === porch && porch !== swimmingPool && Math.max(porch, swimmingPool) === porch) {
+            else if(porch !== garden && Math.max(porch, garden) === porch && porch !== courtyard && Math.max(porch,courtyard) === porch && porch !== swimmingPool && Math.max(porch, swimmingPool) === porch && porch !== diningRoom && Math.max(porch, diningRoom) === porch) {
                 maxBuildingFeatures = 'Porch';
             }
             else{

@@ -472,7 +472,7 @@ export class ImageToTextService {
                 features: [
                   {
                     type: 'LABEL_DETECTION',
-                    maxResults: 26,
+                    maxResults: 27,
                   },
                   {
                     type: 'IMAGE_PROPERTIES',
