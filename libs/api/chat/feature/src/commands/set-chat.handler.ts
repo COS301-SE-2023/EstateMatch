@@ -224,7 +224,13 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const myTemplate = ""
         const prompt = PromptTemplate.fromTemplate(myTemplate);
 
+        const llm = new LLMChain({
+            llm: model,
+            prompt: prompt,
+        });
 
+        const res = await llm.call({description: description}) as { response: string};
+        console.log(res.response);
 
         return "Under construction";
     }
