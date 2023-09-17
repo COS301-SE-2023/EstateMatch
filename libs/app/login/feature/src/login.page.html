@@ -10,29 +10,30 @@
 
 
 <ion-card name="displayContainer">
-  <ion-card-subtitle name="Subtitle" i18n>Login</ion-card-subtitle>
-
-  <div class="main_content_div">
+  <ion-card-subtitle name="Subtitle">Login</ion-card-subtitle>
+  
+      <div class="main_content_div">
+        
+        <div class="form_div">
+                   
+          <ion-label class="small_lbl">Username</ion-label>
+          <ion-input [(ngModel)]="username" type="text" placeholder="Enter Username"></ion-input>
     
-    <div class="form_div">
-               
-      <ion-label class="small_lbl" i18n>Username</ion-label>
-      <ion-input [(ngModel)]="username" type="text" placeholder="Enter Username" i18n-placeholder="Enter Username"></ion-input>
-
-      <ion-label class="small_lbl" i18n>Password</ion-label>
-      <ion-input [(ngModel)]="password" type="password" placeholder="Password" i18n-placeholder="Password"></ion-input>
-
-      <ion-button (click)="login()" class="buttons" color="secondary" expand="block" i18n>Login</ion-button>
-
-    </div>
-
-    <div class="bottom_div">
-      <ion-label i18n>Don't have an account?<ion-label (click)="signup()" id="sign_up">Sign Up.</ion-label></ion-label>
-    </div>
-
-  </div>
+          <ion-label class="small_lbl">Password</ion-label>
+          <ion-input [(ngModel)]="password" type="password" placeholder="Password"></ion-input>
+   
+          <ion-button (click)="login()" class="buttons" color="secondary" expand="block">
+            Login
+          </ion-button>
+    
+        </div>
+    
+        <div class="bottom_div">
+          <ion-label>Don't have an account?<ion-label (click)="signup()" id="sign_up">Sign Up.</ion-label></ion-label>
+        </div>
+    
+      </div>
 </ion-card>
-
     
     
 
