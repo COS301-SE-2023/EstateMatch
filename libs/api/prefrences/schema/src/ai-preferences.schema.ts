@@ -14,22 +14,34 @@ export const AIPrefrencesSchema = new mongoose.Schema({
     buildingFeatures: String,
     materialDataPoints: [String],
     materials: String,
-
+    roofDataPoints: [String],
+    roof: String,
+    gardenDataPoints: [String],
+    garden: String,
+    additionalDataPoints: [String],
+    additional: [String] //Some extra data points like garden features and patio
 });
 
 //our model
 export interface AIPrefrencesModel  {
     user : string;
     floorDataPoints: string[];
-    flooring : String;
+    flooring : string;
     buildingStyleDataPoints: string[];
-    buildingStyle: String;
+    buildingStyle: string;
     buildingTypeDataPoints: string[];
-    buildingType: String;
+    buildingType: string;
     buildingAreaDataPoints: string[];
-    buildingArea: String;
+    buildingArea: string;
     buildingFeaturesDataPoints: string[];
-    buildingFeatures: String;
+    buildingFeatures: string;
     materialDataPoints: string[];
-    materials: String;
+    materials: string;
+    roofDataPoints: string[];
+    roof: string;
+    gardenDataPoints: string[];
+    garden: string;
+    additionalDataPoints: string[];
+    additional: string[] ; //Some extra data points like garden features and patio
+    //Maybe add colour
 }
