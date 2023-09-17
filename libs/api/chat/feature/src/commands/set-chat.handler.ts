@@ -53,7 +53,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             // ]
         });
 
-        const test = await this.buildPreferenceModel("I like a house with a pool, a patio, large windows, and a big kitchen.");
 
         const extractTemplate = "You are a friendly assistant to help a user find their dream house, with the following tasks." + 
         "1) Extract five or more charcateristics from a description." +
@@ -160,7 +159,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             
                     const res = await llm.call({description: command.request.chat.message}) as { response: string};
                     
-
+                    console.log(res.response);
+                    const test = await this.buildPreferenceModel(res.response);
                     return res.response;
                 },
                 returnDirect: true,
@@ -207,7 +207,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const res = await llm.call({description: description}) as { text: string};
         const temp = res.text.replace(/[\r\n]/gm, "");
         const characteristics = temp.split("- ");
-        console.log(characteristics);
+        // console.log(characteristics);
     
 
         const classifyTemplate = "You are an assistant that classify characteristics of a description of a house. The characteristics are: {characteristics}" + 
@@ -236,7 +236,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             ),
             HumanMessagePromptTemplate.fromTemplate("{characteristics}"),
         ]);
-        
+
         const classifyLLm = new LLMChain({
             llm: model,
             prompt: chatPrompt,
