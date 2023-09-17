@@ -160,7 +160,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                     const res = await llm.call({description: command.request.chat.message}) as { response: string};
                     
                     console.log(res.response);
-                    const test = await this.buildPreferenceModel(res.response);
+                    const test = await this.buildPreferenceModel(command.request.chat.message);
                     return res.response;
                 },
                 returnDirect: true,
