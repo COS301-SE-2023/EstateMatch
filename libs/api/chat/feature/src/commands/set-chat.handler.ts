@@ -229,14 +229,22 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         "- Large windows: Building Features" + 
         "- Tatch Roof: Roof";
 
+
+        const chatPrompt = ChatPromptTemplate.fromPromptMessages([
+            SystemMessagePromptTemplate.fromTemplate(
+                classifyTemplate
+            ),
+            HumanMessagePromptTemplate.fromTemplate("{characteristics}"),
+        ]);
+        
         const classifyLLm = new LLMChain({
             llm: model,
-            prompt: PromptTemplate.fromTemplate(classifyTemplate),
+            prompt: chatPrompt,
         });
 
 
         const classes = await classifyLLm.call({characteristics: characteristics}) as { text: string};
-        console.log(classes.text);
+        console.log(classes);
         return "Under construction";
     }
 }
