@@ -6,7 +6,6 @@ import {
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
     MessagesPlaceholder,
-    AIMessagePromptTemplate,
     PromptTemplate
 } from "langchain/prompts";
 
@@ -15,7 +14,6 @@ import {
 } from "langchain/agents";
 
 import {
-    SerpAPI,
     DynamicTool
 } from "langchain/tools";
 
@@ -210,7 +208,35 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const temp = res.text.replace(/[\r\n]/gm, "");
         const characteristics = temp.split("- ");
         console.log(characteristics);
+    
 
+        const classifyTemplate = "You are an assistant that classify characteristics of a description of a house. The characteristics are: {characteristics}" + 
+        "You will recieve the characteristics as an array of strings." + 
+        "You have to classify each element as one of the following: " +
+        "1) Flooring" +
+        "2) Building Style" + 
+        "3) Building Type" +
+        "4) Building Area" +
+        "5) Building Features" +
+        "6) Materials" +
+        "7) Roof" +
+        "8) Garden" +
+        "9) Additional" + 
+        "Examples: " + 
+        "Assistant: - Hardwood floors: Flooring" +
+        "- Open floor plan: Building Features" + 
+        "- High ceilings: Building Features" + 
+        "- Large windows: Building Features" + 
+        "- Tatch Roof: Roof";
+
+        const classifyLLm = new LLMChain({
+            llm: model,
+            prompt: PromptTemplate.fromTemplate(classifyTemplate),
+        });
+
+
+        const classes = await classifyLLm.call({characteristics: characteristics}) as { text: string};
+        console.log(classes.text);
         return "Under construction";
     }
 }
