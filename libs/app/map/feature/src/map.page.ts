@@ -4,7 +4,7 @@ import { Geolocation} from '@ionic-native/geolocation'
 import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
 import fetch from 'node-fetch';
 import { ActivatedRoute, Router } from '@angular/router';
-
+// import { google } from 'google-maps';
 
 @Component({
   selector: 'ms-map-page',
@@ -90,16 +90,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 
       L.control.scale().addTo(this.map);
 
-      // const requestOptions={
-      //   method: 'GET',
-      //   mode: 'no-cors'
-      // }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      // const schools=await fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+coordinates.coords.latitude+'%2C'+coordinates.coords.longitude+'&radius=1500&type=school&key=AIzaSyBz3ZemLu5F4s9mFHB7Va6t7TrQcX6CrYA',
-      // requestOptions
-      // );
+      const requestOptions={
+        method: 'GET',
+        mode: 'no-cors'
+      }
 
-      // console.log(schools);
+      const schools=await fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+coordinates.coords.latitude+'%2C'+coordinates.coords.longitude+'&radius=1500&type=school&key=AIzaSyBz3ZemLu5F4s9mFHB7Va6t7TrQcX6CrYA',
+      requestOptions
+      );
+
+      console.log(schools);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      // const service = new google.maps.places.PlacesService(this.map);
 
       this.map.once('click', (e) => {
         
