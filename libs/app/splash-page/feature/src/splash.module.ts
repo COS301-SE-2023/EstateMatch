@@ -6,7 +6,6 @@ import { SplashPage } from './splash.page';
 import { SplashRouting } from './splash.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { TranslationService } from './translation.service';
 
 @NgModule({
   imports: [
@@ -17,7 +16,6 @@ import { TranslationService } from './translation.service';
     HttpClientModule
   ],
   declarations: [SplashPage],
-  providers: [TranslationService],
 })
 
 export class SplashModule {}
