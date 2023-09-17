@@ -4,9 +4,14 @@
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
  <link rel="stylesheet" href="splash.page.scss">
 </head>
-    <div name="buttonContainer">
-    <img name="Logo" src="assets/imageDis.png"> <br>
-    <button name="Login" routerLink="/login" routerDirection="root">Login</button> <br><br><br>
-    <button name="Register" routerLink="/register" routerDirection="root">Register</button>
-    </div>
+<div *ngIf="translationsLoaded">
+    <img name="Logo" [alt]="translationService.translate('buttonContainer.Logo')" src="assets/imageDis.png"> <br>
+    <button name="Login" routerLink="/login" routerDirection="root">{{ translationService.translate('buttonContainer.Login') }}</button> <br><br><br>
+    <button name="Register" routerLink="/register" routerDirection="root">{{ translationService.translate('buttonContainer.Register') }}</button>
+  </div>
+  
+  <div *ngIf="!translationsLoaded">
+    Loading translations...
+  </div>
+    
 </html>    
