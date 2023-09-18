@@ -9,7 +9,7 @@ export class RemaxSaleService {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
-    const navigationTimeout = 180000;
+    const navigationTimeout = 270000;
 
     // Go to target web page
     /*await page.goto('https://www.remax.co.za/property/for-sale/south-africa/western-cape/cape-town-city-bowl/', {
@@ -25,7 +25,7 @@ export class RemaxSaleService {
     });
 
 
-    for (const char of "Woodstock") {
+    for (const char of location) {
       await page.type('.tagify__input', char);
     }
 

@@ -85,6 +85,7 @@ export class WebScraperController {
 
     @Post("/RemaxSaleScraper")
     async getScrapedRemaxSalesProperties(@Body() request: IWebscraperRequest) {
+      console.log(request.location);
       const properties = await this.RemaxSaleService.RemaxSalescrape(request.location);
 
       for(let i = 0; i < properties.length; i++){
