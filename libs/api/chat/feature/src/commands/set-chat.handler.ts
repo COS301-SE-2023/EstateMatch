@@ -27,6 +27,7 @@ import { BufferWindowMemory, ChatMessageHistory  } from "langchain/memory";
 import { AIPreferencesRepository, PreferencesRepository } from "@estate-match/api/prefrences/data-access";
 
 import * as dotenv from 'dotenv';
+import { IAIPreference } from "@estate-match/api/prefrences/util";
 dotenv.config();
 
 interface IExtractedModel {
@@ -36,8 +37,6 @@ interface IExtractedModel {
     buildingArea: string[];
     buildingFeatures: string[];
     materials: string[];
-    roof: string;
-    garden: string[];
     additional: string[];
 }
 
@@ -239,16 +238,13 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         "Building Area," +
         "Building Features," +
         "Materials," +
-        "Roof," +
-        "Garden," +
         "Additional" + 
         "Format the answer as a numbered list."
         "Examples: " + 
         "Assistant: - Hardwood floors: Flooring" +
         "- Open floor plan: Building Features" + 
         "- High ceilings: Building Features" + 
-        "- Large windows: Building Features" + 
-        "- Tatch Roof: Roof";
+        "- Large windows: Building Features"
 
 
         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
@@ -277,8 +273,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             buildingArea: [],
             buildingFeatures: [],
             materials: [],
-            roof: "",
-            garden: [],
             additional: [],
         };
 
@@ -298,10 +292,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                     extractedModel.buildingFeatures.push(element.replace("Building Features: ", "").replace("\n", ""));
                 }else if(element.includes("Materials")){
                     extractedModel.materials.push(element.replace("Materials: ", "").replace("\n", ""));
-                }else if(element.includes("Roof")){
-                    extractedModel.roof = element.replace("Roof: ", "").replace("\n", "");
-                }else if(element.includes("Garden")){
-                    extractedModel.garden.push(element.replace("Garden: ", "").replace("\n", ""));
                 }else if(element.includes("Additional")){
                     extractedModel.additional.push(element.replace("Additional: ", "").replace("\n", ""));
                 }
@@ -314,5 +304,22 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
 
         return "Under construction";
+    }
+
+    async buildAIPrefRequest(user: string, labels: string[]) : Promise<IAIPreference> {
+        const aiPref: IAIPreference = {
+            user: user,
+            flooring: "",
+            buildingStyle: "",
+            buildingType: "",
+            buildingArea: "",
+            buildingFeatures: "",
+            materials: "",
+            additional: "",
+            colour: "",
+        }
+
+
+        return aiPref;
     }
 }
