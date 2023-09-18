@@ -231,7 +231,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     
 
         const classifyTemplate = "You are an assistant that classify characteristics of a description of a house. The characteristics are: {characteristics}" + 
-        "You will recieve the characteristics as an array of strings." + 
+        "You will recieve the characteristics as an array of strings. Do not number the classes" + 
         "You have to classify each element as one of the following: " +
         "1) Flooring" +
         "2) Building Style" + 
@@ -267,7 +267,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         console.log(classes);
 
         //From the classes need to create some sort of interface
-
+        
         return "Under construction";
     }
 }
