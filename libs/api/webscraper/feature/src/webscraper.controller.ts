@@ -17,8 +17,8 @@ export class WebScraperController {
       ) {}
     
     @Post("/PrivatePropertySaleScraper")
-    async getScrapedPrivatePropertySalesProperties(@Body() location: string, username: string) {
-        const properties = await this.PrivatePropertySaleService.PrivatePropertySalescrape(location);
+    async getScrapedPrivatePropertySalesProperties(@Body() request: IWebscraperRequest) {
+        const properties = await this.PrivatePropertySaleService.PrivatePropertySalescrape(request.location);
       
         for(let i = 0; i < properties.length; i++){
           const property: IProperty = {
@@ -38,20 +38,20 @@ export class WebScraperController {
 
            // user : properties[i].user
         }
-          const request: ICreatePropertyRequest = {
-            username: username,
+          const req: ICreatePropertyRequest = {
+            username: request.username,
             property: property
           };
           // console.log(request);
-          this.propertyService.createProperty(request);
+          this.propertyService.createProperty(req);
         }
         
         return properties;
       }
 
     @Post("/PrivatePropertyRentScraper")
-    async getScrapedPrivatePropertiesRentProperties(@Body() location: string, username: string) {
-      const properties = await this.PrivatePropertyRentService.PrivatePropertyRentscrape(location);
+    async getScrapedPrivatePropertiesRentProperties(@Body() request: IWebscraperRequest) {
+      const properties = await this.PrivatePropertyRentService.PrivatePropertyRentscrape(request.location);
       
       for(let i = 0; i < properties.length; i++){
         const property: IProperty = {
@@ -71,20 +71,20 @@ export class WebScraperController {
 
         //  user : properties[i].user
       }
-        const request: ICreatePropertyRequest = {
-          username: username,
+        const req: ICreatePropertyRequest = {
+          username: request.username,
           property: property
         };
 
-        this.propertyService.createProperty(request);
+        this.propertyService.createProperty(req);
       }
       
       return properties;
     }
 
     @Post("/RemaxSaleScraper")
-    async getScrapedRemaxSalesProperties(@Body() location: string, username: string) {
-      const properties = await this.RemaxSaleService.RemaxSalescrape(location);
+    async getScrapedRemaxSalesProperties(@Body() request: IWebscraperRequest) {
+      const properties = await this.RemaxSaleService.RemaxSalescrape(request.location);
 
       for(let i = 0; i < properties.length; i++){
         const property: IProperty = {
@@ -104,12 +104,12 @@ export class WebScraperController {
 
          // user : properties[i].user
       }
-        const request: ICreatePropertyRequest = {
-          username: username,
+        const req: ICreatePropertyRequest = {
+          username: request.username,
           property: property
         };
 
-        this.propertyService.createProperty(request);
+        this.propertyService.createProperty(req);
       }
       
       return properties;
