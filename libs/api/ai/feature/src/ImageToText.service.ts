@@ -25,6 +25,7 @@ export class ImageToTextService {
   "Ceiling",
   "Shelving",
   "Houseplant",
+  "Sash window",
   "Design",
   "Automotive design",
   "Beam",
@@ -174,7 +175,6 @@ export class ImageToTextService {
   "Plumbing fitting",
   "Window valance",
   "Twig",
-  "Sash window",
   "Peach",
   "Pattern",
   "Chest of drawers",
@@ -444,6 +444,7 @@ export class ImageToTextService {
   "Dresser",
   "Umbrella",
   "Fashion accessory",
+  "Apartment",
 ];
 
   constructor() {
