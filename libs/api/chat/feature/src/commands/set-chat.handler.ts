@@ -206,11 +206,11 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             }
         };
 
-        const test = await this.buildPreferenceModel(command.request.chat.message);
+        const test = await this.buildPreferenceModel(command.request.chat.username, command.request.chat.message);
         return response; 
     }
 
-    async buildPreferenceModel(description: string): Promise<string> {
+    async buildPreferenceModel(username: string, description: string): Promise<string> {
         const model = new OpenAI({});
         const myTemplate = 
                 "You are an assistant that extract key characteristics of a description of a house." + 
@@ -230,11 +230,11 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         // console.log(characteristics);
     
 
-        const classes = await this.classifyCharateristic(characteristics);
+        const classes = await this.classifyCharateristic(username, characteristics);
         return "Under construction";
     }
 
-    async classifyCharateristic(characteristics: string[]) : Promise<string> {
+    async classifyCharateristic(username: string, characteristics: string[]) : Promise<string> {
         const model = new OpenAI({});
         const classifyTemplate = "You are an assistant that classify characteristics of a description of a house. The characteristics are: {characteristics}" + 
         "You will recieve the characteristics as an array of strings." + 
@@ -310,6 +310,18 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         
         const aiPref = await this.buildAIPrefRequest("test", extractedModel);
         console.log(aiPref);
+
+        //Query DB Here
+        const userCurrentPref = await this.preferencesRepo.findOne(username);
+
+        if(userCurrentPref){
+            console.log("User already has preferences");
+            this.aiPreferenceRepo.update(username, aiPref);
+        }else{
+            console.log("User does not have preferences");
+            this.aiPreferenceRepo.create(aiPref);
+        }
+
         return "Under construction";
     }
 
@@ -325,8 +337,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             additional: labels.additional,
             colour: "",
         }
-
-
         return aiPref;
     }
 }
