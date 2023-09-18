@@ -1,0 +1,26 @@
+{
+    "subtitle": "Voorkeure",
+    "labels": {
+      "area": "Gebied:",
+      "budget": "Begroting:",
+      "bedrooms": "Slaapkamers",
+      "bathrooms": "Badkamers",
+      "garages": "Parkeerplekke",
+      "button.setPreferences": "Stel Voorkeure"
+    },
+    "placeholders": {
+      "area": "Gebied",
+      "bedrooms": "Slaapkamers",
+      "bathrooms": "Badkamers",
+      "garages": "Parkeerplekke"
+    },
+    "amenities": {
+      "pool": "Swembad",
+      "study": "Studie",
+      "aircon": "Lugversorging",
+      "furnished": "Gemeubileer",
+      "pet": "Diervriendelik",
+      "lounge": "Sitkamer"
+    }
+  }
+  
