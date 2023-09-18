@@ -7,5 +7,12 @@
     "area": "Gebied:",
     "general": "Algemeen:",
     "amenities": "Geriewe:"
+  },
+  "navbar": {
+    "home": "Huis",
+    "chat": "Klets",
+    "search": "Soek",
+    "liked": "Geliefdes",
+    "profile": "Profiel"
   }
 }

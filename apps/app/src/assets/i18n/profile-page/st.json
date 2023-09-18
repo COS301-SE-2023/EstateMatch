@@ -7,6 +7,13 @@
       "area": "Naga:",
       "general": "Lehae:",
       "amenities": "Ditsebeletso:"
-    }
+    },
+    "navbar": {
+      "home": "Motse",
+      "chat": "Hlelo",
+      "search": "Fetola",
+      "liked": "O rata",
+      "profile": "Profilo"
+  }
   }
   

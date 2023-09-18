@@ -20,7 +20,7 @@ export class ProfilePage {
     private route: ActivatedRoute,
     private http: HttpClient,
     private translate: TranslateService) {
-      this.translate.setDefaultLang('af');
+      this.translate.setDefaultLang('en');
      }
 
   user: IUser = {

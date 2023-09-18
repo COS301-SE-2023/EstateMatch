@@ -7,6 +7,13 @@
       "area": "Indawo:",
       "general": "Ezintsantshana:",
       "amenities": "Izinto Ezinconywa:"
-    }
+    },
+    "navbar": {
+      "home": "Ikhaya",
+      "chat": "Iphumela",
+      "search": "Funa",
+      "liked": "Thandwa",
+      "profile": "Iphrofayili"
+  }
   }
   

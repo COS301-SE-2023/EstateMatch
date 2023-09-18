@@ -7,6 +7,13 @@
       "area": "Indawo:",
       "general": "Ezinzima:",
       "amenities": "Izinto:"
-    }
+    },
+    "navbar": {
+      "home": "Ekhaya",
+      "chat": "Ikhompyutha",
+      "search": "Funa",
+      "liked": "Kuthandwa",
+      "profile": "Iprofayili"
+  }
   }
   
