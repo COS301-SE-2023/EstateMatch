@@ -6,11 +6,17 @@
 </head>
 <div name="buttonContainer">
     <img name="Logo" src="assets/imageDis.png"> <br>
-    <button name="Login" routerLink="/login" routerDirection="root">{{ 'login' | translate }}</button> <br><br><br>
-    <button name="Register" routerLink="/register" routerDirection="root">{{ 'register' | translate }}</button>
+    <button name="Login" routerLink="/login" routerDirection="root">{{ 'Login' | translate }}</button> <br><br><br>
+    <button name="Register" routerLink="/register" routerDirection="root">{{ 'Register' | translate }}</button>
     <div>
-        <button (click)="switchLanguage('en')">English</button>
-        <button (click)="switchLanguage('af')">Afrikaans</button>
-    </div>      
-</div>  
-</html>    
+        <!-- Dropdown menu for language selection -->
+        <select #languageSelect>
+            <option value="en">English</option>
+            <option value="af">Afrikaans</option>
+        </select>
+        <!-- Button to apply the selected language -->
+        <button (click)="switchLanguage(languageSelect.value)">Apply</button>
+    </div>
+</div>
+</html>
+ 
