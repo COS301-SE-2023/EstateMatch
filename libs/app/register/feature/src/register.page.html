@@ -37,4 +37,11 @@
       </div>
     </div>
   </div>
+  <div>
+    <select #languageSelect>
+        <option value="en">English</option>
+        <option value="af">Afrikaans</option>
+    </select>
+    <button (click)="switchLanguage(languageSelect.value)">Apply</button>
+</div>
 </ion-card>
