@@ -36,6 +36,8 @@
         "libs/api/authentication/util/src/index.ts"
       ],
       "@estate-match/api/core/feature": ["libs/api/core/feature/src/index.ts"],
+      "@estate-match/api/map/feature": ["libs/api/map/feature/src/index.ts"],
+      "@estate-match/api/map/util": ["libs/api/map/util/src/index.ts"],
       "@estate-match/api/prefrences/data-access": [
         "libs/api/prefrences/data-access/src/index.ts"
       ],
