@@ -9,12 +9,10 @@
     <button name="Login" routerLink="/login" routerDirection="root">{{ 'Login' | translate }}</button> <br><br><br>
     <button name="Register" routerLink="/register" routerDirection="root">{{ 'Register' | translate }}</button>
     <div>
-        <!-- Dropdown menu for language selection -->
         <select #languageSelect>
             <option value="en">English</option>
             <option value="af">Afrikaans</option>
         </select>
-        <!-- Button to apply the selected language -->
         <button (click)="switchLanguage(languageSelect.value)">Apply</button>
     </div>
 </div>

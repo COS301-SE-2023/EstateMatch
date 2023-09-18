@@ -2,16 +2,26 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ms-login-page',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
+  providers: [TranslateService]
 })
 export class LoginPage {
   constructor(private http: HttpClient,
     private toastController: ToastController,
-    private router: Router) { }
+    private router: Router,
+    private translate: TranslateService) {
+      this.translate.setDefaultLang('en');
+     }
+
+    switchLanguage(lang: string) {
+      this.translate.use(lang);
+    }
+
   username = '';
   password = '';
   

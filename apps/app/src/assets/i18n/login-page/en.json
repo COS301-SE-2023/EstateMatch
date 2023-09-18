@@ -1,0 +1,20 @@
+{
+    "header": {
+      "subtitle": "Login"
+    },
+    "labels": {
+      "username": "Username",
+      "password": "Password"
+    },
+    "placeholders": {
+      "username": "Enter Username",
+      "password": "Password"
+    },
+    "buttons": {
+      "login": "Login"
+    },
+    "messages": {
+      "signup": "Don't have an account? Sign Up."
+    }
+}
+  

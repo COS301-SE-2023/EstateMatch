@@ -2,38 +2,39 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 </head>
 
-
-
 <header>
   <app-header></app-header>
 </header>
 
-
 <ion-card name="displayContainer">
-  <ion-card-subtitle name="Subtitle">Login</ion-card-subtitle>
+  <ion-card-subtitle name="Subtitle">{{ 'header.subtitle' | translate }}</ion-card-subtitle>
   
-      <div class="main_content_div">
-        
-        <div class="form_div">
+  <div class="main_content_div">
+    
+    <div class="form_div">
                    
-          <ion-label class="small_lbl">Username</ion-label>
-          <ion-input [(ngModel)]="username" type="text" placeholder="Enter Username"></ion-input>
+      <ion-label class="small_lbl">{{ 'labels.username' | translate }}</ion-label>
+      <ion-input [(ngModel)]="username" type="text" placeholder="{{ 'placeholders.username' | translate }}"></ion-input>
     
-          <ion-label class="small_lbl">Password</ion-label>
-          <ion-input [(ngModel)]="password" type="password" placeholder="Password"></ion-input>
+      <ion-label class="small_lbl">{{ 'labels.password' | translate }}</ion-label>
+      <ion-input [(ngModel)]="password" type="password" placeholder="{{ 'placeholders.password' | translate }}"></ion-input>
    
-          <ion-button (click)="login()" class="buttons" color="secondary" expand="block">
-            Login
-          </ion-button>
+      <ion-button (click)="login()" class="buttons" color="secondary" expand="block">
+        {{ 'buttons.login' | translate }}
+      </ion-button>
     
-        </div>
+    </div>
     
-        <div class="bottom_div">
-          <ion-label>Don't have an account?<ion-label (click)="signup()" id="sign_up">Sign Up.</ion-label></ion-label>
-        </div>
+    <div class="bottom_div">
+      <ion-label>{{ 'messages.signup' | translate }}<ion-label (click)="signup()" id="sign_up">Sign Up.</ion-label></ion-label>
+    </div>
     
-      </div>
+  </div>
+  <div>
+    <select #languageSelect>
+        <option value="en">English</option>
+        <option value="af">Afrikaans</option>
+    </select>
+    <button (click)="switchLanguage(languageSelect.value)">Apply</button>
+</div>
 </ion-card>
-    
-    
-
