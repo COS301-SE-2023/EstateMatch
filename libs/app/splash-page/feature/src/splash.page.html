@@ -4,13 +4,9 @@
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
  <link rel="stylesheet" href="splash.page.scss">
 </head>
-<div name="buttonContainer">
+    <div name="buttonContainer">
     <img name="Logo" src="assets/imageDis.png"> <br>
-    <button name="Login" routerLink="/login" routerDirection="root">{{ 'login' | translate }}</button> <br><br><br>
-    <button name="Register" routerLink="/register" routerDirection="root">{{ 'register' | translate }}</button>
-    <div>
-        <button (click)="switchLanguage('en')">English</button>
-        <button (click)="switchLanguage('af')">Afrikaans</button>
-    </div>      
-</div>  
+    <button name="Login" routerLink="/login" routerDirection="root">Login</button> <br><br><br>
+    <button name="Register" routerLink="/register" routerDirection="root">Register</button>
+    </div>
 </html>    
