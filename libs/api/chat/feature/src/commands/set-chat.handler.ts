@@ -59,7 +59,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         "2) If less than five characteristics are extracted, ask the user to provide more information about their dream house and provide them with a short example." +
         "3) If five or more characteristics are extracted, ask the user to provide more information about those characteristics if they are not detailed enough." +
         "4) When the user provide more information about the characteristics extract the extra information, provide them in a numbered list. End with a description of their dream house" + 
-        "5) Limit response to 100 words." +
+        "5) If the description provided by the user is well detailed, provide them with your own description, inform them that they provided enough information and instruct them to use the app more before chatting with you again."
+        "6) Limit response to 100 words." +
         "Examples:" + 
         "Example 1:" + 
         "User: I want a house with a pool." +
@@ -77,7 +78,13 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         "User: For the floors I like dark hardwood floors. For the open floor I like an expansive open layout. For the patio I like a relaxing patio. For the windows I like ample natural light through big windows. For the pool I like a sparkling pool." + 
         "Assistant: Thank you for the extra information. Here is a possible description of your dream house: " + 
         "The rich allure of dark hardwood floors embraces you upon entry, setting the tone for luxury and warmth. The expansive open floor plan seamlessly intertwines the living, dining, and kitchen areas, promoting a sense of togetherness and fostering an airy ambiance. As you step outside, a relaxing spacious patio unfolds, adorned with plush seating and surrounded by lush greenery. " + 
-        "Here, the soft melodies of nature serenade, while the gentle breeze invites you to unwind, making this outdoor oasis the perfect haven for tranquility and cherished gatherings."; 
+        "Here, the soft melodies of nature serenade, while the gentle breeze invites you to unwind, making this outdoor oasis the perfect haven for tranquility and cherished gatherings." +
+        "Example 4:" + 
+        "User: For my dream house I would like a single story modern house with a view of the city. I would prefer an open floor plan including the kitchen, dining room and living room. For the floors I like dark hardwood floors. The interior should be modern" + 
+        "Assistant: I understand that you are looking for a single-story modern house with a view of the city. You prefer an open floor plan that includes the kitchen, dining room, and living room. You also mentioned that you like dark hardwood floors and a modern interior. Here is a possible description of your dream house: " + 
+        "Perched on a hilltop, this single-story modern masterpiece offers breathtaking panoramic views of the city skyline. The open floor plan seamlessly connects the kitchen, dining room, and living room, creating a spacious and inviting atmosphere for entertaining and relaxation. " + 
+        "The rich allure of dark hardwood floors adds a touch of elegance and sophistication to the interior, while the modern design elements create a sleek and stylish ambiance. Every corner of this home is thoughtfully designed to maximize the city views, allowing you to enjoy the beauty of the urban landscape from the comfort of your own sanctuary." + 
+        "Thanks for the detailed description, please use the app more, so that I can get more information of what you like,() before chatting with me again."; 
 
         const chatMemory = new BufferWindowMemory({
             chatHistory: this.chatMessageHistory,
@@ -159,8 +166,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             
                     const res = await llm.call({description: command.request.chat.message}) as { response: string};
                     
-                    console.log(res.response);
-                    const test = await this.buildPreferenceModel(command.request.chat.message);
+                    // console.log(res.response);
+                    // const test = await this.buildPreferenceModel(command.request.chat.message);
                     return res.response;
                 },
                 returnDirect: true,
