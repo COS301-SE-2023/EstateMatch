@@ -2,42 +2,39 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 </head>
 
-
-
 <header>
   <app-header></app-header>
 </header>
 
+<ion-card name="displayContainer">
+  <ion-card-subtitle name="Subtitle">{{ 'header.subtitle' | translate }}</ion-card-subtitle>
+  <div class="main_content_div">
+    <div class="form_div">
+      <ion-label class="small_lbl">{{ 'labels.firstName' | translate }}</ion-label>
+      <ion-input [(ngModel)]="fname" type="text" placeholder="{{ 'placeholders.firstName' | translate }}"></ion-input>
 
-  <ion-card name="displayContainer">
-    <ion-card-subtitle name="Subtitle">Register</ion-card-subtitle>
-        <div class="main_content_div">
-          <div class="form_div">
-            <ion-label class="small_lbl">First Name</ion-label>
-            <ion-input [(ngModel)]="fname" type="text" placeholder="Enter First Name"></ion-input>
+      <ion-label class="small_lbl">{{ 'labels.lastName' | translate }}</ion-label>
+      <ion-input [(ngModel)]="lname" type="text" placeholder="{{ 'placeholders.lastName' | translate }}"></ion-input>
 
-            <ion-label class="small_lbl">Last Name</ion-label>
-            <ion-input [(ngModel)]="lname"  type="text" placeholder="Enter Last Name"></ion-input>
+      <ion-label class="small_lbl">{{ 'labels.username' | translate }}</ion-label>
+      <ion-input [(ngModel)]="username" type="text" placeholder="{{ 'placeholders.username' | translate }}"></ion-input>
 
-            <ion-label class="small_lbl">Username</ion-label>
-            <ion-input [(ngModel)]="username"  type="text" placeholder="Enter Username"></ion-input>
-        
-            <ion-label class="small_lbl">Email</ion-label>
-            <ion-input [(ngModel)]="email"  type="text" placeholder="Enter Email Address"></ion-input>
+      <ion-label class="small_lbl">{{ 'labels.email' | translate }}</ion-label>
+      <ion-input [(ngModel)]="email" type="text" placeholder="{{ 'placeholders.email' | translate }}"></ion-input>
+
+      <ion-label class="small_lbl">{{ 'labels.password' | translate }}</ion-label>
+      <ion-input [(ngModel)]="password" type="password" placeholder="{{ 'placeholders.password' | translate }}"></ion-input>
+
+      <ion-label class="small_lbl">{{ 'labels.confirmPassword' | translate }}</ion-label>
+      <ion-input [(ngModel)]="cpassword" type="password" placeholder="{{ 'placeholders.confirmPassword' | translate }}"></ion-input>
+
+      <ion-button (click)="register()" class="buttons" color="secondary" expand="block">
+        {{ 'buttons.createAccount' | translate }}
+      </ion-button>
       
-            <ion-label class="small_lbl">Password</ion-label>
-            <ion-input [(ngModel)]="password" type="password" placeholder="Enter Your Password"></ion-input>
-
-            <ion-label class="small_lbl">Confirm Password</ion-label>
-            <ion-input [(ngModel)]="cpassword" type="password" placeholder="Confirm Password"></ion-input>
-
-            <ion-button (click)="register()" class="buttons" color="secondary" expand="block">
-              Create Account
-            </ion-button>
-            <div class="bottom_div">
-              <ion-label>Already have an account?<ion-label (click)="login()" id="login">Login</ion-label></ion-label>
-            </div>
-          </div>
-      
-        </div>
-  </ion-card>
+      <div class="bottom_div">
+        <ion-label>{{ 'messages.login' | translate }}<ion-label (click)="login()" id="login">Login</ion-label></ion-label>
+      </div>
+    </div>
+  </div>
+</ion-card>
