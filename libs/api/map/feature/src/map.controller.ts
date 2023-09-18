@@ -1,3 +1,6 @@
+import { IGetMapRequest } from '@estate-match/api/map/util';
+
+
 export class MapController{
     constructor(private readonly mapService: MapService) {}
 

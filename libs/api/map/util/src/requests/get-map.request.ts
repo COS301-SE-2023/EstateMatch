@@ -1,3 +1,3 @@
-export interface IGetMapResponse{
+export interface IGetMapRequest{
         
 }
