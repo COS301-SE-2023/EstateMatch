@@ -190,7 +190,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             chat: {
                 username: command.request.chat.username,
                 message: res["output"]
-                // message: res.response
+                // message: "Under construction"
             }
         };
 
