@@ -1,0 +1,17 @@
+{
+    "labels": {
+      "firstName": "Igama elifuzo",
+      "lastName": "Igama elifuneko",
+      "username": "Igama lokusebenzisa",
+      "email": "I-imeyili",
+      "button.save": "Gcina",
+      "button.backToProfile": "Hamba ek Profayili"
+    },
+    "placeholders": {
+      "firstName": "Igama elifuzo",
+      "lastName": "Igama elifuneko",
+      "username": "Igama lokusebenzisa",
+      "email": "I-imeyili"
+    }
+  }
+  

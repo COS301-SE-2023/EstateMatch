@@ -1,0 +1,17 @@
+{
+    "labels": {
+      "firstName": "Lebitso la pele",
+      "lastName": "Lebitso la bohloko",
+      "username": "Lebitso la lebone",
+      "email": "I-imeile",
+      "button.save": "Boloka",
+      "button.backToProfile": "Robala mo Profileng"
+    },
+    "placeholders": {
+      "firstName": "Lebitso la pele",
+      "lastName": "Lebitso la bohloko",
+      "username": "Lebitso la lebone",
+      "email": "I-imeile"
+    }
+  }
+  

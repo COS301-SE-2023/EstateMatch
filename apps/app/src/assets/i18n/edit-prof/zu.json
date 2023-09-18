@@ -1,0 +1,17 @@
+{
+    "labels": {
+      "firstName": "Igama elifushane",
+      "lastName": "Igama elihlobene",
+      "username": "Igama lokukhomba",
+      "email": "I-imeyili",
+      "button.save": "Gcina",
+      "button.backToProfile": "Buya em Profayili"
+    },
+    "placeholders": {
+      "firstName": "Igama elifushane",
+      "lastName": "Igama elihlobene",
+      "username": "Igama lokukhomba",
+      "email": "I-imeyili"
+    }
+  }
+  
