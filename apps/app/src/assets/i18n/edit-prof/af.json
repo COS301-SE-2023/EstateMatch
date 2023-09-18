@@ -1,0 +1,16 @@
+{
+  "labels": {
+    "firstName": "Voornaam",
+    "lastName": "Van",
+    "username": "Gebruikersnaam",
+    "email": "E-pos",
+    "button.save": "Stoor",
+    "button.backToProfile": "Terug na Profiel"
+  },
+  "placeholders": {
+    "firstName": "Voornaam",
+    "lastName": "Van",
+    "username": "Gebruikersnaam",
+    "email": "E-pos"
+  }
+}

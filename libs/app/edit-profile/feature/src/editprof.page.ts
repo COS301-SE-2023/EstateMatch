@@ -2,17 +2,26 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ms-editprofile-page',
   templateUrl: './editprof.page.html',
   styleUrls: ['./editprof.page.scss'],
+  providers: [TranslateService]
 })
 
 export class EditProfilePage {
   constructor(private http: HttpClient,
     private toastController: ToastController,
-    private router: Router) { }
+    private router: Router,
+    private translate: TranslateService) {
+      this.translate.setDefaultLang('en');
+     }
+
+    switchLanguage(lang: string) {
+      this.translate.use(lang);
+    }
 
     btnText = 'Edit Profile';
     isDisabled = true;
