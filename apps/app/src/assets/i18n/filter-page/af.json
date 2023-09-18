@@ -1,0 +1,18 @@
+{
+  "labels": {
+    "searchFilters": "Soek Filtre",
+    "budget": "Begroting:",
+    "bedrooms": "Slaapkamers",
+    "bathrooms": "Badkamers",
+    "garages": "Motorhuise",
+    "amenities": "Geriewe",
+    "pool": "Swembad",
+    "study": "Studeerkamer",
+    "aircon": "Lugversorging",
+    "furnished": "Gemeubileerd",
+    "petFriendly": "Diervriendelik",
+    "lounge": "Sitkamer",
+    "save": "Stoor",
+    "cancel": "Kanselleer"
+  }
+}
