@@ -35,13 +35,13 @@
       <div class="bottom_div">
         <ion-label>{{ 'messages.login' | translate }}<ion-label (click)="login()" id="login">Login</ion-label></ion-label>
       </div>
+      <div>
+        <select #languageSelect>
+            <option value="en">English</option>
+            <option value="af">Afrikaans</option>
+        </select>
+        <button (click)="switchLanguage(languageSelect.value)">Apply</button>
+    </div>
     </div>
   </div>
-  <div>
-    <select #languageSelect>
-        <option value="en">English</option>
-        <option value="af">Afrikaans</option>
-    </select>
-    <button (click)="switchLanguage(languageSelect.value)">Apply</button>
-</div>
 </ion-card>
