@@ -17,7 +17,7 @@ export class FilterPage {
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService) {
-      this.translate.setDefaultLang('xh');
+      this.translate.setDefaultLang('en');
      }
 
     location = ''; //Need to get from map

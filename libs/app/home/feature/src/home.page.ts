@@ -5,6 +5,8 @@ import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
 import { IPreference } from '@estate-match/api/prefrences/util';
 import { Router } from '@angular/router';
 import { time } from 'console';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+
 
 interface Property {
   user: string;
@@ -21,6 +23,7 @@ interface Property {
   selector: 'ms-home-page',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
+  providers: [TranslateService]
 })
 
 export class HomePage implements AfterViewInit{
@@ -33,7 +36,10 @@ export class HomePage implements AfterViewInit{
     private toastController: ToastController,
     private router: Router,
     private gestureCtrl: GestureController,
-    private plt: Platform) {}
+    private plt: Platform,
+    private translate: TranslateService) {
+      this.translate.setDefaultLang('en');
+    }
 
 
   // descriptions: string[] = ['R5 000 000. Three Bedroom and Two Bathrooms.',

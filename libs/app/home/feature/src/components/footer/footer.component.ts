@@ -10,8 +10,6 @@ import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 export class FooterComponent {
   constructor(
     private translate: TranslateService,
-  ) {
-    this.translate.setDefaultLang('zu');
-  }
+  ) {}
 
 }
