@@ -38,7 +38,7 @@ export class HomePage implements AfterViewInit{
     private gestureCtrl: GestureController,
     private plt: Platform,
     private translate: TranslateService) {
-      this.translate.setDefaultLang('af');
+      this.translate.setDefaultLang('xh');
     }
 
 
