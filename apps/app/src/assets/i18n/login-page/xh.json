@@ -1,0 +1,19 @@
+{
+    "header": {
+      "subtitle": "Bhuka"
+    },
+    "labels": {
+      "username": "Igama lokusebenzisa",
+      "password": "Iphasiwedi"
+    },
+    "placeholders": {
+      "username": "Faka Igama lokusebenzisa",
+      "password": "Iphasiwedi"
+    },
+    "buttons": {
+      "login": "Bhuka"
+    },
+    "messages": {
+      "signup": "Awunayo i-akhawunti? Gcina"
+    }
+}

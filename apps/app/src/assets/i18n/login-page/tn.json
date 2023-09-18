@@ -1,0 +1,19 @@
+{
+    "header": {
+      "subtitle": "Bontsha"
+    },
+    "labels": {
+      "username": "Lebitso la lebone",
+      "password": "Phasewete"
+    },
+    "placeholders": {
+      "username": "Kenya Lebitso la lebone",
+      "password": "Phasewete"
+    },
+    "buttons": {
+      "login": "Bontsha"
+    },
+    "messages": {
+      "signup": "Ha o na akhaonto? Romela"
+    }
+}
