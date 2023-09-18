@@ -46,10 +46,11 @@ export class LoginPage {
       const privatePropertySaleURL = 'api/PrivatePropertySaleScraper';
 
       const scraperBody = {
-        location: userPref.location,
+        username: this.username,
+        location: userPref.location[0],
       };
 
-      // const remaxRent = await this.http.post(remaxRentURL, scraperBody, { headers });
+      const remaxRent = await this.http.post(remaxRentURL, scraperBody, { headers });
       // const remaxSale = await this.http.post(remaxSaleURL, scraperBody, { headers });
       // const privatePropertyRent = await this.http.post(privatePropertyRentURL, scraperBody, { headers });
       // const privatePropertySale = await this.http.post(privatePropertySaleURL, scraperBody, { headers });

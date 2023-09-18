@@ -35,7 +35,7 @@ export class SearchPage implements AfterViewInit{
       // userId: '001',
       // username: 'TestUsername',
       // seen: false
-      user: ['TestUsername']
+      // user: ['TestUsername']
     }
     ];
     
