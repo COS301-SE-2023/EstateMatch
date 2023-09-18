@@ -1,4 +1,5 @@
 import { AIPreferencesRepository } from '@estate-match/api/prefrences/data-access';
+import { IAIPreference } from '@estate-match/api/prefrences/util';
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 
@@ -453,7 +454,7 @@ export class ImageToTextService {
     this.apiUrl = 'https://vision.googleapis.com/v1/images:annotate';
   }
 
-  async analyzeImages(imageUrls: string[]) { //pass in username
+  async analyzeImages(imageUrls: string[], username :string) { //pass in username
     const uniqueLabelDescriptions = new Set<string>();
     let bestDominantColor: { red: number, green: number, blue: number } = { red: 0, green: 0, blue: 0 };
     let bestScore = -1;
@@ -516,6 +517,26 @@ export class ImageToTextService {
      * if yes, update update(user, labels)
      * if no, create, create(labels)
      */
+
+    const aiPrefRequest: IAIPreference = {
+      user: username,
+      flooring: 'Laminate flooring',
+      buildingStyle: 'Urban design',
+      buildingType: 'Apartment',
+      buildingArea: 'Residential',
+      buildingFeatures: 'Garden',
+      materials: 'Tile',
+    };
+
+
+    const user = await this.aiPreferenceRepo.findOne(username);
+    if (user) {
+      await this.aiPreferenceRepo.update(username, aiPrefRequest);
+    } else {
+      await this.aiPreferenceRepo.create(aiPrefRequest);
+    }
+
+
 
     return {
       labelDescriptions: Array.from(uniqueLabelDescriptions),
