@@ -29,6 +29,18 @@ import { AIPreferencesRepository, PreferencesRepository } from "@estate-match/ap
 import * as dotenv from 'dotenv';
 dotenv.config();
 
+interface IExtractedModel {
+    flooring: string[];
+    buildingStyle: string[];
+    buildingType: string[];
+    buildingArea: string[];
+    buildingFeatures: string[];
+    materials: string[];
+    roof: string;
+    garden: string[];
+    additional: string[];
+}
+
 @CommandHandler(SetChatCommand)
 export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatResponse> {
     constructor(
@@ -167,7 +179,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                     const res = await llm.call({description: command.request.chat.message}) as { response: string};
                     
                     // console.log(res.response);
-                    // const test = await this.buildPreferenceModel(command.request.chat.message);
+                    
                     return res.response;
                 },
                 returnDirect: true,
@@ -183,17 +195,18 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             // verbose: true,
         });
 
-        const res = await agentExecutor.call({input: command.request.chat.message});
+        // const res = await agentExecutor.call({input: command.request.chat.message});
         // console.log(chatMemory.chatHistory.getMessages());
 
         const response: ISetChatResponse = {
             chat: {
                 username: command.request.chat.username,
-                message: res["output"]
-                // message: "Under construction"
+                // message: res["output"]
+                message: "Under construction"
             }
         };
 
+        const test = await this.buildPreferenceModel(command.request.chat.message);
         return response; 
     }
 
@@ -252,6 +265,9 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
         const classes = await classifyLLm.call({characteristics: characteristics}) as { text: string};
         console.log(classes);
+
+        //From the classes need to create some sort of interface
+
         return "Under construction";
     }
 }
