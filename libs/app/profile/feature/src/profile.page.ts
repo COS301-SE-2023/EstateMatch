@@ -5,19 +5,23 @@ import { IPreference } from '@estate-match/api/prefrences/util';
 import { IUser } from '@estate-match/api/users/util';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ms-profile-page',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
+  providers: [TranslateService]
 })
 export class ProfilePage {
   constructor(
     private toastController: ToastController,
     private router: Router,
     private route: ActivatedRoute,
-    private http: HttpClient
-  ) {}
+    private http: HttpClient,
+    private translate: TranslateService) {
+      this.translate.setDefaultLang('af');
+     }
 
   user: IUser = {
     id: 'string',
