@@ -35,9 +35,10 @@ export class WebScraperController {
             //  username: properties[i].username,
             //  seen : properties[i].seen,
 
-            user : properties[i].user
+           // user : properties[i].user
         }
           const request: ICreatePropertyRequest = {
+            username: "Test",
             property: property
           };
           // console.log(request);
@@ -67,9 +68,10 @@ export class WebScraperController {
           //  username: properties[i].username,
           //  seen : properties[i].seen,
 
-          user : properties[i].user
+        //  user : properties[i].user
       }
         const request: ICreatePropertyRequest = {
+          username: "Test",
           property: property
         };
 
@@ -99,9 +101,10 @@ export class WebScraperController {
           //  username: properties[i].username,
           //  seen : properties[i].seen,
 
-          user : properties[i].user
+         // user : properties[i].user
       }
         const request: ICreatePropertyRequest = {
+          username: "Test",
           property: property
         };
 
@@ -131,9 +134,10 @@ export class WebScraperController {
             // username: properties[i].username,
             // seen : properties[i].seen,
 
-            user : properties[i].user
+           // user : properties[i].user
         }
           const request: ICreatePropertyRequest = {
+            username: "Test",
             property: property
           };
           // console.log(request);
