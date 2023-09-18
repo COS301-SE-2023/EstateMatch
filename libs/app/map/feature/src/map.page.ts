@@ -5,6 +5,7 @@ import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
 import fetch from 'node-fetch';
 import { ActivatedRoute, Router } from '@angular/router';
 // import { google } from 'google-maps';
+import axios, { AxiosResponse } from 'axios';
 
 @Component({
   selector: 'ms-map-page',
@@ -92,16 +93,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      const requestOptions={
-        method: 'GET',
-        mode: 'no-cors'
-      }
+      // const requestOptions={
+      //   method: 'GET',
+      //   mode: 'no-cors'
+      // }
 
-      const schools=await fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+coordinates.coords.latitude+'%2C'+coordinates.coords.longitude+'&radius=1500&type=school&key=AIzaSyBz3ZemLu5F4s9mFHB7Va6t7TrQcX6CrYA',
-      requestOptions
-      );
+      // const schools=await fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+coordinates.coords.latitude+'%2C'+coordinates.coords.longitude+'&radius=1500&type=school&key=AIzaSyBz3ZemLu5F4s9mFHB7Va6t7TrQcX6CrYA',
+      // requestOptions
+      // );
 
-      console.log(schools);
+      // console.log(schools);
+
+      // const apiKey = process.env["GOOGLE_PLACES_API_KEY"] ;
+
+      const testMap = await axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.7127281%2C-74.0060152&radius=1500&type=school&key=AIzaSyBz3ZemLu5F4s9mFHB7Va6t7TrQcX6CrYA');
+
+      console.log(testMap);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
