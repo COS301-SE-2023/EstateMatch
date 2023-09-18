@@ -10,7 +10,7 @@ export class CreatePropertyHandler implements ICommandHandler<CreatePropertyComm
     ) {}
 
     async execute(command: CreatePropertyCommand): Promise<any> {
-        const request = command.request.property;
+        const request = command.request;
 
         return await this.propertiesRepository.createProperty(request);
     }
