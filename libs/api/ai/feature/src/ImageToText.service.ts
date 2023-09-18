@@ -1,3 +1,4 @@
+import { AIPreferencesRepository } from '@estate-match/api/prefrences/data-access';
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 
@@ -447,12 +448,12 @@ export class ImageToTextService {
   "Apartment",
 ];
 
-  constructor() {
+  constructor(private readonly aiPreferenceRepo: AIPreferencesRepository) {
     this.apiKey = process.env['GOOGLE_API_KEY'] || '';
     this.apiUrl = 'https://vision.googleapis.com/v1/images:annotate';
   }
 
-  async analyzeImages(imageUrls: string[]) {
+  async analyzeImages(imageUrls: string[]) { //pass in username
     const uniqueLabelDescriptions = new Set<string>();
     let bestDominantColor: { red: number, green: number, blue: number } = { red: 0, green: 0, blue: 0 };
     let bestScore = -1;
@@ -507,6 +508,14 @@ export class ImageToTextService {
         throw error;
       }
     }
+
+    //Query DB
+    /**
+     * Check if user have ai model by findOne(username)
+     * Create AI pref request interface for now hardcode one
+     * if yes, update update(user, labels)
+     * if no, create, create(labels)
+     */
 
     return {
       labelDescriptions: Array.from(uniqueLabelDescriptions),
