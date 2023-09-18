@@ -5,7 +5,13 @@ import { IonicModule } from '@ionic/angular';
 import { SplashPage } from './splash.page';
 import { SplashRouting } from './splash.routing';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './src/assets/i18n/', '.json');
+}
 
 @NgModule({
   imports: [
@@ -13,7 +19,14 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule,
     SplashRouting, 
     FormsModule, 
-    HttpClientModule
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
   declarations: [SplashPage],
 })
