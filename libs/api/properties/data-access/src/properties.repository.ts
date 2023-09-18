@@ -25,7 +25,7 @@ export class PropertiesRepository {
             //finding user where it exists in the property collection
             const userExists = await this.propertiesModel.findOne({$and: [{title: property.title}, {user: {$in: user}}]}).exec();
           if(userExists) {
-            throw new Error('Property already exists for this existing user');
+            console.log('Property already exists for this existing user');
           }
           else {
             console.log(property.title)
