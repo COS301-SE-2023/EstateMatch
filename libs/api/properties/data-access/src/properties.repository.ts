@@ -5,11 +5,13 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { ISearch, ISearchRequest } from "@estate-match/api/search/util";
 import { ICreatePropertyRequest, IPropSearch } from "@estate-match/api/properties/util";
+import {UserModel} from "@estate-match/api/users/schema";
 
 @Injectable()
 export class PropertiesRepository {
     constructor(@InjectModel('Properties') private readonly propertiesModel: Model<PropertiesModel>
     , @InjectModel('Prefrences') private readonly preferenceModel: Model<PrefrencesModel>
+    , @InjectModel('User') private readonly userModel: Model<UserModel>
     ) {}
 
     async createProperty(request: ICreatePropertyRequest): Promise<PropertiesModel> {
@@ -20,7 +22,8 @@ export class PropertiesRepository {
         let reponseProperty : any;
         const propertyExists = await this.propertiesModel.findOne({title: property.title}).exec();
         if(propertyExists) {
-          const userExists = await this.propertiesModel.findOne({user: user}).exec();
+            //finding user where it exists in the property collection
+            const userExists = await this.propertiesModel.findOne({$and: [{title: property.title}, {user: {$in: user}}]}).exec();
           if(userExists) {
             throw new Error('Property already exists for this existing user');
           }
@@ -37,7 +40,7 @@ export class PropertiesRepository {
             console.log(check);
 
             // add property to user
-            const updatedUser = await this.preferenceModel.findOneAndUpdate(
+            const updatedUser = await this.userModel.findOneAndUpdate(
               { username: user },
               { $addToSet: { properties: property.title } }
             ).exec();
@@ -52,7 +55,7 @@ export class PropertiesRepository {
             { $addToSet: { user: user} }
             ).exec();
             reponseProperty = addUser;
-          const updatedUser = await this.preferenceModel.findOneAndUpdate(
+          const updatedUser = await this.userModel.findOneAndUpdate(
             { username: user },
             { $addToSet: {  properties: property.title  } }
           ).exec();
