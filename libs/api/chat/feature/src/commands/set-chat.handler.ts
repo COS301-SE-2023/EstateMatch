@@ -230,6 +230,12 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         // console.log(characteristics);
     
 
+        const classes = await this.classifyCharateristic(characteristics);
+        return "Under construction";
+    }
+
+    async classifyCharateristic(characteristics: string[]) : Promise<string> {
+        const model = new OpenAI({});
         const classifyTemplate = "You are an assistant that classify characteristics of a description of a house. The characteristics are: {characteristics}" + 
         "You will recieve the characteristics as an array of strings." + 
         "You have to classify each element as one of the following: " +
@@ -304,12 +310,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         
         const aiPref = await this.buildAIPrefRequest("test", extractedModel);
         console.log(aiPref);
-
-        return "Under construction";
-    }
-
-    async classifyCharateristic(characteristics: string) : Promise<string> {
-
         return "Under construction";
     }
 
