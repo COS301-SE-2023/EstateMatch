@@ -1,0 +1,18 @@
+{
+  "labels": {
+    "searchFilters": "Izilungiselelo zokufuna",
+    "budget": "Ibhanoyi:",
+    "bedrooms": "Izilwane Zeminye Imikhumbi",
+    "bathrooms": "Amabheshu",
+    "garages": "Amagaraji",
+    "amenities": "Izinto Zokwenza",
+    "pool": "Izilwane Zolwandle",
+    "study": "Ukwemfundo",
+    "aircon": "I-Aircon",
+    "furnished": "Kutholwe Izinto",
+    "petFriendly": "Kutholwe Izilwane",
+    "lounge": "I-Lounge",
+    "save": "Gcina",
+    "cancel": "Khansela"
+  }
+}

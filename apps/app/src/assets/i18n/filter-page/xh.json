@@ -1,0 +1,18 @@
+{
+  "labels": {
+    "searchFilters": "Izilungiselelo Zokufuna",
+    "budget": "Ibhanoyi:",
+    "bedrooms": "Izilwane Zezimnye Imikhumbi",
+    "bathrooms": "Amabheshu",
+    "garages": "Amagaraji",
+    "amenities": "Izinto Zokwenza",
+    "pool": "Izilwane Zolwandle",
+    "study": "Ukwemfundo",
+    "aircon": "I-Aircon",
+    "furnished": "Kutholwe Izinto",
+    "petFriendly": "Kutholwe Izilwane",
+    "lounge": "I-Lounge",
+    "save": "Gcina",
+    "cancel": "Khansela"
+  }
+}
