@@ -1,1 +1,1 @@
-export * from './lib/api-map-feature';
+export * from "./map.controller"
