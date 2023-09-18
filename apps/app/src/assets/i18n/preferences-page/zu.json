@@ -1,0 +1,25 @@
+{
+    "subtitle": "Izinto Ezifunekayo",
+    "labels": {
+        "area": "Indawo:",
+        "budget": "Ibhandi:",
+        "bedrooms": "Izibedroom",
+        "bathrooms": "Izilwane",
+        "garages": "i-igereji",
+        "button.setPreferences": "Thumela Izifiso"
+    },
+    "placeholders": {
+        "area": "Indawo",
+        "bedrooms": "Izibedroom",
+        "bathrooms": "Izilwane",
+        "garages": "i-igereji"
+    },
+    "amenities": {
+        "pool": "I-Pool",
+        "study": "I-Study",
+        "aircon": "I-Aircon",
+        "furnished": "Ekhishiwe",
+        "pet": "Onothile",
+        "lounge": "I-Lounge"
+    }
+}

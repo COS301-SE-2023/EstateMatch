@@ -1,0 +1,25 @@
+{
+    "subtitle": "Mokgatlo",
+    "labels": {
+        "area": "Sebaka:",
+        "budget": "Boqapi:",
+        "bedrooms": "Kwikiri",
+        "bathrooms": "Amabelethi",
+        "garages": "Dintlha tsa phaki",
+        "button.setPreferences": "Thetsa Dipreferense"
+    },
+    "placeholders": {
+        "area": "Sebaka",
+        "bedrooms": "Kwikiri",
+        "bathrooms": "Amabelethi",
+        "garages": "Dintlha tsa phaki"
+    },
+    "amenities": {
+        "pool": "Pula",
+        "study": "Iphutha",
+        "aircon": "I-Aircon",
+        "furnished": "E sebetsang",
+        "pet": "Ntja-Sebete",
+        "lounge": "I-Lounge"
+    }
+}

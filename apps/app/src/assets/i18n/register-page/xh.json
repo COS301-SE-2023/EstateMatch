@@ -1,0 +1,28 @@
+{
+    "header": {
+      "subtitle": "Bhalisa"
+    },
+    "labels": {
+      "firstName": "Igama Leliphezulu",
+      "lastName": "Igama Leliwisa",
+      "username": "Igama Lokusebenzisa",
+      "email": "I-Email",
+      "password": "Iphassword",
+      "confirmPassword": "Yaqiniseka Iphassword"
+    },
+    "placeholders": {
+      "firstName": "Faka Igama Leliphezulu",
+      "lastName": "Faka Igama Leliwisa",
+      "username": "Faka Igama Lokusebenzisa",
+      "email": "Faka I-Email",
+      "password": "Faka Iphassword",
+      "confirmPassword": "Yaqiniseka Iphassword"
+    },
+    "buttons": {
+      "createAccount": "Yenza I-Akhawunti"
+    },
+    "messages": {
+      "login": "Unesiqiniseko sifuna ukuba ne-akhawunti? Bala"
+    }
+  }
+  

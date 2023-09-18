@@ -1,0 +1,28 @@
+{
+    "header": {
+      "subtitle": "Bala"
+    },
+    "labels": {
+      "firstName": "Lebitso La Pele",
+      "lastName": "Lebitso La Kotulo",
+      "username": "Lebitso La Sebelisoa",
+      "email": "I-Email",
+      "password": "Mokhaea",
+      "confirmPassword": "Hlahisa Mokhaea"
+    },
+    "placeholders": {
+      "firstName": "Kenya Lebitso La Pele",
+      "lastName": "Kenya Lebitso La Kotulo",
+      "username": "Kenya Lebitso La Sebelisoa",
+      "email": "Kenya I-Email",
+      "password": "Kenya Mokhaea",
+      "confirmPassword": "Hlahisa Mokhaea"
+    },
+    "buttons": {
+      "createAccount": "Bala Akhaunti"
+    },
+    "messages": {
+      "login": "Na o na le akhaunti? Bala"
+    }
+  }
+  
