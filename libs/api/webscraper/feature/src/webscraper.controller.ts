@@ -5,6 +5,7 @@ import { RemaxSaleService } from "./RemaxSale.service";
 import { RemaxRentService } from "./RemaxRent.service";
 import { PropertiesService } from "@estate-match/api/properties/feature";
 import { ICreatePropertyRequest, IProperty } from "@estate-match/api/properties/util";
+import { IWebscraperRequest } from "@estate-match/api/webscraper/util";
 
 @Controller()
 export class WebScraperController {
@@ -115,8 +116,12 @@ export class WebScraperController {
     }
 
     @Post("/RemaxRentScraper")
-    async getScrapedRemaxRentProperties(@Body() location:string, username: string) {
-        const properties = await this.RemaxRentService.RemaxRentscrape(location[0]);
+    async getScrapedRemaxRentProperties(@Body() request: IWebscraperRequest) {
+        console.log(request.location);
+        console.log("Starting");
+        const properties = await this.RemaxRentService.RemaxRentscrape(request.location);
+        console.log("Done");
+        console.log(properties);
       
         for(let i = 0; i < properties.length; i++){
           const property: IProperty = {
@@ -136,14 +141,15 @@ export class WebScraperController {
 
            // user : properties[i].user
         }
-          const request: ICreatePropertyRequest = {
-            username: username,
+          const req: ICreatePropertyRequest = {
+            username: request.username,
             property: property
           };
           
-          this.propertyService.createProperty(request);
+          this.propertyService.createProperty(req);
         }
         
+        console.log("Done2");
         return properties;
   }
 
