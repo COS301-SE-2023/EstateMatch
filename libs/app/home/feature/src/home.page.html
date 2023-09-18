@@ -17,7 +17,7 @@
     <div class="back_image">
       <img name="HouseImage" [src]="properties[currentDescriptionIndex].images[0]"/>
       <div class="more_info">
-        <ion-label (click)="moreInfo()">More Info</ion-label>
+        <ion-label (click)="moreInfo()">{{ 'moreInfoLabel' | translate }}</ion-label>
       </div>
     </div>
     
@@ -61,7 +61,10 @@
             </ion-col>
           </ion-row>
         </ion-grid> 
-        <p class="description">{{ properties[currentDescriptionIndex].title }}.. <ion-label (click)="moreInfo()" class="read-more">Read more</ion-label>  </p>     
+        <p class="description">
+          {{ properties[currentDescriptionIndex].title }}
+          <ion-label (click)="moreInfo()" class="read-more">...{{ 'readMoreLabel' | translate }}</ion-label>
+        </p>     
       </div>
   </ion-card>
   
