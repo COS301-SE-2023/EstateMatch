@@ -14,5 +14,12 @@
     "lounge": "Lounge",
     "save": "Save",
     "cancel": "Cancel"
+  },
+  "navbar": {
+    "home": "Home",
+    "chat": "Chat",
+    "search": "Search",
+    "liked": "Liked",
+    "profile": "Profile"
   }
 }

@@ -1,18 +1,25 @@
 {
   "labels": {
-    "searchFilters": "Izilungiselelo Zokufuna",
-    "budget": "Ibhanoyi:",
-    "bedrooms": "Izilwane Zezimnye Imikhumbi",
-    "bathrooms": "Amabheshu",
-    "garages": "Amagaraji",
-    "amenities": "Izinto Zokwenza",
-    "pool": "Izilwane Zolwandle",
-    "study": "Ukwemfundo",
+    "searchFilters": "Phendla izihluzi",
+    "budget": "Uhlahlo lwabiwo-mali:",
+    "bedrooms": "Amagumbi okulala",
+    "bathrooms": "Amagumbi okuhlambela",
+    "garages": "Igaraji",
+    "amenities": "Uncedo",
+    "pool": "Iphuli",
+    "study": "Egumbini lokufunda",
     "aircon": "I-Aircon",
-    "furnished": "Kutholwe Izinto",
-    "petFriendly": "Kutholwe Izilwane",
+    "furnished": "Inefenitshala",
+    "petFriendly": "izilwanyana-friendly",
     "lounge": "I-Lounge",
     "save": "Gcina",
     "cancel": "Khansela"
-  }
+  },
+  "navbar": {
+    "home": "Ekhaya",
+    "chat": "Ncokola",
+    "search": "Khangela",
+    "liked": "Ithandiwe",
+    "profile": "Iphrofayili"
+}
 }

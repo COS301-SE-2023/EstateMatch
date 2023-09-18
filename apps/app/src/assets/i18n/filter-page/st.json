@@ -14,5 +14,12 @@
     "lounge": "Lefuba la Leswi",
     "save": "Boloka",
     "cancel": "Kansella"
-  }
+  },
+  "navbar": {
+    "home": "Motse",
+    "chat": "Hlelo",
+    "search": "Fetola",
+    "liked": "O rata",
+    "profile": "Profilo"
+}
 }

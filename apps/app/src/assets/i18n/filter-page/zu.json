@@ -1,18 +1,25 @@
 {
   "labels": {
-    "searchFilters": "Izilungiselelo zokufuna",
-    "budget": "Ibhanoyi:",
-    "bedrooms": "Izilwane Zeminye Imikhumbi",
-    "bathrooms": "Amabheshu",
+    "searchFilters": "Sesha izihlungi",
+    "budget": "Ibhajethi:",
+    "bedrooms": "Amakamelo okulala",
+    "bathrooms": "Izindlu zokugezela",
     "garages": "Amagaraji",
-    "amenities": "Izinto Zokwenza",
-    "pool": "Izilwane Zolwandle",
-    "study": "Ukwemfundo",
+    "amenities": "Izinsiza",
+    "pool": "Ichibi",
+    "study": "Igumbi lokufunda",
     "aircon": "I-Aircon",
-    "furnished": "Kutholwe Izinto",
+    "furnished": "Inefenisha",
     "petFriendly": "Kutholwe Izilwane",
-    "lounge": "I-Lounge",
+    "lounge": "Indawo yokuphumula",
     "save": "Gcina",
     "cancel": "Khansela"
-  }
+  },
+  "navbar": {
+    "home": "Ikhaya",
+    "chat": "Xoxa",
+    "search": "Sesha",
+    "liked": "Kuthandiwe",
+    "profile": "Iphrofayela"
+}
 }

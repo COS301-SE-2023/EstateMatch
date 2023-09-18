@@ -14,5 +14,12 @@
     "lounge": "Sitkamer",
     "save": "Stoor",
     "cancel": "Kanselleer"
+  },
+  "navbar": {
+    "home": "Huis",
+    "chat": "Klets",
+    "search": "Soek",
+    "liked": "Geliefdes",
+    "profile": "Profiel"
   }
 }
