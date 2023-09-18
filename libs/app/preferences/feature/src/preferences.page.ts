@@ -4,17 +4,22 @@ import { ToastController } from '@ionic/angular';
 
 import { IPreference } from '@estate-match/api/prefrences/util';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ms-preferences-page',
   templateUrl: './preferences.page.html',
   styleUrls: ['./preferences.page.scss'],
+  providers: [TranslateService]
 })
 export class PreferencesPage {
   constructor(private http: HttpClient,
     private toastController: ToastController,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private translate: TranslateService) {
+      this.translate.setDefaultLang('en');
+     }
 
     area = '';
     budget: any;
