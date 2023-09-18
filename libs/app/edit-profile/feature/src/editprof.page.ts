@@ -19,10 +19,6 @@ export class EditProfilePage {
       this.translate.setDefaultLang('en');
      }
 
-    switchLanguage(lang: string) {
-      this.translate.use(lang);
-    }
-
     btnText = 'Edit Profile';
     isDisabled = true;
     
