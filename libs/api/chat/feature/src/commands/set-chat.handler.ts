@@ -231,7 +231,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     
 
         const classifyTemplate = "You are an assistant that classify characteristics of a description of a house. The characteristics are: {characteristics}" + 
-        "You will recieve the characteristics as an array of strings. Do not number the classes" + 
+        "You will recieve the characteristics as an array of strings." + 
         "You have to classify each element as one of the following: " +
         "1) Flooring" +
         "2) Building Style" + 
@@ -264,7 +264,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
 
         const classes = await classifyLLm.call({characteristics: characteristics}) as { text: string};
-        console.log(classes);
+        console.log(classes.text);
 
         temp = classes.text.replace(/[\r\n]/gm, "");
         const classesArray = classes.text.split("- ");
@@ -280,6 +280,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             garden: [],
             additional: [],
         };
+
+        // console.log(classesArray);
 
         classesArray.forEach(element => {
             if(element !== ''){
@@ -305,7 +307,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             }
         });
 
-        console.log(extractedModel);
+        // console.log(extractedModel);
         //From the classes need to create some sort of interface
         
 
