@@ -1,4 +1,6 @@
 import { IGetMapRequest } from '@estate-match/api/map/util';
+import { Body, Controller, Post } from '@nestjs/common';
+import { MapService } from './map.service';
 
 
 export class MapController{
