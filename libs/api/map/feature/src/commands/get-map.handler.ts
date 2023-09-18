@@ -1,4 +1,6 @@
 import { CommandHandler } from "@nestjs/cqrs";
+import { ICommandHandler } from "@nestjs/cqrs/dist/interfaces/commands/command-handler.interface";
+import { GetMapCommand } from "@estate-match/api/map/util";
 
 @CommandHandler(GetMapCommand)
 export class GetMapHandler implements ICommandHandler<GetMapCommand> {

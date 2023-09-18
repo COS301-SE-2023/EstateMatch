@@ -1,3 +1,3 @@
 export interface IGetMapResponse{
-    
+    results: [];
 }
