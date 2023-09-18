@@ -4,7 +4,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { ISearch, ISearchRequest } from "@estate-match/api/search/util";
-import { IPropSearch } from "@estate-match/api/properties/util";
+import { ICreatePropertyRequest, IPropSearch } from "@estate-match/api/properties/util";
 
 @Injectable()
 export class PropertiesRepository {
@@ -12,81 +12,55 @@ export class PropertiesRepository {
     , @InjectModel('Prefrences') private readonly preferenceModel: Model<PrefrencesModel>
     ) {}
 
-    async createProperty(property: PropertiesModel): Promise<PropertiesModel> {
-        // const createdProperty = new this.propertiesModel(property);
-        // //check if the property already exists by address before saving
-        // const propertyExists = await this.propertiesModel.findOne({address: property.location}).exec();
-        // if(propertyExists) {
-        //     throw new Error('Property already exists'); //change this to check if the property is already in the users list of properties
-        //     //else if the property is not in the users list of properties, add it to the list
-        //     //else if property exist but need to add user 
-        // }
-
-        // return createdProperty.save();
-
-        //New Property
+    async createProperty(request: ICreatePropertyRequest): Promise<PropertiesModel> {
+        const property = request.property;
+        const user = request.username;
+        console.log(user)
         const createdProperty = new this.propertiesModel(property);
-        //check if the property already exists by address before saving
-        const propertyExists = await this.propertiesModel.findOne({title: property.title}).exec(); 
+        let reponseProperty : any;
+        const propertyExists = await this.propertiesModel.findOne({title: property.title}).exec();
         if(propertyExists) {
-            //property exist for new user
-            //check if user exist
-            const userExists = await this.propertiesModel.findOne({user: property.user}).exec();
-            if(userExists) {
-                //do nothing for existing user and property
-                throw new Error('Property already exists for this existing user');
-            }
-            else {
-                //add user to existing property
-                const updatedProperty = await this.propertiesModel.findOneAndUpdate(
-                    {title: property.title},
-                    {$addToSet: {user: property.user} }
-                    ).exec();
+          const userExists = await this.propertiesModel.findOne({user: user}).exec();
+          if(userExists) {
+            throw new Error('Property already exists for this existing user');
+          }
+          else {
+            console.log(property.title)
+            // add user to existing property
+            const updatedProperty = await this.propertiesModel.findOneAndUpdate(
+              { title: property.title },
+              { $addToSet: { user: user} }
+            ).exec();
+            reponseProperty = updatedProperty;
 
-                if (updatedProperty) {
-                //add property to user
-                const updatedUser = await this.preferenceModel.findOneAndUpdate(
-                    {username: property.user}, 
-                    {$addToSet: {properties: updatedProperty.title}}
-                    ).exec();
-                
-                    if (updatedUser) {
-                        updatedUser.save();
-                    } else {
-                        console.log('User not found');
-                    }
-                } else {
-                console.log('Property not found');
-                }
-            }
-            
+            const check = await this.propertiesModel.findOne({title: property.title}).exec();
+            console.log(check);
+
+            // add property to user
+            const updatedUser = await this.preferenceModel.findOneAndUpdate(
+              { username: user },
+              { $addToSet: { properties: property.title } }
+            ).exec();
+          }
         }
         else {
-            //property does not exist
-            //add property to property collection and user collection
-            const updatedProperty = await createdProperty.save();
-            const updatedUser = await this.preferenceModel.findOneAndUpdate(
-                {username: property.user},
-                {$addToSet: {properties: updatedProperty.title}}
-                ).exec();
-            if (updatedProperty) {
-                //add property to user
-                const updatedUser = await this.preferenceModel.findOneAndUpdate(
-                    {username: property.user},
-                    {$addToSet: {properties: updatedProperty.title}}
-                    ).exec();
-                    
-                    if (updatedUser) {
-                        updatedUser.save();
-                    } else {
-                        console.log('User not found');
-                    }
-                } else {
-                console.log('Property not found');
-                }
-            
+          // property does not exist
+          // add property to property collection and user collection
+          const updatedProperty = await createdProperty.save(); 
+          const addUser = await this.propertiesModel.findOneAndUpdate(
+            { title: property.title },
+            { $addToSet: { user: user} }
+            ).exec();
+            reponseProperty = addUser;
+          const updatedUser = await this.preferenceModel.findOneAndUpdate(
+            { username: user },
+            { $addToSet: {  properties: property.title  } }
+          ).exec();
         }
-        return createdProperty.save();
+
+       // return createdProperty.save();
+       return reponseProperty;
+        
     }
 
     async getProperties(): Promise<PropertiesModel[] | null> {
