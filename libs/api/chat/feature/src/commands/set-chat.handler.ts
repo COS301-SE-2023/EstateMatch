@@ -265,10 +265,10 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
 
         const classes = await classifyLLm.call({characteristics: characteristics}) as { text: string};
-        console.log(classes.text);
+        // console.log(classes.text);
 
         const classesArray = classes.text.split(/\d+\./).filter(item => item.trim() !== '');
-        console.log(classesArray);
+        // console.log(classesArray);
 
         const extractedModel: IExtractedModel = {
             flooring: [],
@@ -285,30 +285,30 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         // console.log(classesArray);
 
         classesArray.forEach(element => {
-            if(element !== ''){
+            if(element !== '' && !element.includes('N/A')){
                 if(element.includes("Flooring")){
-                    extractedModel.flooring.push(element.replace("Flooring", ""));
+                    extractedModel.flooring.push(element.replace("Flooring: ", "").replace("\n", ""));
                 }else if(element.includes("Building Style")){
-                    extractedModel.buildingStyle.push(element.replace("Building Style", ""));
+                    extractedModel.buildingStyle.push(element.replace("Building Style: ", "").replace("\n", ""));
                 }else if(element.includes("Building Type")){
-                    extractedModel.buildingType.push(element.replace("Building Type", ""));
+                    extractedModel.buildingType.push(element.replace("Building Type: ", "").replace("\n", ""));
                 }else if(element.includes("Building Area")){
-                    extractedModel.buildingArea.push(element.replace("Building Area", ""));
+                    extractedModel.buildingArea.push(element.replace("Building Area: ", "").replace("\n", ""));
                 }else if(element.includes("Building Features")){
-                    extractedModel.buildingFeatures.push(element.replace("Building Features", ""));
+                    extractedModel.buildingFeatures.push(element.replace("Building Features: ", "").replace("\n", ""));
                 }else if(element.includes("Materials")){
-                    extractedModel.materials.push(element.replace("Materials", ""));
+                    extractedModel.materials.push(element.replace("Materials: ", "").replace("\n", ""));
                 }else if(element.includes("Roof")){
-                    extractedModel.roof = element.replace("Roof", "");
+                    extractedModel.roof = element.replace("Roof: ", "").replace("\n", "");
                 }else if(element.includes("Garden")){
-                    extractedModel.garden.push(element.replace("Garden", ""));
+                    extractedModel.garden.push(element.replace("Garden: ", "").replace("\n", ""));
                 }else if(element.includes("Additional")){
-                    extractedModel.additional.push(element.replace("Additional", ""));
+                    extractedModel.additional.push(element.replace("Additional: ", "").replace("\n", ""));
                 }
             }
         });
 
-        // console.log(extractedModel);
+        console.log(extractedModel);
         //From the classes need to create some sort of interface
         
 
