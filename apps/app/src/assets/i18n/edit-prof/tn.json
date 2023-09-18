@@ -12,6 +12,13 @@
       "lastName": "Lebitso la bohloko",
       "username": "Lebitso la lebone",
       "email": "I-imeile"
-    }
+    },
+    "navbar": {
+      "home": "Motse",
+      "chat": "Hlelo",
+      "search": "Fetola",
+      "liked": "O rata",
+      "profile": "Profilo"
+  }
   }
   

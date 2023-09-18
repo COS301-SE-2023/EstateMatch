@@ -2,15 +2,20 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { ILikeProperty } from '@estate-match/api/properties/util';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ms-liked-page',
   templateUrl: './liked.page.html',
   styleUrls: ['./liked.page.scss'],
+  providers: [TranslateService]
 })
 export class LikedPage {
   constructor(private http: HttpClient,
-    private toastController: ToastController) { }
+    private toastController: ToastController,
+    private translate: TranslateService) {
+      this.translate.setDefaultLang('en');
+     }
 
   likedProperties: ILikeProperty[] = [];
   async ngOnInit() {

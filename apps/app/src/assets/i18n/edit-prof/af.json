@@ -12,5 +12,13 @@
     "lastName": "Van",
     "username": "Gebruikersnaam",
     "email": "E-pos"
+  },
+
+  "navbar": {
+    "home": "Huis",
+    "chat": "Klets",
+    "search": "Soek",
+    "liked": "Geliefdes",
+    "profile": "Profiel"
   }
 }

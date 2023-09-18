@@ -12,6 +12,13 @@
       "lastName": "Igama elifuneko",
       "username": "Igama lokusebenzisa",
       "email": "I-imeyili"
-    }
+    },
+    "navbar": {
+      "home": "Ikhaya",
+      "chat": "Iphumela",
+      "search": "Funa",
+      "liked": "Thandwa",
+      "profile": "Iphrofayili"
+  }
   }
   
