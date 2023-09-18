@@ -28,6 +28,7 @@ import { AIPreferencesRepository, PreferencesRepository } from "@estate-match/ap
 
 import * as dotenv from 'dotenv';
 import { IAIPreference } from "@estate-match/api/prefrences/util";
+import { cos } from "@tensorflow/tfjs-core";
 dotenv.config();
 
 interface IExtractedModel {
@@ -301,21 +302,27 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         console.log(extractedModel);
         //From the classes need to create some sort of interface
         
-
+        const aiPref = await this.buildAIPrefRequest("test", extractedModel);
+        console.log(aiPref);
 
         return "Under construction";
     }
 
-    async buildAIPrefRequest(user: string, labels: string[]) : Promise<IAIPreference> {
+    async classifyCharateristic(characteristics: string) : Promise<string> {
+
+        return "Under construction";
+    }
+
+    async buildAIPrefRequest(user: string, labels: IExtractedModel) : Promise<IAIPreference> {
         const aiPref: IAIPreference = {
             user: user,
-            flooring: "",
-            buildingStyle: "",
-            buildingType: "",
-            buildingArea: "",
-            buildingFeatures: "",
-            materials: "",
-            additional: "",
+            flooring: labels.flooring,
+            buildingStyle: labels.buildingStyle,
+            buildingType: labels.buildingType,
+            buildingArea: labels.buildingArea,
+            buildingFeatures: labels.buildingFeatures,
+            materials: labels.materials,
+            additional: labels.additional,
             colour: "",
         }
 
