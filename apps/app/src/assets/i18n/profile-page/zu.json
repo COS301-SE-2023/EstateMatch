@@ -1,12 +1,12 @@
 {
     "labels": {
       "logout": "Phuma",
-      "editProfile": "Hlela Imininingwane",
-      "preferences": "Izifiso",
-      "budget": "Ibhasi:",
+      "editProfile": "Hlela iphrofayela",
+      "preferences": "Izintandokazi",
+      "budget": "Isabelomali:",
       "area": "Indawo:",
-      "general": "Ezinzima:",
-      "amenities": "Izinto:",
+      "general": "Okujwayelekile:",
+      "amenities": "Okujwayelekile:",
       "editPreference": "Hlela izintandokazi"
     },
     "navbar": {

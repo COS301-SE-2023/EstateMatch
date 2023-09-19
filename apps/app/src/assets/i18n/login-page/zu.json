@@ -1,13 +1,13 @@
 {
     "header": {
-      "subtitle": "Bhuka"
+      "subtitle": "Ngena ngemvume"
     },
     "labels": {
-      "username": "Igama lokusebenzisa",
+      "username": "Igama lomsebenzisi",
       "password": "Iphasiwedi"
     },
     "placeholders": {
-      "username": "Faka Igama lokusebenzisa",
+      "username": "Faka Igama lomsebenzisi",
       "password": "Iphasiwedi"
     },
     "buttons": {

@@ -1,25 +1,25 @@
 {
-    "subtitle": "Izinto Ezifunekayo",
+    "subtitle": "Setha Izintandokazi",
     "labels": {
         "area": "Indawo:",
-        "budget": "Ibhandi:",
-        "bedrooms": "Izibedroom",
-        "bathrooms": "Izilwane",
-        "garages": "i-igereji",
-        "button.setPreferences": "Thumela Izifiso"
+        "budget": "Isabelomali:",
+        "bedrooms": "Igumbi lokulala",
+        "bathrooms": "Igumbi lokugezela",
+        "garages": "Igalaji",
+        "button.setPreferences": "Setha izintandokazi"
     },
     "placeholders": {
         "area": "Indawo",
-        "bedrooms": "Izibedroom",
-        "bathrooms": "Izilwane",
-        "garages": "i-igereji"
+        "bedrooms": "Igumbi lokulala",
+        "bathrooms": "Igumbi lokugezela",
+        "garages": "Igalaji"
     },
     "amenities": {
-        "pool": "I-Pool",
-        "study": "I-Study",
+        "pool": "Iphuli",
+        "study": "Funda",
         "aircon": "I-Aircon",
-        "furnished": "Ekhishiwe",
-        "pet": "Onothile",
+        "furnished": "Ifenisha",
+        "pet": "Izilwane ezifuywayo",
         "lounge": "I-Lounge"
     }
 }

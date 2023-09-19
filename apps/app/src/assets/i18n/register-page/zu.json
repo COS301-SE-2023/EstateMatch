@@ -3,18 +3,18 @@
       "subtitle": "Bhalisa"
     },
     "labels": {
-      "firstName": "Igama Lokuzalwa",
-      "lastName": "Igama Lokugcina",
+      "firstName": "Igama",
+      "lastName": "Isibongo",
       "username": "Igama Lomsebenzisi",
-      "email": "I-Email",
+      "email": "I-imeyili",
       "password": "Iphasiwedi",
       "confirmPassword": "Yaqinisekisa Iphasiwedi"
     },
     "placeholders": {
-      "firstName": "Faka Igama Lokuzalwa",
-      "lastName": "Faka Igama Lokugcina",
+      "firstName": "Faka Igama",
+      "lastName": "Faka Isibongo",
       "username": "Faka Igama Lomsebenzisi",
-      "email": "Faka I-Email",
+      "email": "Faka I-imeyili",
       "password": "Faka Iphasiwedi",
       "confirmPassword": "Yaqinisekisa Iphasiwedi"
     },

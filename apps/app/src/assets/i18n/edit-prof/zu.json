@@ -1,16 +1,16 @@
 {
     "labels": {
-      "firstName": "Igama elifushane",
-      "lastName": "Igama elihlobene",
-      "username": "Igama lokukhomba",
+      "firstName": "Igama",
+      "lastName": "Isibongo",
+      "username": "igama lomsebenzisi",
       "email": "I-imeyili",
       "button.save": "Gcina",
-      "button.backToProfile": "Buya em Profayili"
+      "button.backToProfile": "Buyela kuphrofayela"
     },
     "placeholders": {
-      "firstName": "Igama elifushane",
-      "lastName": "Igama elihlobene",
-      "username": "Igama lokukhomba",
+      "firstName": "Igama",
+      "lastName": "Isibongo",
+      "username": "Igama lomsebenzisi",
       "email": "I-imeyili"
     },
     "navbar": {
