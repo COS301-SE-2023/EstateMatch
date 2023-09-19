@@ -289,7 +289,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const classes = await classifyLLm.call({characteristics: characteristics}) as { response: string};
         // console.log(classes);
 
-        const classesArray = classes.response.split(/\d+\./).filter(item => item.trim() !== '');
+        const classesArray = classes.response.split(/\d+\)/).filter(item => item.trim() !== '');
         // console.log(classesArray);
 
         const extractedModel: IExtractedModel = {
@@ -327,35 +327,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         // console.log(extractedModel);
         //From the classes need to create some sort of interface
         
-        for(const c of extractedModel.flooring){ 
-            c.trim();
-        }
-
-        for(const c of extractedModel.buildingStyle){
-            c.trim();
-        }
-
-        for(const c of extractedModel.buildingType){
-            c.trim();
-        }
-
-        for(const c of extractedModel.buildingArea){
-            c.trim();
-        }
-
-        for(const c of extractedModel.buildingFeatures){
-            c.trim();
-            // console.log(":" + c + ":");
-        }
-
-        for(const c of extractedModel.materials){
-            c.trim();
-        }
-
-        for(const c of extractedModel.additional){
-            c.trim();
-        }
-
         const aiPref = await this.buildAIPrefRequest("test", extractedModel);
         console.log(aiPref);
 
