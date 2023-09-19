@@ -238,6 +238,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const model = new OpenAI({});
         const classifyTemplate = "You are an assistant that classify characteristics of a description of a house. The characteristics are: {characteristics}" + 
         "You will recieve the characteristics as an array of strings." + 
+        "Classify each element individually " +
         "You have to classify each element as one of the following: " +
         "Flooring," +
         "Building Style," + 
@@ -246,7 +247,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         "Building Features," +
         "Materials," +
         "Additional" + 
-        "Format the answer as a numbered list."
+        "Format the answer as a numbered list and keep each element as its own number."
         "Examples: " + 
         "Assistant: - Hardwood floors: Flooring" +
         "- Open floor plan: Building Features" + 
@@ -283,7 +284,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             additional: [],
         };
 
-        // console.log(classesArray);
+        console.log(classesArray);
 
         classesArray.forEach(element => {
             if(element !== '' && !element.includes('N/A')){
@@ -308,8 +309,37 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         // console.log(extractedModel);
         //From the classes need to create some sort of interface
         
+        for(const c of extractedModel.flooring){ 
+            c.trim();
+        }
+
+        for(const c of extractedModel.buildingStyle){
+            c.trim();
+        }
+
+        for(const c of extractedModel.buildingType){
+            c.trim();
+        }
+
+        for(const c of extractedModel.buildingArea){
+            c.trim();
+        }
+
+        for(const c of extractedModel.buildingFeatures){
+            c.trim();
+            // console.log(":" + c + ":");
+        }
+
+        for(const c of extractedModel.materials){
+            c.trim();
+        }
+
+        for(const c of extractedModel.additional){
+            c.trim();
+        }
+
         const aiPref = await this.buildAIPrefRequest("test", extractedModel);
-        // console.log(aiPref);
+        console.log(aiPref);
 
         //Query DB Here
         // const userCurrentPref = await this.preferencesRepo.findOne(username);
