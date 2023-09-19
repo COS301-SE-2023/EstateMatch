@@ -35,7 +35,7 @@ export class WebScraperController {
             //  //user specific fields
             //  userId: properties[i].userId,
             //  username: properties[i].username,
-            //  seen : properties[i].seen,
+              seen : properties[i].seen,
 
            // user : properties[i].user
         }
@@ -68,7 +68,7 @@ export class WebScraperController {
           //  //user specific fields
           //  userId: properties[i].userId,
           //  username: properties[i].username,
-          //  seen : properties[i].seen,
+            seen : properties[i].seen,
 
         //  user : properties[i].user
       }
@@ -102,7 +102,7 @@ export class WebScraperController {
           //  //user specific fields
           //  userId: properties[i].userId,
           //  username: properties[i].username,
-          //  seen : properties[i].seen,
+            seen : properties[i].seen,
 
          // user : properties[i].user
       }
@@ -139,7 +139,7 @@ export class WebScraperController {
             // //user specific fields
             // userId: properties[i].userId,
             // username: properties[i].username,
-            // seen : properties[i].seen,
+             seen : properties[i].seen,
 
            // user : properties[i].user
         }
