@@ -34,7 +34,7 @@ export class SearchPage implements AfterViewInit{
       // //added user specific fields
       // userId: '001',
       // username: 'TestUsername',
-      // seen: false
+       seen: false
       // user: ['TestUsername']
     }
     ];
@@ -68,6 +68,7 @@ export class SearchPage implements AfterViewInit{
       const currProperty = this.properties[this.currentDescriptionIndex];
       const likedProperty: ILikeProperty = {
         user: sessionStorage.getItem('username')!,
+        title: currProperty.title,
         address: currProperty.location,
         price: currProperty.price,
         bedrooms: currProperty.bedrooms,
@@ -101,6 +102,7 @@ export class SearchPage implements AfterViewInit{
       const currProperty = this.properties[this.currentDescriptionIndex];
       const dislikedProperty: ILikeProperty = {
         user: sessionStorage.getItem('username')!,
+        title: currProperty.title,
         address: currProperty.location,
         price: currProperty.price,
         bedrooms: currProperty.bedrooms,

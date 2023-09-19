@@ -91,4 +91,39 @@ export class PropertiesRepository {
         }
             return result;
     }
+
+    async removePropertyfromUser(title: string, username: string): Promise<UserModel | null> {
+        //making property to be removed seen field to true
+        const propSeen = await this.propertiesModel.findOneAndUpdate(
+            { title: title },
+            //making seen field to true
+            { $set: { seen: true } }
+          ).exec();
+
+        const propRemove = await this.propertiesModel.findOneAndUpdate(
+            { title: title },
+            //pulling from user array
+            { $pull: { user: username } }
+          ).exec();
+
+        console.log("propert to be removed: "+propRemove);
+
+        const UserRemove = await this.userModel.findOneAndUpdate(
+            { username: username },
+            //pulling from properties array
+            { $pull: { properties: title } }
+          ).exec();
+        
+        console.log(UserRemove);
+
+        if(!propRemove) {
+            throw new Error('Property not found');  
+        } 
+        else if(!UserRemove) {  
+            throw new Error('User not found');
+        }
+        else {
+            return UserRemove;
+        }
+    }
 }

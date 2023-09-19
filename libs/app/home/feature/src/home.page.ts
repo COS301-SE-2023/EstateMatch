@@ -59,7 +59,7 @@ export class HomePage implements AfterViewInit{
     // //added user specific fields
     // userId: '001',
     // username: 'TestUsername',
-    // seen: false
+     seen: false
     // user: ['TestUsername']
   }];
   lastImageIndex = 0;
@@ -127,8 +127,10 @@ export class HomePage implements AfterViewInit{
   async likeHouse() { 
     const url = 'api/like';
     const currProperty = this.properties[this.currentDescriptionIndex];
+   // currProperty.seen = true;
     const likedProperty: ILikeProperty = {
       user: sessionStorage.getItem('username')!,
+      title: currProperty.title,
       address: currProperty.location,
       price: currProperty.price,
       bedrooms: currProperty.bedrooms,
@@ -190,6 +192,7 @@ export class HomePage implements AfterViewInit{
     const currProperty = this.properties[this.currentDescriptionIndex];
     const dislikedProperty: ILikeProperty = {
       user: sessionStorage.getItem('username')!,
+      title : currProperty.title,
       address: currProperty.location,
       price: currProperty.price,
       bedrooms: currProperty.bedrooms,
