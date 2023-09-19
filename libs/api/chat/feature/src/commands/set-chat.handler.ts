@@ -326,13 +326,13 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
         // console.log(extractedModel);
         //From the classes need to create some sort of interface
-        extractedModel.buildingType = extractedModel.buildingType.map(element => element.trim().replace(':', ''));
-        extractedModel.materials = extractedModel.materials.map(element => element.trim().replace(':', ''));
-        extractedModel.flooring = extractedModel.flooring.map(element => element.trim().replace(':', ''));
-        extractedModel.buildingFeatures = extractedModel.buildingFeatures.map(element => element.trim().replace(':', ''));
-        extractedModel.buildingArea = extractedModel.buildingArea.map(element => element.trim().replace(':', ''));
-        extractedModel.additional = extractedModel.additional.map(element => element.trim().replace(':', ''));
-        extractedModel.buildingStyle = extractedModel.buildingStyle.map(element => element.trim().replace(':', ''));
+        extractedModel.buildingType = this.removeFluff(extractedModel.buildingType)
+        extractedModel.materials = this.removeFluff(extractedModel.materials);
+        extractedModel.flooring = this.removeFluff(extractedModel.flooring);
+        extractedModel.buildingFeatures = this.removeFluff(extractedModel.buildingFeatures);
+        extractedModel.buildingArea = this.removeFluff(extractedModel.buildingArea);
+        extractedModel.additional = this.removeFluff(extractedModel.additional);
+        extractedModel.buildingStyle = this.removeFluff(extractedModel.buildingStyle);
 
         const aiPref = await this.buildAIPrefRequest("test", extractedModel);
         console.log(aiPref);
@@ -385,5 +385,9 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const topFive = tuples.slice(0, 5);
 
         return topFive.map(tuple => tuple[0]);
+    }
+
+    removeFluff(characteristics: string[]): string[] {
+        return characteristics.map(element => element.trim().replace(':', ''));
     }
 }
