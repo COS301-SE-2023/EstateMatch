@@ -1,25 +1,25 @@
 {
-    "subtitle": "Mokgatlo",
+    "subtitle": "Likhetho",
     "labels": {
         "area": "Sebaka:",
-        "budget": "Boqapi:",
-        "bedrooms": "Kwikiri",
-        "bathrooms": "Amabelethi",
-        "garages": "Dintlha tsa phaki",
-        "button.setPreferences": "Thetsa Dipreferense"
+        "budget": "Tekanyetso:",
+        "bedrooms": "Likamore tsa ho robala",
+        "bathrooms": "Likamore tsa ho hlapa",
+        "garages": "Likarache",
+        "button.setPreferences": "Beha likhetho"
     },
     "placeholders": {
         "area": "Sebaka",
-        "bedrooms": "Kwikiri",
-        "bathrooms": "Amabelethi",
-        "garages": "Dintlha tsa phaki"
+        "bedrooms": "Likamore tsa ho robala",
+        "bathrooms": "Likamore tsa ho hlapa",
+        "garages": "Likarache"
     },
     "amenities": {
-        "pool": "Pula",
-        "study": "Iphutha",
-        "aircon": "I-Aircon",
-        "furnished": "E sebetsang",
-        "pet": "Ntja-Sebete",
-        "lounge": "I-Lounge"
+        "pool": "Letamo",
+        "study": "Ithute",
+        "aircon": "Aircon",
+        "furnished": "Faneng ka thepa",
+        "pet": "Botsoalle ba liphoofolo",
+        "lounge": "Sebaka sa phomolo"
     }
 }

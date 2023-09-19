@@ -1,25 +1,25 @@
 {
   "labels": {
-    "searchFilters": "Tlhaloso ea Ho Fumana",
-    "budget": "Boemo:",
-    "bedrooms": "Marang-rang a Likhumbi",
-    "bathrooms": "Mabitso",
-    "garages": "Magareji",
-    "amenities": "Likhamphani",
-    "pool": "Lefuba",
-    "study": "Lefoko",
+    "searchFilters": "Batla Lisefe",
+    "budget": "Tekanyetso:",
+    "bedrooms": "Likamore tsa ho robala",
+    "bathrooms": "Likamore tsa ho hlapa",
+    "garages": "Likarache",
+    "amenities": "Likarache",
+    "pool": "Letamo",
+    "study": "Ithute",
     "aircon": "Aircon",
-    "furnished": "Ho Fumana Matla",
-    "petFriendly": "Ho Fumana Lipale",
-    "lounge": "Lefuba la Leswi",
+    "furnished": "Faneng ka thepa",
+    "petFriendly": "Botsoalle ba liphoofolo",
+    "lounge": "Sebaka sa phomolo",
     "save": "Boloka",
-    "cancel": "Kansella"
+    "cancel": "Hlakola"
   },
   "navbar": {
-    "home": "Motse",
-    "chat": "Hlelo",
-    "search": "Fetola",
-    "liked": "O rata",
-    "profile": "Profilo"
+    "home": "Lehae",
+    "chat": "Qoqa",
+    "search": "Batla",
+    "liked": "E ratile",
+    "profile": "Boemo"
 }
 }

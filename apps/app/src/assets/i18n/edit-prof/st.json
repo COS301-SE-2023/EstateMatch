@@ -1,17 +1,17 @@
 {
     "labels": {
       "firstName": "Lebitso la pele",
-      "lastName": "Lebitso la bohloko",
-      "username": "Lebitso la lebone",
-      "email": "I-imeyili",
+      "lastName": "Fane",
+      "username": "Lebitso la mosebedisi",
+      "email": "Imeile",
       "button.save": "Boloka",
-      "button.backToProfile": "Robala ka Profailyi"
+      "button.backToProfile": "Khutlela ho boemo"
     },
     "placeholders": {
       "firstName": "Lebitso la pele",
-      "lastName": "Lebitso la bohloko",
-      "username": "Lebitso la lebone",
-      "email": "I-imeyili"
+      "lastName": "Fane",
+      "username": "Lebitso la mosebedisi",
+      "email": "Imeile"
     }, 
     "navbar": {
       "home": "Lehae",

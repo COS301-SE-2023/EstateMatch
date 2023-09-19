@@ -1,28 +1,28 @@
 {
     "header": {
-      "subtitle": "Bala"
+      "subtitle": "Ngodisa"
     },
     "labels": {
       "firstName": "Lebitso La Pele",
-      "lastName": "Lebitso La Kotulo",
-      "username": "Lebitso La Sebelisoa",
-      "email": "I-Email",
-      "password": "Mokhaea",
-      "confirmPassword": "Hlahisa Mokhaea"
+      "lastName": "Fane",
+      "username": "Lebitso la mosebedisi",
+      "email": "Imeile",
+      "password": "Phasewete",
+      "confirmPassword": "Netefatsa phasewete"
     },
     "placeholders": {
       "firstName": "Kenya Lebitso La Pele",
-      "lastName": "Kenya Lebitso La Kotulo",
-      "username": "Kenya Lebitso La Sebelisoa",
-      "email": "Kenya I-Email",
-      "password": "Kenya Mokhaea",
-      "confirmPassword": "Hlahisa Mokhaea"
+      "lastName": "Kenya fane",
+      "username": "Kenya lebitso la mosebedisia",
+      "email": "Kenya Imeile",
+      "password": "Kenya phasewete",
+      "confirmPassword": "Netefatsa phasewete"
     },
     "buttons": {
-      "createAccount": "Bala Akhaunti"
+      "createAccount": "Theha ak'haonte"
     },
     "messages": {
-      "login": "Na o na le akhaunti? Bala"
+      "login": "Na u se u na le ak'haonte? Kena"
     }
   }
   

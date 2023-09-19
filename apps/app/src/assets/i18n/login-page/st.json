@@ -1,19 +1,19 @@
 {
     "header": {
-      "subtitle": "Bontsha"
+      "subtitle": "Kena"
     },
     "labels": {
-      "username": "Lebitso la lebone",
+      "username": "Lebitso la mosebedisi",
       "password": "Phasewete"
     },
     "placeholders": {
-      "username": "Kenya Lebitso la lebone",
+      "username": "Kenya lebitso la mosebelisi",
       "password": "Phasewete"
     },
     "buttons": {
-      "login": "Bontsha"
+      "login": "Kena"
     },
     "messages": {
-      "signup": "Ha o na akhaonto? Romela"
+      "signup": "Ha u na ak'haonte? Ngolisa."
     }
 }

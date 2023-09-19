@@ -1,13 +1,13 @@
 {
     "labels": {
-      "logout": "Hlokomela",
-      "editProfile": "Hlokomela Profaili",
-      "preferences": "Ditokomane",
-      "budget": "Sebelisoa:",
-      "area": "Naga:",
+      "logout": "Ho tsoa",
+      "editProfile": "Fetola boemo",
+      "preferences": "Likhetho",
+      "budget": "Tekanyetso:",
+      "area": "Sebaka:",
       "general": "Lehae:",
-      "amenities": "Ditsebeletso:",
-      "editPreference": "Fetola likhetho"
+      "amenities": "Kakaretso:",
+      "editPreference": "Fetola Likhetho"
     },
     "navbar": {
       "home": "Lehae",
