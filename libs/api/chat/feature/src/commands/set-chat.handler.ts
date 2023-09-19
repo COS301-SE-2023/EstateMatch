@@ -305,22 +305,22 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             }
         });
 
-        console.log(extractedModel);
+        // console.log(extractedModel);
         //From the classes need to create some sort of interface
         
         const aiPref = await this.buildAIPrefRequest("test", extractedModel);
         console.log(aiPref);
 
         //Query DB Here
-        const userCurrentPref = await this.preferencesRepo.findOne(username);
+        // const userCurrentPref = await this.preferencesRepo.findOne(username);
 
-        if(userCurrentPref){
-            console.log("User already has preferences");
-            this.aiPreferenceRepo.update(username, aiPref);
-        }else{
-            console.log("User does not have preferences");
-            this.aiPreferenceRepo.create(aiPref);
-        }
+        // if(userCurrentPref){
+        //     console.log("User already has preferences");
+        //     this.aiPreferenceRepo.update(username, aiPref);
+        // }else{
+        //     console.log("User does not have preferences");
+        //     this.aiPreferenceRepo.create(aiPref);
+        // }
 
         return "Under construction";
     }
@@ -337,6 +337,47 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             additional: labels.additional,
             colour: "",
         }
+
+        const test = [
+            "Hardwood floors",
+            "Open floor plan",
+            "High ceilings",
+            "Large windows",
+            "Modern interior",
+            "Hardwood floors",
+            "Open floor plan",
+            "High ceilings",
+            "Large windows",
+            "Hardwood floors",
+            "Open floor plan",
+            "High ceilings",
+            "Hardwood floors",
+            "Open floor plan",
+            "Hardwood floors",
+            "Modern interior",
+            "Some other characteristic",
+            "Some other characteristic2",
+        ]
+
+        await this.getTopFiveCharacteristics(test);
         return aiPref;
+    }
+
+    async getTopFiveCharacteristics(characteristics: string[]): Promise<string> {
+        const model = new OpenAI({});
+        const myTemplate = "You are an assitant that extract the top five characteristics from an array of characteristics of a house. The characteristics are: {characteristics}";
+
+        const prompt = PromptTemplate.fromTemplate(myTemplate);
+
+        const llm = new LLMChain({
+            llm: model,
+            prompt: prompt,
+        });
+
+        const res = await llm.call({characteristics: characteristics}) as { text: string};
+
+        console.log(res.text);
+
+        return "Under construction";
     }
 }
