@@ -5,15 +5,15 @@
     "bedrooms": "Amagumbi okulala",
     "bathrooms": "Amagumbi okuhlambela",
     "garages": "Igaraji",
-    "amenities": "Uncedo",
-    "pool": "Iphuli",
-    "study": "Egumbini lokufunda",
+    "amenities": "Izibonelelo",
+    "pool": "Ichibi",
+    "study": "Funda",
     "aircon": "I-Aircon",
-    "furnished": "Inefenitshala",
+    "furnished": "Ifakwe",
     "petFriendly": "izilwanyana-friendly",
-    "lounge": "I-Lounge",
+    "lounge": "Indawo yokuphumla",
     "save": "Gcina",
-    "cancel": "Khansela"
+    "cancel": "Rhoxisa"
   },
   "navbar": {
     "home": "Ekhaya",

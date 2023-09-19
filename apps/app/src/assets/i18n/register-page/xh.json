@@ -3,26 +3,26 @@
       "subtitle": "Bhalisa"
     },
     "labels": {
-      "firstName": "Igama Leliphezulu",
-      "lastName": "Igama Leliwisa",
-      "username": "Igama Lokusebenzisa",
-      "email": "I-Email",
-      "password": "Iphassword",
-      "confirmPassword": "Yaqiniseka Iphassword"
+      "firstName": "Igama lakho",
+      "lastName": "Ifani",
+      "username": "Igama lomsebenzisi",
+      "email": "Imeyile",
+      "password": "Inombolo yokuvula",
+      "confirmPassword": "Ngqina iphasiwedi"
     },
     "placeholders": {
-      "firstName": "Faka Igama Leliphezulu",
-      "lastName": "Faka Igama Leliwisa",
-      "username": "Faka Igama Lokusebenzisa",
-      "email": "Faka I-Email",
-      "password": "Faka Iphassword",
-      "confirmPassword": "Yaqiniseka Iphassword"
+      "firstName": "Faka Igama lokuqala",
+      "lastName": "Faka ifani",
+      "username": "Faka Igama lomsebenzisi",
+      "email": "Faka imeyile",
+      "password": "Faka iphasiwedi",
+      "confirmPassword": "Ngqina iphasiwedi"
     },
     "buttons": {
-      "createAccount": "Yenza I-Akhawunti"
+      "createAccount": "Dala i-akhawunti"
     },
     "messages": {
-      "login": "Unesiqiniseko sifuna ukuba ne-akhawunti? Bala"
+      "login": "Ngaba sele unayo i-akhawunti? Ngema"
     }
   }
   
