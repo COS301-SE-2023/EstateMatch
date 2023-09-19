@@ -162,8 +162,6 @@ export class PrivatePropertySaleService {
 
       const type = 'Sale';
 
-      console.log(price);
-
     
       // Close the property page
       await propertyPage.close();
