@@ -31,10 +31,14 @@
     
   </div>
   <div>
-    <select #languageSelect>
+    <select name="languageSelect" #languageSelect>
         <option value="en">English</option>
         <option value="af">Afrikaans</option>
+        <option value="zu">Zulu</option>
+        <option value="st">Sotho</option>
+        <option value="tn">Tswana</option>
+        <option value="xh">Xhosa</option>
     </select>
-    <button (click)="switchLanguage(languageSelect.value)">Apply</button>
+    <button name="Apply" (click)="switchLanguage(languageSelect.value)">Apply</button>
 </div>
 </ion-card>

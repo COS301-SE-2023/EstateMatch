@@ -137,4 +137,28 @@ ion-row{
         color: #999999;
     }
 }
-
+button[name="Apply"] {
+    //background-color: transparent;
+    border-color: white;
+   // color: white;
+    border-radius: 5%;
+    height: 30px;
+    width: 30%;
+    font-size: large;
+    border-width: 4px;
+    position: absolute;
+    left: 55%;
+    top: 90%; /* Adjust the top position as needed */
+  }
+  
+  /* Add these styles for the <select> element */
+  select[name="languageSelect"] {
+    border-radius: 5%;
+    height: 30px;
+    width: 30%;
+    font-size: large;
+    border-width: 4px;
+    position: absolute;
+    left: 18%;
+    top: 90%; /* Adjust the top position as needed */
+  }
