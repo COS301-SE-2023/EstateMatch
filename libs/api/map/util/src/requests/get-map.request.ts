@@ -1,3 +1,5 @@
 export interface IGetMapRequest{
-        results: [];
+        longitude: number;
+        latitude: number;
+        type: string;
 }

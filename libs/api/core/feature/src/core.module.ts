@@ -10,6 +10,7 @@ import { WebScraperModule } from '@estate-match/api/webscraper/feature';
 import { TensorflowModule } from '@estate-match/api/ai/feature';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { MapModule } from '@estate-match/api/map/feature';
 
 const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
 
@@ -23,6 +24,7 @@ const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
     SearchModule,
     WebScraperModule,
     TensorflowModule,
+    MapModule
   ],
   controllers: [CoreController],
 })
