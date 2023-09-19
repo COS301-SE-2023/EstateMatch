@@ -309,7 +309,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         //From the classes need to create some sort of interface
         
         const aiPref = await this.buildAIPrefRequest("test", extractedModel);
-        console.log(aiPref);
+        // console.log(aiPref);
 
         //Query DB Here
         // const userCurrentPref = await this.preferencesRepo.findOne(username);
@@ -344,19 +344,38 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             "High ceilings",
             "Large windows",
             "Modern interior",
-            "Hardwood floors",
             "Open floor plan",
             "High ceilings",
             "Large windows",
-            "Hardwood floors",
             "Open floor plan",
             "High ceilings",
-            "Hardwood floors",
+            "High ceilings",
+            "High ceilings",
+            "High ceilings",
+            "High ceilings",
             "Open floor plan",
-            "Hardwood floors",
             "Modern interior",
-            "Some other characteristic",
-            "Some other characteristic2",
+            "Water Feature",
+            "Water Feature",
+            "Water Feature",
+            "Water Feature",
+            "Water Feature",
+            "Water Feature",
+            "Water Feature",
+            "Water Feature",
+            "Water Feature",
+            "Water Feature",
+            "Water Feature",
+            "Plywood walls",
+            "Plywood walls",
+            "Plywood walls",
+            "Plywood walls",
+            "Plywood walls",
+            "Plywood walls",
+            "Plywood walls",
+            "Plywood walls",
+            "Plywood walls",
+
         ]
 
         await this.getTopFiveCharacteristics(test);
@@ -365,7 +384,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
     async getTopFiveCharacteristics(characteristics: string[]): Promise<string> {
         const model = new OpenAI({});
-        const myTemplate = "You are an assitant that extract the top five characteristics from an array of characteristics of a house. The characteristics are: {characteristics}";
+        const myTemplate = "You are an assitant that extract the top five characteristics that occur the most in an array of characteristics of a house. The characteristics are: {characteristics}" + 
+        "Provide your awnser as a numbered list.";
 
         const prompt = PromptTemplate.fromTemplate(myTemplate);
 
