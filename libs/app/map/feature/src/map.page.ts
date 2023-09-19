@@ -5,7 +5,8 @@ import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
 import fetch from 'node-fetch';
 import { ActivatedRoute, Router } from '@angular/router';
 // import { google } from 'google-maps';
-import axios, { AxiosResponse } from 'axios';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { url } from 'inspector';
 
 @Component({
   selector: 'ms-map-page',
@@ -30,7 +31,7 @@ import axios, { AxiosResponse } from 'axios';
       
 
       constructor(private route: ActivatedRoute,
-        private readonly router: Router,) {
+        private readonly router: Router,private http: HttpClient) {
         this.locationLat=0;
         this.locationLong=0;
         this.userLat=0;
@@ -91,28 +92,24 @@ import axios, { AxiosResponse } from 'axios';
 
       L.control.scale().addTo(this.map);
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      const url = 'api/getMap'
 
-      // const requestOptions={
-      //   method: 'GET',
-      //   mode: 'no-cors'
-      // }
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
 
-      // const schools=await fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+coordinates.coords.latitude+'%2C'+coordinates.coords.longitude+'&radius=1500&type=school&key=AIzaSyBz3ZemLu5F4s9mFHB7Va6t7TrQcX6CrYA',
-      // requestOptions
-      // );
+      const body = {
+        longitude: coordinates.coords.longitude,
+        latitude: coordinates.coords.latitude,
+        type: 'school',
+    }
 
-      // console.log(schools);
+    const schoolResponse = await this.http.post(url, body, { headers }).toPromise();
 
-      // const apiKey = process.env["GOOGLE_PLACES_API_KEY"] ;
+    console.log(schoolResponse);
 
-      const testMap = await axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.7127281%2C-74.0060152&radius=1500&type=school&key=AIzaSyBz3ZemLu5F4s9mFHB7Va6t7TrQcX6CrYA');
+    this.setMallMarker(coordinates.coords.latitude,coordinates.coords.longitude);
 
-      console.log(testMap);
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      // const service = new google.maps.places.PlacesService(this.map);
 
       this.map.once('click', (e) => {
         
@@ -140,7 +137,7 @@ import axios, { AxiosResponse } from 'axios';
   setSchoolMarker(lat: any, long: any){
     const customIcon = L.icon({
       iconUrl: 'assets/school.png', 
-      iconSize: [15,25]
+      iconSize: [35,35]
     });
 
 
@@ -148,14 +145,14 @@ import axios, { AxiosResponse } from 'axios';
       {
         icon: customIcon
       }).addTo(this.map);
-    mark.bindPopup("<b>School: "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
+    mark.bindPopup("<b>School: </b><br />").openPopup();
   }
 
 
   setMarketMarker(lat: any, long: any){
     const customIcon = L.icon({
       iconUrl: 'assets/supermarket.png', 
-      iconSize: [15,25]
+      iconSize: [35,35]
     });
 
 
@@ -163,14 +160,14 @@ import axios, { AxiosResponse } from 'axios';
       {
         icon: customIcon
       }).addTo(this.map);
-    mark.bindPopup("<b>Supermarket: "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
+    mark.bindPopup("<b>Supermarket: </b><br />").openPopup();
   }
 
 
   setGasstationMarker(lat: any, long: any){
     const customIcon = L.icon({
       iconUrl: 'assets/gas.png', 
-      iconSize: [15,25]
+      iconSize: [35,35]
     });
 
 
@@ -178,14 +175,14 @@ import axios, { AxiosResponse } from 'axios';
       {
         icon: customIcon
       }).addTo(this.map);
-    mark.bindPopup("<b>Gas station: "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
+    mark.bindPopup("<b>Gas station: </b><br />").openPopup();
   }
 
 
   setMallMarker(lat: any, long: any){
     const customIcon = L.icon({
-      iconUrl: 'assets/gas.png', 
-      iconSize: [15,25]
+      iconUrl: 'assets/mall.png', 
+      iconSize: [35,35]
     });
 
 
@@ -193,7 +190,7 @@ import axios, { AxiosResponse } from 'axios';
       {
         icon: customIcon
       }).addTo(this.map);
-    mark.bindPopup("<b>Mall: "+this.foundAddress.properties.formatted+"</b><br />").openPopup();
+    mark.bindPopup("<b>Mall: </b><br />").openPopup();
   }
 
 
