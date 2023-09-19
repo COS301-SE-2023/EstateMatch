@@ -247,7 +247,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         "Building Features," +
         "Materials," +
         "Additional" + 
-        "Provide the response as a numbered list."
+        "Provide the response using the following format: d) Class: Charateristic" +
         "Examples: " + 
         // "Example 1:"
         "Input: [Hardwood floors, Open floor plan, High ceilings, Large windows]" +
@@ -307,19 +307,19 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         classesArray.forEach(element => {
             if(element !== '' && !element.includes('N/A')){
                 if(element.includes("Flooring")){
-                    extractedModel.flooring.push(element.replace("Flooring: ", "").replace("\n", ""));
+                    extractedModel.flooring.push(element.replace("Flooring", "").replace("\n", ""));
                 }else if(element.includes("Building Style")){
-                    extractedModel.buildingStyle.push(element.replace("Building Style: ", "").replace("\n", ""));
+                    extractedModel.buildingStyle.push(element.replace("Building Style", "").replace("\n", ""));
                 }else if(element.includes("Building Type")){
-                    extractedModel.buildingType.push(element.replace("Building Type: ", "").replace("\n", ""));
+                    extractedModel.buildingType.push(element.replace("Building Type", "").replace("\n", ""));
                 }else if(element.includes("Building Area")){
-                    extractedModel.buildingArea.push(element.replace("Building Area: ", "").replace("\n", ""));
+                    extractedModel.buildingArea.push(element.replace("Building Area", "").replace("\n", ""));
                 }else if(element.includes("Building Features")){
-                    extractedModel.buildingFeatures.push(element.replace("Building Features: ", "").replace("\n", ""));
+                    extractedModel.buildingFeatures.push(element.replace("Building Features", "").replace("\n", ""));
                 }else if(element.includes("Materials")){
-                    extractedModel.materials.push(element.replace("Materials: ", "").replace("\n", ""));
+                    extractedModel.materials.push(element.replace("Materials", "").replace("\n", ""));
                 }else if(element.includes("Additional")){
-                    extractedModel.additional.push(element.replace("Additional: ", "").replace("\n", ""));
+                    extractedModel.additional.push(element.replace("Additional", "").replace("\n", ""));
                 }
             }
         });
@@ -357,7 +357,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         }
 
         const aiPref = await this.buildAIPrefRequest("test", extractedModel);
-        // console.log(aiPref);
+        console.log(aiPref);
 
         //Query DB Here
         // const userCurrentPref = await this.preferencesRepo.findOne(username);
