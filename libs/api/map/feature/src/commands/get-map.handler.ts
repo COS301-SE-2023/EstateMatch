@@ -12,7 +12,7 @@ export class GetMapHandler implements ICommandHandler<GetMapCommand> {
         const longitude = command.request.longitude;
 
         const apiKey = process.env["GOOGLE_PLACES_API_KEY"] ;
-        console.log(apiKey);
+        
         const testMap = await axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.7127281%2C-74.0060152&radius=1500&type=school&key=' + apiKey);
         return testMap.data.results;
     }
