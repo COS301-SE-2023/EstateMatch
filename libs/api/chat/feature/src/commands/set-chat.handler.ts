@@ -28,7 +28,7 @@ import { AIPreferencesRepository, PreferencesRepository } from "@estate-match/ap
 
 import * as dotenv from 'dotenv';
 import { IAIPreference } from "@estate-match/api/prefrences/util";
-import { cos } from "@tensorflow/tfjs-core";
+
 dotenv.config();
 
 interface IExtractedModel {
@@ -195,8 +195,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             // verbose: true,
         });
 
-        // const res = await agentExecutor.call({input: command.request.chat.message});
-        // console.log(chatMemory.chatHistory.getMessages());
+        // const res = await agentExecutor.call({input: command.request.chat.message}); THIS ONE
+        // console.log(chatMemory.chatHistory.getMessages())
 
         const response: ISetChatResponse = {
             chat: {
@@ -206,7 +206,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             }
         };
 
-        const test = await this.buildPreferenceModel(command.request.chat.username, command.request.chat.message);
+        // const test = await this.buildPreferenceModel(command.request.chat.username, command.request.chat.message); THIS ONE
+        // const translated = await this.translate(command.request.chat.message, "zulu");
         return response; 
     }
 
@@ -385,6 +386,23 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const topFive = tuples.slice(0, 5);
 
         return topFive.map(tuple => tuple[0]);
+    }
+
+    async translate(text: string, outputLang: string) : Promise<string> {
+        const model = new OpenAI({});
+        const myTemplate = "You are an assistant that translates {text} from english to {outputLang}.";
+
+        const prompt = PromptTemplate.fromTemplate(myTemplate);
+        const llm = new LLMChain({
+            llm: model,
+            prompt: prompt,
+        });
+
+
+        const res = await llm.call({text: text, outputLang: outputLang}) as { text: string};
+        console.log(res.text);
+
+        return "Under construction";
     }
 
     removeFluff(characteristics: string[]): string[] {
