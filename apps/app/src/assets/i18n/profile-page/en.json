@@ -6,7 +6,8 @@
     "budget": "Budget:",
     "area": "Area:",
     "general": "General:",
-    "amenities": "Amenities:"
+    "amenities": "Amenities:",
+    "editPreference": "Edit Preferences"
   },
   "navbar": {
     "home": "Home",

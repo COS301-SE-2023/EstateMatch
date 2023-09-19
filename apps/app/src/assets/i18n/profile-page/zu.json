@@ -6,7 +6,8 @@
       "budget": "Ibhasi:",
       "area": "Indawo:",
       "general": "Ezinzima:",
-      "amenities": "Izinto:"
+      "amenities": "Izinto:",
+      "editPreference": "Hlela izintandokazi"
     },
     "navbar": {
       "home": "Ikhaya",

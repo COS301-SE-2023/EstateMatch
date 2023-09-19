@@ -6,7 +6,8 @@
       "budget": "Imali:",
       "area": "Indawo:",
       "general": "Ezintsantshana:",
-      "amenities": "Izinto Ezinconywa:"
+      "amenities": "Izinto Ezinconywa:",
+      "editPreference": "Hlela izinto ozikhethayo"
     },
     "navbar": {
       "home": "Ekhaya",
