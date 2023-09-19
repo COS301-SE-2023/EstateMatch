@@ -99,7 +99,7 @@ export class PropertiesRepository {
             { $pull: { user: username } }
           ).exec();
 
-        console.log(propRemove);
+        console.log("propert to be removed: "+propRemove);
 
         const UserRemove = await this.userModel.findOneAndUpdate(
             { username: username },
