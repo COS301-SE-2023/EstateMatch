@@ -518,16 +518,45 @@ export class ImageToTextService {
      * if no, create, create(labels)
      */
 
+    const labels = Array.from(uniqueLabelDescriptions);
+
+    let floorTypes = [];
+    let buildingStyles = [];
+    let buildingTypes = [];
+    let buildingAreas = [];
+    let buildingFeatures = [];
+    let materials = [];
+
+    for (const label of labels) {
+      if (label.includes("flooring")) {
+        floorTypes.push(label);
+      }
+      if (label.includes("design")) {
+        buildingStyles.push(label);
+      }
+      if (label === 'Commercial building' || label === 'Penthouse apartment' ) {
+        buildingTypes.push(label);
+      }
+      if (label === 'Neighborhood' || label.includes('Residential') || label === 'Suburb')  {
+        buildingAreas.push(label);
+      }
+      if (label === 'Garden' || label ===  'Courtyard' || label === 'Swimming pool' || label === 'Porch' || label === 'Dining room') {
+        buildingFeatures.push(label);
+      }
+      if (label ===  'Hardwood' || label === 'Plywood' || label === 'Tile' || label === 'Natural material'||  label === 'Cobblestone' ) {
+        materials.push(label);
+      }
+    }
+
     const aiPrefRequest: IAIPreference = {
       user: username,
-      flooring: 'Laminate flooring',
-      buildingStyle: 'Urban design',
-      buildingType: 'Apartment',
-      buildingArea: 'Residential',
-      buildingFeatures: 'Garden',
-      materials: 'Tile',
+      flooring: floorTypes,
+      buildingStyle: buildingStyles,
+      buildingType: buildingTypes,
+      buildingArea: buildingAreas,
+      buildingFeatures: buildingFeatures,
+      materials: materials,
     };
-
 
     const user = await this.aiPreferenceRepo.findOne(username);
     if (user) {

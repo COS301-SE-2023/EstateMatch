@@ -16,17 +16,17 @@ export class AIPreferencesRepository {
     async create(aiPrefrences : IAIPreference) : Promise<AIPrefrencesModel> {
         const newRecord: AIPrefrencesModel = {
             user: aiPrefrences.user,
-            floorDataPoints: [aiPrefrences.flooring],
+            floorDataPoints: aiPrefrences.flooring,
             flooring: aiPrefrences.flooring,
-            buildingStyleDataPoints: [aiPrefrences.buildingStyle],
+            buildingStyleDataPoints: aiPrefrences.buildingStyle,
             buildingStyle: aiPrefrences.buildingStyle,
-            buildingTypeDataPoints: [aiPrefrences.buildingType],
+            buildingTypeDataPoints: aiPrefrences.buildingType,
             buildingType: aiPrefrences.buildingType,
-            buildingAreaDataPoints: [aiPrefrences.buildingArea],
+            buildingAreaDataPoints: aiPrefrences.buildingArea,
             buildingArea: aiPrefrences.buildingArea,
-            buildingFeaturesDataPoints: [aiPrefrences.buildingFeatures],
+            buildingFeaturesDataPoints: aiPrefrences.buildingFeatures,
             buildingFeatures: aiPrefrences.buildingFeatures,
-            materialDataPoints: [aiPrefrences.materials],
+            materialDataPoints: aiPrefrences.materials,
             materials: aiPrefrences.materials,
 
         }
@@ -41,7 +41,7 @@ export class AIPreferencesRepository {
         if(!userAIPreferences) {
             return null;
         }else{
-            userAIPreferences.floorDataPoints.push(prefrences.flooring);
+            userAIPreferences.floorDataPoints = prefrences.flooring;
             const floorDataPoints = userAIPreferences.floorDataPoints;
             let laminateFlooring = 0;
             let tileFlooring = 0;
@@ -55,22 +55,23 @@ export class AIPreferencesRepository {
                     woodFlooring++;
                 }
             }
-            let max;
+            let max = [];
+
             if(laminateFlooring !== tileFlooring && Math.max(laminateFlooring, tileFlooring) === laminateFlooring && laminateFlooring !== woodFlooring && Math.max(laminateFlooring, woodFlooring) === laminateFlooring) {
-                max = 'Laminate flooring';
+                max.push('Laminate flooring');
             }
             else if(tileFlooring !== laminateFlooring && Math.max(tileFlooring, laminateFlooring) === tileFlooring && tileFlooring !== woodFlooring && Math.max(tileFlooring, woodFlooring) === tileFlooring) {
-                max = 'Tile flooring';
+                max.push('Tile flooring');
             }
             else if(woodFlooring !== laminateFlooring && Math.max(woodFlooring, laminateFlooring) === woodFlooring && woodFlooring !== tileFlooring && Math.max(woodFlooring,tileFlooring) === woodFlooring) {
-                max = 'Laminate flooring';
+                max.push('Laminate flooring');
             }
             else{
                 max = userAIPreferences.flooring;
             }
             userAIPreferences.flooring = max;
 
-            userAIPreferences.buildingStyleDataPoints.push(prefrences.buildingStyle);
+            userAIPreferences.buildingStyleDataPoints = prefrences.buildingStyle;
             const buildingStyleDataPoints = userAIPreferences.buildingStyleDataPoints;
 
             let urbanDesign = 0;
@@ -80,16 +81,17 @@ export class AIPreferencesRepository {
                     urbanDesign++;
                 }
             }
-            let maxBuildingStyle;
+
+            let maxBuildingStyle = [];
             if(urbanDesign !== 0) {
-                maxBuildingStyle = 'Urban design';
+                maxBuildingStyle.push('Urban design');
             }
             else{
                 maxBuildingStyle = userAIPreferences.buildingStyle;
             }
             userAIPreferences.buildingStyle = maxBuildingStyle;
 
-            userAIPreferences.buildingTypeDataPoints.push(prefrences.buildingType);
+            userAIPreferences.buildingTypeDataPoints = prefrences.buildingType;
             const buildingTypeDataPoints = userAIPreferences.buildingTypeDataPoints;
             let apartment = 0;
             let commercialBuilding = 0;
@@ -106,15 +108,15 @@ export class AIPreferencesRepository {
                     pentHouse++;
                 }
             }
-            let maxBuildingType;
+            let maxBuildingType = [];
             if(apartment !== commercialBuilding && Math.max(apartment, commercialBuilding) === apartment && apartment !== pentHouse && Math.max(apartment, pentHouse) === apartment) {
-                maxBuildingType = 'Apartment';
+                maxBuildingType.push('Apartment');
             }
             else if(commercialBuilding !== apartment && Math.max(commercialBuilding, apartment) === commercialBuilding && commercialBuilding !== pentHouse && Math.max(commercialBuilding, pentHouse) === commercialBuilding) {
-                maxBuildingType = 'Commercial building';
+                maxBuildingType.push('Commercial building');
             }
             else if(pentHouse !== apartment && Math.max(pentHouse, apartment) === pentHouse && pentHouse !== commercialBuilding && Math.max(pentHouse, commercialBuilding) === pentHouse) {
-                maxBuildingType = 'Penthouse apartment';
+                maxBuildingType.push('Penthouse apartment');
             }
             else{
                 maxBuildingType = userAIPreferences.buildingType;
@@ -122,7 +124,7 @@ export class AIPreferencesRepository {
 
             userAIPreferences.buildingType = maxBuildingType;
 
-            userAIPreferences.buildingAreaDataPoints.push(prefrences.buildingArea);
+            userAIPreferences.buildingAreaDataPoints = prefrences.buildingArea;
             const buildingAreaDataPoints = userAIPreferences.buildingAreaDataPoints;
             let neighborhood = 0;
             let residential = 0;
@@ -137,22 +139,22 @@ export class AIPreferencesRepository {
                     suburb++;
                 }
             }
-            let maxBuildingArea;
+            let maxBuildingArea = [];
             if(neighborhood !== residential && Math.max(neighborhood, residential) === neighborhood && neighborhood !== suburb && Math.max(neighborhood, suburb) === neighborhood) {
-                maxBuildingArea = 'Neighborhood';
+                maxBuildingArea.push('Neighborhood');
             }
             else if(residential !== neighborhood && Math.max(residential, neighborhood) === residential && residential !== suburb && Math.max(residential, suburb) === residential) {
-                maxBuildingArea = 'Residential';
+                maxBuildingArea.push('Residential');
             }
             else if(suburb !== neighborhood && Math.max(suburb, neighborhood) === suburb && suburb !== residential && Math.max(suburb,residential) === suburb) {
-                maxBuildingArea = 'Suburb';
+                maxBuildingArea.push('Suburb');
             }
             else{
                 maxBuildingArea = userAIPreferences.buildingArea;
             }
             userAIPreferences.buildingArea = maxBuildingArea;
 
-            userAIPreferences.buildingFeaturesDataPoints.push(prefrences.buildingFeatures);
+            userAIPreferences.buildingFeaturesDataPoints = prefrences.buildingFeatures;
             const buildingFeaturesDataPoints = userAIPreferences.buildingFeaturesDataPoints;
             let garden = 0;
             let courtyard = 0;
@@ -173,25 +175,28 @@ export class AIPreferencesRepository {
                     diningRoom++;
                 }
             }
-            let maxBuildingFeatures;
+            let maxBuildingFeatures = [];
             if(garden !== courtyard && Math.max(garden, courtyard) === garden && garden !== swimmingPool && Math.max(garden, swimmingPool) === garden && garden !== porch && Math.max(garden, porch) === garden && garden !== diningRoom && Math.max(garden, diningRoom) === garden) {
-                maxBuildingFeatures = 'Garden';
+                maxBuildingFeatures.push('Garden');
             }
             else if(courtyard !== garden && Math.max(courtyard, garden) === courtyard && courtyard !== swimmingPool && Math.max(courtyard, swimmingPool) === courtyard && courtyard !== porch && Math.max(courtyard, porch) === courtyard && courtyard !== diningRoom && Math.max(courtyard, diningRoom) === courtyard) {
-                maxBuildingFeatures = 'Courtyard';
+                maxBuildingFeatures.push('Courtyard');
             }
             else if(swimmingPool !== garden && Math.max(swimmingPool, garden) === swimmingPool && swimmingPool !== courtyard && Math.max(swimmingPool,courtyard) === swimmingPool && swimmingPool !== porch && Math.max(swimmingPool, porch) === swimmingPool && swimmingPool !== diningRoom && Math.max(swimmingPool, diningRoom) === swimmingPool) {
-                maxBuildingFeatures = 'Swimming pool';
+                maxBuildingFeatures.push('Swimming pool');
             }
-            else if(porch !== garden && Math.max(porch, garden) === porch && porch !== courtyard && Math.max(porch,courtyard) === porch && porch !== swimmingPool && Math.max(porch, swimmingPool) === porch && porch !== diningRoom && Math.max(porch, diningRoom) === porch) {
-                maxBuildingFeatures = 'Porch';
+            else if(porch !== garden && Math.max(porch, garden) === porch && porch !== courtyard && Math.max(porch,courtyard) === porch && porch !== swimmingPool && Math.max(porch, swimmingPool) === porch && porch !== diningRoom && Math.max(porch, diningRoom) === porch ) {
+                maxBuildingFeatures.push('Porch');
+            }
+            else if(diningRoom !== garden && Math.max(diningRoom, garden) === diningRoom && diningRoom !== courtyard && Math.max(diningRoom,courtyard) === diningRoom && diningRoom !== swimmingPool && Math.max(diningRoom, swimmingPool) === diningRoom && diningRoom !== porch && Math.max(diningRoom, porch) === diningRoom) {
+                maxBuildingFeatures.push('Dining room');
             }
             else{
                 maxBuildingFeatures = userAIPreferences.buildingFeatures;
             }
             userAIPreferences.buildingFeatures = maxBuildingFeatures;
 
-            userAIPreferences.materialDataPoints.push(prefrences.materials);
+            userAIPreferences.materialDataPoints = prefrences.materials;
             const materialDataPoints = userAIPreferences.materialDataPoints;
             let hardWood = 0;
             let plyWood = 0;
@@ -212,21 +217,21 @@ export class AIPreferencesRepository {
                     cobbleStone++;
                 }
             }
-            let maxMaterial;
+            let maxMaterial = [];
             if(hardWood !== plyWood && Math.max(hardWood, plyWood) === hardWood && hardWood !== tile && Math.max(hardWood, tile) === hardWood && hardWood !== naturalMaterial && Math.max(hardWood, naturalMaterial) === hardWood && hardWood !== cobbleStone && Math.max(hardWood, cobbleStone) === hardWood) {
-                maxMaterial = 'Hardwood';
+                maxMaterial.push('Hardwood');
             }
             else if(plyWood !== hardWood && Math.max(plyWood, hardWood) === plyWood && plyWood !== tile && Math.max(plyWood, tile) === plyWood && plyWood !== naturalMaterial && Math.max(plyWood, naturalMaterial) === plyWood && plyWood !== cobbleStone && Math.max(plyWood, cobbleStone) === plyWood) {
-                maxMaterial = 'Plywood';
+                maxMaterial.push('Plywood');
             }
             else if(tile !== hardWood && Math.max(tile, hardWood) === tile && tile !== plyWood && Math.max(tile, plyWood) === tile && tile !== naturalMaterial && Math.max(tile, naturalMaterial) === tile && tile !== cobbleStone && Math.max(tile, cobbleStone) === tile) {
-                maxMaterial = 'Tile';
+                maxMaterial.push('Tile');
             }
             else if(naturalMaterial !== hardWood && Math.max(naturalMaterial, hardWood) === naturalMaterial && naturalMaterial !== plyWood && Math.max(naturalMaterial, plyWood) === naturalMaterial && naturalMaterial !== tile && Math.max(naturalMaterial, tile) === naturalMaterial && naturalMaterial !== cobbleStone && Math.max(naturalMaterial, cobbleStone) === naturalMaterial) {
-                maxMaterial = 'Natural material';
+                maxMaterial.push('Natural material');
             }
             else if(cobbleStone !== hardWood && Math.max(cobbleStone, hardWood) === cobbleStone && cobbleStone !== plyWood && Math.max(cobbleStone, plyWood) === cobbleStone && cobbleStone !== tile && Math.max(cobbleStone, tile) === cobbleStone && cobbleStone !== naturalMaterial && Math.max(cobbleStone, naturalMaterial) === cobbleStone) {
-                maxMaterial = 'Cobblestone';
+                maxMaterial.push('Cobblestone');
             }
             else{
                 maxMaterial = userAIPreferences.materials;
@@ -236,5 +241,25 @@ export class AIPreferencesRepository {
 
             return await userAIPreferences.save();
         }
+    }
+
+    async getTopFiveCharacteristics(characteristics: string[]): Promise<string[]> {
+        const counts: Record<string, number> = {};
+      
+        for (const element of characteristics) {
+          const strElement = JSON.stringify(element);
+      
+          if (counts[strElement]) {
+            counts[strElement]++;
+          } else {
+            counts[strElement] = 1;
+          }
+        }
+      
+        const tuples: [string, number][] = Object.entries(counts);
+        tuples.sort((a, b) => b[1] - a[1]);
+        const topFive = tuples.slice(0, 5);
+
+        return topFive.map(tuple => tuple[0]);
     }
 }
