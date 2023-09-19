@@ -127,7 +127,7 @@ export class HomePage implements AfterViewInit{
   async likeHouse() { 
     const url = 'api/like';
     const currProperty = this.properties[this.currentDescriptionIndex];
-    currProperty.seen = true;
+   // currProperty.seen = true;
     const likedProperty: ILikeProperty = {
       user: sessionStorage.getItem('username')!,
       title: currProperty.title,
