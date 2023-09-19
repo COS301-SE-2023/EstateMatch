@@ -22,7 +22,8 @@
       "createAccount": "Dala i-akhawunti"
     },
     "messages": {
-      "login": "Ngaba sele unayo i-akhawunti? Ngema"
+      "login": "Ngaba sele unayo i-akhawunti?",
+      "log_in": "Ngema."
     }
   }
   

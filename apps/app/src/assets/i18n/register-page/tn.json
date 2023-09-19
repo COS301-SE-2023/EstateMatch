@@ -22,7 +22,8 @@
       "createAccount": "Bala Akhaunti"
     },
     "messages": {
-      "login": "O na le akhaunti? Bala"
+      "login": "O na le akhaunti?",
+      "log_in": "Bala."
     }
   }
   

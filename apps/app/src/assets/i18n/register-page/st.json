@@ -22,7 +22,8 @@
       "createAccount": "Theha ak'haonte"
     },
     "messages": {
-      "login": "Na u se u na le ak'haonte? Kena"
+      "login": "Na u se u na le ak'haonte?",
+      "log_in": "Kena"
     }
   }
   

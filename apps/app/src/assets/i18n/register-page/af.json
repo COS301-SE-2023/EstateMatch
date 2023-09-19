@@ -22,6 +22,7 @@
     "createAccount": "Skep Rekening"
   },
   "messages": {
-    "login": "Het nie 'n rekening nie? Teken aan."
+    "login": "Het nie 'n rekening nie?",
+    "log_in": "Teken aan."
   }
 }

@@ -22,7 +22,8 @@
       "createAccount": "Create Account"
     },
     "messages": {
-      "login": "Already have an account? Login"
+      "login": "Already have an account?",
+      "log_in": "Login."
     }
   }
   

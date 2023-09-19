@@ -22,7 +22,8 @@
       "createAccount": "Yenza I-akhawunti"
     },
     "messages": {
-      "login": "Unomlingani othile? Gqaja"
+      "login": "Unomlingani othile?",
+      "log_in": "Ngena ngemvume"
     }
   }
   
