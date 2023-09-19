@@ -41,32 +41,32 @@ export class AIPreferencesRepository {
         if(!userAIPreferences) {
             return null;
         }else{
-            userAIPreferences.floorDataPoints = prefrences.flooring;
+            userAIPreferences.floorDataPoints.push(...prefrences.flooring);
             const floorDataPoints = userAIPreferences.floorDataPoints;
 
             userAIPreferences.flooring = await this.getTopFiveCharacteristics(floorDataPoints);
 
-            userAIPreferences.buildingStyleDataPoints = prefrences.buildingStyle;
+            userAIPreferences.buildingStyleDataPoints.push(...prefrences.buildingStyle);
             const buildingStyleDataPoints = userAIPreferences.buildingStyleDataPoints;
 
             userAIPreferences.buildingStyle = await this.getTopFiveCharacteristics(buildingStyleDataPoints);
 
-            userAIPreferences.buildingTypeDataPoints = prefrences.buildingType;
+            userAIPreferences.buildingTypeDataPoints.push(...prefrences.buildingType);
             const buildingTypeDataPoints = userAIPreferences.buildingTypeDataPoints;
 
             userAIPreferences.buildingType = await this.getTopFiveCharacteristics(buildingTypeDataPoints);
 
-            userAIPreferences.buildingAreaDataPoints = prefrences.buildingArea;
+            userAIPreferences.buildingAreaDataPoints.push(...prefrences.buildingArea);
             const buildingAreaDataPoints = userAIPreferences.buildingAreaDataPoints;
             
             userAIPreferences.buildingArea = await this.getTopFiveCharacteristics(buildingAreaDataPoints);
 
-            userAIPreferences.buildingFeaturesDataPoints = prefrences.buildingFeatures;
+            userAIPreferences.buildingFeaturesDataPoints.push(...prefrences.buildingFeatures);
             const buildingFeaturesDataPoints = userAIPreferences.buildingFeaturesDataPoints;
           
             userAIPreferences.buildingFeatures = await this.getTopFiveCharacteristics(buildingFeaturesDataPoints);
 
-            userAIPreferences.materialDataPoints = prefrences.materials;
+            userAIPreferences.materialDataPoints.push(...prefrences.materials);
             const materialDataPoints = userAIPreferences.materialDataPoints;
            
             userAIPreferences.materials = await this.getTopFiveCharacteristics(materialDataPoints);
