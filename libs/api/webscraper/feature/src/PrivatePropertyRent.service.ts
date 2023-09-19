@@ -22,7 +22,7 @@ export class PrivatePropertyRentService {
 
     await page.waitForSelector('.floatingSearchContainer');
 
-    await page.type('.formWrapper input', "Woodstock");
+    await page.type('.formWrapper input', location);
 
     await page.waitForSelector('.autocomplete-suggestions');
 
@@ -41,24 +41,26 @@ export class PrivatePropertyRentService {
     
 
     // Wait for the results container to load 
-    await page.waitForSelector('.resultsItemsContainer', {
+    await page.waitForSelector('.resultsContainer', {
       timeout: navigationTimeout,
     });
+
+    const currentURL = await page.url();
 
     const pageLinks = (await page.$$eval('.pagination a.pageNumber', (pagination) => pagination.map((page) => page.getAttribute('href') || ''))).filter(url => url !== "#");
 
     const lastPageLink = pageLinks[pageLinks.length - 2];
-    const pageNumber = parseInt(lastPageLink.slice(-2));
+    //const pageNumber = parseInt(lastPageLink.slice(-2));
 
     let propertyURLs: string[] = [];
     const pages = await browser.newPage();
 
-    for(let i = 1; i <= 3; i++)
+    for(let i = 1; i <= 2; i++)
     {
       if(i === 1)
       {
 
-        await pages.goto("https://www.privateproperty.co.za/to-rent/western-cape/cape-town/cape-town-city-bowl/59", {
+        await pages.goto(currentURL, {
           timeout: navigationTimeout,
         });
 
@@ -69,7 +71,7 @@ export class PrivatePropertyRentService {
 
       else
       {
-        await pages.goto('https://www.privateproperty.co.za/to-rent/western-cape/cape-town/cape-town-city-bowl/59?page=' + i.toString(), {
+        await pages.goto(currentURL +'?page=' + i.toString(), {
           timeout: navigationTimeout,
         });
 
