@@ -247,12 +247,27 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         "Building Features," +
         "Materials," +
         "Additional" + 
-        "Format the answer as a numbered list."
+        "Format the response as a list."
         "Examples: " + 
+        "Example 1:"
         "Assistant: - Hardwood floors: Flooring" +
         "- Open floor plan: Building Features" + 
         "- High ceilings: Building Features" + 
-        "- Large windows: Building Features"
+        "- Large windows: Building Features" + 
+        "Example 2:" +
+        "Assistant: - Hardwood floors: Flooring" +
+        "- Modern: Building Style" + 
+        "- Minimalist: Building Style" + 
+        "- Floor-to-Ceiling Windows: Building Features" + 
+        "- Inviting Outdoor Deck: Building Features" +
+        "- Wood: Building Materials" + 
+        "- Stone: Building Materials" +
+        "- Glass: Building Materials" +
+        "Example 3:" +
+        "- Water Feature: Building Features" + 
+        "- Plywood walls: Building Materials" +
+        "- Urban Design: Building Style" +
+        "- Farm: Building Area";
 
 
         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
