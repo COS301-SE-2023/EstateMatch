@@ -374,7 +374,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             "Plywood walls",
             "Plywood walls",
             "Plywood walls",
-            "Plywood walls",
 
         ]
 
@@ -384,17 +383,29 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
     async getTopFiveCharacteristics(characteristics: string[]): Promise<string> {
         const model = new OpenAI({});
-        const myTemplate = "You are an assitant that extract the top five characteristics that occur the most in an array of characteristics of a house. The characteristics are: {characteristics}" + 
-        "Provide your awnser as a numbered list.";
+        const myTemplate = "You are an assitant that count the number of occurences of each characteristic in an array. The characteristics are: {characteristics}" + 
+        "Provide your answer as a numbered list.";
 
         const prompt = PromptTemplate.fromTemplate(myTemplate);
+
+        // const tools = [new Calculator()];
+
+        // const agentExecutor = await initializeAgentExecutorWithOptions(tools, model, {
+        //     agentType: "zero-shot-react-description",
+        //     agentArgs: {
+        //         prefix: myTemplate,
+        //         inputVariables: ["input", "characteristics", "agent_scratchpad"]
+        //     },
+        //     returnIntermediateSteps: true,
+        //     // verbose: true,
+        // });
 
         const llm = new LLMChain({
             llm: model,
             prompt: prompt,
         });
 
-        const res = await llm.call({characteristics: characteristics}) as { text: string};
+        const res = await llm.call({characteristics: characteristics, input: characteristics}) as { text: string};
 
         console.log(res.text);
 
