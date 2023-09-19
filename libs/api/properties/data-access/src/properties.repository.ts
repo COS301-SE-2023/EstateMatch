@@ -93,6 +93,13 @@ export class PropertiesRepository {
     }
 
     async removePropertyfromUser(title: string, username: string): Promise<UserModel | null> {
+        //making property to be removed seen field to true
+        const propSeen = await this.propertiesModel.findOneAndUpdate(
+            { title: title },
+            //making seen field to true
+            { $set: { seen: true } }
+          ).exec();
+
         const propRemove = await this.propertiesModel.findOneAndUpdate(
             { title: title },
             //pulling from user array
