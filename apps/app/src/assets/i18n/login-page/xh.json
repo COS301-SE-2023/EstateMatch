@@ -14,6 +14,7 @@
       "login": "Ngema"
     },
     "messages": {
-      "signup": "Awunayo iakhawunti? Bhalisa"
+      "signup": "Awunayo iakhawunti?",
+      "sign_up": "Bhalisa."
     }
 }

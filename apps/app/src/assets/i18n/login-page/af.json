@@ -14,7 +14,8 @@
       "login": "Aanmeld"
     },
     "messages": {
-      "signup": "Het nie 'n rekening nie? Teken aan."
+      "signup": "Het nie 'n rekening nie?",
+      "sign_up": "Teken aan."
     }
 }
   

@@ -14,6 +14,7 @@
       "login": "Kena"
     },
     "messages": {
-      "signup": "Ha u na ak'haonte? Ngolisa."
+      "signup": "Ha u na ak'haonte?",
+      "sign_up": "Ngolisa."
     }
 }

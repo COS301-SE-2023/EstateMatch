@@ -14,7 +14,8 @@
       "login": "Login"
     },
     "messages": {
-      "signup": "Don't have an account? Sign Up."
+      "signup": "Don't have an account?",
+      "sign_up": "Sign Up."
     }
 }
   
