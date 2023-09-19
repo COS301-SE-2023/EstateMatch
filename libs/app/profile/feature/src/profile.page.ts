@@ -23,6 +23,10 @@ export class ProfilePage {
       this.translate.setDefaultLang('en');
      }
 
+     switchLanguage(lang: string) {
+      this.translate.use(lang);
+    }   
+
   user: IUser = {
     id: 'string',
     firstName: 'string',

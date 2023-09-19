@@ -22,6 +22,18 @@
   <ion-button class="edit_prof" fill="clear" routerLink="/editprof" routerDirection="root">
     {{ 'labels.editProfile' | translate }}
   </ion-button>
+
+  <div>
+    <select name="languageSelect" #languageSelect>
+        <option value="en">English</option>
+        <option value="af">Afrikaans</option>
+        <option value="zu">Zulu</option>
+        <option value="st">Sotho</option>
+        <option value="tn">Tswana</option>
+        <option value="xh">Xhosa</option>
+    </select>
+    <button name="Apply" (click)="switchLanguage(languageSelect.value)">{{ 'Change' | translate }}</button>
+</div>
 </ion-card>
 
 <ion-card name="Preferences">

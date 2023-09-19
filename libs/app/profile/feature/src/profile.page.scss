@@ -39,7 +39,7 @@ ion-card-subtitle[name="userName"] {
 
 ion-card[name="ProfileInfo"]{
   background-color: #fbfcfa;
-  height: 17vh;
+  height: 25vh;
   border-radius: 3%;
   width: 93%;
   margin-left: 3%;
@@ -72,7 +72,7 @@ ion-button[name="Logout"]{
 
 ion-card[name="Preferences"]{
   background-color: #fbfcfa;
-  height: 58vh;
+  height: 50vh;
   border-radius: 3%;
   width: 93%;
   margin-left: 3%;
@@ -133,4 +133,30 @@ button[name="PrefEdit"]{
 
 .ameneties_chip{
   width: 45% !important;
+}
+
+button[name="Apply"] {
+  background-color: #67C390;
+  border-color: #67C390;
+  color: white;
+  border-radius: 8%;
+  height: 18%;
+  width: 35%;
+  font-size: large;
+  border-width: 4px;
+  position: absolute;
+  left: 55%;
+  top: 70%; /* Adjust the top position as needed */
+}
+
+/* Add these styles for the <select> element */
+select[name="languageSelect"] {
+  border-radius: 8%;
+  height: 18%;
+  width: 35%;
+  font-size: large;
+  //border-width: 4px;
+  position: absolute;
+  left: 15%;
+  top: 70%; /* Adjust the top position as needed */
 }
