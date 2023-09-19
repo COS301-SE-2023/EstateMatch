@@ -381,42 +381,10 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         return aiPref;
     }
 
-    async getTopFiveCharacteristics(characteristics: string[]): Promise<string> {
-        const model = new OpenAI({});
-        const myTemplate = "You are an assitant that count the number of occurences of each characteristic in an array. The characteristics are: {characteristics}" + 
-        "Provide your answer as a numbered list.";
-
-        const prompt = PromptTemplate.fromTemplate(myTemplate);
-
-        // const tools = [new Calculator()];
-
-        // const agentExecutor = await initializeAgentExecutorWithOptions(tools, model, {
-        //     agentType: "zero-shot-react-description",
-        //     agentArgs: {
-        //         prefix: myTemplate,
-        //         inputVariables: ["input", "characteristics", "agent_scratchpad"]
-        //     },
-        //     returnIntermediateSteps: true,
-        //     // verbose: true,
-        // });
-
-        const llm = new LLMChain({
-            llm: model,
-            prompt: prompt,
-        });
-
-        // const res = await llm.call({characteristics: characteristics, input: characteristics}) as { text: string};
-
-        const res = await this.countOccurrences(characteristics);
-        console.log(res);
-
-        return "Under construction";
-    }
-
-    async countOccurrences(arr: string[]): Promise<string[]> {
+    async getTopFiveCharacteristics(characteristics: string[]): Promise<string[]> {
         const counts: Record<string, number> = {};
       
-        for (const element of arr) {
+        for (const element of characteristics) {
           const strElement = JSON.stringify(element);
       
           if (counts[strElement]) {
@@ -431,12 +399,5 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const topFive = tuples.slice(0, 5);
 
         return topFive.map(tuple => tuple[0]);
-      }
-      
-      // Example usage
-    //   const array = [1, 'hello', 2, 'hello', 3, 'world', 'hello', 1, 2, 3];
-    //   const occurrences = countOccurrences(array);
-      
-    //   console.log('Occurrences of each element:');
-    //   console.log(occurrences);
+    }
 }
