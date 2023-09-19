@@ -235,7 +235,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
     }
 
     async classifyCharateristic(username: string, characteristics: string[]) : Promise<string> {
-        const model = new OpenAI({});
+        const model = new ChatOpenAI({});
         const classifyTemplate = "You are an assistant that classify characteristics of a description of a house. The characteristics are: {characteristics}" + 
         "You will recieve the characteristics as an array of strings." + 
         "Classify each element individually " +
@@ -247,7 +247,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         "Building Features," +
         "Materials," +
         "Additional" + 
-        "Format the answer as a numbered list and keep each element as its own number."
+        "Format the answer as a numbered list."
         "Examples: " + 
         "Assistant: - Hardwood floors: Flooring" +
         "- Open floor plan: Building Features" + 
@@ -262,16 +262,16 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             HumanMessagePromptTemplate.fromTemplate("{characteristics}"),
         ]);
 
-        const classifyLLm = new LLMChain({
+        const classifyLLm = new ConversationChain({
             llm: model,
             prompt: chatPrompt,
         });
 
 
-        const classes = await classifyLLm.call({characteristics: characteristics}) as { text: string};
-        // console.log(classes.text);
+        const classes = await classifyLLm.call({characteristics: characteristics}) as { response: string};
+        // console.log(classes);
 
-        const classesArray = classes.text.split(/\d+\./).filter(item => item.trim() !== '');
+        const classesArray = classes.response.split(/\d+\./).filter(item => item.trim() !== '');
         // console.log(classesArray);
 
         const extractedModel: IExtractedModel = {
