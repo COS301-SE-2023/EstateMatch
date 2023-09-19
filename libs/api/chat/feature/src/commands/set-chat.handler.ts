@@ -247,27 +247,30 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         "Building Features," +
         "Materials," +
         "Additional" + 
-        "Format the response as a list."
+        "Provide the response as a numbered list."
         "Examples: " + 
-        "Example 1:"
-        "Assistant: - Hardwood floors: Flooring" +
-        "- Open floor plan: Building Features" + 
-        "- High ceilings: Building Features" + 
-        "- Large windows: Building Features" + 
-        "Example 2:" +
-        "Assistant: - Hardwood floors: Flooring" +
-        "- Modern: Building Style" + 
-        "- Minimalist: Building Style" + 
-        "- Floor-to-Ceiling Windows: Building Features" + 
-        "- Inviting Outdoor Deck: Building Features" +
-        "- Wood: Building Materials" + 
-        "- Stone: Building Materials" +
-        "- Glass: Building Materials" +
-        "Example 3:" +
-        "- Water Feature: Building Features" + 
-        "- Plywood walls: Building Materials" +
-        "- Urban Design: Building Style" +
-        "- Farm: Building Area";
+        // "Example 1:"
+        "Input: [Hardwood floors, Open floor plan, High ceilings, Large windows]" +
+        "Assistant: 1) Hardwood floors: Flooring" +
+        "2) Open floor plan: Building Features" + 
+        "3) High ceilings: Building Features" + 
+        "4) Large windows: Building Features" + 
+        // "Example 2:" +
+        "Input: [Hardwood floors, Modern, Minimalist, Floor-to-Ceiling Windows, Inviting Outdoor Deck, Wood, Stone, Glass]" +
+        "Assistant: 1) Hardwood floors: Flooring" +
+        "2) Modern: Building Style" + 
+        "3) Minimalist: Building Style" + 
+        "4) Floor-to-Ceiling Windows: Building Features" + 
+        "5) Inviting Outdoor Deck: Building Features" +
+        "6) Wood: Building Materials" + 
+        "7) Stone: Building Materials" +
+        "8) Glass: Building Materials" +
+        // "Example 3:" +
+        "Input: [Water Feature, Plywood walls, Urban Design, Farm]"
+        "Assistant: 1) Water Feature: Building Features" + 
+        "2) Plywood walls: Building Materials" +
+        "3) Urban Design: Building Style" +
+        "4) Farm: Building Area";
 
 
         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
@@ -354,7 +357,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         }
 
         const aiPref = await this.buildAIPrefRequest("test", extractedModel);
-        console.log(aiPref);
+        // console.log(aiPref);
 
         //Query DB Here
         // const userCurrentPref = await this.preferencesRepo.findOne(username);
@@ -383,46 +386,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             colour: "",
         }
 
-        // const test = [
-        //     "Hardwood floors",
-        //     "Open floor plan",
-        //     "High ceilings",
-        //     "Large windows",
-        //     "Modern interior",
-        //     "Open floor plan",
-        //     "High ceilings",
-        //     "Large windows",
-        //     "Open floor plan",
-        //     "High ceilings",
-        //     "High ceilings",
-        //     "High ceilings",
-        //     "High ceilings",
-        //     "High ceilings",
-        //     "Open floor plan",
-        //     "Modern interior",
-        //     "Water Feature",
-        //     "Water Feature",
-        //     "Water Feature",
-        //     "Water Feature",
-        //     "Water Feature",
-        //     "Water Feature",
-        //     "Water Feature",
-        //     "Water Feature",
-        //     "Water Feature",
-        //     "Water Feature",
-        //     "Water Feature",
-        //     "Plywood walls",
-        //     "Plywood walls",
-        //     "Plywood walls",
-        //     "Plywood walls",
-        //     "Plywood walls",
-        //     "Plywood walls",
-        //     "Plywood walls",
-        //     "Plywood walls",
-
-        // ]
-
-        // await this.getTopFiveCharacteristics(test);
         return aiPref;
     }
 
