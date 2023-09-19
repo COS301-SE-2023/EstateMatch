@@ -405,10 +405,38 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             prompt: prompt,
         });
 
-        const res = await llm.call({characteristics: characteristics, input: characteristics}) as { text: string};
+        // const res = await llm.call({characteristics: characteristics, input: characteristics}) as { text: string};
 
-        console.log(res.text);
+        const res = await this.countOccurrences(characteristics);
+        console.log(res);
 
         return "Under construction";
     }
+
+    async countOccurrences(arr: string[]): Promise<string[]> {
+        const counts: Record<string, number> = {};
+      
+        for (const element of arr) {
+          const strElement = JSON.stringify(element);
+      
+          if (counts[strElement]) {
+            counts[strElement]++;
+          } else {
+            counts[strElement] = 1;
+          }
+        }
+      
+        const tuples: [string, number][] = Object.entries(counts);
+        tuples.sort((a, b) => b[1] - a[1]);
+        const topFive = tuples.slice(0, 5);
+
+        return topFive.map(tuple => tuple[0]);
+      }
+      
+      // Example usage
+    //   const array = [1, 'hello', 2, 'hello', 3, 'world', 'hello', 1, 2, 3];
+    //   const occurrences = countOccurrences(array);
+      
+    //   console.log('Occurrences of each element:');
+    //   console.log(occurrences);
 }
