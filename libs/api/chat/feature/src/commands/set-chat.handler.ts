@@ -326,7 +326,14 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
 
         // console.log(extractedModel);
         //From the classes need to create some sort of interface
-        
+        extractedModel.buildingType = extractedModel.buildingType.map(element => element.trim().replace(':', ''));
+        extractedModel.materials = extractedModel.materials.map(element => element.trim().replace(':', ''));
+        extractedModel.flooring = extractedModel.flooring.map(element => element.trim().replace(':', ''));
+        extractedModel.buildingFeatures = extractedModel.buildingFeatures.map(element => element.trim().replace(':', ''));
+        extractedModel.buildingArea = extractedModel.buildingArea.map(element => element.trim().replace(':', ''));
+        extractedModel.additional = extractedModel.additional.map(element => element.trim().replace(':', ''));
+        extractedModel.buildingStyle = extractedModel.buildingStyle.map(element => element.trim().replace(':', ''));
+
         const aiPref = await this.buildAIPrefRequest("test", extractedModel);
         console.log(aiPref);
 
