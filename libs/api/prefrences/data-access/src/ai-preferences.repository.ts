@@ -43,200 +43,33 @@ export class AIPreferencesRepository {
         }else{
             userAIPreferences.floorDataPoints = prefrences.flooring;
             const floorDataPoints = userAIPreferences.floorDataPoints;
-            let laminateFlooring = 0;
-            let tileFlooring = 0;
-            let woodFlooring = 0;
-            for(let i = 0; i < floorDataPoints.length; i++) {
-                if(floorDataPoints[i] === 'Laminate flooring') {
-                    laminateFlooring++;
-                }else if(floorDataPoints[i] === 'Tile flooring'){
-                    tileFlooring++;
-                }else if(floorDataPoints[i] === 'Wood flooring'){
-                    woodFlooring++;
-                }
-            }
-            let max = [];
 
-            if(laminateFlooring !== tileFlooring && Math.max(laminateFlooring, tileFlooring) === laminateFlooring && laminateFlooring !== woodFlooring && Math.max(laminateFlooring, woodFlooring) === laminateFlooring) {
-                max.push('Laminate flooring');
-            }
-            else if(tileFlooring !== laminateFlooring && Math.max(tileFlooring, laminateFlooring) === tileFlooring && tileFlooring !== woodFlooring && Math.max(tileFlooring, woodFlooring) === tileFlooring) {
-                max.push('Tile flooring');
-            }
-            else if(woodFlooring !== laminateFlooring && Math.max(woodFlooring, laminateFlooring) === woodFlooring && woodFlooring !== tileFlooring && Math.max(woodFlooring,tileFlooring) === woodFlooring) {
-                max.push('Laminate flooring');
-            }
-            else{
-                max = userAIPreferences.flooring;
-            }
-            userAIPreferences.flooring = max;
+            userAIPreferences.flooring = await this.getTopFiveCharacteristics(floorDataPoints);
 
             userAIPreferences.buildingStyleDataPoints = prefrences.buildingStyle;
             const buildingStyleDataPoints = userAIPreferences.buildingStyleDataPoints;
 
-            let urbanDesign = 0;
-
-            for(let i = 0; i < buildingStyleDataPoints.length; i++) {
-                if(buildingStyleDataPoints[i] === 'Urban design') {
-                    urbanDesign++;
-                }
-            }
-
-            let maxBuildingStyle = [];
-            if(urbanDesign !== 0) {
-                maxBuildingStyle.push('Urban design');
-            }
-            else{
-                maxBuildingStyle = userAIPreferences.buildingStyle;
-            }
-            userAIPreferences.buildingStyle = maxBuildingStyle;
+            userAIPreferences.buildingStyle = await this.getTopFiveCharacteristics(buildingStyleDataPoints);
 
             userAIPreferences.buildingTypeDataPoints = prefrences.buildingType;
             const buildingTypeDataPoints = userAIPreferences.buildingTypeDataPoints;
-            let apartment = 0;
-            let commercialBuilding = 0;
-            let pentHouse = 0;
 
-            for(let i = 0; i < buildingTypeDataPoints.length; i++) {
-                if(buildingTypeDataPoints[i] === 'Apartment') {
-                    apartment++;
-                }
-                else if(buildingTypeDataPoints[i] === 'Commercial building') {
-                    commercialBuilding++;
-                }
-                else if(buildingTypeDataPoints[i] === 'Penthouse apartment') {
-                    pentHouse++;
-                }
-            }
-            let maxBuildingType = [];
-            if(apartment !== commercialBuilding && Math.max(apartment, commercialBuilding) === apartment && apartment !== pentHouse && Math.max(apartment, pentHouse) === apartment) {
-                maxBuildingType.push('Apartment');
-            }
-            else if(commercialBuilding !== apartment && Math.max(commercialBuilding, apartment) === commercialBuilding && commercialBuilding !== pentHouse && Math.max(commercialBuilding, pentHouse) === commercialBuilding) {
-                maxBuildingType.push('Commercial building');
-            }
-            else if(pentHouse !== apartment && Math.max(pentHouse, apartment) === pentHouse && pentHouse !== commercialBuilding && Math.max(pentHouse, commercialBuilding) === pentHouse) {
-                maxBuildingType.push('Penthouse apartment');
-            }
-            else{
-                maxBuildingType = userAIPreferences.buildingType;
-            }
-
-            userAIPreferences.buildingType = maxBuildingType;
+            userAIPreferences.buildingType = await this.getTopFiveCharacteristics(buildingTypeDataPoints);
 
             userAIPreferences.buildingAreaDataPoints = prefrences.buildingArea;
             const buildingAreaDataPoints = userAIPreferences.buildingAreaDataPoints;
-            let neighborhood = 0;
-            let residential = 0;
-            let suburb = 0;
             
-            for(let i = 0; i < buildingAreaDataPoints.length; i++) {
-                if(buildingAreaDataPoints[i] === 'Neighborhood') {
-                    neighborhood++;
-                }else if(buildingAreaDataPoints[i] === 'Residential' || buildingAreaDataPoints[i] === 'Residential area') {
-                    residential++;
-                }else if(buildingAreaDataPoints[i] === 'Suburb') {
-                    suburb++;
-                }
-            }
-            let maxBuildingArea = [];
-            if(neighborhood !== residential && Math.max(neighborhood, residential) === neighborhood && neighborhood !== suburb && Math.max(neighborhood, suburb) === neighborhood) {
-                maxBuildingArea.push('Neighborhood');
-            }
-            else if(residential !== neighborhood && Math.max(residential, neighborhood) === residential && residential !== suburb && Math.max(residential, suburb) === residential) {
-                maxBuildingArea.push('Residential');
-            }
-            else if(suburb !== neighborhood && Math.max(suburb, neighborhood) === suburb && suburb !== residential && Math.max(suburb,residential) === suburb) {
-                maxBuildingArea.push('Suburb');
-            }
-            else{
-                maxBuildingArea = userAIPreferences.buildingArea;
-            }
-            userAIPreferences.buildingArea = maxBuildingArea;
+            userAIPreferences.buildingArea = await this.getTopFiveCharacteristics(buildingAreaDataPoints);
 
             userAIPreferences.buildingFeaturesDataPoints = prefrences.buildingFeatures;
             const buildingFeaturesDataPoints = userAIPreferences.buildingFeaturesDataPoints;
-            let garden = 0;
-            let courtyard = 0;
-            let swimmingPool = 0;
-            let porch = 0;
-            let diningRoom = 0;
-
-            for(let i = 0; i < buildingFeaturesDataPoints.length; i++) {
-                if(buildingFeaturesDataPoints[i] === 'Garden') {
-                    garden++;
-                }else if(buildingFeaturesDataPoints[i] === 'Courtyard') {
-                    courtyard++;
-                }else if(buildingFeaturesDataPoints[i] === 'Swimming pool') {
-                    swimmingPool++;
-                }else if(buildingFeaturesDataPoints[i] === 'Porch') {
-                    porch++;
-                }else if(buildingFeaturesDataPoints[i] === 'Dining room') {
-                    diningRoom++;
-                }
-            }
-            let maxBuildingFeatures = [];
-            if(garden !== courtyard && Math.max(garden, courtyard) === garden && garden !== swimmingPool && Math.max(garden, swimmingPool) === garden && garden !== porch && Math.max(garden, porch) === garden && garden !== diningRoom && Math.max(garden, diningRoom) === garden) {
-                maxBuildingFeatures.push('Garden');
-            }
-            else if(courtyard !== garden && Math.max(courtyard, garden) === courtyard && courtyard !== swimmingPool && Math.max(courtyard, swimmingPool) === courtyard && courtyard !== porch && Math.max(courtyard, porch) === courtyard && courtyard !== diningRoom && Math.max(courtyard, diningRoom) === courtyard) {
-                maxBuildingFeatures.push('Courtyard');
-            }
-            else if(swimmingPool !== garden && Math.max(swimmingPool, garden) === swimmingPool && swimmingPool !== courtyard && Math.max(swimmingPool,courtyard) === swimmingPool && swimmingPool !== porch && Math.max(swimmingPool, porch) === swimmingPool && swimmingPool !== diningRoom && Math.max(swimmingPool, diningRoom) === swimmingPool) {
-                maxBuildingFeatures.push('Swimming pool');
-            }
-            else if(porch !== garden && Math.max(porch, garden) === porch && porch !== courtyard && Math.max(porch,courtyard) === porch && porch !== swimmingPool && Math.max(porch, swimmingPool) === porch && porch !== diningRoom && Math.max(porch, diningRoom) === porch ) {
-                maxBuildingFeatures.push('Porch');
-            }
-            else if(diningRoom !== garden && Math.max(diningRoom, garden) === diningRoom && diningRoom !== courtyard && Math.max(diningRoom,courtyard) === diningRoom && diningRoom !== swimmingPool && Math.max(diningRoom, swimmingPool) === diningRoom && diningRoom !== porch && Math.max(diningRoom, porch) === diningRoom) {
-                maxBuildingFeatures.push('Dining room');
-            }
-            else{
-                maxBuildingFeatures = userAIPreferences.buildingFeatures;
-            }
-            userAIPreferences.buildingFeatures = maxBuildingFeatures;
+          
+            userAIPreferences.buildingFeatures = await this.getTopFiveCharacteristics(buildingFeaturesDataPoints);
 
             userAIPreferences.materialDataPoints = prefrences.materials;
             const materialDataPoints = userAIPreferences.materialDataPoints;
-            let hardWood = 0;
-            let plyWood = 0;
-            let tile = 0;
-            let naturalMaterial = 0;
-            let cobbleStone = 0;
-
-            for(let i = 0; i < materialDataPoints.length; i++) {
-                if(materialDataPoints[i] === 'Hardwood') {
-                    hardWood++;
-                }else if(materialDataPoints[i] === 'Plywood') {
-                    plyWood++;
-                }else if(materialDataPoints[i] === 'Tile') {
-                    tile++;
-                }else if(materialDataPoints[i] === 'Natural material') {
-                    naturalMaterial++;
-                }else if(materialDataPoints[i] === 'Cobblestone') {
-                    cobbleStone++;
-                }
-            }
-            let maxMaterial = [];
-            if(hardWood !== plyWood && Math.max(hardWood, plyWood) === hardWood && hardWood !== tile && Math.max(hardWood, tile) === hardWood && hardWood !== naturalMaterial && Math.max(hardWood, naturalMaterial) === hardWood && hardWood !== cobbleStone && Math.max(hardWood, cobbleStone) === hardWood) {
-                maxMaterial.push('Hardwood');
-            }
-            else if(plyWood !== hardWood && Math.max(plyWood, hardWood) === plyWood && plyWood !== tile && Math.max(plyWood, tile) === plyWood && plyWood !== naturalMaterial && Math.max(plyWood, naturalMaterial) === plyWood && plyWood !== cobbleStone && Math.max(plyWood, cobbleStone) === plyWood) {
-                maxMaterial.push('Plywood');
-            }
-            else if(tile !== hardWood && Math.max(tile, hardWood) === tile && tile !== plyWood && Math.max(tile, plyWood) === tile && tile !== naturalMaterial && Math.max(tile, naturalMaterial) === tile && tile !== cobbleStone && Math.max(tile, cobbleStone) === tile) {
-                maxMaterial.push('Tile');
-            }
-            else if(naturalMaterial !== hardWood && Math.max(naturalMaterial, hardWood) === naturalMaterial && naturalMaterial !== plyWood && Math.max(naturalMaterial, plyWood) === naturalMaterial && naturalMaterial !== tile && Math.max(naturalMaterial, tile) === naturalMaterial && naturalMaterial !== cobbleStone && Math.max(naturalMaterial, cobbleStone) === naturalMaterial) {
-                maxMaterial.push('Natural material');
-            }
-            else if(cobbleStone !== hardWood && Math.max(cobbleStone, hardWood) === cobbleStone && cobbleStone !== plyWood && Math.max(cobbleStone, plyWood) === cobbleStone && cobbleStone !== tile && Math.max(cobbleStone, tile) === cobbleStone && cobbleStone !== naturalMaterial && Math.max(cobbleStone, naturalMaterial) === cobbleStone) {
-                maxMaterial.push('Cobblestone');
-            }
-            else{
-                maxMaterial = userAIPreferences.materials;
-            }
-            userAIPreferences.materials = maxMaterial;
+           
+            userAIPreferences.materials = await this.getTopFiveCharacteristics(materialDataPoints);
 
 
             return await userAIPreferences.save();
@@ -247,7 +80,8 @@ export class AIPreferencesRepository {
         const counts: Record<string, number> = {};
       
         for (const element of characteristics) {
-          const strElement = JSON.stringify(element);
+          // Remove double quotes from the element
+          const strElement = element.replace(/"/g, '');
       
           if (counts[strElement]) {
             counts[strElement]++;
@@ -259,7 +93,8 @@ export class AIPreferencesRepository {
         const tuples: [string, number][] = Object.entries(counts);
         tuples.sort((a, b) => b[1] - a[1]);
         const topFive = tuples.slice(0, 5);
-
+      
         return topFive.map(tuple => tuple[0]);
-    }
+      }
+      
 }
