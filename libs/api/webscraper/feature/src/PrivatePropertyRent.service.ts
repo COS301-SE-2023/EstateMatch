@@ -22,7 +22,7 @@ export class PrivatePropertyRentService {
 
     await page.waitForSelector('.floatingSearchContainer');
 
-    await page.type('.formWrapper input', "Woodstock");
+    await page.type('.formWrapper input', location);
 
     await page.waitForSelector('.autocomplete-suggestions');
 

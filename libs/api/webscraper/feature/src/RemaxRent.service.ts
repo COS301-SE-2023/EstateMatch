@@ -26,7 +26,7 @@ export class RemaxRentService {
 
     await page.waitForSelector('span.tagify__input');
 
-    await page.type('span.tagify__input', "Camps Bay");
+    await page.type('span.tagify__input', location);
 
     await page.waitForTimeout(1000);
 
