@@ -14,7 +14,7 @@ export class LikePropertyHandler implements ICommandHandler<LikePropertyCommand,
         const request = command.request;
         const property = request.property;  
         
-        console.log(property);
+        //console.log(property);
         //ready to query database
        // const success = await this.repository.setLikedProperty(property);
         //import property repository and call remove property function
@@ -24,7 +24,7 @@ export class LikePropertyHandler implements ICommandHandler<LikePropertyCommand,
        // console.log(remove);
         if(remove){
             const response = {
-                message: 'property removed'
+                message: 'property removed from property collection'
             };
             console.log(response);
             return response;
