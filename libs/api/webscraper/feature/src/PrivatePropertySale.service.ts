@@ -9,6 +9,8 @@ export class PrivatePropertySaleService {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
+    //console.log(location);
+
     const navigationTimeout = 180000;
 
     // Go to target web page
@@ -23,6 +25,9 @@ export class PrivatePropertySaleService {
     await page.waitForSelector('.floatingSearchContainer');
 
     await page.type('.formWrapper input', location);
+
+    const typingDelay = 1000; // 1 second (adjust as needed)
+    await page.waitForTimeout(typingDelay)
 
     await page.waitForSelector('.autocomplete-suggestions');
 
