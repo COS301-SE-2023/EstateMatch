@@ -1,3 +1,5 @@
+import { IGetUserPropertiesRequest } from "../requests";
+
 export class GetUserPropertiesQuery{
-    constructor(public request: string){}
+    constructor(public request: IGetUserPropertiesRequest){}
 }

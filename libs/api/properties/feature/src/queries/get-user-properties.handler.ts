@@ -10,8 +10,8 @@ export class GetUserPropertiesHandler implements IQueryHandler<GetUserProperties
     private readonly repository: PropertiesRepository
     ) {}
 
-  async execute(request: string) : Promise<IGetUserPropertiesResponse> {
-    const user = request;
+  async execute(query: GetUserPropertiesQuery) : Promise<IGetUserPropertiesResponse> {
+    const user = query.request.user;
     //Query repo
 
     const response: IGetUserPropertiesResponse = {

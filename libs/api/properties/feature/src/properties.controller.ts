@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
 import { PropertiesService } from './properties.service';
-import { ICheckPropertyRequest, IDislikePropertyRequest } from '@estate-match/api/properties/util';
+import { ICheckPropertyRequest, IDislikePropertyRequest, IGetUserPropertiesRequest, IGetUserPropertiesResponse } from '@estate-match/api/properties/util';
 import { ILikePropertyRequest } from '@estate-match/api/properties/util';
 import { IGetPropertyRequest } from '@estate-match/api/properties/util';
 import { IGetLikedPropertiesRequest } from '@estate-match/api/properties/util';
@@ -47,7 +47,7 @@ export class PropertiesController {
   }
 
   @Post('/getUserProperties')
-  async getUserProperties(@Body() user: string){
+  async getUserProperties(@Body() user: IGetUserPropertiesRequest){
     return await this.propertiesService.getUserProperties(user);
   }
 }
