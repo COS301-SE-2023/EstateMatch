@@ -24,6 +24,8 @@ export class InfoPage {
   propertyDescription = 'Spacious 1 bedroom unit (50m2) in Harbour View, Woodstock - includes 1 secure covered parking bay! Freshly painted and new floor covering (wooden laminate). Great investment in popular well maintained and secure block. The unit is currently untenant and it is a perfect opportunity for AirBnB which is permitted in the building. This popular block has 24/7 security and concierge desk, a pool and built in braai deck with arguably the most stunning 360 degree views on offer in Cape Town. Walking distance to Old Biscuit Mill, restaurants, 6 minutes from town. The apartment consists of: A spacious bedroom with built in cupboards. Modern renovated bathroom. Large lounge with sliding doors onto balcony railing with mountain views. Open plan kitchen with built in stove/oven/hob, plumbing for 1 appliance. Breakfast counter. Octotel internet fibre ready. Electricity is on a pre-paid meter. Perfect for the first time buyer looking to get into the market or investor wanting to let or Airbnb. Currently tenanted at R8000 p/m. Do not miss this golden opportunity!'
   currentIndex = 0;
   property: any;
+  chipTexts: string[] = ["Wooden Flooring", "Big Windows", "Lighting", "Chandeliers", "Patio"];
+
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       if(params['data'] != null){

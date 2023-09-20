@@ -12,9 +12,14 @@
 
     <body>  
         <ion-card name="DisplayCard">
+          <div class="image-container">
           <img name="HouseImage" (click)= "nextImage()" [src]="property.images[currentIndex]" />
           <div class="white_back_div">
             <img class="back-icon" src="assets/back.png" (click)="back()"><br>
+            <ion-chip class="overlay-chip">
+              <ion-label>Wooden Flooring</ion-label>
+            </ion-chip>
+          </div>
           </div>
           <div class="card-content">
             <i class="fa fa-map-marker icon" aria-hidden="true"></i>

@@ -165,3 +165,22 @@ div[name="ColourScheme"]{
     align-items: center; 
     justify-content: center;
 }
+.overlay-chip {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  width: 45%;
+  height: 25px;
+  background-color: rgba(162, 162, 162, 0.95); /* Adjust the background color and opacity as needed */
+  color: white;
+  font-size: 13px; /* Adjust the font size as needed */
+  padding: 6px 0; /* Adjust the padding as needed */
+  text-align: center;
+  z-index: 9999;
+  }
+
+  .image-container {
+    position: relative;
+   // height: 40%; /* Adjust the height as needed */
+    width: 100%;
+  }
