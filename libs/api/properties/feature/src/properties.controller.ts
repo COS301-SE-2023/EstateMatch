@@ -45,4 +45,9 @@ export class PropertiesController {
   async propertyCheck(@Body() user: ICheckPropertyRequest){
     return await this.propertiesService.propertyCheck(user);
   }
+
+  @Post('/getUserProperties')
+  async getUserProperties(@Body() user: string){
+    
+  }
 }

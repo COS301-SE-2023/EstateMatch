@@ -112,6 +112,10 @@ export class PropertiesRepository {
         return this.propertiesModel.findById(propertyId).exec();
     }
 
+    async getUserProperties(username: string): Promise<PropertiesModel[] | null> {
+        return this.propertiesModel.find({user: {$in: username}}).exec();
+    }
+
     // get properties based on the preferences of the user
     async getPropertiesByPreferences(preference : IPropSearch): Promise<PropertiesModel[] | null> {
         const result = await this.propertiesModel.find({$and: [{price: {$lte: preference.budgetMax}}, {price: {$gte: preference.budgetMin}},
