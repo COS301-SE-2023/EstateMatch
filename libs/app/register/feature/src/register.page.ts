@@ -19,9 +19,12 @@ export class RegisterPage {
       this.translate.setDefaultLang('en');
      }
 
+    preferedLang = 'en';
     switchLanguage(lang: string) {
       this.translate.use(lang);
+      this.preferedLang = lang;
     }
+  
   username = '';
   email = '';
   fname = '';
@@ -40,6 +43,7 @@ export class RegisterPage {
         email: this.email,
         firstName: this.fname,
         lastName: this.lname,
+        languagePref: this.preferedLang,
     }
 
     const headers = new HttpHeaders({
