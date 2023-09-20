@@ -23,7 +23,8 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand, IRegist
                 email: command.request.register.email,
                 firstName: command.request.register.firstName,
                 lastName: command.request.register.lastName,
-                properties: [] //made it null since the user does not need to have properties when they register
+                properties: [], //made it null since the user does not need to have properties when they register
+                languagePref: "English"
             }
 
             await this.userRepo.create(newUser);

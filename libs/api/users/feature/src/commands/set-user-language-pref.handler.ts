@@ -12,6 +12,6 @@ export class SetUserLanguagePrefHandler implements ICommandHandler<SetUserLangua
     async execute(command: SetUserLanguagePrefCommand): Promise<any> {
         const request = command.request;
         const user =  request.user;
-        console.log('Here')
+        console.log(user);
     }
 }
