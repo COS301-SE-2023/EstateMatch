@@ -57,7 +57,8 @@ export class PropertiesRepository {
             // add user to existing property
             const updatedProperty = await this.propertiesModel.findOneAndUpdate(
               { title: property.title},
-              { $addToSet: { user: user} }
+              { $addToSet: { user: user} },
+              { new: true }
             ).exec();
             console.log('Property already exists, adding user to property');
             reponseProperty = updatedProperty;
@@ -65,7 +66,8 @@ export class PropertiesRepository {
             // add property to user
             const updatedUser = await this.userModel.findOneAndUpdate(
               { username: user },
-              { $addToSet: { properties: property.title } }
+              { $addToSet: { properties: property.title } },
+              { new: true }
             ).exec();
             console.log('Property already exists, adding property to user');
           }
@@ -77,16 +79,8 @@ export class PropertiesRepository {
           const addUser = await this.propertiesModel.findOneAndUpdate(
             { 
               title: property.title,
-              location: property.location,
-              price: property.price,
-              bedrooms: property.bedrooms,
-              bathrooms: property.bathrooms,
-              garages: property.garages,
-              amenities: property.amenities,
-              images: property.images,
-              seen: property.seen
             },
-            { $push: { user: user} }
+            { $addToSet: { user: user} },
             ).exec();
 
             console.log('Property does not exist, adding property to property collection and user to property');
@@ -96,7 +90,8 @@ export class PropertiesRepository {
 
           const updatedUser = await this.userModel.findOneAndUpdate(
             { username: user },
-            { $addToSet: {  properties: property.title  } }
+            { $addToSet: {  properties: property.title  } },
+            { new: true }
           ).exec();
           console.log('Property does not exist, adding property to user collection');
         }
