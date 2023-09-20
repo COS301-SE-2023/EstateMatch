@@ -9,6 +9,7 @@ import { SearchModule } from '@estate-match/api/search/feature';
 import { ChatModule } from '@estate-match/api/chat/feature';
 import { WebScraperModule } from '@estate-match/api/webscraper/feature';
 import { TensorflowModule } from '@estate-match/api/ai/feature';
+import { TranslateModule } from '@estate-match/api/translation/feature';
 
 
 const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
@@ -24,6 +25,7 @@ const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
     ChatModule,
     WebScraperModule,
     TensorflowModule,
+    TranslateModule
   ],
   controllers: [CoreController],
 })
