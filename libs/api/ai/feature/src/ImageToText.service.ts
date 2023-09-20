@@ -520,12 +520,12 @@ export class ImageToTextService {
 
     const labels = Array.from(uniqueLabelDescriptions);
 
-    let floorTypes = [];
-    let buildingStyles = [];
-    let buildingTypes = [];
-    let buildingAreas = [];
-    let buildingFeatures = [];
-    let materials = [];
+    const floorTypes = [];
+    const buildingStyles = [];
+    const buildingTypes = [];
+    const buildingAreas = [];
+    const buildingFeatures = [];
+    const materials = [];
 
     for (const label of labels) {
       if (label.includes("flooring")) {
@@ -565,7 +565,7 @@ export class ImageToTextService {
       await this.aiPreferenceRepo.create(aiPrefRequest);
     }
 
-
+    //hard code paramters and call function here
 
     return {
       labelDescriptions: Array.from(uniqueLabelDescriptions),
