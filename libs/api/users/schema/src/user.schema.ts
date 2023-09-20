@@ -16,8 +16,9 @@ export const UserSchema = new mongoose.Schema({
     //using references to make the properties user specific by holding multiple titles of the properties
     
     //properties: [{type: propertyTitle, ref: 'Properties'}] //hold the titles of the properties
-    properties: [{type: String, ref: 'Properties'}] //hold the titles of the properties
+    properties: [{type: String, ref: 'Properties'}], //hold the titles of the properties
     // properties: [{type: mongoose.Schema.Types.ObjectId, ref: 'Properties'}] //hold the titles of the properties
+    languagePref: String,
 
 });
 
@@ -30,4 +31,5 @@ export interface UserModel  {
 
     //using references to make the properties user specific
     properties: string[]; //hold the titles of the properties
+    languagePref: string;
 }
