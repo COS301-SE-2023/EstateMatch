@@ -16,8 +16,9 @@ export class PropertiesRepository {
 
     async createProperty(request: ICreatePropertyRequest): Promise<PropertiesModel> {
         const property = request.property;
+        //console.log(property);
         const user = request.username;
-         console.log(user)
+         //console.log(user)
         const createdProperty = new this.propertiesModel(property);
         let reponseProperty : any;
         
@@ -33,6 +34,8 @@ export class PropertiesRepository {
             images: property.images,
             seen: property.seen
           }).exec();
+
+          console.log(propertyExists);
 
         if(propertyExists) {
             //finding user where it exists in the property collection
