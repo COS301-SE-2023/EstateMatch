@@ -9,7 +9,7 @@ export class PrivatePropertySaleService {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
-    console.log(location);
+    //console.log(location);
 
     const navigationTimeout = 180000;
 
@@ -46,7 +46,7 @@ export class PrivatePropertySaleService {
 
     await page.waitForNavigation();
 
-    console.log(page.url());
+    //console.log(page.url());
 
 
     // Wait for the results container to load 

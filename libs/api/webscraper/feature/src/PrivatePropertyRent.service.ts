@@ -24,10 +24,8 @@ export class PrivatePropertyRentService {
 
     await page.type('.formWrapper input', location);
 
-    await page.waitForFunction((expectedLocation) => {
-      const inputField = document.querySelector('.formWrapper input') as HTMLInputElement;
-      return inputField.value === expectedLocation;
-    }, {}, location); 
+    const typingDelay = 1000; // 1 second (adjust as needed)
+    await page.waitForTimeout(typingDelay)
 
     await page.waitForSelector('.autocomplete-suggestions');
 
