@@ -3,7 +3,7 @@ import * as mongoose from 'mongoose';
 
 export const PropertiesSchema = new mongoose.Schema({
     //propertyId:  {type: String, required: true},
-    title: {type: String, required: true, unique: true},
+    title: {type: String, required: true},
     location: {type: String, required: true},
     price: Number,
     bedrooms: Number,
