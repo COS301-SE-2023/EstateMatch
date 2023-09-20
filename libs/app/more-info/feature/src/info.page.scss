@@ -158,29 +158,38 @@ img[name="HouseImage"]{
     margin-right: 29.5%;
 }
 
-div[name="ColourScheme"]{
-    height: 100%; 
-    width: 90%;
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-}
-.overlay-chip {
-  position: absolute;
-  bottom: 10%;
-  left: 0;
-  width: 45%;
-  height: 25px;
-  background-color: rgba(162, 162, 162, 0.95); /* Adjust the background color and opacity as needed */
-  color: white;
-  font-size: 13px; /* Adjust the font size as needed */
-  padding: 6px 0; /* Adjust the padding as needed */
-  text-align: center;
-  z-index: 9999;
-  }
-
-  .image-container {
+.image-container {
     position: relative;
-   // height: 40%; /* Adjust the height as needed */
     width: 100%;
+    overflow: hidden;
   }
+  
+  img[name="HouseImage"] {
+    width: 100%;
+    height: auto; /* Adjust the height as needed */
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .chip-container {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+   // background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .overlay-chip {
+    display: inline-block;
+    margin-right: 8px;
+    background-color: rgba(107, 107, 107, 0.9);
+    color: white;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    width: 40%;
+    height: 5%;
+  }
+  
