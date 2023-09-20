@@ -25,4 +25,9 @@ export class UserController {
     async updateUser(@Body() request: IUpdateUserRequest) {
         return await this.userService.updateUser(request);
     }
+
+    // @Post('/getUserLanguagePref')
+    // async getUserLanguagePref(@Body() request: IGetUserRequest) {
+
+    // }
 }
