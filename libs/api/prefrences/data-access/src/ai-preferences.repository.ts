@@ -96,5 +96,31 @@ export class AIPreferencesRepository {
       
         return topFive.map(tuple => tuple[0]);
       }
+
+    async overwrite(id : string, prefrences : IAIPreference) : Promise<AIPrefrencesModel | null> {
+        const userAIPreferences = await this.aiPrefrencesModel.findOne({user: id});
+
+        if(!userAIPreferences) {
+            return null;
+        }else{
+          //clear the data points
+          userAIPreferences.floorDataPoints = [];
+          userAIPreferences.buildingStyleDataPoints = [];
+          userAIPreferences.buildingTypeDataPoints = [];
+          userAIPreferences.buildingAreaDataPoints = [];
+          userAIPreferences.buildingFeaturesDataPoints = [];
+          userAIPreferences.materialDataPoints = [];
+
+          //set the characteristics to prefrences 
+          userAIPreferences.flooring = prefrences.flooring;
+          userAIPreferences.buildingStyle = prefrences.buildingStyle;
+          userAIPreferences.buildingType = prefrences.buildingType;
+          userAIPreferences.buildingArea = prefrences.buildingArea;
+          userAIPreferences.buildingFeatures = prefrences.buildingFeatures;
+          userAIPreferences.materials = prefrences.materials;
+
+          return await userAIPreferences.save();
+        }
+    }
       
 }
