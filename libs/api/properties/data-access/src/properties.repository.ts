@@ -4,7 +4,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { ISearch, ISearchRequest } from "@estate-match/api/search/util";
-import { ICreatePropertyRequest, IPropSearch } from "@estate-match/api/properties/util";
+import { ICreatePropertyRequest, IPropSearch, IProperty } from "@estate-match/api/properties/util";
 import {UserModel} from "@estate-match/api/users/schema";
 
 @Injectable()
@@ -20,10 +20,36 @@ export class PropertiesRepository {
         // console.log(user)
         const createdProperty = new this.propertiesModel(property);
         let reponseProperty : any;
-        const propertyExists = await this.propertiesModel.findOne({title: property.title}).exec();
+        
+      
+        const propertyExists = await this.propertiesModel.findOne(
+          {
+            title: property.title,
+            location: property.location,
+            price: property.price,
+            bedrooms: property.bedrooms,
+            bathrooms: property.bathrooms,
+            garages: property.garages,
+            amenities: property.amenities,
+            images: property.images,
+            seen: property.seen
+          }).exec();
+
         if(propertyExists) {
             //finding user where it exists in the property collection
-            const userExists = await this.propertiesModel.findOne({$and: [{title: property.title}, {user: {$in: user}}]}).exec();
+            const userExists = await this.propertiesModel.findOne(
+              {$and: [{
+                title: property.title,
+                location: property.location,
+                price: property.price,
+                bedrooms: property.bedrooms,
+                bathrooms: property.bathrooms,
+                garages: property.garages,
+                amenities: property.amenities,
+                images: property.images,
+                seen: property.seen
+              }
+                , {user: {$in: user}}]}).exec();
           if(userExists) {
             console.log('Property already exists for this existing user');
           }
@@ -31,12 +57,33 @@ export class PropertiesRepository {
             // console.log(property.title)
             // add user to existing property
             const updatedProperty = await this.propertiesModel.findOneAndUpdate(
-              { title: property.title },
+              { 
+                title: property.title,
+                location: property.location,
+                price: property.price,
+                bedrooms: property.bedrooms,
+                bathrooms: property.bathrooms,
+                garages: property.garages,
+                amenities: property.amenities,
+                images: property.images,
+                seen: property.seen 
+              },
               { $addToSet: { user: user} }
             ).exec();
             reponseProperty = updatedProperty;
 
-            const check = await this.propertiesModel.findOne({title: property.title}).exec();
+            const check = await this.propertiesModel.findOne(
+              {
+                title: property.title,
+                location: property.location,
+                price: property.price,
+                bedrooms: property.bedrooms,
+                bathrooms: property.bathrooms,
+                garages: property.garages,
+                amenities: property.amenities,
+                images: property.images,
+                seen: property.seen
+              }).exec();
             // console.log(check);
 
             // add property to user
@@ -51,7 +98,17 @@ export class PropertiesRepository {
           // add property to property collection and user collection
           const updatedProperty = await createdProperty.save(); 
           const addUser = await this.propertiesModel.findOneAndUpdate(
-            { title: property.title },
+            { 
+              title: property.title,
+              location: property.location,
+              price: property.price,
+              bedrooms: property.bedrooms,
+              bathrooms: property.bathrooms,
+              garages: property.garages,
+              amenities: property.amenities,
+              images: property.images,
+              seen: property.seen
+            },
             { $addToSet: { user: user} }
             ).exec();
             reponseProperty = addUser;
