@@ -18,7 +18,7 @@ export class PreferencesPage {
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService) {
-      this.translate.setDefaultLang('en');
+      this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
      }
 
     area = '';

@@ -14,7 +14,7 @@ export class LikedPage {
   constructor(private http: HttpClient,
     private toastController: ToastController,
     private translate: TranslateService) {
-      this.translate.setDefaultLang('en');
+      this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
      }
 
   likedProperties: ILikeProperty[] = [];

@@ -23,7 +23,7 @@ export class SearchPage implements AfterViewInit{
     private readonly router: Router,
     private gestureCtrl: GestureController,
     private translate: TranslateService) {
-      this.translate.setDefaultLang('af');
+      this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
      }
 
     location = '';

@@ -17,7 +17,7 @@ export class ChatPage {
     private route: ActivatedRoute,
     private translate: TranslateService
   ) {
-    this.translate.setDefaultLang('en');
+    this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
   }
 
   userMessage = '';

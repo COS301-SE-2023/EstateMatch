@@ -17,7 +17,7 @@ export class InfoPage {
     private router: Router,
     private route: ActivatedRoute, 
     private translate: TranslateService) {
-      this.translate.setDefaultLang('en');
+      this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
     }
   images: string[] = [
     'https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg',

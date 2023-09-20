@@ -16,7 +16,7 @@ export class EditProfilePage {
     private toastController: ToastController,
     private router: Router,
     private translate: TranslateService) {
-      this.translate.setDefaultLang('en');
+      this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
      }
 
     switchLanguage(lang: string) {

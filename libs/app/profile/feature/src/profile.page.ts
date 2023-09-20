@@ -20,10 +20,10 @@ export class ProfilePage {
     private route: ActivatedRoute,
     private http: HttpClient,
     private translate: TranslateService) {
-      this.translate.setDefaultLang('en');
+      this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
      }
 
-     async switchLanguage(lang: string) {
+     async setLanguage(lang: string) {
       this.translate.use(lang);
 
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -46,6 +46,7 @@ export class ProfilePage {
     email: 'string',
     //password: 'string'
     properties: [],
+    languagePref: 'en',
   };
 
   preferences: IPreference = {
