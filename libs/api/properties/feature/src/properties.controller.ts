@@ -48,6 +48,6 @@ export class PropertiesController {
 
   @Post('/getUserProperties')
   async getUserProperties(@Body() user: string){
-    
+    return await this.propertiesService.getUserProperties(user);
   }
 }

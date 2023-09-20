@@ -1,5 +1,5 @@
 import { IProperty } from "../interfaces";
 
 export interface IGetUserPropertiesResponse {
-    properties: IProperty[];
+    properties: IProperty[] | null;
 }

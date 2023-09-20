@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CheckPropertyQuery, DislikePropertyCommand, ICheckPropertyRequest, ICheckPropertyResponse, IDislikePropertyRequest, IDislikePropertyResponse } from '@estate-match/api/properties/util';
+import { CheckPropertyQuery, DislikePropertyCommand, GetUserPropertiesQuery, ICheckPropertyRequest, ICheckPropertyResponse, IDislikePropertyRequest, IDislikePropertyResponse, IGetUserPropertiesResponse } from '@estate-match/api/properties/util';
 import { LikePropertyCommand, ILikePropertyRequest, ILikePropertyResponse } from '@estate-match/api/properties/util';
 import { IGetLikedPropertiesRequest, IGetLikedPropertiesResponse, GetLikedPropertiesCommand,  } from '@estate-match/api/properties/util';
 import { GetPropertiesCommand, IGetPropertyRequest, IGetPropertyResponse } from '@estate-match/api/properties/util';
@@ -78,5 +78,14 @@ export class PropertiesService
           CheckPropertyQuery,
           ICheckPropertyResponse
       >(new CheckPropertyQuery(request));
+  }
+
+  async getUserProperties(
+    request: string
+  ): Promise<IGetUserPropertiesResponse> {
+      return await this.queryBus.execute<
+          GetUserPropertiesQuery,
+          IGetUserPropertiesResponse
+      >(new GetUserPropertiesQuery(request));
   }
 }
