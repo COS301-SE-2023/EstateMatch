@@ -23,6 +23,7 @@ export class PreferencesPage {
     garages = 0;
     ameneties :string[] = [];
     preference!: IPreference;
+    selectedArea = '';
 
   ngOnInit() {
 
@@ -58,6 +59,17 @@ export class PreferencesPage {
       lounge.style.backgroundColor = '#E7604D';
   }
   
+  addSelectedArea() {
+    if (this.area) {
+      this.selectedArea = this.area;
+      this.area = ''; // Clear the input field
+    }
+  }
+
+  clearSelectedArea() {
+    this.selectedArea = ''; // Clear the selected area text
+    this.area = ''; // Optionally, clear the input field as well
+  }
 
   async setPreferences() {
     const url = 'api/setPreferences';
