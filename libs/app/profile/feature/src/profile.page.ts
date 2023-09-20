@@ -23,9 +23,20 @@ export class ProfilePage {
       this.translate.setDefaultLang('en');
      }
 
-     switchLanguage(lang: string) {
+     async switchLanguage(lang: string) {
       this.translate.use(lang);
-    }   
+
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      const url = 'api/setUserLanguagePref';
+      const body = {
+        user: sessionStorage.getItem('username'),
+        languagePref: lang,
+      }
+
+
+      const languageSet = await this.http.post(url, body, { headers }).toPromise() as {languagePref: string};
+      sessionStorage.setItem('languagePref', languageSet.languagePref);
+    }
 
   user: IUser = {
     id: 'string',
