@@ -17,11 +17,10 @@ export class PropertiesRepository {
     async createProperty(request: ICreatePropertyRequest): Promise<PropertiesModel> {
         const property = request.property;
         const user = request.username;
-        // console.log(user)
+         console.log(user)
         const createdProperty = new this.propertiesModel(property);
         let reponseProperty : any;
         
-      
         const propertyExists = await this.propertiesModel.findOne(
           {
             title: property.title,
@@ -57,40 +56,18 @@ export class PropertiesRepository {
             // console.log(property.title)
             // add user to existing property
             const updatedProperty = await this.propertiesModel.findOneAndUpdate(
-              { 
-                title: property.title,
-                location: property.location,
-                price: property.price,
-                bedrooms: property.bedrooms,
-                bathrooms: property.bathrooms,
-                garages: property.garages,
-                amenities: property.amenities,
-                images: property.images,
-                seen: property.seen 
-              },
+              { title: property.title},
               { $addToSet: { user: user} }
             ).exec();
+            console.log('Property already exists, adding user to property');
             reponseProperty = updatedProperty;
-
-            // const check = await this.propertiesModel.findOne(
-            //   {
-            //     title: property.title,
-            //     location: property.location,
-            //     price: property.price,
-            //     bedrooms: property.bedrooms,
-            //     bathrooms: property.bathrooms,
-            //     garages: property.garages,
-            //     amenities: property.amenities,
-            //     images: property.images,
-            //     seen: property.seen
-            //   }).exec();
-            // console.log(check);
 
             // add property to user
             const updatedUser = await this.userModel.findOneAndUpdate(
               { username: user },
               { $addToSet: { properties: property.title } }
             ).exec();
+            console.log('Property already exists, adding property to user');
           }
         }
         else {
@@ -109,13 +86,19 @@ export class PropertiesRepository {
               images: property.images,
               seen: property.seen
             },
-            { $addToSet: { user: user} }
+            { $push: { user: user} }
             ).exec();
-            reponseProperty = addUser;
+
+            console.log('Property does not exist, adding property to property collection and user to property');
+          
+          
+          reponseProperty = addUser;
+
           const updatedUser = await this.userModel.findOneAndUpdate(
             { username: user },
             { $addToSet: {  properties: property.title  } }
           ).exec();
+          console.log('Property does not exist, adding property to user collection');
         }
 
        // return createdProperty.save();
