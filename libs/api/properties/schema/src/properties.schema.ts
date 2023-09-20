@@ -28,7 +28,10 @@ export const PropertiesSchema = new mongoose.Schema({
     //used references to make the properties user specific
     //hold array of user ids
     user : [{type: String, ref: 'User'}] ,//hold the id of the user
-    seen : {type: Boolean, required: true, default: false}
+    seen : {type: Boolean, required: true, default: false},
+
+    //ai-label 
+    aiLabel : [{type: String, default: null}]
 
 
 });
@@ -56,7 +59,9 @@ export interface PropertiesModel {
 
     //used references to make the properties user specific
     user : string[], //hold the username of the user
-    seen : boolean
+    seen : boolean,
 
+    //ai-label
+    aiLabel : string[]
 
 }
