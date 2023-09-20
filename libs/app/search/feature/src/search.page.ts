@@ -34,7 +34,8 @@ export class SearchPage implements AfterViewInit{
       // //added user specific fields
       // userId: '001',
       // username: 'TestUsername',
-       seen: false
+       seen: false,
+      aiLabel: [],
       // user: ['TestUsername']
     }
     ];

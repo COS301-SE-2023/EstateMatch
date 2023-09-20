@@ -59,7 +59,8 @@ export class HomePage implements AfterViewInit{
     // //added user specific fields
     // userId: '001',
     // username: 'TestUsername',
-     seen: false
+     seen: false, 
+     aiLabel: []
     // user: ['TestUsername']
   }];
   lastImageIndex = 0;

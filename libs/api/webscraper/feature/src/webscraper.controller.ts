@@ -36,6 +36,7 @@ export class WebScraperController {
             //  userId: properties[i].userId,
             //  username: properties[i].username,
               seen : properties[i].seen,
+              aiLabel : properties[i].aiLabel
 
            // user : properties[i].user
         }
@@ -69,6 +70,7 @@ export class WebScraperController {
           //  userId: properties[i].userId,
           //  username: properties[i].username,
             seen : properties[i].seen,
+            aiLabel : properties[i].aiLabel
 
         //  user : properties[i].user
       }
@@ -103,6 +105,7 @@ export class WebScraperController {
           //  userId: properties[i].userId,
           //  username: properties[i].username,
             seen : properties[i].seen,
+            aiLabel : properties[i].aiLabel
 
          // user : properties[i].user
       }
@@ -140,6 +143,7 @@ export class WebScraperController {
             // userId: properties[i].userId,
             // username: properties[i].username,
              seen : properties[i].seen,
+             aiLabel : properties[i].aiLabel
 
            // user : properties[i].user
         }
