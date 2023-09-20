@@ -17,7 +17,7 @@ export class PropertiesRepository {
     async createProperty(request: ICreatePropertyRequest): Promise<PropertiesModel> {
         const property = request.property;
         const user = request.username;
-        console.log(user)
+        // console.log(user)
         const createdProperty = new this.propertiesModel(property);
         let reponseProperty : any;
         const propertyExists = await this.propertiesModel.findOne({title: property.title}).exec();
@@ -28,7 +28,7 @@ export class PropertiesRepository {
             console.log('Property already exists for this existing user');
           }
           else {
-            console.log(property.title)
+            // console.log(property.title)
             // add user to existing property
             const updatedProperty = await this.propertiesModel.findOneAndUpdate(
               { title: property.title },
@@ -37,7 +37,7 @@ export class PropertiesRepository {
             reponseProperty = updatedProperty;
 
             const check = await this.propertiesModel.findOne({title: property.title}).exec();
-            console.log(check);
+            // console.log(check);
 
             // add property to user
             const updatedUser = await this.userModel.findOneAndUpdate(
