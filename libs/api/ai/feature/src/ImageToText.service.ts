@@ -566,6 +566,25 @@ export class ImageToTextService {
     }
 
     //hard code paramters and call function here
+    const testPref: IAIPreference = {
+      user: 'Dharsh12345',
+      flooring: ['Hardwood', 'Tile', 'Plywood'],
+      buildingStyle: ['Modern architecture', 'Contemporary architecture', 'Interior design', 'Apartment', 'Building'],
+      buildingType: ['Commercial building', 'Penthouse apartment'],
+      buildingArea: ['Neighborhood', 'Residential area', 'Suburb'],
+      buildingFeatures: ['Garden', 'Courtyard', 'Swimming pool', 'Porch', 'Dining room'],
+      materials: ['Hardwood', 'Plywood', 'Tile', 'Natural material', 'Cobblestone'],
+    };
+
+    console.log(testPref);
+
+    const testUser = await this.aiPreferenceRepo.findOne(testPref.user);
+    console.log(testUser);
+    
+    if (testUser) {
+      const check = await this.aiPreferenceRepo.overwrite(testPref.user, testPref);
+      console.log('updated \n' + check);
+    }
 
     return {
       labelDescriptions: Array.from(uniqueLabelDescriptions),
