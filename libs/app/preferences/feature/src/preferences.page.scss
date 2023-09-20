@@ -102,6 +102,10 @@ ion-select{
         margin-top: 2%;
         padding-bottom: 1% !important;
 
+        ion-chip{
+            margin-left: -5%;
+            margin-right: 9%;
+        }
         .small_lbl{
             font-size: 16px;
             margin-bottom: 3%;
@@ -133,17 +137,6 @@ ion-select{
             border-color: #67C390;
             border-radius: 10%;
         }
-
-        .selected-area-chip {
-            display: flex;
-            align-items: center;
-            margin-top: 8px;
-            width: 55%;
-          }
-          
-          .selected-area-chip ion-chip {
-            margin-right: 8px;
-          }
     }
 
     .bottom_div{

@@ -23,7 +23,7 @@ export class PreferencesPage {
     garages = 0;
     ameneties :string[] = [];
     preference!: IPreference;
-    selectedArea = '';
+    selectedAreas: string[] = [];
 
   ngOnInit() {
 
@@ -61,14 +61,13 @@ export class PreferencesPage {
   
   addSelectedArea() {
     if (this.area) {
-      this.selectedArea = this.area;
+      this.selectedAreas.push(this.area); // Add the area to the selectedAreas array
       this.area = ''; // Clear the input field
     }
   }
 
-  clearSelectedArea() {
-    this.selectedArea = ''; // Clear the selected area text
-    this.area = ''; // Optionally, clear the input field as well
+  removeSelectedArea(selectedArea: string) {
+    this.selectedAreas = this.selectedAreas.filter((area) => area !== selectedArea); // Remove the selected area
   }
 
   async setPreferences() {

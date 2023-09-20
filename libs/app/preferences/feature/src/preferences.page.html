@@ -19,19 +19,19 @@
             <i (click)="openMap()" class="fa fa-map map-icon" aria-hidden="true"></i>
           </ion-col>
           <ion-col size="6">
-            <ion-input  [(ngModel)]="area" type="text" placeholder="Area" name="Area"></ion-input>
+            <ion-input [(ngModel)]="area" type="text" placeholder="Area" name="Area"></ion-input>
           </ion-col>
           <ion-col size="3">
             <button name="Add" (click)="addSelectedArea()"><i class="fa fa-check icon" aria-hidden="true"></i></button>
-          </ion-col>          
+          </ion-col>
         </ion-row>
-      </ion-grid>   
-      <div class="selected-area-chip" *ngIf="selectedArea">
-        <ion-chip>
+      </ion-grid>
+      <div class="selected-areas-chips">
+        <ion-chip name="AreaChip" *ngFor="let selectedArea of selectedAreas" class="area-chip">
+          <i class="fa fa-times icon" aria-hidden="true" style="margin-right: 10px;" (click)="removeSelectedArea(selectedArea)"></i>
           <ion-label>{{ selectedArea }}</ion-label>
-          <i class="fa fa-plus icon" aria-hidden="true" (click)="clearSelectedArea()"></i>
         </ion-chip>
-      </div>  
+      </div> 
       <ion-label class="small_lbl">Budget:</ion-label>
       <ion-range  [(ngModel)]="budget" aria-label="budget" [dualKnobs]="true" [ticks]="true" [snaps]="true" [min]="500000" [max]="8000000" [step]="500000" [pin]="true"></ion-range>
       <ion-grid>
@@ -78,27 +78,27 @@
       </ion-grid>
     </div>
     <div class="ameneties_container">
-      <ion-chip id="pool" (click)="pick('pool')" class="ameneties_chip">
+      <ion-chip name="AmenitiesChip" id="pool" (click)="pick('pool')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
         <ion-label>Pool</ion-label>
       </ion-chip>
-      <ion-chip id="study" (click)="pick('study')" class="ameneties_chip">
+      <ion-chip name="AmenitiesChip" id="study" (click)="pick('study')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
         <ion-label>Study</ion-label>
       </ion-chip>
-      <ion-chip id="aircon" (click)="pick('aircon')" class="ameneties_chip">
+      <ion-chip name="AmenitiesChip" id="aircon" (click)="pick('aircon')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
         <ion-label>Aircon</ion-label>
       </ion-chip>
-      <ion-chip id="furnished" (click)="pick('furnished')" class="ameneties_chip">
+      <ion-chip name="AmenitiesChip" id="furnished" (click)="pick('furnished')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
         <ion-label>Furnished</ion-label>
       </ion-chip>
-      <ion-chip id="pet" (click)="pick('pet')" class="ameneties_chip">
+      <ion-chip name="AmenitiesChip" id="pet" (click)="pick('pet')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
         <ion-label>Pet-Friendly</ion-label>
       </ion-chip>
-      <ion-chip id="lounge" (click)="pick('lounge')" class="ameneties_chip">
+      <ion-chip name="AmenitiesChip" id="lounge" (click)="pick('lounge')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
         <ion-label>Lounge</ion-label>
       </ion-chip>
