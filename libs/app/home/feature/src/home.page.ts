@@ -86,20 +86,28 @@ export class HomePage implements AfterViewInit{
 
     this.userPreferences = await this.http.post(prefURL, prefBody, { headers }).toPromise() as IPreference;
     //Search
-    const url = 'api/search';
+    // const url = 'api/search';
+    // const body = {
+    //   filters: {
+    //     location: this.userPreferences.location,
+    //     budgetMin: this.userPreferences.budgetMin,
+    //     budgetMax: this.userPreferences.budgetMax,
+    //     bedrooms: this.userPreferences.bedrooms,
+    //     bathrooms: this.userPreferences.bathrooms,
+    //     garages: this.userPreferences.garages,
+    //     amenities: this.userPreferences.extras
+    //   }
+    // }
+
+    const url = 'api/getUserProperties';
     const body = {
-      filters: {
-        location: this.userPreferences.location,
-        budgetMin: this.userPreferences.budgetMin,
-        budgetMax: this.userPreferences.budgetMax,
-        bedrooms: this.userPreferences.bedrooms,
-        bathrooms: this.userPreferences.bathrooms,
-        garages: this.userPreferences.garages,
-        amenities: this.userPreferences.extras
-      }
+      user: sessionStorage.getItem('username')
     }
 
-    this.properties = await this.http.post(url, body, { headers }).toPromise() as IProperty[];
+
+    const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
+    console.log(response.properties);
+    this.properties = response.properties;
     // this.properties = this.properties.slice(0,3);
     this.lastImageIndex = this.properties[0].images.length - 1;
     // this.ngAfterViewInit();
