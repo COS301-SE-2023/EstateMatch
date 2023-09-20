@@ -13,7 +13,8 @@ import {
 } from './commands';
 
 import {
-    CheckPropertyHandler
+    CheckPropertyHandler,
+    GetUserPropertiesHandler
 } from './queries';
 
 export const CommandHandlers = [
@@ -25,7 +26,8 @@ export const CommandHandlers = [
 ];
 
 export const QueryHandlers = [
-    CheckPropertyHandler
+    CheckPropertyHandler,
+    GetUserPropertiesHandler
 ];
 
 @Module({

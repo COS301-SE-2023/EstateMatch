@@ -36,7 +36,7 @@ describe('PreferenceService', () => {
     const commandResponse: IGetPreferencesResponse = { 
         preferences: {
             user: 'test',
-            location: 'test',
+            location: [],
             budgetMin: 1000,
             budgetMax: 10000,
             bedrooms: 1,
@@ -58,7 +58,7 @@ describe('PreferenceService', () => {
     const request: ISetPreferencesRequest = { 
         preferences: {
             user: 'test',
-            location: 'test',
+            location: [],
             budgetMin: 1000,
             budgetMax: 10000,
             bedrooms: 1,
@@ -70,7 +70,7 @@ describe('PreferenceService', () => {
     const commandResponse: ISetPreferencesResponse = { 
         preferences: {
             user: 'test',
-            location: 'test',
+            location: [],
             budgetMin: 1000,
             budgetMax: 10000,
             bedrooms: 1,

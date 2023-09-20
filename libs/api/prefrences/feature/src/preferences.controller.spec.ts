@@ -48,7 +48,7 @@ describe('PreferenceController', () => {
       const expectedResult: IGetPreferencesResponse = {
         preferences: {
             user: 'test',
-            location: 'test',
+            location: [],
             budgetMin: 1000,
             budgetMax: 10000,
             bedrooms: 1,
@@ -71,7 +71,7 @@ describe('PreferenceController', () => {
       const preferences: ISetPreferencesRequest = {
         preferences: {
             user: 'test',
-            location: 'test',
+            location: [],
             budgetMin: 1000,
             budgetMax: 10000,
             bedrooms: 1,
@@ -92,7 +92,7 @@ describe('PreferenceController', () => {
       const preferences: ISetPreferencesRequest = {
         preferences: {
             user: 'test',
-            location: 'test',
+            location: [],
             budgetMin: 1000,
             budgetMax: 10000,
             bedrooms: 1,
@@ -105,7 +105,7 @@ describe('PreferenceController', () => {
       const expectedResult = {
         preferences: {
             user: 'test',
-            location: 'test',
+            location: [],
             budgetMin: 1000,
             budgetMax: 10000,
             bedrooms: 1,

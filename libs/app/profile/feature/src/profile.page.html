@@ -48,9 +48,9 @@
     </div>
     <div class="area_container">
       <ion-label class="small_lbl">{{ 'labels.area' | translate }}</ion-label><br>
-      <ion-chip class="area_chip">
+      <ion-chip class="ameneties_chip" *ngFor="let l of preferences.location">
         <i class="fa fa-map-marker icon" aria-hidden="true"></i>
-        <ion-label>{{ preferences.location }}</ion-label>
+        <ion-label>{{l}}</ion-label>
       </ion-chip>
     </div>
     <div class="general_container">

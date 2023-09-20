@@ -4,7 +4,7 @@ export const PrefrencesSchema = new mongoose.Schema({
     user : {type: String, required: true},
     budgetMin : Number,
     budgetMax : Number,
-    location : String,
+    location : [String],
     bedrooms : Number,
     bathrooms : Number,
     garages : Number,
@@ -16,7 +16,7 @@ export interface PrefrencesModel  {
     user : string;
     budgetMin : number;
     budgetMax : number;
-    location : string;
+    location : string[];
     bedrooms : number;
     bathrooms : number;
     garages : number;

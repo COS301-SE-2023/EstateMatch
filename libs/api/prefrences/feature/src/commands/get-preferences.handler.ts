@@ -12,8 +12,9 @@ export class GetPreferencesHandler implements ICommandHandler<GetPreferencesComm
     async execute(command: GetPreferencesCommand): Promise<any> {
         const request = command.request;
         const user = request.user;  
-
         //ready to query database
-        return this.repository.findOne(user);
+        const prefResponse = await this.repository.findOne(user);
+        return prefResponse;
+
     }
 }

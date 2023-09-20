@@ -35,7 +35,14 @@ export class SearchPage implements AfterViewInit{
       bathrooms: 1,
       garages: 1,
       amenities: [],
-      images: []}
+      images: [],
+      // //added user specific fields
+      // userId: '001',
+      // username: 'TestUsername',
+       seen: false,
+      aiLabel: [],
+      // user: ['TestUsername']
+    }
     ];
     
     lastImageIndex = 0;
@@ -67,6 +74,7 @@ export class SearchPage implements AfterViewInit{
       const currProperty = this.properties[this.currentDescriptionIndex];
       const likedProperty: ILikeProperty = {
         user: sessionStorage.getItem('username')!,
+        title: currProperty.title,
         address: currProperty.location,
         price: currProperty.price,
         bedrooms: currProperty.bedrooms,
@@ -100,6 +108,7 @@ export class SearchPage implements AfterViewInit{
       const currProperty = this.properties[this.currentDescriptionIndex];
       const dislikedProperty: ILikeProperty = {
         user: sessionStorage.getItem('username')!,
+        title: currProperty.title,
         address: currProperty.location,
         price: currProperty.price,
         bedrooms: currProperty.bedrooms,

@@ -1,6 +1,6 @@
 export interface IPreference {
     user: string;
-    location: string;
+    location: string[];
     budgetMin: number;
     budgetMax: number;
     bedrooms: number;

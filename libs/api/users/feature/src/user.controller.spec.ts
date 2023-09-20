@@ -37,7 +37,8 @@ describe('UserController', () => {
             firstName: 'Test FName',
             lastName: 'Test FName',
             email: 'test@gmail.com',
-            username: 'testuser'
+            username: 'testuser',
+            properties: []
         },
       };
 
@@ -55,7 +56,8 @@ describe('UserController', () => {
             firstName: 'Test FName',
             lastName: 'Test FName',
             email: 'test@gmail.com',
-            username: 'testuser'
+            username: 'testuser',
+            properties: []
         }
       };
 
@@ -65,7 +67,8 @@ describe('UserController', () => {
             firstName: 'Test FName',
             lastName: 'Test FName',
             email: 'test@gmail.com',
-            username: 'testuser'
+            username: 'testuser',
+            properties: []
         }
       };
 
@@ -85,6 +88,7 @@ describe('UserController', () => {
             firstName: 'testFName',
             lastName: 'testLName',
             email: 'test2@gmail.com',
+            properties: []
         }
       };
 
