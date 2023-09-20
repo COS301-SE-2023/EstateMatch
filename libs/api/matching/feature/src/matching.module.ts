@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { MatchController } from './match.controller';
-import { MatchService } from './match.service';
+import { MatchingController } from './matching.controller';
+import { MatchingService } from './matching.service';
 import { CqrsModule } from '@nestjs/cqrs';
 import { PropertiesModule as PropertiesDataAccessModule } from '@estate-match/api/properties/data-access';
 
@@ -14,8 +14,8 @@ export const CommandHandlers = [
 
 @Module({
   imports: [CqrsModule, PropertiesDataAccessModule],
-  providers: [MatchService, ...CommandHandlers],
-  controllers: [MatchController],
-  exports: [MatchService]
+  providers: [MatchingService, ...CommandHandlers],
+  controllers: [MatchingController],
+  exports: [MatchingService]
 })
 export class MatchModule {}

@@ -1,10 +1,10 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
-import { MatchService } from './match.service';
+import { MatchingService } from './matching.service';
 import { IMatchRequest } from '@estate-match/api/matching/util';
 
 @Controller()
-export class MatchController {
-  constructor(private readonly matchService: MatchService) {}
+export class MatchingController {
+  constructor(private readonly matchService: MatchingService) {}
 
   @Post('/match')
   async match(@Body() request: IMatchRequest){
