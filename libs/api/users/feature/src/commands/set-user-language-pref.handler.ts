@@ -9,9 +9,17 @@ export class SetUserLanguagePrefHandler implements ICommandHandler<SetUserLangua
         private readonly publisher: EventPublisher
     ) {}
     
-    async execute(command: SetUserLanguagePrefCommand): Promise<any> {
+    async execute(command: SetUserLanguagePrefCommand): Promise<ISetUserLanguagePrefResponse> {
         const request = command.request;
         const user =  request.user;
         console.log(user);
+
+        const success = await this.userRepository.updateLanguagePref(user, request.languagePref);
+
+        if(success){
+            return {languagePref: request.languagePref};
+        }else{
+            return {languagePref: "Error"};
+        }
     }
 }

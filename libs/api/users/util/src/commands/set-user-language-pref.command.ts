@@ -1,5 +1,5 @@
-import { IGetUserLanguagePrefRequest } from "../requests";
+import { ISetUserLanguagePrefRequest } from "../requests";
 
 export class SetUserLanguagePrefCommand {
-    constructor(public request: IGetUserLanguagePrefRequest) {}
+    constructor(public request: ISetUserLanguagePrefRequest) {}
 }
