@@ -7,6 +7,9 @@ export class MatchHandler implements ICommandHandler<MatchCommand> {
     constructor(private readonly eventPublisher: EventPublisher){} 
 
     async execute(command: MatchCommand): Promise<IMatchResponse> {
+        const property = command.request.property;
+        const preferences = command.request.preferences;
+
         const response: IMatchResponse = {
             matchScore: 0
         }
