@@ -7,7 +7,8 @@ export interface IProperty{
     garages: number | null,
     amenities: string[],
     images: string[],
-    seen : boolean
+    seen : boolean,
+    aiLabel : string[]
 
     // //added user specific fields
     // userId: string,
