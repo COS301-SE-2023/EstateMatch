@@ -18,7 +18,7 @@ export class WebScraperController {
     
     @Post("/PrivatePropertySaleScraper")
     async getScrapedPrivatePropertySalesProperties(@Body() request: IWebscraperRequest) {
-      console.log(request.location);
+      // console.log(request.location);
         const properties = await this.PrivatePropertySaleService.PrivatePropertySalescrape(request.location);
       
         for(let i = 0; i < properties.length; i++){
@@ -35,7 +35,8 @@ export class WebScraperController {
             //  //user specific fields
             //  userId: properties[i].userId,
             //  username: properties[i].username,
-            //  seen : properties[i].seen,
+              seen : properties[i].seen,
+              aiLabel : properties[i].aiLabel
 
            // user : properties[i].user
         }
@@ -68,7 +69,8 @@ export class WebScraperController {
           //  //user specific fields
           //  userId: properties[i].userId,
           //  username: properties[i].username,
-          //  seen : properties[i].seen,
+            seen : properties[i].seen,
+            aiLabel : properties[i].aiLabel
 
         //  user : properties[i].user
       }
@@ -102,7 +104,8 @@ export class WebScraperController {
           //  //user specific fields
           //  userId: properties[i].userId,
           //  username: properties[i].username,
-          //  seen : properties[i].seen,
+            seen : properties[i].seen,
+            aiLabel : properties[i].aiLabel
 
          // user : properties[i].user
       }
@@ -139,7 +142,8 @@ export class WebScraperController {
             // //user specific fields
             // userId: properties[i].userId,
             // username: properties[i].username,
-            // seen : properties[i].seen,
+             seen : properties[i].seen,
+             aiLabel : properties[i].aiLabel
 
            // user : properties[i].user
         }
