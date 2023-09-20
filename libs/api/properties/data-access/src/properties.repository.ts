@@ -35,7 +35,7 @@ export class PropertiesRepository {
             seen: property.seen
           }).exec();
 
-          console.log(propertyExists);
+          // console.log(propertyExists);
 
         if(propertyExists) {
             //finding user where it exists in the property collection
@@ -63,7 +63,7 @@ export class PropertiesRepository {
               { $addToSet: { user: user} },
               { new: true }
             ).exec();
-            console.log('Property already exists, adding user to property');
+            // console.log('Property already exists, adding user to property');
             reponseProperty = updatedProperty;
 
             // add property to user
@@ -72,7 +72,7 @@ export class PropertiesRepository {
               { $addToSet: { properties: property.title } },
               { new: true }
             ).exec();
-            console.log('Property already exists, adding property to user');
+            // console.log('Property already exists, adding property to user');
           }
         }
         else {
@@ -86,7 +86,7 @@ export class PropertiesRepository {
             { $addToSet: { user: user} },
             ).exec();
 
-            console.log('Property does not exist, adding property to property collection and user to property');
+            // console.log('Property does not exist, adding property to property collection and user to property');
           
           
           reponseProperty = addUser;
@@ -96,7 +96,7 @@ export class PropertiesRepository {
             { $addToSet: {  properties: property.title  } },
             { new: true }
           ).exec();
-          console.log('Property does not exist, adding property to user collection');
+          // console.log('Property does not exist, adding property to user collection');
         }
 
        // return createdProperty.save();
