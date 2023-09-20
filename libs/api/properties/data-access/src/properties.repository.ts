@@ -72,18 +72,18 @@ export class PropertiesRepository {
             ).exec();
             reponseProperty = updatedProperty;
 
-            const check = await this.propertiesModel.findOne(
-              {
-                title: property.title,
-                location: property.location,
-                price: property.price,
-                bedrooms: property.bedrooms,
-                bathrooms: property.bathrooms,
-                garages: property.garages,
-                amenities: property.amenities,
-                images: property.images,
-                seen: property.seen
-              }).exec();
+            // const check = await this.propertiesModel.findOne(
+            //   {
+            //     title: property.title,
+            //     location: property.location,
+            //     price: property.price,
+            //     bedrooms: property.bedrooms,
+            //     bathrooms: property.bathrooms,
+            //     garages: property.garages,
+            //     amenities: property.amenities,
+            //     images: property.images,
+            //     seen: property.seen
+            //   }).exec();
             // console.log(check);
 
             // add property to user
@@ -171,7 +171,7 @@ export class PropertiesRepository {
             { $pull: { properties: title } }
           ).exec();
         
-        console.log(UserRemove);
+     //   console.log(UserRemove);
 
         if(!propRemove) {
             throw new Error('Property not found');  
