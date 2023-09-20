@@ -112,8 +112,23 @@ export class HomePage implements AfterViewInit{
 
 
     const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
-    console.log(response.properties);
     this.properties = response.properties;
+
+    if(sessionStorage.getItem('languagePref') !== 'en'){
+      const translateUrl = 'api/translate';
+      const translateBody = {
+        text: '',
+        targetLanguage: sessionStorage.getItem('languagePref')
+      };
+
+      for(let i = 0; i < this.properties.length; i++){
+        translateBody.text = this.properties[i].title;
+        const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+        this.properties[i].title = translatedTitle.text;
+      }      
+    }
+
+
     // this.properties = this.properties.slice(0,3);
     this.lastImageIndex = this.properties[0].images.length - 1;
     // this.ngAfterViewInit();

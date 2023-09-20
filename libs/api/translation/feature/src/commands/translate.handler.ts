@@ -4,11 +4,6 @@ import { LLMChain } from "langchain/chains";
 import { ChatOpenAI} from "langchain/chat_models/openai";
 import {
     PromptTemplate,
-    ChatPromptTemplate,
-    SystemMessagePromptTemplate,
-    HumanMessagePromptTemplate,
-    MessagesPlaceholder,
-    AIMessagePromptTemplate
 } from "langchain/prompts";
 
 import * as dotenv from 'dotenv';
@@ -35,7 +30,12 @@ export class TranslateHandler implements ICommandHandler<TranslateCommand, ITran
         }
 
         const model = new ChatOpenAI({});
-        const myTemplate = "You are an assistant that tranlates {text} from english to {output_language}";
+        const myTemplate = "You are an assistant that tranlates {text} from english to {output_language}. Only provide the transletd text as a response." + 
+        "Examples:" + 
+        "Text: 3 Bedroom house for sale in Cape Town" + 
+        "Assistant: 3 Slaapkamer huis te koop in Kaapstad" + 
+        "Text: I like to eat apples" +
+        "Assistant: Ek hou daarvan om appels te eet";
 
         const prompt = PromptTemplate.fromTemplate(myTemplate);
 
