@@ -1,0 +1,116 @@
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+  }
+  
+  textarea[name="message"] {
+    width: 86%;
+    height: 40px;
+    margin-top: 2%;
+    margin-right: 1%;
+    margin-left: 0.5%;
+    font-size: x-large;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    padding-left: 8px;
+    padding-top: 8px;
+  }
+  
+  div[name="MessageBox"] {
+    height: 44rem;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+    overflow-y: scroll;
+    padding-bottom: 6px;
+  }
+  
+  span[name="Container"] {
+    display: flex; /* Use flexbox to place items in a row */
+    align-items: center;
+  }
+  
+  button[name="send-button"] {
+    background-color: #67C390;
+    height: 50px;
+    border-color: #67C390;
+    border-radius: 100%;
+    width: 50px;
+    display: inline-flex; /* To prevent the button from taking full width */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  ion-card[name="displayContainer"] {
+    height: 84vh;
+    border-radius: 5%;
+    background-color: #fbfcfa;
+    overflow-y: scroll;
+  }
+  
+  ion-card-subtitle[name="Subtitle"] {
+    padding-top: 3%;
+    padding-bottom: 3%;
+    text-align: center;
+    font-size: x-large;
+    color: #999999;
+    background-color: #f3f1f1;
+  }
+
+.container {
+  font-size: large;
+  border: 2px solid #67C390;
+  background-color: #67C390;
+  border-radius: 5px;
+  padding-top: 10px; 
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  margin: 2px 0;
+  width: 80%;
+  float: right;
+}
+
+.darker {
+  float: left;
+  border-color: #E7604D;
+  background-color: #E7604D;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  padding-left: 1px; 
+  padding-right: 10px;
+  padding-bottom: 1px;
+  float: left;
+  max-width: 60px;
+  height: 60px;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: left; 
+  margin-right: 0; 
+  margin-left: 5px;
+}
+
+.container p {
+  margin: 0; 
+}
+
+.time-right {
+  float: right;
+  color: black;
+  clear: both; 
+}
+
+.time-left {
+  float: right; 
+  color: black;
+  clear: both; 
+}
