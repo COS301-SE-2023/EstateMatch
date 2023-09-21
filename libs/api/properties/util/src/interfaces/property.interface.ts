@@ -7,4 +7,7 @@ export interface IProperty{
     garages: number | null,
     amenities: string[],
     images: string[],
+
+    //array of rbg arrays
+    rgbArray: number[],
 }
