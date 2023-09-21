@@ -195,7 +195,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             // verbose: true,
         });
 
-        // const res = await agentExecutor.call({input: command.request.chat.message}); THIS ONE
+        const res = await agentExecutor.call({input: command.request.chat.message});
         // console.log(chatMemory.chatHistory.getMessages())
 
         const response: ISetChatResponse = {
@@ -206,7 +206,21 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             }
         };
 
-        const test = await this.buildPreferenceModel(command.request.chat.username, command.request.chat.message);
+        const history = await chatMemory.chatHistory.getMessages();
+        let fullUserMessage = '';
+        // console.log(history);
+        let count = 1;
+        for(let i = 0; i < history.length; i++) {
+            if(history[i]._getType() === 'human' && count % 2 !== 0){
+                fullUserMessage += " " + history[i].content;
+            }
+
+            if(i % 2 === 0){
+                count++;
+            }
+        }
+
+        const test = await this.buildPreferenceModel(command.request.chat.username, fullUserMessage);
         console.log(test);
 
         return response; 
@@ -301,8 +315,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             materials: [],
             additional: [],
         };
-
-        console.log(classesArray);
 
         classesArray.forEach(element => {
             if(element !== '' && !element.includes('N/A')){
