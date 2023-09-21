@@ -11,9 +11,11 @@ import { WebScraperModule } from '@estate-match/api/webscraper/feature';
 import { ImageToTextModule } from '@estate-match/api/ai/feature';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { MapModule } from '@estate-match/api/map/feature';
 import { MatchModule } from '@estate-match/api/matching/feature';
 import { TensorflowModule } from '@estate-match/api/ai/feature';
 import { TranslateModule } from '@estate-match/api/translation/feature';
+
 
 const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
 
@@ -28,7 +30,8 @@ const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
     ChatModule,
     WebScraperModule,
     TensorflowModule,
-    TranslateModule
+    MapModule,
+    TranslateModule,
     ImageToTextModule,
     MatchModule
   ],
