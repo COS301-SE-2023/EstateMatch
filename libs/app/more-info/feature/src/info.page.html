@@ -50,7 +50,8 @@
               </ion-row>
             </ion-grid> 
             <!-- <ion-label class="sub-heading">Description</ion-label>   -->
-            <p class="description">{{property.title}} {{ propertyDescription }}</p>   <!-- Need to add description-->  
+            <p class="description">{{property.title}}</p>
+            <p class="description" *ngFor="let d of property.description">{{d}}</p>
             <ion-label class="sub-heading">Ameneties</ion-label><br>  
             <ion-chip class="ameneties_chip" *ngFor="let a of property.amenities">
               <i class="fa fa-plus icon" aria-hidden="true"></i>
@@ -62,21 +63,11 @@
             <div name="ColourScheme" style=" width: 90%;">
               <ion-grid style="width: 100%; height: 100%;">
                 <ion-row style="width: 100%; height:30px">
-                  <ion-col style="background-color:red">
-
-                  </ion-col>
-                  <ion-col style="background-color:rgb(4, 255, 0)">
-                    
-                  </ion-col>
-                  <ion-col style="background-color:rgb(0, 119, 255)">
-                    
-                  </ion-col>
-                  <ion-col style="background-color:rgb(255, 0, 132)">
-                    
-                  </ion-col>
-                  <ion-col style="background-color:rgb(187, 255, 0)">
-                    
-                  </ion-col>
+                  <ion-col class="colour-palate" style="background-color:red"></ion-col>
+                  <ion-col class="colour-palate" style="background-color:rgb(4, 255, 0)"></ion-col>
+                  <ion-col class="colour-palate" style="background-color:rgb(0, 119, 255)"></ion-col>
+                  <ion-col class="colour-palate" style="background-color:rgb(255, 0, 132)"></ion-col>
+                  <ion-col class="colour-palate" style="background-color:rgb(187, 255, 0)"></ion-col>
                 </ion-row>
               </ion-grid>
             </div>
