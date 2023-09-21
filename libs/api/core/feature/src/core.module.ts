@@ -12,7 +12,7 @@ import { ImageToTextModule } from '@estate-match/api/ai/feature';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { MatchModule } from '@estate-match/api/matching/feature';
-import { TensorflowModule } from '@estate-match/api/ai/feature';
+//import { TensorflowModule } from '@estate-match/api/ai/feature';
 
 const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
 
