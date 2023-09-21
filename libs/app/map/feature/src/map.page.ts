@@ -246,10 +246,10 @@ import { url } from 'inspector';
         type: 'school',
     }
 
-    const schoolResponse = await this.http.post(url, body, { headers }).toPromise();
+    const schoolResponse = await this.http.post(url, body, { headers }).toPromise() as { results: any[] };
 
-    for(let i = 0; i < schoolResponse.length; i++){
-      this.setSchoolMarker(schoolResponse[i].geometry.location.lat,schoolResponse[i].geometry.location.lng,schoolResponse[i].name);
+    for(let i = 0; i < schoolResponse.results.length; i++){
+      this.setSchoolMarker(schoolResponse.results[i].geometry.location.lat,schoolResponse.results[i].geometry.location.lng,schoolResponse.results[i].name);
     }
 
     body = {
@@ -258,10 +258,10 @@ import { url } from 'inspector';
       type: 'supermarket',
     }
 
-    const marketResponse = await this.http.post(url, body, { headers }).toPromise();
+    const marketResponse = await this.http.post(url, body, { headers }).toPromise() as { results: any[] };
 
-    for(let i = 0; i < marketResponse.length; i++){
-      this.setMarketMarker(marketResponse[i].geometry.location.lat,marketResponse[i].geometry.location.lng,marketResponse[i].name);
+    for(let i = 0; i < marketResponse.results.length; i++){
+      this.setMarketMarker(marketResponse.results[i].geometry.location.lat,marketResponse.results[i].geometry.location.lng,marketResponse.results[i].name);
     }
 
     body = {
@@ -270,10 +270,10 @@ import { url } from 'inspector';
       type: 'gas_station',
     }
 
-    const gasResponse = await this.http.post(url, body, { headers }).toPromise();
+    const gasResponse = await this.http.post(url, body, { headers }).toPromise() as { results: any[] };
 
-    for(let i = 0; i < gasResponse.length; i++){
-      this.setGasstationMarker(gasResponse[i].geometry.location.lat,gasResponse[i].geometry.location.lng,gasResponse[i].name);
+    for(let i = 0; i < gasResponse.results.length; i++){
+      this.setGasstationMarker(gasResponse.results[i].geometry.location.lat,gasResponse.results[i].geometry.location.lng,gasResponse.results[i].name);
     }
 
     body = {
@@ -282,10 +282,10 @@ import { url } from 'inspector';
       type: 'shopping_mall',
     }
 
-    const mallResponse = await this.http.post(url, body, { headers }).toPromise();
+    const mallResponse = await this.http.post(url, body, { headers }).toPromise() as { results: any[] };
 
-    for(let i = 0; i < mallResponse.length; i++){
-      this.setMallMarker(mallResponse[i].geometry.location.lat,mallResponse[i].geometry.location.lng,mallResponse[i].name);
+    for(let i = 0; i < mallResponse.results.length; i++){
+      this.setMallMarker(mallResponse.results[i].geometry.location.lat,mallResponse.results[i].geometry.location.lng,mallResponse.results[i].name);
     }
    
     return [this.propertyLat,this.propertyLong];
