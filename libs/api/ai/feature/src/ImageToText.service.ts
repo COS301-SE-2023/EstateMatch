@@ -456,9 +456,7 @@ export class ImageToTextService {
 
   async analyzeImages(imageUrls: string[], username :string) { //pass in username
     const uniqueLabelDescriptions = new Set<string>();
-    let bestDominantColor: { red: number, green: number, blue: number } = { red: 0, green: 0, blue: 0 };
-    let bestScore = -1;
-
+    let allDominantColors: { red: number; green: number; blue: number;  score: number}[] = [];
 
     for (const imageUri of imageUrls) {
       try {
@@ -497,18 +495,34 @@ export class ImageToTextService {
           }
         });
 
+        
+
         // Find and extract the RGB values of the dominant color with the best score
         const dominantColors = imageProperties.dominantColors?.colors || [];
-        dominantColors.sort((a: { score: number }, b: { score: number }) => b.score - a.score);
-        if (dominantColors[0]?.score > bestScore) {
-          bestDominantColor = { ...dominantColors[0].color };
-          bestScore = dominantColors[0].score;
-        }
+        allDominantColors = allDominantColors.concat(
+          dominantColors.map((color: { color: { red: number; green: number; blue: number }; score: number }) => ({
+            red: color.color.red,
+            green: color.color.green,
+            blue: color.color.blue,
+            score: color.score,
+          }))
+        );
       } catch (error) {
         console.error('Google Vision API error:', error);
         throw error;
       }
     }
+
+    allDominantColors.sort((a, b) => b.score - a.score);
+
+    // Take the top 5 dominant colors based on score
+    const topDominantColors = allDominantColors.slice(0, 5);
+
+    const rgbValues: number[] = [];
+
+    topDominantColors.forEach(color => {
+      rgbValues.push(color.red, color.green, color.blue);
+    });
 
     //Query DB
     /**
@@ -548,7 +562,7 @@ export class ImageToTextService {
       }
     }
 
-    const aiPrefRequest: IAIPreference = {
+    /*const aiPrefRequest: IAIPreference = {
       user: username,
       flooring: floorTypes,
       buildingStyle: buildingStyles,
@@ -563,7 +577,7 @@ export class ImageToTextService {
       await this.aiPreferenceRepo.update(username, aiPrefRequest);
     } else {
       await this.aiPreferenceRepo.create(aiPrefRequest);
-    }
+    }*/
 
     //hard code paramters and call function here
     // const testPref: IAIPreference = {
@@ -588,7 +602,7 @@ export class ImageToTextService {
 
     return {
       labelDescriptions: Array.from(uniqueLabelDescriptions),
-      bestDominantColor,
+      rgbValues,
     };
   }
 }
