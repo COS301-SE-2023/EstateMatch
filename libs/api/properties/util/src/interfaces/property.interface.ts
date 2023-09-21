@@ -10,4 +10,5 @@ export interface IProperty{
 
     //array of rbg arrays
     rgbArray: number[],
+    description: string,
 }
