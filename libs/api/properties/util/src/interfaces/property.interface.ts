@@ -8,7 +8,9 @@ export interface IProperty{
     amenities: string[],
     images: string[],
     seen : boolean,
-    aiLabel : string[]
+    aiLabel : string[],
+    rgbColour : number[],
+    description : string
 
     // //added user specific fields
     // userId: string,
