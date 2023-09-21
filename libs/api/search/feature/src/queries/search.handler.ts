@@ -15,7 +15,7 @@ export class SearchHandler implements IQueryHandler<SearchQuery, ISearchResponse
   async execute(query: SearchQuery) : Promise<any> {
     const request = query.request; 
     const searchPropReq: IPropSearch = {
-      location: request.filters.location,
+      location: request.filters.location[0],
       budgetMin: request.filters.budgetMin,
       budgetMax: request.filters.budgetMax,
       bedrooms: request.filters.bedrooms,
@@ -24,5 +24,6 @@ export class SearchHandler implements IQueryHandler<SearchQuery, ISearchResponse
       amenities: request.filters.amenities
     };   
     return this.repository.getPropertiesByPreferences(searchPropReq);
+    // return this.repository.getUserProperties(request.username);
   }
 }
