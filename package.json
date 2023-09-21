@@ -29,6 +29,8 @@
     "@nestjs/passport": "^9.0.3",
     "@nestjs/platform-express": "^9.1.1",
     "@nestjs/serve-static": "^4.0.0",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
     "@nx/angular": "16.1.0",
     "@nxtend/ionic-angular": "^13.1.0",
     "@tensorflow/tfjs": "^4.8.0",

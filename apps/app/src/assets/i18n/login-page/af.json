@@ -1,0 +1,22 @@
+{
+    "header": {
+      "subtitle": "Aanmeld"
+    },
+    "labels": {
+      "username": "Gebruikersnaam",
+      "password": "Wagwoord"
+    },
+    "placeholders": {
+      "username": "Voer Gebruikersnaam in",
+      "password": "Wagwoord"
+    },
+    "buttons": {
+      "login": "Aanmeld"
+    },
+    "messages": {
+      "signup": "Het nie 'n rekening nie?",
+      "sign_up": "Registreer."
+    },
+    "Change": "Verander"
+}
+  

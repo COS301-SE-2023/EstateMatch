@@ -7,13 +7,15 @@ import { UserModule as UserDataAccessModule } from '@estate-match/api/users/data
 import {
     GetUserHandler,
     SetUserHandler,
-    UpdateUserHandler
+    UpdateUserHandler,
+    SetUserLanguagePrefHandler
 } from './commands';
 
 export const CommandHandlers = [
     GetUserHandler,
     SetUserHandler,
-    UpdateUserHandler
+    UpdateUserHandler,
+    SetUserLanguagePrefHandler
 ];
 
 @Module({

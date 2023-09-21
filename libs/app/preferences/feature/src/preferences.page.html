@@ -1,46 +1,46 @@
+<!DOCTYPE html>
+<html>
+
 <head>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 </head>
-
-
 
 <header>
   <app-header></app-header>
 </header>
 
 <ion-card name="displayContainer">
-  <ion-card-subtitle name="Subtitle">Preferences</ion-card-subtitle>
+  <ion-card-subtitle name="Subtitle">{{ 'subtitle' | translate }}</ion-card-subtitle>
   <div class="main_content_div">
     <div class="form_div">
-      <ion-label id="area" class="small_lbl">Area:</ion-label>
+      <ion-label id="area" class="small_lbl">{{ 'labels.area' | translate }}</ion-label>
       <ion-grid>
         <ion-row size="11">
           <ion-col size="2">
             <i (click)="openMap()" class="fa fa-map map-icon" aria-hidden="true"></i>
           </ion-col>
-          <ion-col size="6">
-            <ion-input [(ngModel)]="area" type="text" placeholder="Area" name="Area"></ion-input>
-          </ion-col>
-          <ion-col size="3">
-            <button name="Add" (click)="addSelectedArea()"><i class="fa fa-check icon" aria-hidden="true"></i></button>
+          <ion-col size="10">
+            <ion-input [(ngModel)]="area" type="text"
+              placeholder="{{ 'placeholders.area' | translate }}"></ion-input>
           </ion-col>
         </ion-row>
       </ion-grid>
-      <div class="selected-areas-chips">
+          <div class="selected-areas-chips">
         <ion-chip name="AreaChip" *ngFor="let selectedArea of selectedAreas" class="area-chip">
           <i class="fa fa-times icon" aria-hidden="true" style="margin-right: 10px;" (click)="removeSelectedArea(selectedArea)"></i>
           <ion-label>{{ selectedArea }}</ion-label>
         </ion-chip>
       </div> 
-      <ion-label class="small_lbl">Budget:</ion-label>
-      <ion-range  [(ngModel)]="budget" aria-label="budget" [dualKnobs]="true" [ticks]="true" [snaps]="true" [min]="500000" [max]="8000000" [step]="500000" [pin]="true"></ion-range>
+      <ion-label class="small_lbl">{{ 'labels.budget' | translate }}</ion-label>
+      <ion-range [(ngModel)]="budget" aria-label="budget" [dualKnobs]="true" [ticks]="true" [snaps]="true"
+        [min]="500000" [max]="8000000" [step]="500000" [pin]="true"></ion-range>
       <ion-grid>
         <ion-row>
           <ion-col size="2">
             <img class="info-icon" src="assets/bed.png"><br>
           </ion-col>
           <ion-col size="10">
-            <ion-select [(ngModel)]="bedrooms" name ="BedroomSel" aria-label="bedrooms" placeholder="Bedrooms">
+            <ion-select [(ngModel)]="bedrooms" aria-label="bedrooms" placeholder="{{ 'labels.bedrooms' | translate }}">
               <ion-select-option value="1">1</ion-select-option>
               <ion-select-option value="2">2</ion-select-option>
               <ion-select-option value="3">3</ion-select-option>
@@ -54,7 +54,8 @@
             <img class="info-icon" src="assets/bath.png"><br>
           </ion-col>
           <ion-col size="10">
-            <ion-select [(ngModel)]="bathrooms" name= "BathroomSel" aria-label="bathrooms" placeholder="Bathrooms">
+            <ion-select [(ngModel)]="bathrooms" aria-label="bathrooms"
+              placeholder="{{ 'labels.bathrooms' | translate }}">
               <ion-select-option value="1">1</ion-select-option>
               <ion-select-option value="2">2</ion-select-option>
               <ion-select-option value="3">3</ion-select-option>
@@ -65,10 +66,11 @@
         </ion-row>
         <ion-row>
           <ion-col size="2">
-            <img  class="info-icon" src="assets/car.png"><br>
+            <img class="info-icon" src="assets/car.png"><br>
           </ion-col>
           <ion-col size="10">
-            <ion-select [(ngModel)]="garages" name="ParkingSel" aria-label="parking-bays" placeholder="Parking bays">
+            <ion-select [(ngModel)]="garages" aria-label="parking-bays"
+              placeholder="{{ 'labels.garages' | translate }}">
               <ion-select-option value="1">1</ion-select-option>
               <ion-select-option value="2">2</ion-select-option>
               <ion-select-option value="3">3</ion-select-option>
@@ -80,32 +82,31 @@
     <div class="ameneties_container">
       <ion-chip name="AmenitiesChip" id="pool" (click)="pick('pool')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
-        <ion-label>Pool</ion-label>
+        <ion-label>{{ 'amenities.pool' | translate }}</ion-label>
       </ion-chip>
       <ion-chip name="AmenitiesChip" id="study" (click)="pick('study')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
-        <ion-label>Study</ion-label>
+        <ion-label>{{ 'amenities.study' | translate }}</ion-label>
       </ion-chip>
       <ion-chip name="AmenitiesChip" id="aircon" (click)="pick('aircon')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
-        <ion-label>Aircon</ion-label>
+        <ion-label>{{ 'amenities.aircon' | translate }}</ion-label>
       </ion-chip>
       <ion-chip name="AmenitiesChip" id="furnished" (click)="pick('furnished')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
-        <ion-label>Furnished</ion-label>
+        <ion-label>{{ 'amenities.furnished' | translate }}</ion-label>
       </ion-chip>
       <ion-chip name="AmenitiesChip" id="pet" (click)="pick('pet')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
-        <ion-label>Pet-Friendly</ion-label>
+        <ion-label>{{ 'amenities.pet' | translate }}</ion-label>
       </ion-chip>
       <ion-chip name="AmenitiesChip" id="lounge" (click)="pick('lounge')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
-        <ion-label>Lounge</ion-label>
+        <ion-label>{{ 'amenities.lounge' | translate }}</ion-label>
       </ion-chip>
     </div>
     <div class="button_container" name="buttonContainer" style="text-align:center;">
-      <button (click)="setPreferences()" class="buttons" fill="default" >Set Preferences</button>
-    </div>  
-  </div>  
-
+      <button (click)="setPreferences()" class="buttons" fill="default">{{ 'labels.button.setPreferences' | translate }}</button>
+    </div>
+  </div>
 </ion-card>

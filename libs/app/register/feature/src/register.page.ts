@@ -2,18 +2,29 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ms-register-page',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
+  providers: [TranslateService]
 })
 export class RegisterPage {
   
   constructor(private http: HttpClient,
     private toastController: ToastController,
-    private router: Router) { }
+    private router: Router,
+    private translate: TranslateService) {
+      this.translate.setDefaultLang('en');
+     }
+
+    preferedLang = 'en';
+    switchLanguage(lang: string) {
+      this.translate.use(lang);
+      this.preferedLang = lang;
+    }
+  
   username = '';
   email = '';
   fname = '';
@@ -32,6 +43,7 @@ export class RegisterPage {
         email: this.email,
         firstName: this.fname,
         lastName: this.lname,
+        languagePref: this.preferedLang,
     }
 
     const headers = new HttpHeaders({

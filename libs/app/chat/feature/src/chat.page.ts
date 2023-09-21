@@ -2,18 +2,23 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ms-chat-page',
   templateUrl: './chat.page.html',
   styleUrls: ['./chat.page.scss'],
+  providers: [TranslateService],
 })
 export class ChatPage {
   constructor(
     private http: HttpClient,
     private toastController: ToastController,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private translate: TranslateService
+  ) {
+    this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
+  }
 
   userMessage = '';
   messages: { text: string[]; time: string; userType: 'user' | 'bot' }[] = [];
@@ -80,3 +85,4 @@ export class ChatPage {
     return `${hours}:${minutes}`;
   }
 }
+

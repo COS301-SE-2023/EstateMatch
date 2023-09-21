@@ -5,6 +5,8 @@ import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
 import { IPreference } from '@estate-match/api/prefrences/util';
 import { Router } from '@angular/router';
 import { time } from 'console';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+
 
 interface Property {
   user: string;
@@ -21,6 +23,7 @@ interface Property {
   selector: 'ms-home-page',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
+  providers: [TranslateService]
 })
 
 export class HomePage implements AfterViewInit{
@@ -33,7 +36,10 @@ export class HomePage implements AfterViewInit{
     private toastController: ToastController,
     private router: Router,
     private gestureCtrl: GestureController,
-    private plt: Platform) {}
+    private plt: Platform,
+    private translate: TranslateService) {
+      this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
+    }
 
 
   // descriptions: string[] = ['R5 000 000. Three Bedroom and Two Bathrooms.',
@@ -106,8 +112,22 @@ export class HomePage implements AfterViewInit{
 
 
     const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
-    console.log(response.properties);
     this.properties = response.properties;
+
+    if(sessionStorage.getItem('languagePref') !== 'en'){
+      const translateUrl = 'api/translate';
+      const translateBody = {
+        text: '',
+        targetLanguage: sessionStorage.getItem('languagePref')
+      };
+
+      for(let i = 0; i < this.properties.length; i++){
+        translateBody.text = this.properties[i].title;
+        const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+        this.properties[i].title = translatedTitle.text;
+      }      
+    }
+
     // this.properties = this.properties.slice(0,3);
     this.lastImageIndex = this.properties[0].images.length - 1;
     // this.ngAfterViewInit();

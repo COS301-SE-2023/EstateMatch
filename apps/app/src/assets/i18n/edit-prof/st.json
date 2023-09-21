@@ -1,0 +1,24 @@
+{
+    "labels": {
+      "firstName": "Lebitso la pele",
+      "lastName": "Fane",
+      "username": "Lebitso la mosebedisi",
+      "email": "Imeile",
+      "button.save": "Boloka",
+      "button.backToProfile": "Khutlela ho boemo"
+    },
+    "placeholders": {
+      "firstName": "Lebitso la pele",
+      "lastName": "Fane",
+      "username": "Lebitso la mosebedisi",
+      "email": "Imeile"
+    }, 
+    "navbar": {
+      "home": "Lehae",
+      "chat": "Qoqa",
+      "search": "Batla",
+      "liked": "E ratile",
+      "profile": "Boemo"
+  }
+  }
+  

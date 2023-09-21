@@ -13,6 +13,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { MatchModule } from '@estate-match/api/matching/feature';
 import { TensorflowModule } from '@estate-match/api/ai/feature';
+import { TranslateModule } from '@estate-match/api/translation/feature';
 
 const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
 
@@ -26,6 +27,8 @@ const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
     SearchModule,
     ChatModule,
     WebScraperModule,
+    TensorflowModule,
+    TranslateModule
     ImageToTextModule,
     MatchModule
   ],

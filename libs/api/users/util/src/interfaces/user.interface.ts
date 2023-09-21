@@ -7,4 +7,5 @@ export interface IUser {
 
     //using references to make the properties user specific
     properties: string[]; //hold the titles of the properties
+    languagePref: string;
 }

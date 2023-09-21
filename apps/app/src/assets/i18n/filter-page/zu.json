@@ -1,0 +1,25 @@
+{
+  "labels": {
+    "searchFilters": "Sesha izihlungi",
+    "budget": "Ibhajethi:",
+    "bedrooms": "Amakamelo okulala",
+    "bathrooms": "Izindlu zokugezela",
+    "garages": "Amagaraji",
+    "amenities": "Izinsiza",
+    "pool": "Ichibi",
+    "study": "Igumbi lokufunda",
+    "aircon": "I-Aircon",
+    "furnished": "Inefenisha",
+    "petFriendly": "Kutholwe Izilwane",
+    "lounge": "Indawo yokuphumula",
+    "save": "Gcina",
+    "cancel": "Khansela"
+  },
+  "navbar": {
+    "home": "Ikhaya",
+    "chat": "Xoxa",
+    "search": "Sesha",
+    "liked": "Kuthandiwe",
+    "profile": "Iphrofayela"
+}
+}

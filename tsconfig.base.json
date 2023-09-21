@@ -78,6 +78,12 @@
         "libs/api/search/feature/src/index.ts"
       ],
       "@estate-match/api/search/util": ["libs/api/search/util/src/index.ts"],
+      "@estate-match/api/translation/feature": [
+        "libs/api/translation/feature/src/index.ts"
+      ],
+      "@estate-match/api/translation/util": [
+        "libs/api/translation/util/src/index.ts"
+      ],
       "@estate-match/api/users/data-access": [
         "libs/api/users/data-access/src/index.ts"
       ],

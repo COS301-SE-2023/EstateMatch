@@ -1,0 +1,30 @@
+{
+    "header": {
+      "subtitle": "Bhalisa"
+    },
+    "labels": {
+      "firstName": "Igama",
+      "lastName": "Isibongo",
+      "username": "Igama Lomsebenzisi",
+      "email": "I-imeyili",
+      "password": "Iphasiwedi",
+      "confirmPassword": "Yaqinisekisa Iphasiwedi"
+    },
+    "placeholders": {
+      "firstName": "Faka Igama",
+      "lastName": "Faka Isibongo",
+      "username": "Faka Igama Lomsebenzisi",
+      "email": "Faka I-imeyili",
+      "password": "Faka Iphasiwedi",
+      "confirmPassword": "Yaqinisekisa Iphasiwedi"
+    },
+    "buttons": {
+      "createAccount": "Yenza I-akhawunti"
+    },
+    "messages": {
+      "login": "Unomlingani othile?",
+      "log_in": "Ngena ngemvume"
+    },
+    "Change": "Fetola"
+  }
+  

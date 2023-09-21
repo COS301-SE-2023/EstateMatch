@@ -5,19 +5,38 @@ import { IPreference } from '@estate-match/api/prefrences/util';
 import { IUser } from '@estate-match/api/users/util';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ms-profile-page',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
+  providers: [TranslateService]
 })
 export class ProfilePage {
   constructor(
     private toastController: ToastController,
     private router: Router,
     private route: ActivatedRoute,
-    private http: HttpClient
-  ) {}
+    private http: HttpClient,
+    private translate: TranslateService) {
+      this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
+     }
+
+     async setLanguage(lang: string) {
+      this.translate.use(lang);
+
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      const url = 'api/setUserLanguagePref';
+      const body = {
+        user: sessionStorage.getItem('username'),
+        languagePref: lang,
+      }
+
+
+      const languageSet = await this.http.post(url, body, { headers }).toPromise() as {languagePref: string};
+      sessionStorage.setItem('languagePref', languageSet.languagePref);
+    }
 
   user: IUser = {
     id: 'string',
@@ -27,6 +46,7 @@ export class ProfilePage {
     email: 'string',
     //password: 'string'
     properties: [],
+    languagePref: 'en',
   };
 
   preferences: IPreference = {

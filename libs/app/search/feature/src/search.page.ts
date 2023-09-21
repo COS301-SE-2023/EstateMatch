@@ -3,12 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Gesture, GestureController, IonCard, Platform, ToastController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'ms-search-page',
   templateUrl: './search.page.html',
   styleUrls: ['./search.page.scss'],
+  providers: [TranslateService]
 })
 
 export class SearchPage implements AfterViewInit{
@@ -19,7 +21,10 @@ export class SearchPage implements AfterViewInit{
     private toastController: ToastController,
     private route: ActivatedRoute,
     private readonly router: Router,
-    private gestureCtrl: GestureController,) {}
+    private gestureCtrl: GestureController,
+    private translate: TranslateService) {
+      this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
+     }
 
     location = '';
     properties: IProperty[] = [{

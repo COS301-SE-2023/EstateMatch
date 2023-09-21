@@ -93,19 +93,19 @@ ion-row{
         ion-input{
             border: 1px solid #000000;
             border-radius: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 9px;
             --padding-start: 8px;
             width: 90%;
         }
 
         ion-button{
             --border-radius: 5px;
-            margin-top: 25px;
+            margin-top: 10px;
         }
     }
 
     .bottom_div{
-        margin-top: 30%;
+        margin-top: 20%;
         padding: 1%;
         font-size: 16px;
         text-align:left;
@@ -114,7 +114,7 @@ ion-row{
         // top: 100%;
 
         #login{
-            margin-right: 20%;
+            margin-right: 21%;
           //  margin-left: 0% !important;
             float: right;
             color: #67C390;
@@ -124,3 +124,28 @@ ion-row{
     }
 
 }
+button[name="Apply"] {
+    //background-color: transparent;
+    border-color: white;
+   // color: white;
+    border-radius: 5%;
+    height: 30px;
+    width: 30%;
+    font-size: large;
+    border-width: 4px;
+    position: absolute;
+    left: 55%;
+    top: 93%; /* Adjust the top position as needed */
+  }
+  
+  /* Add these styles for the <select> element */
+  select[name="languageSelect"] {
+    border-radius: 5%;
+    height: 30px;
+    width: 30%;
+    font-size: large;
+    //border-width: 4px;
+    position: absolute;
+    left: 18%;
+    top: 93%; /* Adjust the top position as needed */
+  }

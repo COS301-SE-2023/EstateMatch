@@ -1,0 +1,25 @@
+{
+  "labels": {
+    "searchFilters": "Phendla izihluzi",
+    "budget": "Uhlahlo lwabiwo-mali:",
+    "bedrooms": "Amagumbi okulala",
+    "bathrooms": "Amagumbi okuhlambela",
+    "garages": "Igaraji",
+    "amenities": "Izibonelelo",
+    "pool": "Ichibi",
+    "study": "Funda",
+    "aircon": "I-Aircon",
+    "furnished": "Ifakwe",
+    "petFriendly": "izilwanyana-friendly",
+    "lounge": "Indawo yokuphumla",
+    "save": "Gcina",
+    "cancel": "Rhoxisa"
+  },
+  "navbar": {
+    "home": "Ekhaya",
+    "chat": "Ncokola",
+    "search": "Khangela",
+    "liked": "Ithandiwe",
+    "profile": "Iphrofayili"
+}
+}

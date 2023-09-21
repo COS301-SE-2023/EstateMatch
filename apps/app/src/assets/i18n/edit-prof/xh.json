@@ -1,0 +1,24 @@
+{
+    "labels": {
+      "firstName": "Igama lakho",
+      "lastName": "Ifani",
+      "username": "Igama lomsebenzisi",
+      "email": "Imeyile",
+      "button.save": "Gcina",
+      "button.backToProfile": "Buyela kwiprofayile"
+    },
+    "placeholders": {
+      "firstName": "Igama lakho",
+      "lastName": "Ifani",
+      "username": "Igama lomsebenzisi",
+      "email": "Imeyile"
+    },
+    "navbar": {
+      "home": "Ekhaya",
+      "chat": "Ncokola",
+      "search": "Khangela",
+      "liked": "Ithandiwe",
+      "profile": "Iphrofayili"
+  }
+  }
+  
