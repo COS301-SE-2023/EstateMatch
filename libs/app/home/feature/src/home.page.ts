@@ -128,7 +128,6 @@ export class HomePage implements AfterViewInit{
       }      
     }
 
-
     // this.properties = this.properties.slice(0,3);
     this.lastImageIndex = this.properties[0].images.length - 1;
     // this.ngAfterViewInit();

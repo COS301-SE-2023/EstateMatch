@@ -17,6 +17,7 @@
     "@angular/platform-browser": "~16.0.0",
     "@angular/platform-browser-dynamic": "~16.0.0",
     "@angular/router": "~16.0.0",
+    "@google-cloud/vision": "^4.0.1",
     "@huggingface/hub": "^0.8.4",
     "@huggingface/inference": "^2.6.1",
     "@ionic-native/core": "^5.36.0",

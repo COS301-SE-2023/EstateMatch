@@ -15,7 +15,7 @@
     <div class="form_div">
       <ion-label id="area" class="small_lbl">{{ 'labels.area' | translate }}</ion-label>
       <ion-grid>
-        <ion-row>
+        <ion-row size="11">
           <ion-col size="2">
             <i (click)="openMap()" class="fa fa-map map-icon" aria-hidden="true"></i>
           </ion-col>
@@ -25,6 +25,12 @@
           </ion-col>
         </ion-row>
       </ion-grid>
+          <div class="selected-areas-chips">
+        <ion-chip name="AreaChip" *ngFor="let selectedArea of selectedAreas" class="area-chip">
+          <i class="fa fa-times icon" aria-hidden="true" style="margin-right: 10px;" (click)="removeSelectedArea(selectedArea)"></i>
+          <ion-label>{{ selectedArea }}</ion-label>
+        </ion-chip>
+      </div> 
       <ion-label class="small_lbl">{{ 'labels.budget' | translate }}</ion-label>
       <ion-range [(ngModel)]="budget" aria-label="budget" [dualKnobs]="true" [ticks]="true" [snaps]="true"
         [min]="500000" [max]="8000000" [step]="500000" [pin]="true"></ion-range>
@@ -74,27 +80,27 @@
       </ion-grid>
     </div>
     <div class="ameneties_container">
-      <ion-chip id="pool" (click)="pick('pool')" class="ameneties_chip">
+      <ion-chip name="AmenitiesChip" id="pool" (click)="pick('pool')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
         <ion-label>{{ 'amenities.pool' | translate }}</ion-label>
       </ion-chip>
-      <ion-chip id="study" (click)="pick('study')" class="ameneties_chip">
+      <ion-chip name="AmenitiesChip" id="study" (click)="pick('study')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
         <ion-label>{{ 'amenities.study' | translate }}</ion-label>
       </ion-chip>
-      <ion-chip id="aircon" (click)="pick('aircon')" class="ameneties_chip">
+      <ion-chip name="AmenitiesChip" id="aircon" (click)="pick('aircon')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
         <ion-label>{{ 'amenities.aircon' | translate }}</ion-label>
       </ion-chip>
-      <ion-chip id="furnished" (click)="pick('furnished')" class="ameneties_chip">
+      <ion-chip name="AmenitiesChip" id="furnished" (click)="pick('furnished')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
         <ion-label>{{ 'amenities.furnished' | translate }}</ion-label>
       </ion-chip>
-      <ion-chip id="pet" (click)="pick('pet')" class="ameneties_chip">
+      <ion-chip name="AmenitiesChip" id="pet" (click)="pick('pet')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
         <ion-label>{{ 'amenities.pet' | translate }}</ion-label>
       </ion-chip>
-      <ion-chip id="lounge" (click)="pick('lounge')" class="ameneties_chip">
+      <ion-chip name="AmenitiesChip" id="lounge" (click)="pick('lounge')" class="ameneties_chip">
         <i class="fa fa-plus icon" aria-hidden="true"></i>
         <ion-label>{{ 'amenities.lounge' | translate }}</ion-label>
       </ion-chip>
