@@ -19,6 +19,7 @@ export const PropertiesSchema = new mongoose.Schema({
 
     //array of rbg arrays
     rgbArray : [Number],
+    description : String,
 
 });
 
@@ -40,5 +41,6 @@ export interface PropertiesModel {
 
     //array of rbg arrays
     rgbArray: number[],
+    description: string,
 
 }
