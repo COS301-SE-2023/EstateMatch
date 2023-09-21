@@ -6,10 +6,13 @@ import { PropertiesModule } from '@estate-match/api/properties/feature';
 import { AuthenticationModule } from '@estate-match/api/authentication/feature';
 import { UserModule } from '@estate-match/api/users/feature'
 import { SearchModule } from '@estate-match/api/search/feature';
+import { ChatModule } from '@estate-match/api/chat/feature';
 import { WebScraperModule } from '@estate-match/api/webscraper/feature';
-import { TensorflowModule } from '@estate-match/api/ai/feature';
+import { ImageToTextModule } from '@estate-match/api/ai/feature';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { MatchModule } from '@estate-match/api/matching/feature';
+import { TensorflowModule } from '@estate-match/api/ai/feature';
 
 const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
 
@@ -21,8 +24,10 @@ const DATABASE_CONNECTION = process.env['DATABASE_CONNECTION'] || '';
     AuthenticationModule,
     UserModule,
     SearchModule,
+    ChatModule,
     WebScraperModule,
-    TensorflowModule,
+    ImageToTextModule,
+    MatchModule
   ],
   controllers: [CoreController],
 })
