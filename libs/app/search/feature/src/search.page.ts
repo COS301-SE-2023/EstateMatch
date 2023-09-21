@@ -30,7 +30,9 @@ export class SearchPage implements AfterViewInit{
       bathrooms: 1,
       garages: 1,
       amenities: [],
-      images: []}
+      images: [],
+      rgbArray: []
+    }
     ];
     
     lastImageIndex = 0;
