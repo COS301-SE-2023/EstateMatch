@@ -206,12 +206,13 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             }
         };
 
-        // const test = await this.buildPreferenceModel(command.request.chat.username, command.request.chat.message); THIS ONE
-        // const translated = await this.translate(command.request.chat.message, "zulu");
+        const test = await this.buildPreferenceModel(command.request.chat.username, command.request.chat.message);
+        console.log(test);
+
         return response; 
     }
 
-    async buildPreferenceModel(username: string, description: string): Promise<string> {
+    async buildPreferenceModel(username: string, description: string): Promise<IAIPreference> {
         const model = new OpenAI({});
         const myTemplate = 
                 "You are an assistant that extract key characteristics of a description of a house." + 
@@ -228,14 +229,12 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const res = await llm.call({description: description}) as { text: string};
         const temp = res.text.replace(/[\r\n]/gm, "");
         const characteristics = temp.split("- ");
-        // console.log(characteristics);
-    
 
         const classes = await this.classifyCharateristic(username, characteristics);
-        return "Under construction";
+        return classes;
     }
 
-    async classifyCharateristic(username: string, characteristics: string[]) : Promise<string> {
+    async classifyCharateristic(username: string, characteristics: string[]) : Promise<IAIPreference> {
         const model = new ChatOpenAI({});
         const classifyTemplate = "You are an assistant that classify characteristics of a description of a house. The characteristics are: {characteristics}" + 
         "You will recieve the characteristics as an array of strings." + 
@@ -336,7 +335,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         extractedModel.buildingStyle = this.removeFluff(extractedModel.buildingStyle);
 
         const aiPref = await this.buildAIPrefRequest("test", extractedModel);
-        console.log(aiPref);
+        // console.log(aiPref);
 
         //Query DB Here
         // const userCurrentPref = await this.preferencesRepo.findOne(username);
@@ -349,7 +348,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         //     this.aiPreferenceRepo.create(aiPref);
         // }
 
-        return "Under construction";
+        return aiPref;
     }
 
     async buildAIPrefRequest(user: string, labels: IExtractedModel) : Promise<IAIPreference> {
@@ -361,8 +360,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             buildingArea: labels.buildingArea,
             buildingFeatures: labels.buildingFeatures,
             materials: labels.materials,
-            additional: labels.additional,
-            colour: "",
+            // additional: labels.additional,
+            // colour: "",
         }
 
         return aiPref;
