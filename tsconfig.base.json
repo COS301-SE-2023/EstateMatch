@@ -41,6 +41,12 @@
       "@estate-match/api/chat/feature": ["libs/api/chat/feature/src/index.ts"],
       "@estate-match/api/chat/util": ["libs/api/chat/util/src/index.ts"],
       "@estate-match/api/core/feature": ["libs/api/core/feature/src/index.ts"],
+      "@estate-match/api/matching/feature": [
+        "libs/api/matching/feature/src/index.ts"
+      ],
+      "@estate-match/api/matching/util": [
+        "libs/api/matching/util/src/index.ts"
+      ],
       "@estate-match/api/prefrences/data-access": [
         "libs/api/prefrences/data-access/src/index.ts"
       ],
