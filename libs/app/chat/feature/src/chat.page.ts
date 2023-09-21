@@ -16,23 +16,31 @@ export class ChatPage {
   ) {}
 
   userMessage = '';
-  messages: { text: string; time: string; userType: 'user' | 'bot' }[] = [];
-  
-  async ngOnInit(){
+  messages: { text: string[]; time: string; userType: 'user' | 'bot' }[] = [];
+
+  async ngOnInit() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = 'api/startChat';
 
     const body = {
-      username: sessionStorage.getItem('username')
-    }
+      username: sessionStorage.getItem('username'),
+    };
 
-    const response = await this.http.post(url, body, { headers }).toPromise() as { message: string };
+    const response = (await this.http
+      .post(url, body, { headers })
+      .toPromise()) as { message: string };
 
-    this.messages.push({
-      text: response.message,
-      time: this.getCurrentTime(),
-      userType: 'bot',
-    });
+    // Split the start message into paragraphs using \n as the delimiter
+    const startMessageParagraphs = response.message.split('\n');
+
+    // Create an array of message objects
+    this.messages = [
+      {
+        text: startMessageParagraphs,
+        time: this.getCurrentTime(),
+        userType: 'bot',
+      },
+    ];
   }
 
   async sendChatMessage() {
@@ -46,18 +54,18 @@ export class ChatPage {
       },
     };
 
-    const response = await this.http
+    const response = (await this.http
       .post(chatUrl, body, { headers })
-      .toPromise() as { chat: { username: string; message: string } };
+      .toPromise()) as { chat: { username: string; message: string } };
 
     this.messages.push({
-      text: this.userMessage,
+      text: [this.userMessage],
       time: this.getCurrentTime(),
       userType: 'user',
     });
 
     this.messages.push({
-      text: response.chat.message,
+      text: [response.chat.message],
       time: this.getCurrentTime(),
       userType: 'bot',
     });
