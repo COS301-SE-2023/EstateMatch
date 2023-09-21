@@ -58,16 +58,19 @@ export class ChatPage {
         message: this.userMessage,
       },
     };
-
-    const response = (await this.http
-      .post(chatUrl, body, { headers })
-      .toPromise()) as { chat: { username: string; message: string } };
-
     this.messages.push({
       text: [this.userMessage],
       time: this.getCurrentTime(),
       userType: 'user',
     });
+
+    this.userMessage = '';
+    
+    const response = (await this.http
+      .post(chatUrl, body, { headers })
+      .toPromise()) as { chat: { username: string; message: string } };
+
+
 
     this.messages.push({
       text: [response.chat.message],
@@ -75,7 +78,7 @@ export class ChatPage {
       userType: 'bot',
     });
 
-    this.userMessage = '';
+
   }
 
   getCurrentTime(): string {

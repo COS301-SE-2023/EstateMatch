@@ -201,8 +201,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const response: ISetChatResponse = {
             chat: {
                 username: command.request.chat.username,
-                // message: res["output"]
-                message: "Under construction"
+                message: res["output"]
+                // message: "Under construction"
             }
         };
 
