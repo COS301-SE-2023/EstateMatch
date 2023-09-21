@@ -36,7 +36,9 @@ export class WebScraperController {
             //  userId: properties[i].userId,
             //  username: properties[i].username,
               seen : properties[i].seen,
-              aiLabel : properties[i].aiLabel
+              aiLabel : properties[i].aiLabel,
+              rgbColour : properties[i].rgbColour,
+              description : properties[i].description
 
            // user : properties[i].user
         }
@@ -70,7 +72,9 @@ export class WebScraperController {
           //  userId: properties[i].userId,
           //  username: properties[i].username,
             seen : properties[i].seen,
-            aiLabel : properties[i].aiLabel
+            aiLabel : properties[i].aiLabel,
+            rgbColour : properties[i].rgbColour,
+            description : properties[i].description
 
         //  user : properties[i].user
       }
@@ -105,7 +109,9 @@ export class WebScraperController {
           //  userId: properties[i].userId,
           //  username: properties[i].username,
             seen : properties[i].seen,
-            aiLabel : properties[i].aiLabel
+            aiLabel : properties[i].aiLabel,
+            rgbColour : properties[i].rgbColour,
+            description : properties[i].description
 
          // user : properties[i].user
       }
@@ -143,7 +149,9 @@ export class WebScraperController {
             // userId: properties[i].userId,
             // username: properties[i].username,
              seen : properties[i].seen,
-             aiLabel : properties[i].aiLabel
+             aiLabel : properties[i].aiLabel,
+             rgbColour : properties[i].rgbColour,
+             description : properties[i].description
 
            // user : properties[i].user
         }

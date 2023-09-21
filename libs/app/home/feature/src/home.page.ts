@@ -66,7 +66,9 @@ export class HomePage implements AfterViewInit{
     // userId: '001',
     // username: 'TestUsername',
      seen: false, 
-     aiLabel: []
+     aiLabel: [],
+     rgbColour: [],
+     description : 'This is a description of the property.'
     // user: ['TestUsername']
   }];
   lastImageIndex = 0;
