@@ -42,7 +42,7 @@ export class SearchPage implements AfterViewInit{
        seen: false,
       aiLabel: [],
       rgbColour: [],
-      description: 'This is a description of the property',
+      description: ['This is a description of the property'],
       // user: ['TestUsername']
     }
     ];

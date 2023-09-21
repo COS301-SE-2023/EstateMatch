@@ -10,7 +10,7 @@ export interface IProperty{
     seen : boolean,
     aiLabel : string[],
     rgbColour : number[],
-    description : string
+    description : string[],
 
     // //added user specific fields
     // userId: string,
