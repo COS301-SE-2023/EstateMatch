@@ -78,8 +78,8 @@ ion-select{
     border: 1px solid #707070;
     border-radius: 5px;
     margin-bottom: 10px;
-    width: 83%;
     --padding-start: 8px;
+    width: 83%;
 }
 
 
@@ -102,6 +102,10 @@ ion-select{
         margin-top: 2%;
         padding-bottom: 1% !important;
 
+        ion-chip{
+            margin-left: -5%;
+            margin-right: 9%;
+        }
         .small_lbl{
             font-size: 16px;
             margin-bottom: 3%;
@@ -114,7 +118,24 @@ ion-select{
             border-radius: 5px;
             margin-bottom: 10px;
             --padding-start: 8px;
+           // width: 83%;
+        }
+
+        ion-input[name="BedroomSel"] {
             width: 83%;
+        }
+        
+        ion-input[name="BathroomSel"] {
+            width: 83%;
+        }
+        
+        ion-input[name="ParkingSel"] {
+            width: 83%;
+        }
+        button[name="Add"] {
+            background-color: #67C390;
+            border-color: #67C390;
+            border-radius: 10%;
         }
     }
 

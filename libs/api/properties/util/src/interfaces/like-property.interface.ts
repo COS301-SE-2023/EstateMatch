@@ -1,5 +1,6 @@
 export interface ILikeProperty{
     user: string,
+    title: string,
     address: string,
     price: number,
     bedrooms: number,

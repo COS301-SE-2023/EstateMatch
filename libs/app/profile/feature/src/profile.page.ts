@@ -26,11 +26,12 @@ export class ProfilePage {
     username: 'string',
     email: 'string',
     //password: 'string'
+    properties: [],
   };
 
   preferences: IPreference = {
     user: 'string',
-    location: 'string', // Need to add location array on API side
+    location: ['string'], // Need to add location array on API side
     budgetMin: 1000000, // Need to add max on API side
     budgetMax: 10000000,
     bedrooms: 1,

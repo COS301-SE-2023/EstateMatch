@@ -16,8 +16,19 @@ export class AIPreferencesRepository {
     async create(aiPrefrences : IAIPreference) : Promise<AIPrefrencesModel> {
         const newRecord: AIPrefrencesModel = {
             user: aiPrefrences.user,
-            colourDataPoints: [aiPrefrences.colour],
-            colour: aiPrefrences.colour,
+            floorDataPoints: aiPrefrences.flooring,
+            flooring: aiPrefrences.flooring,
+            buildingStyleDataPoints: aiPrefrences.buildingStyle,
+            buildingStyle: aiPrefrences.buildingStyle,
+            buildingTypeDataPoints: aiPrefrences.buildingType,
+            buildingType: aiPrefrences.buildingType,
+            buildingAreaDataPoints: aiPrefrences.buildingArea,
+            buildingArea: aiPrefrences.buildingArea,
+            buildingFeaturesDataPoints: aiPrefrences.buildingFeatures,
+            buildingFeatures: aiPrefrences.buildingFeatures,
+            materialDataPoints: aiPrefrences.materials,
+            materials: aiPrefrences.materials,
+
         }
 
         const createdPrefrences = new this.aiPrefrencesModel(newRecord);
@@ -30,32 +41,86 @@ export class AIPreferencesRepository {
         if(!userAIPreferences) {
             return null;
         }else{
-            userAIPreferences.colourDataPoints.push(prefrences.colour);
-            const colourDataPoints = userAIPreferences.colourDataPoints;
-            let colourful = 0;
-            let light = 0;
-            let dark = 0;
-            for(let i = 0; i < colourDataPoints.length; i++) {
-                if(colourDataPoints[i] === 'Colourful') {
-                    colourful++;
-                }else if(colourDataPoints[i] === 'Light'){
-                    light++;
-                }else{
-                    dark++;
-                }
-            }
-            let max;
-            if(colourful !== light && Math.max(colourful, light) === colourful && colourful !== dark && Math.max(colourful, dark) === colourful) {
-                max = 'Colourful';
-            }else if(light !== colourful && Math.max(light, colourful) === light && light !== dark && Math.max(light, dark) === light) {
-                max = 'Light';
-            }else if(dark !== colourful && Math.max(dark, colourful) === dark && dark !== light && Math.max(dark, light) === dark){
-                max = 'Dark';
-            }else{
-                max = userAIPreferences.colour;
-            }
-            userAIPreferences.colour = max;
+            userAIPreferences.floorDataPoints.push(...prefrences.flooring);
+            const floorDataPoints = userAIPreferences.floorDataPoints;
+
+            userAIPreferences.flooring = await this.getTopFiveCharacteristics(floorDataPoints);
+
+            userAIPreferences.buildingStyleDataPoints.push(...prefrences.buildingStyle);
+            const buildingStyleDataPoints = userAIPreferences.buildingStyleDataPoints;
+
+            userAIPreferences.buildingStyle = await this.getTopFiveCharacteristics(buildingStyleDataPoints);
+
+            userAIPreferences.buildingTypeDataPoints.push(...prefrences.buildingType);
+            const buildingTypeDataPoints = userAIPreferences.buildingTypeDataPoints;
+
+            userAIPreferences.buildingType = await this.getTopFiveCharacteristics(buildingTypeDataPoints);
+
+            userAIPreferences.buildingAreaDataPoints.push(...prefrences.buildingArea);
+            const buildingAreaDataPoints = userAIPreferences.buildingAreaDataPoints;
+            
+            userAIPreferences.buildingArea = await this.getTopFiveCharacteristics(buildingAreaDataPoints);
+
+            userAIPreferences.buildingFeaturesDataPoints.push(...prefrences.buildingFeatures);
+            const buildingFeaturesDataPoints = userAIPreferences.buildingFeaturesDataPoints;
+          
+            userAIPreferences.buildingFeatures = await this.getTopFiveCharacteristics(buildingFeaturesDataPoints);
+
+            userAIPreferences.materialDataPoints.push(...prefrences.materials);
+            const materialDataPoints = userAIPreferences.materialDataPoints;
+           
+            userAIPreferences.materials = await this.getTopFiveCharacteristics(materialDataPoints);
+
+
             return await userAIPreferences.save();
         }
     }
+
+    async getTopFiveCharacteristics(characteristics: string[]): Promise<string[]> {
+        const counts: Record<string, number> = {};
+      
+        for (const element of characteristics) {
+          // Remove double quotes from the element
+          const strElement = element.replace(/"/g, '');
+      
+          if (counts[strElement]) {
+            counts[strElement]++;
+          } else {
+            counts[strElement] = 1;
+          }
+        }
+      
+        const tuples: [string, number][] = Object.entries(counts);
+        tuples.sort((a, b) => b[1] - a[1]);
+        const topFive = tuples.slice(0, 5);
+      
+        return topFive.map(tuple => tuple[0]);
+      }
+
+    async overwrite(id : string, prefrences : IAIPreference) : Promise<AIPrefrencesModel | null> {
+        const userAIPreferences = await this.aiPrefrencesModel.findOne({user: id});
+
+        if(!userAIPreferences) {
+            return null;
+        }else{
+          //clear the data points
+          userAIPreferences.floorDataPoints = [];
+          userAIPreferences.buildingStyleDataPoints = [];
+          userAIPreferences.buildingTypeDataPoints = [];
+          userAIPreferences.buildingAreaDataPoints = [];
+          userAIPreferences.buildingFeaturesDataPoints = [];
+          userAIPreferences.materialDataPoints = [];
+
+          //set the characteristics to prefrences 
+          userAIPreferences.flooring = prefrences.flooring;
+          userAIPreferences.buildingStyle = prefrences.buildingStyle;
+          userAIPreferences.buildingType = prefrences.buildingType;
+          userAIPreferences.buildingArea = prefrences.buildingArea;
+          userAIPreferences.buildingFeatures = prefrences.buildingFeatures;
+          userAIPreferences.materials = prefrences.materials;
+
+          return await userAIPreferences.save();
+        }
+    }
+      
 }

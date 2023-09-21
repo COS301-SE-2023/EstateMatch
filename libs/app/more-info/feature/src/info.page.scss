@@ -78,7 +78,7 @@ img[name="HouseImage"]{
     border-top-right-radius: 20px;
     margin-top: -20px;
     z-index: 999;
-    position: fixed;
+   // position: fixed;
     height: 100%;
     width: 100%;
     overflow-x: hidden;
@@ -157,3 +157,40 @@ img[name="HouseImage"]{
     margin-top: 5%;
     margin-right: 29.5%;
 }
+
+.image-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  img[name="HouseImage"] {
+    width: 100%;
+    height: auto; /* Adjust the height as needed */
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .chip-container {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+   // background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .overlay-chip {
+    display: inline-block;
+    margin-right: 8px;
+    background-color: rgba(107, 107, 107, 0.9);
+    color: white;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    width: 36%;
+    height: 5%;
+  }
+
+  

@@ -1,4 +1,4 @@
-export * from './tensorflow.controller';
-export * from './tensorflow.service';
-export * from './tensorflow.module';
+export * from './ImageToText.controller';
+export * from './ImageToText.service';
+export * from './ImageToText.module';
 

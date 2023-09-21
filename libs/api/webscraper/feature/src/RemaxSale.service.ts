@@ -25,7 +25,7 @@ export class RemaxSaleService {
     });
 
 
-    for (const char of "Woodstock") {
+    for (const char of location) {
       await page.type('.tagify__input', char);
     }
 
