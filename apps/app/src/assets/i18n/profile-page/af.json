@@ -1,0 +1,20 @@
+{
+  "labels": {
+    "logout": "Teken Uit",
+    "editProfile": "Wysig Profiel Inligting",
+    "preferences": "Voorkeure",
+    "budget": "Begroting:",
+    "area": "Gebied:",
+    "general": "Algemeen:",
+    "amenities": "Geriewe:",
+    "editPreference": "Wysig voorkeure"
+  },
+  "Change": "Verander",
+  "navbar": {
+    "home": "Huis",
+    "chat": "Klets",
+    "search": "Soek",
+    "liked": "Geliefdes",
+    "profile": "Profiel"
+  }
+}

@@ -1,0 +1,21 @@
+{
+    "header": {
+      "subtitle": "Ngema"
+    },
+    "labels": {
+      "username": "Igama lomsebenzisi",
+      "password": "Inombolo yokuvula"
+    },
+    "placeholders": {
+      "username": "Ngenisa igama lomsebenzisi",
+      "password": "Faka igama lokugqithisa"
+    },
+    "buttons": {
+      "login": "Ngema"
+    },
+    "messages": {
+      "signup": "Awunayo iakhawunti?",
+      "sign_up": "Bhalisa."
+    },
+    "Change": "Guqula"
+}

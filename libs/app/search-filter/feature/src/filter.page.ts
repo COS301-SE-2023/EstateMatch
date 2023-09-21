@@ -3,17 +3,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { IProperty } from '@estate-match/api/properties/util';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ms-filter-page',
   templateUrl: './filter.page.html',
   styleUrls: ['./filter.page.scss'],
+  providers: [TranslateService]
 })
 export class FilterPage {
   constructor(private http: HttpClient,
     private toastController: ToastController,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private translate: TranslateService) {
+      this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
+     }
 
     location = ''; //Need to get from map
     budget: any ;

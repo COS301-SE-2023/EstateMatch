@@ -1,0 +1,21 @@
+{
+    "labels": {
+      "logout": "Ho tsoa",
+      "editProfile": "Fetola boemo",
+      "preferences": "Likhetho",
+      "budget": "Tekanyetso:",
+      "area": "Sebaka:",
+      "general": "Lehae:",
+      "amenities": "Kakaretso:",
+      "editPreference": "Fetola Likhetho"
+    },
+    "Change": "Fetola",
+    "navbar": {
+      "home": "Lehae",
+      "chat": "Qoqa",
+      "search": "Batla",
+      "liked": "E ratile",
+      "profile": "Boemo"
+  }
+  }
+  

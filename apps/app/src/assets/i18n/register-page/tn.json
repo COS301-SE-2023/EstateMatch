@@ -1,0 +1,30 @@
+{
+    "header": {
+      "subtitle": "Bala"
+    },
+    "labels": {
+      "firstName": "Lebitso La Pele",
+      "lastName": "Lebitso La Kotulo",
+      "username": "Lebitso La Sebediswa",
+      "email": "I-Email",
+      "password": "Mokhutshwane",
+      "confirmPassword": "Hlalosa Mokhutshwane"
+    },
+    "placeholders": {
+      "firstName": "Fetsa Lebitso La Pele",
+      "lastName": "Fetsa Lebitso La Kotulo",
+      "username": "Fetsa Lebitso La Sebediswa",
+      "email": "Fetsa I-Email",
+      "password": "Fetsa Mokhutshwane",
+      "confirmPassword": "Hlalosa Mokhutshwane"
+    },
+    "buttons": {
+      "createAccount": "Bala Akhaunti"
+    },
+    "messages": {
+      "login": "O na le akhaunti?",
+      "log_in": "Bala."
+    },
+    "Change": "Fetola"
+  }
+  

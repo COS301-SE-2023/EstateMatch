@@ -1,89 +1,88 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="profile.page.scss">
-  </head>
 
-  <header>
-    <app-header></app-header>
-  </header>
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="profile.page.scss">
+</head>
 
+<header>
+  <app-header></app-header>
+</header>
 
+<ion-card name="ProfileInfo">
+  <img name="ProfilePhoto" alt="Silhouette of mountains"
+    src="https://ionicframework.com/docs/img/demos/card-media.png" />
+  <ion-button name="Logout" fill="clear" routerLink="/splash" routerDirection="root"
+    (click)="logout()">{{ 'labels.logout' | translate }}</ion-button>
+  <ion-card-header>
+    <ion-card-subtitle>{{ user.email }}</ion-card-subtitle>
+    <ion-card-subtitle name="userName">{{ user.username }}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-button class="edit_prof" fill="clear" routerLink="/editprof" routerDirection="root">
+    {{ 'labels.editProfile' | translate }}
+  </ion-button>
 
-  <ion-card name="ProfileInfo">
-    <img name ="ProfilePhoto" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-    <ion-button name="Logout" fill="clear" routerLink="/splash" routerDirection="root" (click)="logout()">Log Out</ion-button>
-    <!-- <i class="fa fa-ellipsis-v settings" aria-hidden="true"></i> -->
-  
-    <ion-card-header>
-      <ion-card-subtitle>{{user.email}}</ion-card-subtitle>
-      <ion-card-subtitle name="userName">{{user.username}}</ion-card-subtitle>
-    </ion-card-header>
-    <!-- <ion-button name="Edit" fill="clear" routerLink="/editprof" routerDirection="root">Edit Profile Information</ion-button> -->
-    <ion-button class="edit_prof" fill="clear" routerLink="/editprof" routerDirection="root">Edit Profile Information</ion-button>
-  </ion-card>
+  <div>
+    <select name="languageSelect" #languageSelect>
+        <option value="en">English</option>
+        <option value="af">Afrikaans</option>
+        <option value="zu">Zulu</option>
+        <option value="st">Sotho</option>
+        <option value="tn">Tswana</option>
+        <option value="xh">Xhosa</option>
+    </select>
+    <button name="Apply" (click)="setLanguage(languageSelect.value)">{{ 'Change' | translate }}</button>
+</div>
+</ion-card>
 
-  <ion-card name="Preferences">
-    <ion-card-subtitle name="Subtitle">Preferences</ion-card-subtitle>
-    <ion-card-content>
-      <div class="budget_container">
-        <ion-label class="small_lbl">Budget:</ion-label>
-        <ion-chip>
-          <i class="fa fa-credit-card icon" aria-hidden="true"></i>
-          <ion-label> R{{preferences.budgetMin}} - R{{preferences.budgetMax}} </ion-label>
-        </ion-chip>
-      </div>
-      <div class="area_container">
-        <ion-label class="small_lbl">Area:</ion-label><br>
-        <ion-chip class="area_chip">
-          <i class="fa fa-map-marker icon" aria-hidden="true"></i>
-          <ion-label>{{preferences.location}}</ion-label>
-        </ion-chip>
-        <!-- <ion-chip class="area_chip">
-          <i class="fa fa-map-marker icon" aria-hidden="true"></i>
-          <ion-label>{{preferences.location}}</ion-label>
-        </ion-chip> -->
-      </div>
-      <div class="general_container">
-        <ion-label class="small_lbl">General:</ion-label><br>
-        <ion-chip class="general_chip">
-          <i class="fa fa-bed icon" aria-hidden="true"></i>
-          <ion-label>{{preferences.bedrooms}}</ion-label>
-        </ion-chip>
-        <ion-chip class="general_chip">
-          <i class="fa fa-bath icon" aria-hidden="true"></i>
-          <ion-label>{{preferences.bathrooms}}</ion-label>
-        </ion-chip>
-        <ion-chip class="general_chip">
-          <i class="fa fa-car icon" aria-hidden="true"></i>
-          <ion-label>{{preferences.garages}}</ion-label>
-        </ion-chip>
-      </div>
-      <div class="ameneties_container">
-        <ion-label class="small_lbl">Ameneties:</ion-label><br>
-        <ion-chip class="ameneties_chip" *ngFor="let a of preferences.extras">
-          <i class="fa fa-plus icon" aria-hidden="true"></i>
-          <ion-label>{{a}}</ion-label>
-        </ion-chip>
-        <!-- <ion-chip class="ameneties_chip">
-          <i class="fa fa-plus icon" aria-hidden="true"></i>
-          <ion-label>Study</ion-label>
-        </ion-chip>
-        <ion-chip class="ameneties_chip">
-          <i class="fa fa-plus icon" aria-hidden="true"></i>
-          <ion-label>Pet-Friendly</ion-label>
-        </ion-chip>
-        <ion-chip class="ameneties_chip">
-          <i class="fa fa-plus icon" aria-hidden="true"></i>
-          <ion-label>Pool</ion-label>
-        </ion-chip> -->
-      </div>
-      <button name="PrefEdit" routerLink="/preferences" routerDirection="root">Edit</button>
-    </ion-card-content>  
-  </ion-card>
+<ion-card name="Preferences">
+  <ion-card-subtitle name="Subtitle">{{ 'labels.preferences' | translate }}</ion-card-subtitle>
+  <ion-card-content>
+    <div class="budget_container">
+      <ion-label class="small_lbl">{{ 'labels.budget' | translate }}</ion-label>
+      <ion-chip>
+        <i class="fa fa-credit-card icon" aria-hidden="true"></i>
+        <ion-label> R{{ preferences.budgetMin }} - R{{ preferences.budgetMax }} </ion-label>
+      </ion-chip>
+    </div>
+    <div class="area_container">
+      <ion-label class="small_lbl">{{ 'labels.area' | translate }}</ion-label><br>
+      <ion-chip class="ameneties_chip" *ngFor="let l of preferences.location">
+        <i class="fa fa-map-marker icon" aria-hidden="true"></i>
+        <ion-label>{{l}}</ion-label>
+      </ion-chip>
+    </div>
+    <div class="general_container">
+      <ion-label class="small_lbl">{{ 'labels.general' | translate }}</ion-label><br>
+      <ion-chip class="general_chip">
+        <i class="fa fa-bed icon" aria-hidden="true"></i>
+        <ion-label>{{ preferences.bedrooms }}</ion-label>
+      </ion-chip>
+      <ion-chip class="general_chip">
+        <i class="fa fa-bath icon" aria-hidden="true"></i>
+        <ion-label>{{ preferences.bathrooms }}</ion-label>
+      </ion-chip>
+      <ion-chip class="general_chip">
+        <i class="fa fa-car icon" aria-hidden="true"></i>
+        <ion-label>{{ preferences.garages }}</ion-label>
+      </ion-chip>
+    </div>
+    <div class="ameneties_container">
+      <ion-label class="small_lbl">{{ 'labels.amenities' | translate }}</ion-label><br>
+      <ion-chip class="ameneties_chip" *ngFor="let a of preferences.extras">
+        <i class="fa fa-plus icon" aria-hidden="true"></i>
+        <ion-label>{{ a }}</ion-label>
+      </ion-chip>
+    </div>
+    <button name="PrefEdit" routerLink="/preferences" routerDirection="root">
+      {{ 'labels.editPreference' | translate }}
+    </button>
+  </ion-card-content>
+</ion-card>
 
-  <footer>
-      <app-footer></app-footer>
-  </footer>
-</html> 
+<footer>
+  <app-footer></app-footer>
+</footer>
+
+</html>

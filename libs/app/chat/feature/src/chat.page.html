@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+ <link rel="stylesheet" href="chat.page.scss">
+</head>
+
+<app-header></app-header>
+<body>
+  <div name="displayContainer">
+    <div name="MessageBox">
+      <div *ngFor="let message of messages">
+        <div class="container" *ngIf="message.userType === 'user'">
+          <img src="https://ionicframework.com/docs/img/demos/card-media.png" alt="Avatar" style="width:100%;">
+          <!-- Iterate over each paragraph in the message.text array -->
+          <ng-container *ngFor="let paragraph of message.text">
+            <p>{{ paragraph }}</p>
+          </ng-container>
+          <span class="time-right">{{ message.time }}</span>
+        </div>
+  
+        <div class="container darker" *ngIf="message.userType === 'bot'">
+          <img src="https://static.vecteezy.com/system/resources/previews/010/054/157/original/chat-bot-robot-avatar-in-circle-round-shape-isolated-on-white-background-stock-illustration-ai-technology-futuristic-helper-communication-conversation-concept-in-flat-style-vector.jpg" alt="Avatar" class="right" style="width:100%;">
+          <!-- Iterate over each paragraph in the message.text array -->
+          <ng-container *ngFor="let paragraph of message.text">
+            <p>{{ paragraph }}</p>
+          </ng-container>
+          <span class="time-left">{{ message.time }}</span>
+        </div>
+      </div>
+    </div>
+    <!-- Add the ngModel binding for user input here -->
+    <span name="Container">
+      <textarea [(ngModel)]="userMessage" name="message"></textarea>
+      <button (click)="sendChatMessage()" id="send-button" name="send-button" style="background-color:#67C390; height:40px; border-color: #67C390;border-radius: 100%;width: 40px;">
+        <span style="font-size: 1.7em; color:white">
+          <i class="fas fa-paper-plane"></i>
+        </span>
+      </button>
+    </span>
+  </div>
+</body>
+<app-footer></app-footer>
+</html>

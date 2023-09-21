@@ -1,0 +1,25 @@
+{
+    "subtitle": "Setha Izintandokazi",
+    "labels": {
+        "area": "Indawo:",
+        "budget": "Isabelomali:",
+        "bedrooms": "Igumbi lokulala",
+        "bathrooms": "Igumbi lokugezela",
+        "garages": "Igalaji",
+        "button.setPreferences": "Setha izintandokazi"
+    },
+    "placeholders": {
+        "area": "Indawo",
+        "bedrooms": "Igumbi lokulala",
+        "bathrooms": "Igumbi lokugezela",
+        "garages": "Igalaji"
+    },
+    "amenities": {
+        "pool": "Iphuli",
+        "study": "Funda",
+        "aircon": "I-Aircon",
+        "furnished": "Ifenisha",
+        "pet": "Izilwane ezifuywayo",
+        "lounge": "I-Lounge"
+    }
+}

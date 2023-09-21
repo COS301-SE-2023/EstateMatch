@@ -1,0 +1,25 @@
+{
+  "labels": {
+    "searchFilters": "Batla Lisefe",
+    "budget": "Tekanyetso:",
+    "bedrooms": "Likamore tsa ho robala",
+    "bathrooms": "Likamore tsa ho hlapa",
+    "garages": "Likarache",
+    "amenities": "Likarache",
+    "pool": "Letamo",
+    "study": "Ithute",
+    "aircon": "Aircon",
+    "furnished": "Faneng ka thepa",
+    "petFriendly": "Botsoalle ba liphoofolo",
+    "lounge": "Sebaka sa phomolo",
+    "save": "Boloka",
+    "cancel": "Hlakola"
+  },
+  "navbar": {
+    "home": "Lehae",
+    "chat": "Qoqa",
+    "search": "Batla",
+    "liked": "E ratile",
+    "profile": "Boemo"
+}
+}

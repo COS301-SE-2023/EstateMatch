@@ -1,0 +1,21 @@
+{
+    "header": {
+      "subtitle": "Kena"
+    },
+    "labels": {
+      "username": "Lebitso la mosebedisi",
+      "password": "Phasewete"
+    },
+    "placeholders": {
+      "username": "Kenya lebitso la mosebelisi",
+      "password": "Phasewete"
+    },
+    "buttons": {
+      "login": "Kena"
+    },
+    "messages": {
+      "signup": "Ha u na ak'haonte?",
+      "sign_up": "Ngolisa."
+    },
+    "Change": "Fetola"
+}

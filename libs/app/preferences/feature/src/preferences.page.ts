@@ -4,17 +4,22 @@ import { ToastController } from '@ionic/angular';
 
 import { IPreference } from '@estate-match/api/prefrences/util';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ms-preferences-page',
   templateUrl: './preferences.page.html',
   styleUrls: ['./preferences.page.scss'],
+  providers: [TranslateService]
 })
 export class PreferencesPage {
   constructor(private http: HttpClient,
     private toastController: ToastController,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private translate: TranslateService) {
+      this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
+     }
 
     area = '';
     budget: any;
@@ -23,6 +28,7 @@ export class PreferencesPage {
     garages = 0;
     ameneties :string[] = [];
     preference!: IPreference;
+    selectedAreas: string[] = [];
 
   ngOnInit() {
 
@@ -58,6 +64,16 @@ export class PreferencesPage {
       lounge.style.backgroundColor = '#E7604D';
   }
   
+  addSelectedArea() {
+    if (this.area) {
+      this.selectedAreas.push(this.area); // Add the area to the selectedAreas array
+      this.area = ''; // Clear the input field
+    }
+  }
+
+  removeSelectedArea(selectedArea: string) {
+    this.selectedAreas = this.selectedAreas.filter((area) => area !== selectedArea); // Remove the selected area
+  }
 
   async setPreferences() {
     const url = 'api/setPreferences';

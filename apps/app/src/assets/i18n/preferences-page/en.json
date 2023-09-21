@@ -1,0 +1,26 @@
+{
+    "subtitle": "Preferences",
+    "labels": {
+      "area": "Area:",
+      "budget": "Budget:",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "garages": "Parking bays",
+      "button.setPreferences": "Set Preferences"
+    },
+    "placeholders": {
+      "area": "Area",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "garages": "Parking bays"
+    },
+    "amenities": {
+      "pool": "Pool",
+      "study": "Study",
+      "aircon": "Aircon",
+      "furnished": "Furnished",
+      "pet": "Pet-Friendly",
+      "lounge": "Lounge"
+    }
+  }
+  

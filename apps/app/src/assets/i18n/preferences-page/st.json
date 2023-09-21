@@ -1,0 +1,25 @@
+{
+    "subtitle": "Likhetho",
+    "labels": {
+        "area": "Sebaka:",
+        "budget": "Tekanyetso:",
+        "bedrooms": "Likamore tsa ho robala",
+        "bathrooms": "Likamore tsa ho hlapa",
+        "garages": "Likarache",
+        "button.setPreferences": "Beha likhetho"
+    },
+    "placeholders": {
+        "area": "Sebaka",
+        "bedrooms": "Likamore tsa ho robala",
+        "bathrooms": "Likamore tsa ho hlapa",
+        "garages": "Likarache"
+    },
+    "amenities": {
+        "pool": "Letamo",
+        "study": "Ithute",
+        "aircon": "Aircon",
+        "furnished": "Faneng ka thepa",
+        "pet": "Botsoalle ba liphoofolo",
+        "lounge": "Sebaka sa phomolo"
+    }
+}

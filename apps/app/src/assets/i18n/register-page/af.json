@@ -1,0 +1,29 @@
+{
+  "header": {
+    "subtitle": "Registreer"
+  },
+  "labels": {
+    "firstName": "Voornaam",
+    "lastName": "Achternaam",
+    "username": "Gebruikersnaam",
+    "email": "E-pos",
+    "password": "Wagwoord",
+    "confirmPassword": "Bevestig Wagwoord"
+  },
+  "placeholders": {
+    "firstName": "Voer Voornaam in",
+    "lastName": "Voer Achternaam in",
+    "username": "Voer Gebruikersnaam in",
+    "email": "Voer E-posadres in",
+    "password": "Voer u Wagwoord in",
+    "confirmPassword": "Bevestig Wagwoord"
+  },
+  "buttons": {
+    "createAccount": "Skep Rekening"
+  },
+  "messages": {
+    "login": "Het nie 'n rekening nie?",
+    "log_in": "Teken aan."
+  },
+  "Change": "Verander"
+}

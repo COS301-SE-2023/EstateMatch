@@ -1,101 +1,109 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="filter.page.scss">
-    </head>
 
-    <header>
-      <app-header></app-header>
-    </header>
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="filter.page.scss">
+</head>
 
-    <body>  
-        <ion-card name="displayContainer">
-            <ion-card-subtitle name="Subtitle">Search Filters</ion-card-subtitle>
-            <div class="main_content_div">
-              <div class="form_div">     
-                <ion-label class="small_lbl">Budget:</ion-label>
-                <ion-range [(ngModel)]="budget" aria-label="budget" [dualKnobs]="true" [ticks]="true" [snaps]="true" [min]="500000" [max]="8000000" [step]="500000" [pin]="true"></ion-range>
-                <ion-grid>
-                  <ion-row>
-                    <ion-col size="2">
-                      <img class="info-icon" src="assets/bed.png"><br>
-                    </ion-col>
-                    <ion-col size="10">
-                      <ion-select [(ngModel)]="bedrooms" aria-label="bedrooms" placeholder="Bedrooms">
-                        <ion-select-option value="1">1</ion-select-option>
-                        <ion-select-option value="2">2</ion-select-option>
-                        <ion-select-option value="3">3</ion-select-option>
-                        <ion-select-option value="4">4</ion-select-option>
-                        <ion-select-option value="5">5</ion-select-option>
-                      </ion-select>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="2">
-                      <img class="info-icon" src="assets/bath.png"><br>
-                    </ion-col>
-                    <ion-col size="10">
-                      <ion-select [(ngModel)]="bathrooms" aria-label="bathrooms" placeholder="Bathrooms">
-                        <ion-select-option value="1">1</ion-select-option>
-                        <ion-select-option value="2">2</ion-select-option>
-                        <ion-select-option value="3">3</ion-select-option>
-                        <ion-select-option value="4">4</ion-select-option>
-                        <ion-select-option value="5">5</ion-select-option>
-                      </ion-select>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="2">
-                      <img  class="info-icon" src="assets/car.png"><br>
-                    </ion-col>
-                    <ion-col size="10">
-                      <ion-select [(ngModel)]="garages" aria-label="parking-bays" placeholder="Parking bays">
-                        <ion-select-option value="1">1</ion-select-option>
-                        <ion-select-option value="2">2</ion-select-option>
-                        <ion-select-option value="3">3</ion-select-option>
-                      </ion-select>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              </div>
-              <div class="ameneties_container">
-                <ion-chip id="pool" (click)="pick('pool')" class="ameneties_chip">
-                  <i class="fa fa-plus icon" aria-hidden="true"></i>
-                  <ion-label>Pool</ion-label>
-                </ion-chip>
-                <ion-chip id="study" (click)="pick('study')" class="ameneties_chip">
-                  <i class="fa fa-plus icon" aria-hidden="true"></i>
-                  <ion-label>Study</ion-label>
-                </ion-chip>
-                <ion-chip id="aircon" (click)="pick('aircon')" class="ameneties_chip">
-                  <i class="fa fa-plus icon" aria-hidden="true"></i>
-                  <ion-label>Aircon</ion-label>
-                </ion-chip>
-                <ion-chip id="furnished" (click)="pick('furnished')" class="ameneties_chip">
-                  <i class="fa fa-plus icon" aria-hidden="true"></i>
-                  <ion-label>Furnished</ion-label>
-                </ion-chip>
-                <ion-chip id="pet" (click)="pick('pet')" class="ameneties_chip">
-                  <i class="fa fa-plus icon" aria-hidden="true"></i>
-                  <ion-label>Pet-Friendly</ion-label>
-                </ion-chip>
-                <ion-chip id="lounge" (click)="pick('lounge')" class="ameneties_chip">
-                  <i class="fa fa-plus icon" aria-hidden="true"></i>
-                  <ion-label>Lounge</ion-label>
-                </ion-chip>
-              </div>
-              <div class="button_container" name="buttonContainer" style="text-align:center;">
-                <button (click)="searchProperties()" name="Save" fill="default"routerLink="/search" routerDirection="root">Save</button>  
-                &nbsp;
-                <button name="Cancel" fill="default"routerLink="/search" routerDirection="root">Cancel</button>
-              </div>  
-            </div>  
-        </ion-card>
-    </body>
+<header>
+  <app-header></app-header>
+</header>
 
-    <footer>
-      <app-footer></app-footer>
-    </footer>
+<body>
+  <ion-card name="displayContainer">
+    <ion-card-subtitle name="Subtitle">{{ 'labels.searchFilters' | translate }}</ion-card-subtitle>
+    <div class="main_content_div">
+      <div class="form_div">
+        <ion-label class="small_lbl">{{ 'labels.budget' | translate }}</ion-label>
+        <ion-range [(ngModel)]="budget" aria-label="budget" [dualKnobs]="true" [ticks]="true" [snaps]="true"
+          [min]="500000" [max]="8000000" [step]="500000" [pin]="true"></ion-range>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="2">
+              <img class="info-icon" src="assets/bed.png"><br>
+            </ion-col>
+            <ion-col size="10">
+              <ion-select [(ngModel)]="bedrooms" aria-label="bedrooms" placeholder="{{ 'labels.bedrooms' | translate }}">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+                <ion-select-option value="5">5</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="2">
+              <img class="info-icon" src="assets/bath.png"><br>
+            </ion-col>
+            <ion-col size="10">
+              <ion-select [(ngModel)]="bathrooms" aria-label="bathrooms"
+                placeholder="{{ 'labels.bathrooms' | translate }}">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+                <ion-select-option value="5">5</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="2">
+              <img class="info-icon" src="assets/car.png"><br>
+            </ion-col>
+            <ion-col size="10">
+              <ion-select [(ngModel)]="garages" aria-label="parking-bays"
+                placeholder="{{ 'labels.garages' | translate }}">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+                <ion-select-option value="3">3</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <div class="ameneties_container">
+        <ion-chip id="pool" (click)="pick('pool')" class="ameneties_chip">
+          <i class="fa fa-plus icon" aria-hidden="true"></i>
+          <ion-label>{{ 'labels.pool' | translate }}</ion-label>
+        </ion-chip>
+        <ion-chip id="study" (click)="pick('study')" class="ameneties_chip">
+          <i class="fa fa-plus icon" aria-hidden="true"></i>
+          <ion-label>{{ 'labels.study' | translate }}</ion-label>
+        </ion-chip>
+        <ion-chip id="aircon" (click)="pick('aircon')" class="ameneties_chip">
+          <i class="fa fa-plus icon" aria-hidden="true"></i>
+          <ion-label>{{ 'labels.aircon' | translate }}</ion-label>
+        </ion-chip>
+        <ion-chip id="furnished" (click)="pick('furnished')" class="ameneties_chip">
+          <i class="fa fa-plus icon" aria-hidden="true"></i>
+          <ion-label>{{ 'labels.furnished' | translate }}</ion-label>
+        </ion-chip>
+        <ion-chip id="pet" (click)="pick('pet')" class="ameneties_chip">
+          <i class="fa fa-plus icon" aria-hidden="true"></i>
+          <ion-label>{{ 'labels.petFriendly' | translate }}</ion-label>
+        </ion-chip>
+        <ion-chip id="lounge" (click)="pick('lounge')" class="ameneties_chip">
+          <i class="fa fa-plus icon" aria-hidden="true"></i>
+          <ion-label>{{ 'labels.lounge' | translate }}</ion-label>
+        </ion-chip>
+      </div>
+      <div class="button_container" name="buttonContainer" style="text-align:center;">
+        <button (click)="searchProperties()" name="Save" fill="default" routerLink="/search" routerDirection="root">
+          {{ 'labels.save' | translate }}
+        </button>
+        &nbsp;
+        <button name="Cancel" fill="default" routerLink="/search" routerDirection="root">
+          {{ 'labels.cancel' | translate }}
+        </button>
+      </div>
+    </div>
+  </ion-card>
+</body>
+
+<footer>
+  <app-footer></app-footer>
+</footer>
 
 </html>

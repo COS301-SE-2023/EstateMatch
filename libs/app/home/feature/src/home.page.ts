@@ -5,6 +5,8 @@ import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
 import { IPreference } from '@estate-match/api/prefrences/util';
 import { Router } from '@angular/router';
 import { time } from 'console';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+
 
 interface Property {
   user: string;
@@ -21,6 +23,7 @@ interface Property {
   selector: 'ms-home-page',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
+  providers: [TranslateService]
 })
 
 export class HomePage implements AfterViewInit{
@@ -33,7 +36,10 @@ export class HomePage implements AfterViewInit{
     private toastController: ToastController,
     private router: Router,
     private gestureCtrl: GestureController,
-    private plt: Platform) {}
+    private plt: Platform,
+    private translate: TranslateService) {
+      this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
+    }
 
 
   // descriptions: string[] = ['R5 000 000. Three Bedroom and Two Bathrooms.',
@@ -56,6 +62,12 @@ export class HomePage implements AfterViewInit{
     garages: 1,
     amenities: [],
     images: this.images,
+    // //added user specific fields
+    // userId: '001',
+    // username: 'TestUsername',
+     seen: false, 
+     aiLabel: []
+    // user: ['TestUsername']
   }];
   lastImageIndex = 0;
   currentDescriptionIndex = 0;
@@ -80,20 +92,42 @@ export class HomePage implements AfterViewInit{
 
     this.userPreferences = await this.http.post(prefURL, prefBody, { headers }).toPromise() as IPreference;
     //Search
-    const url = 'api/search';
+    // const url = 'api/search';
+    // const body = {
+    //   filters: {
+    //     location: this.userPreferences.location,
+    //     budgetMin: this.userPreferences.budgetMin,
+    //     budgetMax: this.userPreferences.budgetMax,
+    //     bedrooms: this.userPreferences.bedrooms,
+    //     bathrooms: this.userPreferences.bathrooms,
+    //     garages: this.userPreferences.garages,
+    //     amenities: this.userPreferences.extras
+    //   }
+    // }
+
+    const url = 'api/getUserProperties';
     const body = {
-      filters: {
-        location: this.userPreferences.location,
-        budgetMin: this.userPreferences.budgetMin,
-        budgetMax: this.userPreferences.budgetMax,
-        bedrooms: this.userPreferences.bedrooms,
-        bathrooms: this.userPreferences.bathrooms,
-        garages: this.userPreferences.garages,
-        amenities: this.userPreferences.extras
-      }
+      user: sessionStorage.getItem('username')
     }
 
-    this.properties = await this.http.post(url, body, { headers }).toPromise() as IProperty[];
+
+    const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
+    this.properties = response.properties;
+
+    if(sessionStorage.getItem('languagePref') !== 'en'){
+      const translateUrl = 'api/translate';
+      const translateBody = {
+        text: '',
+        targetLanguage: sessionStorage.getItem('languagePref')
+      };
+
+      for(let i = 0; i < this.properties.length; i++){
+        translateBody.text = this.properties[i].title;
+        const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+        this.properties[i].title = translatedTitle.text;
+      }      
+    }
+
     // this.properties = this.properties.slice(0,3);
     this.lastImageIndex = this.properties[0].images.length - 1;
     // this.ngAfterViewInit();
@@ -122,8 +156,10 @@ export class HomePage implements AfterViewInit{
   async likeHouse() { 
     const url = 'api/like';
     const currProperty = this.properties[this.currentDescriptionIndex];
+   // currProperty.seen = true;
     const likedProperty: ILikeProperty = {
       user: sessionStorage.getItem('username')!,
+      title: currProperty.title,
       address: currProperty.location,
       price: currProperty.price,
       bedrooms: currProperty.bedrooms,
@@ -185,6 +221,7 @@ export class HomePage implements AfterViewInit{
     const currProperty = this.properties[this.currentDescriptionIndex];
     const dislikedProperty: ILikeProperty = {
       user: sessionStorage.getItem('username')!,
+      title : currProperty.title,
       address: currProperty.location,
       price: currProperty.price,
       bedrooms: currProperty.bedrooms,

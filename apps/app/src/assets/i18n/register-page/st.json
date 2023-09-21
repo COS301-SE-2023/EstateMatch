@@ -1,0 +1,30 @@
+{
+    "header": {
+      "subtitle": "Ngodisa"
+    },
+    "labels": {
+      "firstName": "Lebitso La Pele",
+      "lastName": "Fane",
+      "username": "Lebitso la mosebedisi",
+      "email": "Imeile",
+      "password": "Phasewete",
+      "confirmPassword": "Netefatsa phasewete"
+    },
+    "placeholders": {
+      "firstName": "Kenya Lebitso La Pele",
+      "lastName": "Kenya fane",
+      "username": "Kenya lebitso la mosebedisia",
+      "email": "Kenya Imeile",
+      "password": "Kenya phasewete",
+      "confirmPassword": "Netefatsa phasewete"
+    },
+    "buttons": {
+      "createAccount": "Theha ak'haonte"
+    },
+    "messages": {
+      "login": "Na u se u na le ak'haonte?",
+      "log_in": "Kena"
+    },
+    "Change": "Fetola"
+  }
+  

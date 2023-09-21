@@ -1,0 +1,21 @@
+{
+    "header": {
+      "subtitle": "Ngena ngemvume"
+    },
+    "labels": {
+      "username": "Igama lomsebenzisi",
+      "password": "Iphasiwedi"
+    },
+    "placeholders": {
+      "username": "Faka Igama lomsebenzisi",
+      "password": "Iphasiwedi"
+    },
+    "buttons": {
+      "login": "Bhuka"
+    },
+    "messages": {
+      "signup": "Awunayo i-akhawunti?",
+      "sign_up": "Gcina"
+    },
+    "Change": "Fetola"
+}

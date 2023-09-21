@@ -35,7 +35,8 @@ describe('UserService', () => {
             firstName: 'Test FName',
             lastName: 'Test FName',
             email: 'test@gmail.com',
-            username: 'testuser'
+            username: 'testuser',
+            properties: []
         }
     };
 
@@ -54,7 +55,8 @@ describe('UserService', () => {
             username: 'testU',
             firstName: 'testFName',
             lastName: 'testLName',
-            email: 'test@gmail.com'
+            email: 'test@gmail.com',
+            properties: []
         }
     };
 
@@ -64,7 +66,8 @@ describe('UserService', () => {
             username: 'testU',
             firstName: 'testFName',
             lastName: 'testLName',
-            email: 'test@gmail.com'
+            email: 'test@gmail.com',
+            properties: []
         }
     };
 
@@ -85,6 +88,7 @@ describe('UserService', () => {
             firstName: 'testFName',
             lastName: 'testLName',
             email: 'test2@gmail.com',
+            properties: []
         }
     };
 

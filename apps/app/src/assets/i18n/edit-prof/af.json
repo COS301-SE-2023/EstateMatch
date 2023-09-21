@@ -1,0 +1,24 @@
+{
+  "labels": {
+    "firstName": "Voornaam",
+    "lastName": "Van",
+    "username": "Gebruikersnaam",
+    "email": "E-pos",
+    "button.save": "Stoor",
+    "button.backToProfile": "Terug na Profiel"
+  },
+  "placeholders": {
+    "firstName": "Voornaam",
+    "lastName": "Van",
+    "username": "Gebruikersnaam",
+    "email": "E-pos"
+  },
+
+  "navbar": {
+    "home": "Huis",
+    "chat": "Klets",
+    "search": "Soek",
+    "liked": "Geliefdes",
+    "profile": "Profiel"
+  }
+}
