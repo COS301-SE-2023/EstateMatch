@@ -17,6 +17,9 @@ export const PropertiesSchema = new mongoose.Schema({
 
     images: [String],
 
+    //array of rbg arrays
+    rgbArray : [Number],
+
 });
 
 export interface PropertiesModel {
@@ -34,5 +37,8 @@ export interface PropertiesModel {
     // HouseType : Rent/Sale
 
     images: string[],
+
+    //array of rbg arrays
+    rgbArray: number[],
 
 }
