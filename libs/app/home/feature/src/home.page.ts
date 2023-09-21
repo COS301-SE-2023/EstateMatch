@@ -56,7 +56,8 @@ export class HomePage implements AfterViewInit{
     garages: 1,
     amenities: [],
     images: this.images,
-    rgbArray: []
+    rgbArray: [],
+    description: 'This is a description'
   }];
   lastImageIndex = 0;
   currentDescriptionIndex = 0;

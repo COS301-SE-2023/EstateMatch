@@ -31,7 +31,8 @@ export class SearchPage implements AfterViewInit{
       garages: 1,
       amenities: [],
       images: [],
-      rgbArray: []
+      rgbArray: [],
+      description: 'This is a description'
     }
     ];
     

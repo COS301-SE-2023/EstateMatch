@@ -29,7 +29,8 @@ export class WebScraperController {
             location: properties[i].location,
             amenities: properties[i].amenities,
             images: properties[i].imageURLs,
-            rgbArray: properties[i].rgbArray
+            rgbArray: properties[i].rgbArray,
+            description: properties[i].description
         }
           const request: ICreatePropertyRequest = {
             property: property
@@ -55,7 +56,8 @@ export class WebScraperController {
           location: properties[i].location,
           amenities: properties[i].amenities,
           images: properties[i].imageURLs,
-          rgbArray: properties[i].rgbArray
+          rgbArray: properties[i].rgbArray,
+          description: properties[i].description
       }
         const request: ICreatePropertyRequest = {
           property: property
@@ -81,7 +83,8 @@ export class WebScraperController {
           location: properties[i].location,
           amenities: properties[i].amenities,
           images: properties[i].imageURLs,
-          rgbArray: properties[i].rgbArray
+          rgbArray: properties[i].rgbArray,
+          description: properties[i].description
       }
         const request: ICreatePropertyRequest = {
           property: property
@@ -107,7 +110,8 @@ export class WebScraperController {
             location: properties[i].location,
             amenities: properties[i].amenities,
             images: properties[i].imageURLs,
-            rgbArray: properties[i].rgbArray
+            rgbArray: properties[i].rgbArray,
+            description: properties[i].description
         }
           const request: ICreatePropertyRequest = {
             property: property
