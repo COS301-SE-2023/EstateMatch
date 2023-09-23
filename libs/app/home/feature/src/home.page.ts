@@ -105,13 +105,12 @@ export class HomePage implements AfterViewInit{
     //     garages: this.userPreferences.garages,
     //     amenities: this.userPreferences.extras
     //   }
-    // }
+    // } 
 
     const url = 'api/getUserProperties';
     const body = {
       user: sessionStorage.getItem('username')
     }
-
 
     const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
     this.properties = response.properties;
@@ -133,7 +132,20 @@ export class HomePage implements AfterViewInit{
     // this.properties = this.properties.slice(0,3);
     this.lastImageIndex = this.properties[0].images.length - 1;
     // this.ngAfterViewInit();
-    this.propertyCheck();
+    const newProperties = await this.propertyCheck(this.userPreferences.location[0]);
+
+    if(newProperties){
+      const url = 'api/getUserProperties';
+      const body = {
+        user: sessionStorage.getItem('username')
+      }
+  
+      const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
+
+      for(const property of response.properties){
+        this.properties.push(property);
+      }
+    }
   }
 
   ngAfterViewInit(){
@@ -305,7 +317,7 @@ export class HomePage implements AfterViewInit{
     }
   }
 
-  async propertyCheck(){
+  async propertyCheck(location: string){
     const url = 'api/propertyCheck';
     const username = sessionStorage.getItem('username');
     const body = {
@@ -317,21 +329,28 @@ export class HomePage implements AfterViewInit{
     if(newPropertiesNeeded){
       if(newPropertiesNeeded.empty){
         //Somehow check if new user or not
-
-        const url = 'api/getPreferences';
-        const prefBody = { user : username };
-        let location;
         if (username) {
-          try {
-            const response = await this.http.post(url, prefBody, { headers }).toPromise() as IPreference;
-            location = response.location;
-          } catch (error) {
-            console.error('Error fetching user data:', error);
-          }
+          const remaxRentURL = 'api/RemaxRentScraper'; //need to add rent/buy to preferences
+          const remaxSaleURL = 'api/RemaxSaleScraper';
+          const privatePropertyRentURL = 'api/PrivatePropertyRentScraper';
+          const privatePropertySaleURL = 'api/PrivatePropertySaleScraper';
+      
+          const scraperBody = {
+            username: sessionStorage.getItem('username'),
+            location: location,
+          };
+      
+          // const remaxRent = await this.http.post(remaxRentURL, scraperBody, { headers }).toPromise();
+          // const remaxSale = await this.http.post(remaxSaleURL, scraperBody, { headers }).toPromise();
+          // const privatePropertyRent = await this.http.post(privatePropertyRentURL, scraperBody, { headers });
+          const privatePropertySale = await this.http.post(privatePropertySaleURL, scraperBody, { headers }).toPromise();
         }
 
         //Use location here
         //Need to run the web scraper 
+        return true;
+      }else{
+        return false;
       }
     }
   }
