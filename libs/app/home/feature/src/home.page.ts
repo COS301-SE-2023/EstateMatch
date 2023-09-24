@@ -218,6 +218,15 @@ export class HomePage implements AfterViewInit{
     // if (this.currentDescriptionIndex >= this.descriptions.length) {
     //   this.currentDescriptionIndex = 0;
     // }
+
+    const aiPrefUrl = 'api/setAIPreferences';
+    const aiPrefBody = {
+      user: sessionStorage.getItem('username'),
+      labels: this.properties[this.currentDescriptionIndex].aiLabel
+    };
+
+    const aiPrefResponse = await this.http.post(aiPrefUrl, aiPrefBody, { headers }).toPromise() as {updated: boolean};
+
     if(sessionStorage.getItem('languagePref') !== 'en'){
       const translateUrl = 'api/translate';
       const translateBody = {
