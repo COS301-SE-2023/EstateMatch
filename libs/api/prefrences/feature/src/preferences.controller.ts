@@ -21,4 +21,8 @@ export class PreferenceController {
         return await this.service.setAIPreferences(preferences);
     }
     
+    @Post('/getAIPreferences')
+    async getAIPreferences(@Body() user: IGetPreferencesRequest){
+        return await this.service.getAIPreferences(user);
+    }
 }
