@@ -2,9 +2,8 @@ import { AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildre
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Gesture, GestureController, IonCard, Platform, ToastController } from '@ionic/angular';
 import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
-import { IPreference } from '@estate-match/api/prefrences/util';
+import { IAIPreference, IPreference } from '@estate-match/api/prefrences/util';
 import { Router } from '@angular/router';
-import { time } from 'console';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 
@@ -114,6 +113,29 @@ export class HomePage implements AfterViewInit{
 
     const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
     this.properties = response.properties;
+
+    const aiGetPrefUrl = 'api/getAIPreferences';
+    const aiGetPrefBody = {
+      user: sessionStorage.getItem('username')
+    }
+
+    const aiGetPrefResponse = await this.http.post(aiGetPrefUrl, aiGetPrefBody, { headers }).toPromise() as {aiPreferences: IAIPreference};
+
+    const scores = [];
+    const matchUrl = 'api/match';
+
+    const matchBody = {
+      property: this.properties[this.currentDescriptionIndex],
+      preferences: aiGetPrefResponse.aiPreferences
+    }
+
+    for(const property of this.properties){
+      matchBody.property = property;
+      const matchResponse = await this.http.post(matchUrl, matchBody, { headers }).toPromise() as {matchScore: number};
+      scores.push(matchResponse.matchScore);
+    }
+
+    console.log(scores);
 
 
     // this.properties = this.properties.slice(0,3);
