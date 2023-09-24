@@ -115,6 +115,11 @@ export class HomePage implements AfterViewInit{
     const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
     this.properties = response.properties;
 
+
+    // this.properties = this.properties.slice(0,3);
+    this.lastImageIndex = this.properties[0].images.length - 1;
+    // this.ngAfterViewInit();
+
     if(sessionStorage.getItem('languagePref') !== 'en'){
       const translateUrl = 'api/translate';
       const translateBody = {
@@ -122,16 +127,18 @@ export class HomePage implements AfterViewInit{
         targetLanguage: sessionStorage.getItem('languagePref')
       };
 
-      for(let i = 0; i < this.properties.length; i++){
-        translateBody.text = this.properties[i].title;
-        const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
-        this.properties[i].title = translatedTitle.text;
-      }      
+        // translateBody.text = this.properties[this.currentDescriptionIndex].title;
+        // const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+        // this.properties[this.currentDescriptionIndex].title = translatedTitle.text;
+
+        for(let j = 0; j < this.properties[this.currentDescriptionIndex].description.length; j++){
+          translateBody.text = this.properties[this.currentDescriptionIndex].description[j];
+          // const translatedDescription = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+          // this.properties[this.currentDescriptionIndex].description[j] = translatedDescription.text;
+        }
+         
     }
 
-    // this.properties = this.properties.slice(0,3);
-    this.lastImageIndex = this.properties[0].images.length - 1;
-    // this.ngAfterViewInit();
     const newProperties = await this.propertyCheck(this.userPreferences.location[0]);
 
     if(newProperties){
@@ -210,24 +217,24 @@ export class HomePage implements AfterViewInit{
     // if (this.currentDescriptionIndex >= this.descriptions.length) {
     //   this.currentDescriptionIndex = 0;
     // }
-    const url2 = 'api/identify-feel';
-    const body2 = {
-      imageUrl: currProperty.images
-    };
+    if(sessionStorage.getItem('languagePref') !== 'en'){
+      const translateUrl = 'api/translate';
+      const translateBody = {
+        text: '',
+        targetLanguage: sessionStorage.getItem('languagePref')
+      };
 
-    const aiPref = await this.http.post(url2, body2, { headers }).toPromise() as {result: string};
+        translateBody.text = this.properties[this.currentDescriptionIndex].title;
+        const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+        this.properties[this.currentDescriptionIndex].title = translatedTitle.text;
 
-    const aiUrl = 'api/setAIPreferences';
-    const aiBody = {
-      preferences: {
-        user: sessionStorage.getItem('username'),
-        colour: aiPref.result        
-      }
+        for(let j = 0; j < this.properties[this.currentDescriptionIndex].description.length; j++){
+          translateBody.text = this.properties[this.currentDescriptionIndex].description[j];
+          const translatedDescription = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+          this.properties[this.currentDescriptionIndex].description[j] = translatedDescription.text;
+        }
+           
     }
-
-    this.http.post(aiUrl, aiBody, { headers }).subscribe((response) => {
-      console.log(response);
-    });
   }
 
   async dislikeHouse() {
@@ -267,9 +274,24 @@ export class HomePage implements AfterViewInit{
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
 
-    // if (this.currentDescriptionIndex >= this.descriptions.length) {
-    //   this.currentDescriptionIndex = 0;
-    // }
+    if(sessionStorage.getItem('languagePref') !== 'en'){
+      const translateUrl = 'api/translate';
+      const translateBody = {
+        text: '',
+        targetLanguage: sessionStorage.getItem('languagePref')
+      };
+
+        translateBody.text = this.properties[this.currentDescriptionIndex].title;
+        const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+        this.properties[this.currentDescriptionIndex].title = translatedTitle.text;
+
+        for(let j = 0; j < this.properties[this.currentDescriptionIndex].description.length; j++){
+          translateBody.text = this.properties[this.currentDescriptionIndex].description[j];
+          const translatedDescription = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+          this.properties[this.currentDescriptionIndex].description[j] = translatedDescription.text;
+        }
+           
+    }
   }
 
   async makeToast(message: any){
@@ -352,6 +374,8 @@ export class HomePage implements AfterViewInit{
       }else{
         return false;
       }
+    }else{
+      return false;
     }
   }
 
