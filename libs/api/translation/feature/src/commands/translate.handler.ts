@@ -43,7 +43,7 @@ export class TranslateHandler implements ICommandHandler<TranslateCommand, ITran
             llm: model,
             prompt: prompt,	
         });
-
+        
         const translatedText = await llm.call({text: text, output_language: language}) as {text: string};
 
 
