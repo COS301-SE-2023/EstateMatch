@@ -4,7 +4,9 @@ import { Geolocation} from '@ionic-native/geolocation'
 import { IGeocoder, GeocodingCallback, GeocodingResult } from './api';
 import fetch from 'node-fetch';
 import { ActivatedRoute, Router } from '@angular/router';
-
+// import { google } from 'google-maps';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { url } from 'inspector';
 
 @Component({
   selector: 'ms-map-page',
@@ -29,7 +31,7 @@ import { ActivatedRoute, Router } from '@angular/router';
       
 
       constructor(private route: ActivatedRoute,
-        private readonly router: Router,) {
+        private readonly router: Router,private http: HttpClient) {
         this.locationLat=0;
         this.locationLong=0;
         this.userLat=0;
@@ -90,6 +92,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 
       L.control.scale().addTo(this.map);
 
+
+    
+
+
       this.map.once('click', (e) => {
         
        
@@ -112,6 +118,66 @@ import { ActivatedRoute, Router } from '@angular/router';
     // // console.log(coords); 
     // this.setPropertyMarker(coords[0],coords[1]);
   }
+
+  setSchoolMarker(lat: any, long: any, name: string){
+    const customIcon = L.icon({
+      iconUrl: 'assets/school.png', 
+      iconSize: [35,35]
+    });
+
+
+    const mark=L.marker([lat,long],
+      {
+        icon: customIcon
+      }).addTo(this.map);
+    mark.bindPopup("<b>School: "+name+"</b><br />").openPopup();
+  }
+
+
+  setMarketMarker(lat: any, long: any, name: string){
+    const customIcon = L.icon({
+      iconUrl: 'assets/supermarket.png', 
+      iconSize: [35,35]
+    });
+
+
+    const mark=L.marker([lat,long],
+      {
+        icon: customIcon
+      }).addTo(this.map);
+    mark.bindPopup("<b>Supermarket: "+name+" </b><br />").openPopup();
+  }
+
+
+  setGasstationMarker(lat: any, long: any, name: string){
+    const customIcon = L.icon({
+      iconUrl: 'assets/gas.png', 
+      iconSize: [35,35]
+    });
+
+
+    const mark=L.marker([lat,long],
+      {
+        icon: customIcon
+      }).addTo(this.map);
+    mark.bindPopup("<b>Gas station: "+name+" </b><br />").openPopup();
+  }
+
+
+  setMallMarker(lat: any, long: any, name: string){
+    const customIcon = L.icon({
+      iconUrl: 'assets/mall.png', 
+      iconSize: [35,35]
+    });
+
+
+    const mark=L.marker([lat,long],
+      {
+        icon: customIcon
+      }).addTo(this.map);
+    mark.bindPopup("<b>Mall: "+name+" </b><br />").openPopup();
+  }
+
 
   setMarker(lat: any, long: any){
     const customIcon = L.icon({
@@ -168,18 +234,62 @@ import { ActivatedRoute, Router } from '@angular/router';
     this.propertyLat = geocodingResult.features[0].geometry.coordinates[0];
     this.propertyLong = geocodingResult.features[0].geometry.coordinates[1];
 
+    const url = 'api/getMap'
 
-    // await this.setMarker(this.propertyLat,this.propertyLong);
-    // this.setPropertyMarker(this.propertyLat,this.propertyLong);
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
+
+      let body = {
+        longitude: this.propertyLat,
+        latitude: this.propertyLong,
+        type: 'school',
+    }
+
+    const schoolResponse = await this.http.post(url, body, { headers }).toPromise() as { results: any[] };
+
+    for(let i = 0; i < schoolResponse.results.length; i++){
+      this.setSchoolMarker(schoolResponse.results[i].geometry.location.lat,schoolResponse.results[i].geometry.location.lng,schoolResponse.results[i].name);
+    }
+
+    body = {
+      longitude: this.propertyLat,
+      latitude: this.propertyLong,
+      type: 'supermarket',
+    }
+
+    const marketResponse = await this.http.post(url, body, { headers }).toPromise() as { results: any[] };
+
+    for(let i = 0; i < marketResponse.results.length; i++){
+      this.setMarketMarker(marketResponse.results[i].geometry.location.lat,marketResponse.results[i].geometry.location.lng,marketResponse.results[i].name);
+    }
+
+    body = {
+      longitude: this.propertyLat,
+      latitude: this.propertyLong,
+      type: 'gas_station',
+    }
+
+    const gasResponse = await this.http.post(url, body, { headers }).toPromise() as { results: any[] };
+
+    for(let i = 0; i < gasResponse.results.length; i++){
+      this.setGasstationMarker(gasResponse.results[i].geometry.location.lat,gasResponse.results[i].geometry.location.lng,gasResponse.results[i].name);
+    }
+
+    body = {
+      longitude: this.propertyLat,
+      latitude: this.propertyLong,
+      type: 'shopping_mall',
+    }
+
+    const mallResponse = await this.http.post(url, body, { headers }).toPromise() as { results: any[] };
+
+    for(let i = 0; i < mallResponse.results.length; i++){
+      this.setMallMarker(mallResponse.results[i].geometry.location.lat,mallResponse.results[i].geometry.location.lng,mallResponse.results[i].name);
+    }
+   
     return [this.propertyLat,this.propertyLong];
-    // fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=0ddaaa18ee5f47b1b80e36cd0d3e0395`)
-    // .then(async (resp: { json: () => any; }) => resp.json())
-    // .then(async (geocodingResult: any) => {
-    //   console.log(geocodingResult);
-
-    // });
-
-    // return [0,0]
+    
   }
 
   setPropertyMarker(lat: any, long: any){
