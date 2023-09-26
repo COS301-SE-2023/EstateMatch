@@ -48,7 +48,7 @@ export class InfoPage {
         const headers = new HttpHeaders({
           'Content-Type': 'application/json',
         });
-        this.chipTexts = this.property.aiLabel;
+        // this.chipTexts = this.property.aiLabel;
         const prefLanguage = sessionStorage.getItem('languagePref');
         if(prefLanguage !== 'en'){
           const url = 'api/translate'
@@ -61,13 +61,13 @@ export class InfoPage {
           }
 
           const translated = await this.http.post(url, body, { headers: headers }).toPromise() as ITranslateResponse;
-          // this.property.title = translated.title;
-          // this.property.description = translated.description;
-          // this.property.amenities = translated.amenities;
-          // this.property.aiLabel = translated.aiLabel;
+          this.property.title = translated.title;
+          this.property.description = translated.description;
+          this.property.amenities = translated.amenities;
+          this.property.aiLabel = translated.aiLabel;
         }
 
-
+        this.chipTexts = this.property.aiLabel;
         const colours = this.property.rgbColour;
 
         const colourPalette = document.getElementsByClassName('colour-palate');

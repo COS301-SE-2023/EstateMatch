@@ -74,25 +74,25 @@ export class TranslateHandler implements ICommandHandler<TranslateCommand, ITran
             prompt: prompt,	
         });
         
-        const data = [];
-        data.push(title);
-        if(description){
-            for(const d of description){
-                data.push(d);
-            }            
-        }
+        // const data = [];
+        // data.push(title);
+        // if(description){
+        //     for(const d of description){
+        //         data.push(d);
+        //     }            
+        // }
 
-        if(amenities){
-            for(const a of amenities){
-                data.push(a);
-            }
-        }    
+        // if(amenities){
+        //     for(const a of amenities){
+        //         data.push(a);
+        //     }
+        // }    
         
-        if(aiLabel){
-            for(const a of aiLabel){
-                data.push(a);
-            }
-        }
+        // if(aiLabel){
+        //     for(const a of aiLabel){
+        //         data.push(a);
+        //     }
+        // }
 
         // console.log(data);
         
@@ -114,8 +114,11 @@ export class TranslateHandler implements ICommandHandler<TranslateCommand, ITran
 
         if(description){
             translated = await llm.call({data: description, output_language: language}) as {text: string};
+            translated.text = translated.text.replace(',', ';');
+            console.log(translated.text);
             translatedData = translated.text.split(',');
             for(let i = 0; i < translatedData.length; i++){
+                // translatedData[i] = translatedData[i].replace('\n', '');
                 translatedDescription.push(translatedData[i]);
             }            
         }
@@ -136,10 +139,17 @@ export class TranslateHandler implements ICommandHandler<TranslateCommand, ITran
             }
         }
 
-        console.log(translatedTitle);
-        console.log(translatedDescription);
-        console.log(translatedAmenities);
-        console.log(translatedAiLabel);
+        // console.log(translatedTitle);
+        // console.log(translatedDescription);
+        // console.log(translatedAmenities);
+        // console.log(translatedAiLabel);
+
+        // const response: ITranslateResponse = {
+        //     title: 'translatedTitle.text',
+        //     amenities: ['translatedAmenities'],
+        //     description: translatedDescription,
+        //     aiLabel: ['translatedAiLabel'],
+        // };
 
         const response: ITranslateResponse = {
             title: translatedTitle.text,
