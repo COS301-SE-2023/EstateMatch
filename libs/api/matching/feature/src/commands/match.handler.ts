@@ -65,7 +65,7 @@ export class MatchHandler implements ICommandHandler<MatchCommand> {
         }
 
         const response: IMatchResponse = {
-            matchScore: score
+            matchScore: Math.round(score * 100)
         }
         return  response;
     }

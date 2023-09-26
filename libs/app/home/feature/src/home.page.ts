@@ -77,7 +77,7 @@ export class HomePage implements AfterViewInit{
   tempActive = false;
 
   userPreferences!: IPreference;
-
+  scores: any = [];
   temp: any = [];
 
  // showLikeIcon = false;
@@ -121,7 +121,7 @@ export class HomePage implements AfterViewInit{
 
     const aiGetPrefResponse = await this.http.post(aiGetPrefUrl, aiGetPrefBody, { headers }).toPromise() as {aiPreferences: IAIPreference};
 
-    const scores = [];
+
     const matchUrl = 'api/match';
 
     const matchBody = {
@@ -132,11 +132,8 @@ export class HomePage implements AfterViewInit{
     for(const property of this.properties){
       matchBody.property = property;
       const matchResponse = await this.http.post(matchUrl, matchBody, { headers }).toPromise() as {matchScore: number};
-      scores.push(matchResponse.matchScore);
+      this.scores.push(matchResponse.matchScore);
     }
-
-    console.log(scores);
-
 
     // this.properties = this.properties.slice(0,3);
     this.lastImageIndex = this.properties[0].images.length - 1;
