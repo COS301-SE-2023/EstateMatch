@@ -115,7 +115,6 @@ export class TranslateHandler implements ICommandHandler<TranslateCommand, ITran
         if(description){
             translated = await llm.call({data: description, output_language: language}) as {text: string};
             translated.text = translated.text.replace(',', ';');
-            console.log(translated.text);
             translatedData = translated.text.split(',');
             for(let i = 0; i < translatedData.length; i++){
                 // translatedData[i] = translatedData[i].replace('\n', '');
