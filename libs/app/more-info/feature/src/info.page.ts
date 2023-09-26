@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+import { ITranslateResponse } from '@estate-match/api/translation/util';
 
 @Component({
   selector: 'ms-info-page',
@@ -52,28 +53,18 @@ export class InfoPage {
         if(prefLanguage !== 'en'){
           const url = 'api/translate'
           const body = {
-            text: '',
+            title: this.property.title,
+            description: this.property.description,
+            amenities: this.property.amenities,
+            aiLabel: this.property.aiLabel,
             targetLanguage: prefLanguage
           }
 
-          for(let i = 0; i < 4; i++){
-            body.text = this.property.aiLabel[i];
-            const translated = await this.http.post(url, body, { headers: headers }).toPromise() as {text: string};
-            console.log(translated.text);
-            this.property.aiLabel[i] = translated.text;
-          }      
-
-          for(let i = 0; i < this.property.description.length; i++){
-            body.text = this.property.description[i];
-            const translated = await this.http.post(url, body, { headers: headers }).toPromise() as {text: string};
-            this.property.description[i] = translated.text;
-          }   
-
-          for(let i = 0; i < this.property.amenities.length; i++){
-            body.text = this.property.amenities[i];
-            const translated = await this.http.post(url, body, { headers: headers }).toPromise() as {text: string};
-            this.property.amenities[i] = translated.text;
-          }          
+          const translated = await this.http.post(url, body, { headers: headers }).toPromise() as ITranslateResponse;
+          this.property.title = translated.title;
+          this.property.description = translated.description;
+          this.property.amenities = translated.amenities;
+          this.property.aiLabel = translated.aiLabel;
         }
 
 

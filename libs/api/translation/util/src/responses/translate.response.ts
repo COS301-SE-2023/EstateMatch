@@ -1,3 +1,6 @@
 export interface ITranslateResponse {
-    text: string;
+    title: string;
+    amenities: string[];
+    description: string[];
+    aiLabel: string[];
 }
