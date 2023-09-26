@@ -142,25 +142,25 @@ export class HomePage implements AfterViewInit{
     this.lastImageIndex = this.properties[0].images.length - 1;
     // this.ngAfterViewInit();
 
-    if(sessionStorage.getItem('languagePref') !== 'en'){
-      const translateUrl = 'api/translate';
-      const translateBody = {
-        text: '',
-        targetLanguage: sessionStorage.getItem('languagePref')
-      };
+    // if(sessionStorage.getItem('languagePref') !== 'en'){
+    //   const translateUrl = 'api/translate';
+    //   const translateBody = {
+    //     text: '',
+    //     targetLanguage: sessionStorage.getItem('languagePref')
+    //   };
 
-        translateBody.text = this.properties[this.currentDescriptionIndex].title;
-        const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
-        this.properties[this.currentDescriptionIndex].title = translatedTitle.text;
+    //     translateBody.text = this.properties[this.currentDescriptionIndex].title;
+    //     const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+    //     this.properties[this.currentDescriptionIndex].title = translatedTitle.text;
 
-        // for(let j = 0; j < this.properties[this.currentDescriptionIndex].amenities.length; j++){
-        //   translateBody.text = this.properties[this.currentDescriptionIndex].description[j];
-        //   const translatedDescription = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
-        //   console.log(translatedDescription.text);
-        //   this.properties[this.currentDescriptionIndex].amenities[j] = translatedDescription.text;
-        // }
+    //     // for(let j = 0; j < this.properties[this.currentDescriptionIndex].amenities.length; j++){
+    //     //   translateBody.text = this.properties[this.currentDescriptionIndex].description[j];
+    //     //   const translatedDescription = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+    //     //   console.log(translatedDescription.text);
+    //     //   this.properties[this.currentDescriptionIndex].amenities[j] = translatedDescription.text;
+    //     // }
          
-    }
+    // }
 
     const newProperties = await this.propertyCheck(this.userPreferences.location[0]);
 
@@ -249,24 +249,24 @@ export class HomePage implements AfterViewInit{
 
     const aiPrefResponse = await this.http.post(aiPrefUrl, aiPrefBody, { headers }).toPromise() as {updated: boolean};
 
-    if(sessionStorage.getItem('languagePref') !== 'en'){
-      const translateUrl = 'api/translate';
-      const translateBody = {
-        text: '',
-        targetLanguage: sessionStorage.getItem('languagePref')
-      };
+    // if(sessionStorage.getItem('languagePref') !== 'en'){
+    //   const translateUrl = 'api/translate';
+    //   const translateBody = {
+    //     text: '',
+    //     targetLanguage: sessionStorage.getItem('languagePref')
+    //   };
 
-        translateBody.text = this.properties[this.currentDescriptionIndex].title;
-        const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
-        this.properties[this.currentDescriptionIndex].title = translatedTitle.text;
+    //     translateBody.text = this.properties[this.currentDescriptionIndex].title;
+    //     const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+    //     this.properties[this.currentDescriptionIndex].title = translatedTitle.text;
 
-        // for(let j = 0; j < this.properties[this.currentDescriptionIndex].description.length; j++){
-        //   translateBody.text = this.properties[this.currentDescriptionIndex].description[j];
-        //   const translatedDescription = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
-        //   this.properties[this.currentDescriptionIndex].description[j] = translatedDescription.text;
-        // }
+    //     // for(let j = 0; j < this.properties[this.currentDescriptionIndex].description.length; j++){
+    //     //   translateBody.text = this.properties[this.currentDescriptionIndex].description[j];
+    //     //   const translatedDescription = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+    //     //   this.properties[this.currentDescriptionIndex].description[j] = translatedDescription.text;
+    //     // }
            
-    }
+    // }
   }
 
   async dislikeHouse() {
@@ -306,24 +306,24 @@ export class HomePage implements AfterViewInit{
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
 
-    if(sessionStorage.getItem('languagePref') !== 'en'){
-      const translateUrl = 'api/translate';
-      const translateBody = {
-        text: '',
-        targetLanguage: sessionStorage.getItem('languagePref')
-      };
+    // if(sessionStorage.getItem('languagePref') !== 'en'){
+    //   const translateUrl = 'api/translate';
+    //   const translateBody = {
+    //     text: '',
+    //     targetLanguage: sessionStorage.getItem('languagePref')
+    //   };
 
-        translateBody.text = this.properties[this.currentDescriptionIndex].title;
-        const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
-        this.properties[this.currentDescriptionIndex].title = translatedTitle.text;
+    //     translateBody.text = this.properties[this.currentDescriptionIndex].title;
+    //     const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+    //     this.properties[this.currentDescriptionIndex].title = translatedTitle.text;
 
-        // for(let j = 0; j < this.properties[this.currentDescriptionIndex].description.length; j++){
-        //   translateBody.text = this.properties[this.currentDescriptionIndex].description[j];
-        //   const translatedDescription = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
-        //   this.properties[this.currentDescriptionIndex].description[j] = translatedDescription.text;
-        // }
+    //     // for(let j = 0; j < this.properties[this.currentDescriptionIndex].description.length; j++){
+    //     //   translateBody.text = this.properties[this.currentDescriptionIndex].description[j];
+    //     //   const translatedDescription = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
+    //     //   this.properties[this.currentDescriptionIndex].description[j] = translatedDescription.text;
+    //     // }
            
-    }
+    // }
   }
 
   async makeToast(message: any){

@@ -60,8 +60,10 @@ export class TranslateHandler implements ICommandHandler<TranslateCommand, ITran
         //     return response;
 
         const model = new ChatOpenAI({});
-        const myTemplate = "You are an assistant that tranlates an array of strings {data} from english to {output_language}. Only provide the transletd text as a response.";
-        // "Examples:" + 
+        const myTemplate = "You are an assistant that tranlates an array of strings {data} from english to {output_language}. Only provide the translated data as your response."
+        "Examples:" + 
+        "Data: [3 Bedroom house for sale in Cape Town, Bedroom, Garden]" + 
+        "Assistant: 3 Slaapkamer huis te koop in Kaapstad, Slaapkamer, Tuin" ;
         // "Data: [3 Bedroom house for sale in Cape Town, Bedroom, Garden]" + 
         // "Assistant: [3 Slaapkamer huis te koop in Kaapstad, Slaapkamer, Tuin]";
 
@@ -92,44 +94,55 @@ export class TranslateHandler implements ICommandHandler<TranslateCommand, ITran
             }
         }
 
-        const translated = await llm.call({data: data, output_language: language}) as {text: string};
+        // console.log(data);
+        
         // const translatedDescription = await llm.call({data: description, output_language: language}) as {text: string};
         // const translatedAmenities = await llm.call({data: amenities, output_language: language}) as {text: string};
         // const translatedAiLabel = await llm.call({data: aiLabel, output_language: language}) as {text: string};
 
-        const translatedData = translated.text.split(', ');
+        let translated: any;
+        let translatedData: any;
 
-        const translatedTitle = translatedData[0];
+        // console.log(translated.text);
+
+        const translatedTitle = await llm.call({data: title, output_language: language}) as {text: string};
 
         const translatedDescription = [];
         const translatedAmenities = [];
         const translatedAiLabel = [];
 
-        let index = 1;
 
         if(description){
-            for(let i = 0; i < description.length; i++){
-                translatedDescription.push(translatedData[index]);
-                index++;
+            translated = await llm.call({data: description, output_language: language}) as {text: string};
+            translatedData = translated.text.split(',');
+            for(let i = 0; i < translatedData.length; i++){
+                translatedDescription.push(translatedData[i]);
             }            
         }
 
         if(amenities){
-            for(let i = 0; i < amenities.length; i++){
-                translatedAmenities.push(translatedData[index]);
-                index++;
+            translated = await llm.call({data: amenities, output_language: language}) as {text: string};
+            translatedData = translated.text.split(',');
+            for(let i = 0; i < translatedData.length; i++){
+                translatedAmenities.push(translatedData[i]);
             }
         }
 
         if(aiLabel){
-            for(let i = 0; i < aiLabel.length; i++){
-                translatedAiLabel.push(translatedData[index]);
-                index++;
+            translated = await llm.call({data: aiLabel, output_language: language}) as {text: string};
+            translatedData = translated.text.split(',');
+            for(let i = 0; i < translatedData.length; i++){
+                translatedAiLabel.push(translatedData[i]);
             }
         }
 
+        console.log(translatedTitle);
+        console.log(translatedDescription);
+        console.log(translatedAmenities);
+        console.log(translatedAiLabel);
+
         const response: ITranslateResponse = {
-            title: translatedTitle,
+            title: translatedTitle.text,
             amenities: translatedAmenities,
             description: translatedDescription,
             aiLabel: translatedAiLabel,

@@ -61,10 +61,10 @@ export class InfoPage {
           }
 
           const translated = await this.http.post(url, body, { headers: headers }).toPromise() as ITranslateResponse;
-          this.property.title = translated.title;
-          this.property.description = translated.description;
-          this.property.amenities = translated.amenities;
-          this.property.aiLabel = translated.aiLabel;
+          // this.property.title = translated.title;
+          // this.property.description = translated.description;
+          // this.property.amenities = translated.amenities;
+          // this.property.aiLabel = translated.aiLabel;
         }
 
 
