@@ -11,6 +11,8 @@ import { TranslateService, TranslatePipe } from '@ngx-translate/core';
   providers: [TranslateService]
 })
 
+
+
 export class InfoPage {
   constructor(private http: HttpClient,
     private toastController: ToastController,
@@ -37,8 +39,8 @@ export class InfoPage {
   fifthColour: number[] = [];
   
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+  async ngOnInit() {
+    this.route.queryParams.subscribe(async params => {
       if(params['data'] != null){
         this.property = JSON.parse(params['data']);
         this.chipTexts = this.property.aiLabel;
