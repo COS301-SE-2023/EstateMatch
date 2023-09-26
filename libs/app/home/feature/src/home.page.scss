@@ -141,3 +141,15 @@ svg {
     width: 55%;
     margin-left:22%;
   }
+
+  .match-rating {
+    position: absolute;
+    z-index: 999;
+    top: 7px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 5px 10px;
+    color: white;
+    font-size: 14px;
+    height: 18px;
+  }  
