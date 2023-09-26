@@ -5,6 +5,7 @@ import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
 import { IAIPreference, IPreference } from '@estate-match/api/prefrences/util';
 import { Router } from '@angular/router';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+import { ITranslateResponse } from '@estate-match/api/translation/util';
 
 
 interface Property {
@@ -139,25 +140,17 @@ export class HomePage implements AfterViewInit{
     this.lastImageIndex = this.properties[0].images.length - 1;
     // this.ngAfterViewInit();
 
-    // if(sessionStorage.getItem('languagePref') !== 'en'){
-    //   const translateUrl = 'api/translate';
-    //   const translateBody = {
-    //     text: '',
-    //     targetLanguage: sessionStorage.getItem('languagePref')
-    //   };
+    if(sessionStorage.getItem('languagePref') !== 'en'){
+      const translateUrl = 'api/translate';
+      const translateBody = {
+        title: this.properties[this.currentDescriptionIndex].title,
+        targetLanguage: sessionStorage.getItem('languagePref')
+      };
 
-    //     translateBody.text = this.properties[this.currentDescriptionIndex].title;
-    //     const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
-    //     this.properties[this.currentDescriptionIndex].title = translatedTitle.text;
-
-    //     // for(let j = 0; j < this.properties[this.currentDescriptionIndex].amenities.length; j++){
-    //     //   translateBody.text = this.properties[this.currentDescriptionIndex].description[j];
-    //     //   const translatedDescription = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as {text: string};
-    //     //   console.log(translatedDescription.text);
-    //     //   this.properties[this.currentDescriptionIndex].amenities[j] = translatedDescription.text;
-    //     // }
-         
-    // }
+        // translateBody.text = this.properties[this.currentDescriptionIndex].title;
+        const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as ITranslateResponse;
+        this.properties[this.currentDescriptionIndex].title = translatedTitle.title;    
+    }
 
     const newProperties = await this.propertyCheck(this.userPreferences.location[0]);
 
