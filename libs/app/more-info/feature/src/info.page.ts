@@ -11,6 +11,8 @@ import { TranslateService, TranslatePipe } from '@ngx-translate/core';
   providers: [TranslateService]
 })
 
+
+
 export class InfoPage {
   constructor(private http: HttpClient,
     private toastController: ToastController,
@@ -37,15 +39,48 @@ export class InfoPage {
   fifthColour: number[] = [];
   
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+  async ngOnInit() {
+    this.route.queryParams.subscribe(async params => {
       if(params['data'] != null){
         this.property = JSON.parse(params['data']);
+
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+        });
         this.chipTexts = this.property.aiLabel;
+        const prefLanguage = sessionStorage.getItem('languagePref');
+        if(prefLanguage !== 'en'){
+          const url = 'api/translate'
+          const body = {
+            text: '',
+            targetLanguage: prefLanguage
+          }
+
+          for(let i = 0; i < 4; i++){
+            body.text = this.property.aiLabel[i];
+            const translated = await this.http.post(url, body, { headers: headers }).toPromise() as {text: string};
+            console.log(translated.text);
+            this.property.aiLabel[i] = translated.text;
+          }      
+
+          for(let i = 0; i < this.property.description.length; i++){
+            body.text = this.property.description[i];
+            const translated = await this.http.post(url, body, { headers: headers }).toPromise() as {text: string};
+            this.property.description[i] = translated.text;
+          }   
+
+          for(let i = 0; i < this.property.amenities.length; i++){
+            body.text = this.property.amenities[i];
+            const translated = await this.http.post(url, body, { headers: headers }).toPromise() as {text: string};
+            this.property.amenities[i] = translated.text;
+          }          
+        }
+
+
         const colours = this.property.rgbColour;
 
         const colourPalette = document.getElementsByClassName('colour-palate');
-        console.log(colours);
+
         colourPalette[0].setAttribute('style', 'background-color: rgb(' + colours[0] + ',' + colours[1] + ',' + colours[2] + ');');
         colourPalette[1].setAttribute('style', 'background-color: rgb(' + colours[3] + ',' + colours[4] + ',' + colours[5] + ');');
         colourPalette[2].setAttribute('style', 'background-color: rgb(' + colours[6] + ',' + colours[7] + ',' + colours[8] + ');');
@@ -56,7 +91,6 @@ export class InfoPage {
       }
         this.router.navigate([], { queryParams: {} });
     });
-    console.log(this.property);
   }
 
   async nextImage() {
