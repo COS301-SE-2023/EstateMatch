@@ -51,8 +51,9 @@
             </ion-grid> 
             <!-- <ion-label class="sub-heading">Description</ion-label>   -->
             <p class="description">{{property.title}}</p>
-            <p class="description" *ngFor="let d of property.description">{{d}}</p>
-            <ion-label class="sub-heading">{{ 'amenities' | translate }}</ion-label><br>  
+            <!-- <p class="description" *ngFor="let d of property.description">{{d}}</p> -->
+            <p class="description">{{ property.description }}</p>
+            <ion-label class="sub-heading">Ameneties</ion-label><br>  
             <ion-chip class="ameneties_chip" *ngFor="let a of property.amenities">
               <i class="fa fa-plus icon" aria-hidden="true"></i>
               <ion-label>{{ a }}</ion-label>

@@ -114,15 +114,15 @@ import { url } from 'inspector';
 
   async ngAfterViewInit(){
     console.log('Init');
-    // const coords = await this.setPropertyLocation(this.propertyLocation);
+    const coords = await this.setPropertyLocation(this.propertyLocation);
     // // console.log(coords); 
-    // this.setPropertyMarker(coords[0],coords[1]);
+    this.setPropertyMarker(coords[0],coords[1]);
   }
 
   setSchoolMarker(lat: any, long: any, name: string){
     const customIcon = L.icon({
       iconUrl: 'assets/school.png', 
-      iconSize: [35,35]
+      iconSize: [21,21]
     });
 
 
@@ -137,7 +137,7 @@ import { url } from 'inspector';
   setMarketMarker(lat: any, long: any, name: string){
     const customIcon = L.icon({
       iconUrl: 'assets/supermarket.png', 
-      iconSize: [35,35]
+      iconSize: [21,21]
     });
 
 
@@ -152,7 +152,7 @@ import { url } from 'inspector';
   setGasstationMarker(lat: any, long: any, name: string){
     const customIcon = L.icon({
       iconUrl: 'assets/gas.png', 
-      iconSize: [35,35]
+      iconSize: [21,21]
     });
 
 
@@ -167,7 +167,7 @@ import { url } from 'inspector';
   setMallMarker(lat: any, long: any, name: string){
     const customIcon = L.icon({
       iconUrl: 'assets/mall.png', 
-      iconSize: [35,35]
+      iconSize: [21,21]
     });
 
 
@@ -231,8 +231,8 @@ import { url } from 'inspector';
 
     const response = await fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=0ddaaa18ee5f47b1b80e36cd0d3e0395`);
     const geocodingResult = await response.json();
-    this.propertyLat = geocodingResult.features[0].geometry.coordinates[0];
-    this.propertyLong = geocodingResult.features[0].geometry.coordinates[1];
+    this.propertyLat = geocodingResult.features[0].geometry.coordinates[1];
+    this.propertyLong = geocodingResult.features[0].geometry.coordinates[0];
 
     const url = 'api/getMap'
 
@@ -241,20 +241,21 @@ import { url } from 'inspector';
       });
 
       let body = {
-        longitude: this.propertyLat,
-        latitude: this.propertyLong,
+        longitude: this.propertyLong,
+        latitude: this.propertyLat,
         type: 'school',
     }
 
     const schoolResponse = await this.http.post(url, body, { headers }).toPromise() as { results: any[] };
+    // console.log(schoolResponse);
 
     for(let i = 0; i < schoolResponse.results.length; i++){
       this.setSchoolMarker(schoolResponse.results[i].geometry.location.lat,schoolResponse.results[i].geometry.location.lng,schoolResponse.results[i].name);
     }
 
     body = {
-      longitude: this.propertyLat,
-      latitude: this.propertyLong,
+      longitude: this.propertyLong,
+      latitude: this.propertyLat,
       type: 'supermarket',
     }
 
@@ -265,8 +266,8 @@ import { url } from 'inspector';
     }
 
     body = {
-      longitude: this.propertyLat,
-      latitude: this.propertyLong,
+      longitude: this.propertyLong,
+      latitude: this.propertyLat,
       type: 'gas_station',
     }
 
@@ -277,8 +278,8 @@ import { url } from 'inspector';
     }
 
     body = {
-      longitude: this.propertyLat,
-      latitude: this.propertyLong,
+      longitude: this.propertyLong,
+      latitude: this.propertyLat,
       type: 'shopping_mall',
     }
 
@@ -287,7 +288,7 @@ import { url } from 'inspector';
     for(let i = 0; i < mallResponse.results.length; i++){
       this.setMallMarker(mallResponse.results[i].geometry.location.lat,mallResponse.results[i].geometry.location.lng,mallResponse.results[i].name);
     }
-   
+
     return [this.propertyLat,this.propertyLong];
     
   }
