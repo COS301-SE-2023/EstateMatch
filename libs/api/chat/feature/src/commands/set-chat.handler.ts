@@ -112,14 +112,14 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                 name: "describe-dream-house",
                 description: "Call this agent only when the user asks you to describe their dream house.",
                 func: async() => {
-                    const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username); // need to incorporate this
+                    const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username); // need to incorporate this At the end of the description ask the user if the description is accurate or if they like to change or add anything to the description.
                     const userPref = await this.preferencesRepo.findOne(command.request.chat.username);
                     console.log("Dream description agent");
 
                     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
                         SystemMessagePromptTemplate.fromTemplate(
                             "You are an assistant that get an array of descriptive words from the user based on their dream house. Your job is to write a description of the users dream house based on the descriptive words they provide." +
-                            "At the end of the description ask the user if the description is accurate or if they like to change or add anything to the description. Limit your response to 150 words."
+                            "Limit your response to 150 words."
                         ),
                         HumanMessagePromptTemplate.fromTemplate("{descriptive_words}"),
                     ]);
@@ -144,10 +144,11 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                         }
                     }
 
-                    descriptive_words.push("Hardwood floors");
+                    descriptive_words.push("Dark Hardwood floors");
                     descriptive_words.push("Open floor plan");
-                    descriptive_words.push("High ceilings");
+                    descriptive_words.push("Spacious patio");
                     descriptive_words.push("Large windows");
+                    descriptive_words.push("Water feature");
                     const res = await llm.call({descriptive_words: descriptive_words}) as { response: string};
 
 
