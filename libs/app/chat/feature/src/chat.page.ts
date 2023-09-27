@@ -4,6 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { LoadingController } from '@ionic/angular';
+import { ElementRef, ViewChild } from '@angular/core';
 
 
 @Component({
@@ -22,6 +23,8 @@ export class ChatPage {
   ) {
     this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
   }
+  @ViewChild('messageBox', { static: false })
+  messageBox!: ElementRef;
 
   userMessage = '';
   messages: { text: string[]; time: string; userType: 'user' | 'bot' }[] = [];
@@ -104,8 +107,12 @@ async hideLoading() {
   } finally {
     await this.hideLoading(); // Hide the loading spinner
   }
+  this.scrollToBottom();
 }
 
+scrollToBottom() {
+    this.messageBox.nativeElement.scrollTop = this.messageBox.nativeElement.scrollHeight;
+}
 
   getCurrentTime(): string {
     const now = new Date();
