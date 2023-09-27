@@ -16,7 +16,6 @@ export class GetMapHandler implements ICommandHandler<GetMapCommand> {
         const apiKey = process.env["GOOGLE_PLACES_API_KEY"] ;
         
         const testMap = await axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+latitude+'%2C'+longitude+'&radius=5000&type='+type+'&key=' + apiKey);
-        console.log(testMap.data.results);
         return {results: testMap.data.results};
     }
 }
