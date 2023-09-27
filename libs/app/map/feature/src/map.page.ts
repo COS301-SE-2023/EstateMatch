@@ -7,6 +7,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 // import { google } from 'google-maps';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { url } from 'inspector';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'ms-map-page',
@@ -31,7 +33,8 @@ import { url } from 'inspector';
       
 
       constructor(private route: ActivatedRoute,
-        private readonly router: Router,private http: HttpClient) {
+        private readonly router: Router,private http: HttpClient,private translate: TranslateService) {
+          this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
         this.locationLat=0;
         this.locationLong=0;
         this.userLat=0;
