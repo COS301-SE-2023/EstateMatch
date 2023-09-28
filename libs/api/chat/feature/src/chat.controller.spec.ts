@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ChatController } from './chat.controller';
 import { ChatService } from './chat.service';
 import { CommandBus } from '@nestjs/cqrs';
-import { IGetChatRequest, IGetChatResponse, ISetChatRequest, ISetChatResponse, IUpdateChatRequest, IUpdateChatResponse } from '@estate-match/api/chat/util';
+import { ISetChatRequest, ISetChatResponse } from '@estate-match/api/chat/util';
 
 describe('ChatController', () => {
     let app: TestingModule;
@@ -27,51 +27,23 @@ describe('ChatController', () => {
 
 
     describe('setChat', () => {
-        const request: ISetChatRequest = {
-            chat: {
-                id: 'testID',
-                username: 'testuser',
-                message: 'test message'
-            }
-        };
-    
-        const expectedResult: IGetChatResponse = {
-            chat: {
-                id: 'testID',
-                username: 'testuser',
-                message: 'test message'
-            }
-        };
+        it('should call chat service and create new chat in the database', async () => {
+            const request: ISetChatRequest = {
+                chat: {
+                    username: 'testuser',
+                    message: 'test message'
+                }
+            };
         
-    });
-    
-    describe('getChat', () => {
-        const request: IGetChatRequest = {
-            user: 'testuser'
-        };
-    
-        const expectedResult: IGetChatResponse = {
-            chat: {
-                id: 'testID',
-                username: 'testuser',
-                message: 'test message'
-            }
-        };
-    })
-    
-    describe('updateChat', () => {
-    
-        const request: IUpdateChatRequest = {
-            username: 'testuser',
-            chat: {
-                id: 'testID',
-                username: 'testuser',
-                message: 'test message'
-            }
-        };
-    
-        const expectedResult: IUpdateChatResponse = {
-            success: true
-        };
+            const expectedResult: ISetChatResponse = {
+                chat: {
+                    username: 'testuser',
+                    message: 'test message'
+                }
+            };
+            jest.spyOn(service, 'setChat').mockResolvedValue(expectedResult);
+            const result = await controller.setChat(request);
+            expect(result).toEqual(expectedResult);
+        });
     });
 });
