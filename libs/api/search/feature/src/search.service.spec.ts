@@ -30,7 +30,7 @@ describe('SearchService', () => {
     const request: ISearchRequest = { 
         username: 'test',
         filters: {
-          location: ['test'],
+          location: 'test',
           budgetMin: 10000000,
           budgetMax: 20000000,
           bedrooms: 1,

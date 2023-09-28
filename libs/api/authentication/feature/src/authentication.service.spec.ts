@@ -51,7 +51,9 @@ describe('AuthService', () => {
             password: 'test1234',
             email: 'test@gmail.com',
             firstName: 'TestFName',
-            lastName: 'TestLName'
+            lastName: 'TestLName',
+            languagePref: 'en'
+
         }
     };
 
