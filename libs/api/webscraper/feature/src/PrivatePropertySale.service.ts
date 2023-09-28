@@ -66,7 +66,7 @@ export class PrivatePropertySaleService {
 
     const pages = await browser.newPage();
 
-    for(let i = 1; i <= 1; i++)
+    for(let i = 1; i <= 2; i++)
     {
       if(i === 1)
       {

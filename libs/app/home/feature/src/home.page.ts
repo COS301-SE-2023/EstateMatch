@@ -441,7 +441,7 @@ export class HomePage implements AfterViewInit{
 
   async showLoading() {
     this.loading = await this.loadingController.create({
-      message: 'Please wait for ptoperties to get scraped...', // You can customize the loading message
+      message: 'Please wait while we are finding potential matches...', // You can customize the loading message
       spinner: 'dots', // Use the 'dots' spinner
       translucent: true,
       backdropDismiss: false, // Prevent dismissing by tapping outside
