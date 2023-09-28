@@ -80,7 +80,7 @@ export class HomePage implements AfterViewInit{
   tempActive = false;
 
   userPreferences!: IPreference;
-  scores: any = [0];
+  scores: any = [];
   temp: any = [];
 
  // showLikeIcon = false;
@@ -114,13 +114,13 @@ export class HomePage implements AfterViewInit{
       user: sessionStorage.getItem('username')
     }
 
-    const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
+    let response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
 
     if(response.properties.length === 0){
       try{
         await this.showLoading();
         const newProperties = await this.propertyCheck(this.userPreferences.location[0]);
-        const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
+        response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
       }finally{
         await this.hideLoading();
       }
@@ -204,6 +204,7 @@ export class HomePage implements AfterViewInit{
   async likeHouse() { 
     const url = 'api/like';
     const currProperty = this.properties[this.currentDescriptionIndex];
+    console.log(currProperty);
    // currProperty.seen = true;
     const likedProperty: ILikeProperty = {
       user: sessionStorage.getItem('username')!,
@@ -249,7 +250,7 @@ export class HomePage implements AfterViewInit{
     };
 
     const aiPrefResponse = await this.http.post(aiPrefUrl, aiPrefBody, { headers }).toPromise() as {updated: boolean};
-    
+
     const aiGetPrefUrl = 'api/getAIPreferences';
     const aiGetPrefBody = {
       user: sessionStorage.getItem('username')

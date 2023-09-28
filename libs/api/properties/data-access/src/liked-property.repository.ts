@@ -9,11 +9,17 @@ export class LikedPropertiesRepository {
     //functions 
     //handle request to set liked property
     async setLikedProperty(likedProperty : LikedPropertiesModel) : Promise<LikedPropertiesModel> {
+        const exist = await this.likedPropertiesModel.findOne({title: likedProperty.title, user: likedProperty.user}).exec();
+
+        if(exist){
+            return likedProperty;
+        }
+
         const createdLikedProperty = new this.likedPropertiesModel(likedProperty);
         return createdLikedProperty.save();
     }
 
-    async getLikedProperties() : Promise<LikedPropertiesModel[]> {
-        return this.likedPropertiesModel.find({liked: true}).exec();
+    async getLikedProperties(user: string) : Promise<LikedPropertiesModel[]> {
+        return this.likedPropertiesModel.find({user: user, liked: true}).exec();
     }
 }
