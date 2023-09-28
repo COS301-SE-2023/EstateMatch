@@ -6,7 +6,7 @@ import { IAIPreference, IPreference } from '@estate-match/api/prefrences/util';
 import { Router } from '@angular/router';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { ITranslateResponse } from '@estate-match/api/translation/util';
-
+import { LoadingController } from '@ionic/angular';
 
 interface Property {
   user: string;
@@ -37,6 +37,8 @@ export class HomePage implements AfterViewInit{
     private router: Router,
     private gestureCtrl: GestureController,
     private plt: Platform,
+    private loadingController: LoadingController,
+    
     private translate: TranslateService) {
       this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
     }
@@ -78,7 +80,7 @@ export class HomePage implements AfterViewInit{
   tempActive = false;
 
   userPreferences!: IPreference;
-  scores: any = [];
+  scores: any = [0];
   temp: any = [];
 
  // showLikeIcon = false;
@@ -113,6 +115,17 @@ export class HomePage implements AfterViewInit{
     }
 
     const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
+
+    if(response.properties.length === 0){
+      try{
+        await this.showLoading();
+        const newProperties = await this.propertyCheck(this.userPreferences.location[0]);
+        const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
+      }finally{
+        await this.hideLoading();
+      }
+    }
+
     this.properties = response.properties;
 
     const aiGetPrefUrl = 'api/getAIPreferences';
@@ -121,20 +134,21 @@ export class HomePage implements AfterViewInit{
     }
 
     const aiGetPrefResponse = await this.http.post(aiGetPrefUrl, aiGetPrefBody, { headers }).toPromise() as {aiPreferences: IAIPreference};
+    if(aiGetPrefResponse.aiPreferences){
+      const matchUrl = 'api/match';
 
+      const matchBody = {
+        property: this.properties[this.currentDescriptionIndex],
+        preferences: aiGetPrefResponse.aiPreferences
+      }
 
-    const matchUrl = 'api/match';
-
-    const matchBody = {
-      property: this.properties[this.currentDescriptionIndex],
-      preferences: aiGetPrefResponse.aiPreferences
+      for(const property of this.properties){
+        matchBody.property = property;
+        const matchResponse = await this.http.post(matchUrl, matchBody, { headers }).toPromise() as {matchScore: number};
+        this.scores.push(matchResponse.matchScore);
+      }      
     }
 
-    for(const property of this.properties){
-      matchBody.property = property;
-      const matchResponse = await this.http.post(matchUrl, matchBody, { headers }).toPromise() as {matchScore: number};
-      this.scores.push(matchResponse.matchScore);
-    }
 
     // this.properties = this.properties.slice(0,3);
     this.lastImageIndex = this.properties[0].images.length - 1;
@@ -227,9 +241,6 @@ export class HomePage implements AfterViewInit{
 
     this.currentDescriptionIndex++;
     this.lastImageIndex = this.properties[this.currentDescriptionIndex].images.length - 1;
-    // if (this.currentDescriptionIndex >= this.descriptions.length) {
-    //   this.currentDescriptionIndex = 0;
-    // }
 
     const aiPrefUrl = 'api/setAIPreferences';
     const aiPrefBody = {
@@ -238,7 +249,27 @@ export class HomePage implements AfterViewInit{
     };
 
     const aiPrefResponse = await this.http.post(aiPrefUrl, aiPrefBody, { headers }).toPromise() as {updated: boolean};
+    
+    const aiGetPrefUrl = 'api/getAIPreferences';
+    const aiGetPrefBody = {
+      user: sessionStorage.getItem('username')
+    }
+    const aiGetPrefResponse = await this.http.post(aiGetPrefUrl, aiGetPrefBody, { headers }).toPromise() as {aiPreferences: IAIPreference};
 
+    if(aiGetPrefResponse.aiPreferences){
+      const matchUrl = 'api/match';
+
+      const matchBody = {
+        property: this.properties[this.currentDescriptionIndex],
+        preferences: aiGetPrefResponse.aiPreferences
+      }
+
+      for(const property of this.properties){
+        matchBody.property = property;
+        const matchResponse = await this.http.post(matchUrl, matchBody, { headers }).toPromise() as {matchScore: number};
+        this.scores.push(matchResponse.matchScore);
+      }      
+    }
     // if(sessionStorage.getItem('languagePref') !== 'en'){
     //   const translateUrl = 'api/translate';
     //   const translateBody = {
@@ -404,5 +435,23 @@ export class HomePage implements AfterViewInit{
   openInMap(){
     this.router.navigate(['/map'], { queryParams: { data: this.properties[this.currentDescriptionIndex].location }, replaceUrl: true});
     
+  }
+  private loading!: HTMLIonLoadingElement;
+
+  async showLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Please wait for ptoperties to get scraped...', // You can customize the loading message
+      spinner: 'dots', // Use the 'dots' spinner
+      translucent: true,
+      backdropDismiss: false, // Prevent dismissing by tapping outside
+      cssClass: 'custom-loading-class' // You can define a custom CSS class for styling
+    });
+    await this.loading.present();
+  }
+  
+  async hideLoading() {
+    if (this.loading) {
+      await this.loading.dismiss();
+    }
   }
 }

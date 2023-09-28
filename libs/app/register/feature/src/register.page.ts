@@ -53,6 +53,7 @@ export class RegisterPage {
     if(registerResponse.message === 'User Register Success'){
       this.makeToast('Register success');
       sessionStorage.setItem('username', this.username);
+      sessionStorage.setItem('languagePref', this.preferedLang)
       this.router.navigate(['/preferences'], { replaceUrl: true });
     }else{
       this.makeToast('Register failed');
