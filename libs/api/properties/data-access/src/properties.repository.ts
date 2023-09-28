@@ -126,8 +126,6 @@ export class PropertiesRepository {
             // {amenities: {$in: preference.amenities}}
             ]}).exec();
 
-        console.log('getPropertiesByPreferences result: ', result);
-
         if(!result) {
             return null;
         }

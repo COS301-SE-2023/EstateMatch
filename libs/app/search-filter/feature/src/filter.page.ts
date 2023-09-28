@@ -65,8 +65,8 @@ export class FilterPage {
       const body = {
         filters: {
           location: this.location,
-          minBudget: parseInt(this.budget.lower),
-          maxBudget: parseInt(this.budget.upper),
+          budgetMin: this.budget.lower,
+          budgetMax: this.budget.upper,
           bedrooms: this.bedrooms,
           bathrooms: this.bathrooms,
           garages: this.garages,
@@ -79,8 +79,14 @@ export class FilterPage {
       });
 
       this.results = await this.http.post(url, body, { headers }).toPromise() as IProperty[];
-      const encodedData = JSON.stringify(this.results);
-      this.router.navigate(['/search'], { queryParams: { data: encodedData}, replaceUrl: true});
+      if(this.results.length === 0){
+        this.makeToast('No properties found that matches your search criteria');
+        this.router.navigate(['/search'], { queryParams: { data: null}, replaceUrl: true});
+      }else{
+        const encodedData = JSON.stringify(this.results);
+        this.router.navigate(['/search'], { queryParams: { data: encodedData}, replaceUrl: true});        
+      }
+
     }
 
     async makeToast(message: any){
