@@ -347,11 +347,12 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         extractedModel.additional = this.removeFluff(extractedModel.additional);
         extractedModel.buildingStyle = this.removeFluff(extractedModel.buildingStyle);
 
-        const aiPref = await this.buildAIPrefRequest("test", extractedModel);
+        const aiPref = await this.buildAIPrefRequest(username, extractedModel);
         // console.log(aiPref);
 
         //Query DB Here
         // const userCurrentPref = await this.preferencesRepo.findOne(username);
+        const overwrite = await this.aiPreferenceRepo.overwrite(username, aiPref);
 
         // if(userCurrentPref){
         //     console.log("User already has preferences");
