@@ -6,6 +6,6 @@ export interface IAIPreference {
     buildingArea: string[];
     buildingFeatures: string[];
     materials: string[];
-    additional: string[];
-    colour: string;
+    // additional: string[];
+    // colour: string;
 }

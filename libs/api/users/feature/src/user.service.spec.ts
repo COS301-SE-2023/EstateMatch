@@ -36,6 +36,7 @@ describe('UserService', () => {
             lastName: 'Test FName',
             email: 'test@gmail.com',
             username: 'testuser',
+            languagePref: 'en',	
             properties: []
         }
     };
@@ -56,6 +57,7 @@ describe('UserService', () => {
             firstName: 'testFName',
             lastName: 'testLName',
             email: 'test@gmail.com',
+            languagePref: 'en',	
             properties: []
         }
     };
@@ -67,6 +69,7 @@ describe('UserService', () => {
             firstName: 'testFName',
             lastName: 'testLName',
             email: 'test@gmail.com',
+            languagePref: 'en',	
             properties: []
         }
     };
@@ -88,6 +91,7 @@ describe('UserService', () => {
             firstName: 'testFName',
             lastName: 'testLName',
             email: 'test2@gmail.com',
+            languagePref: 'en',	
             properties: []
         }
     };

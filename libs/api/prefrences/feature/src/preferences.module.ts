@@ -7,13 +7,15 @@ import { PreferenceModule as PreferenceDataAccess} from '@estate-match/api/prefr
 import {
   GetPreferencesHandler,
   SetPreferencesHandler,
-  SetAIPreferencesHandler
+  SetAIPreferencesHandler,
+  GetAIPreferencesHandler
 } from './commands';
 
 export const CommandHandlers = [
   GetPreferencesHandler,
   SetPreferencesHandler,
-  SetAIPreferencesHandler
+  SetAIPreferencesHandler,
+  GetAIPreferencesHandler
 ];
 
 @Module({

@@ -16,7 +16,7 @@ export class LikePropertyHandler implements ICommandHandler<LikePropertyCommand,
         
         //console.log(property);
         //ready to query database
-       // const success = await this.repository.setLikedProperty(property);
+       const success = await this.repository.setLikedProperty(property);
         //import property repository and call remove property function
         const username = request.property.user;
         const title = request.property.title;

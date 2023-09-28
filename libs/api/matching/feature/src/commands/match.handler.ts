@@ -13,7 +13,7 @@ export class MatchHandler implements ICommandHandler<MatchCommand> {
 
         if(preferences.buildingArea.length > 0 && preferences.buildingFeatures.length > 0 && preferences.buildingStyle.length > 0 && preferences.buildingType.length > 0 && preferences.flooring.length > 0 && preferences.materials.length > 0){
 
-            property.amenities.forEach(label => {
+            property.aiLabel.forEach(label => {
                 preferences.buildingArea.forEach(area => {
                     if(area === label){
                         score++;
@@ -21,7 +21,7 @@ export class MatchHandler implements ICommandHandler<MatchCommand> {
                 })
             })
 
-            property.amenities.forEach(label => {
+            property.aiLabel.forEach(label => {
                 preferences.buildingFeatures.forEach(features => {
                     if(features === label){
                         score++;
@@ -29,7 +29,7 @@ export class MatchHandler implements ICommandHandler<MatchCommand> {
                 })
             })
 
-            property.amenities.forEach(label => {
+            property.aiLabel.forEach(label => {
                 preferences.buildingStyle.forEach(style => {
                     if(style === label){
                         score++;
@@ -37,7 +37,7 @@ export class MatchHandler implements ICommandHandler<MatchCommand> {
                 })
             })
 
-            property.amenities.forEach(label => {
+            property.aiLabel.forEach(label => {
                 preferences.buildingType.forEach(type => {
                     if(type === label){
                         score++;
@@ -45,7 +45,7 @@ export class MatchHandler implements ICommandHandler<MatchCommand> {
                 })
             })
 
-            property.amenities.forEach(label => {
+            property.aiLabel.forEach(label => {
                 preferences.flooring.forEach(floor => {
                     if(floor === label){
                         score++;
@@ -53,7 +53,7 @@ export class MatchHandler implements ICommandHandler<MatchCommand> {
                 })
             })
 
-            property.amenities.forEach(label => {
+            property.aiLabel.forEach(label => {
                 preferences.materials.forEach(material => {
                     if(material === label){
                         score++;
@@ -61,11 +61,11 @@ export class MatchHandler implements ICommandHandler<MatchCommand> {
                 })
             })
 
-            score = score / property.amenities.length;
+            score = score / property.aiLabel.length;
         }
 
         const response: IMatchResponse = {
-            matchScore: score
+            matchScore: Math.round(score * 100)
         }
         return  response;
     }

@@ -28,6 +28,7 @@ describe('SearchService', () => {
 
   it('should return an array of properties', async () => {
     const request: ISearchRequest = { 
+        username: 'test',
         filters: {
           location: 'test',
           budgetMin: 10000000,
@@ -41,25 +42,19 @@ describe('SearchService', () => {
 
     const commandResponse: ISearchResponse = { 
       results: [{
-        title: 'test',
-        location: 'test',
-        price: 15000,
-        bedrooms: 1,
-        bathrooms: 1,
+        title: 'string',
+        location: 'string',
+        price: 1000000,
+        bedrooms: 2,
+        bathrooms: 3,
         garages: 1,
-        amenities: [],
-        images: ['test image']
-    },
-    {
-      title: 'test2',
-      location: 'test2',
-      price: 15000,
-      bedrooms: 1,
-      bathrooms: 1,
-      garages: 1,
-      amenities: [],
-      images: ['test image']
-    },]
+        amenities: ['Pool'],
+        images: ['an image url'],
+        seen : false,
+        aiLabel : ['Hardwood'],
+        rgbColour : [1,2,3],
+        description :['test description'],
+    }]
     };
 
     (queryBus.execute as jest.Mock).mockResolvedValue(commandResponse);

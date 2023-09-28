@@ -31,7 +31,9 @@ export const PropertiesSchema = new mongoose.Schema({
     seen : {type: Boolean, required: true, default: false},
 
     //ai-label 
-    aiLabel : [{type: String, default: null}]
+    aiLabel : [{type: String, default: null}],
+    rgbColour : [Number],
+    description : [String]
 
 
 });
@@ -62,6 +64,8 @@ export interface PropertiesModel {
     seen : boolean,
 
     //ai-label
-    aiLabel : string[]
+    aiLabel : string[],
+    rgbColour : number[],
+    description: string[],
 
 }

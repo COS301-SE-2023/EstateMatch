@@ -16,6 +16,7 @@
     </ion-card-header> -->
     <div class="back_image">
       <img name="HouseImage" [src]="properties[currentDescriptionIndex].images[0]"/>
+      <div class="match-rating">{{ 'matchRatingLabel' | translate }}: {{ scores[currentDescriptionIndex] }}%</div>
       <div class="more_info">
         <ion-label (click)="moreInfo()">{{ 'moreInfoLabel' | translate }}</ion-label>
       </div>

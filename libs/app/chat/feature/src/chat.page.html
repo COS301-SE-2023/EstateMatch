@@ -8,7 +8,7 @@
 <app-header></app-header>
 <body>
   <div name="displayContainer">
-    <div name="MessageBox">
+    <div name="MessageBox" #messageBox>
       <div *ngFor="let message of messages">
         <div class="container" *ngIf="message.userType === 'user'">
           <img src="https://ionicframework.com/docs/img/demos/card-media.png" alt="Avatar" style="width:100%;">

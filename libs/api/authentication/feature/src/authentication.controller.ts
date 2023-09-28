@@ -29,6 +29,7 @@ export class AuthController {
                 email: register.email,
                 firstName: register.firstName,
                 lastName: register.lastName,
+                languagePref: register.languagePref
             }
         };
 

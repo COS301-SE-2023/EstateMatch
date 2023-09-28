@@ -105,7 +105,7 @@ export class PreferencesPage {
     
 
     this.makeToast('Your prefrences are updated!');
-    this.router.navigate(['/profile'], {replaceUrl: true});
+    this.router.navigate(['/home'], {replaceUrl: true});
   }
 
   async makeToast(message: any){

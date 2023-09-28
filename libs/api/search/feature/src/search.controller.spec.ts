@@ -35,6 +35,7 @@ describe('SearchController', () => {
   describe('search', () => {
     it('should search for properties in the database that meet certain critertia', async () => {
       const search: ISearchRequest = {
+        username: 'test',
         filters: {
           location: 'test',
           budgetMin: 10000000,
@@ -46,6 +47,7 @@ describe('SearchController', () => {
         }
       };
 
+
         const expectedResult: ISearchResponse = {
             results: [{
                 title: 'test',
@@ -55,16 +57,24 @@ describe('SearchController', () => {
                 bathrooms: 1,
                 garages: 1,
                 amenities: [],
+                seen: false,
+                aiLabel: [],
+                rgbColour: [],
+                description: [],
                 images: ['test image']
             },
             {
-              title: 'test2',
-              location: 'test2',
+              title: 'test',
+              location: 'test',
               price: 15000,
               bedrooms: 1,
               bathrooms: 1,
               garages: 1,
               amenities: [],
+              seen: false,
+              aiLabel: [],
+              rgbColour: [],
+              description: [],
               images: ['test image']
             },]
         }

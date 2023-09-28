@@ -38,6 +38,7 @@ describe('UserController', () => {
             lastName: 'Test FName',
             email: 'test@gmail.com',
             username: 'testuser',
+            languagePref: 'en',	
             properties: []
         },
       };
@@ -57,6 +58,7 @@ describe('UserController', () => {
             lastName: 'Test FName',
             email: 'test@gmail.com',
             username: 'testuser',
+            languagePref: 'en',	
             properties: []
         }
       };
@@ -68,6 +70,7 @@ describe('UserController', () => {
             lastName: 'Test FName',
             email: 'test@gmail.com',
             username: 'testuser',
+            languagePref: 'en',	
             properties: []
         }
       };
@@ -88,6 +91,7 @@ describe('UserController', () => {
             firstName: 'testFName',
             lastName: 'testLName',
             email: 'test2@gmail.com',
+            languagePref: 'en',	
             properties: []
         }
       };

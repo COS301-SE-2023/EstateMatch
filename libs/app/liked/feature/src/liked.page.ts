@@ -21,13 +21,11 @@ export class LikedPage {
   async ngOnInit() {
     const url = 'api/getLikedProperties';
     const body = {
-      user: 'Jack Daniels'
+      user: sessionStorage.getItem('username'),
     }
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.likedProperties = await this.http.post(url, body, { headers }).toPromise() as ILikeProperty[];
-
-    console.log(this.likedProperties);
   }
   async makeToast(message: any){
     const toast = await this.toastController.create({

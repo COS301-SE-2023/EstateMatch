@@ -1,17 +1,28 @@
 import { QueryHandler, IQueryHandler, EventPublisher } from '@nestjs/cqrs';
 import { CheckPropertyQuery, ICheckPropertyResponse } from '@estate-match/api/properties/util';
+import { UserRepository } from '@estate-match/api/users/data-access';
 //TODO: Add repo
 
 @QueryHandler(CheckPropertyQuery)
 export class CheckPropertyHandler implements IQueryHandler<CheckPropertyQuery, ICheckPropertyResponse> {
   constructor(
     private publisher: EventPublisher,
-    // private readonly repository:(BrowseRepository)
+    private readonly repository: UserRepository
     ) {}
 
-  async execute(query: CheckPropertyQuery) : Promise<any> {
-    const request = query.request;
+  async execute(query: CheckPropertyQuery) : Promise<ICheckPropertyResponse> {
+    const username = query.request.user;
     //Query repo
-    return {empty: true};
+    const user = await this.repository.findOne(username);
+    if(user){
+      if(user.properties.length > 15){
+        return {empty: false};
+      }else{
+        return {empty: true};
+      }
+    }else{
+      return {empty: true};
+    }
+ 
   }
 }

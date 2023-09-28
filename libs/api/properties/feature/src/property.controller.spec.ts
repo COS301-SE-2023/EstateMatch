@@ -46,6 +46,7 @@ describe('PropertiesController', () => {
         // Fill in the necessary properties of the dislike property object
         // For example:
         user: 'test',
+        title: 'TEst title',
         address: 'test address',
         price: 100000,
         bedrooms: 2,
@@ -77,6 +78,7 @@ describe('PropertiesController', () => {
     it('should call propertiesService.likeProperty with the provided property and return the result', async () => {
       const property: ILikeProperty = {
         user: 'test',
+        title: 'TEst title',
         address: 'test address',
         price: 100000,
         bedrooms: 2,
@@ -114,6 +116,7 @@ describe('PropertiesController', () => {
       const expectedResult: IGetLikedPropertiesResponse = {
         properties: [{
           user: 'test',
+          title: 'TEst title',
           address: 'test',
           price: 1000,
           bedrooms: 1,

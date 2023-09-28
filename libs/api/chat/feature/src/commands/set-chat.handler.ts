@@ -112,14 +112,14 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                 name: "describe-dream-house",
                 description: "Call this agent only when the user asks you to describe their dream house.",
                 func: async() => {
-                    const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username); // need to incorporate this
+                    const userAiPref = await this.aiPreferenceRepo.findOne(command.request.chat.username); // need to incorporate this At the end of the description ask the user if the description is accurate or if they like to change or add anything to the description.
                     const userPref = await this.preferencesRepo.findOne(command.request.chat.username);
                     console.log("Dream description agent");
 
                     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
                         SystemMessagePromptTemplate.fromTemplate(
                             "You are an assistant that get an array of descriptive words from the user based on their dream house. Your job is to write a description of the users dream house based on the descriptive words they provide." +
-                            "At the end of the description ask the user if the description is accurate or if they like to change or add anything to the description. Limit your response to 150 words."
+                            "Limit your response to 150 words."
                         ),
                         HumanMessagePromptTemplate.fromTemplate("{descriptive_words}"),
                     ]);
@@ -144,10 +144,11 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
                         }
                     }
 
-                    descriptive_words.push("Hardwood floors");
+                    descriptive_words.push("Dark Hardwood floors");
                     descriptive_words.push("Open floor plan");
-                    descriptive_words.push("High ceilings");
+                    descriptive_words.push("Spacious patio");
                     descriptive_words.push("Large windows");
+                    descriptive_words.push("Water feature");
                     const res = await llm.call({descriptive_words: descriptive_words}) as { response: string};
 
 
@@ -195,23 +196,38 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             // verbose: true,
         });
 
-        // const res = await agentExecutor.call({input: command.request.chat.message}); THIS ONE
+        const res = await agentExecutor.call({input: command.request.chat.message});
         // console.log(chatMemory.chatHistory.getMessages())
 
         const response: ISetChatResponse = {
             chat: {
                 username: command.request.chat.username,
-                // message: res["output"]
-                message: "Under construction"
+                message: res["output"]
+                // message: "Under construction"
             }
         };
 
-        // const test = await this.buildPreferenceModel(command.request.chat.username, command.request.chat.message); THIS ONE
-        // const translated = await this.translate(command.request.chat.message, "zulu");
+        const history = await chatMemory.chatHistory.getMessages();
+        let fullUserMessage = '';
+        // console.log(history);
+        let count = 1;
+        for(let i = 0; i < history.length; i++) {
+            if(history[i]._getType() === 'human' && count % 2 !== 0){
+                fullUserMessage += " " + history[i].content;
+            }
+
+            if(i % 2 === 0){
+                count++;
+            }
+        }
+
+        const test = await this.buildPreferenceModel(command.request.chat.username, fullUserMessage);
+        console.log(test);
+
         return response; 
     }
 
-    async buildPreferenceModel(username: string, description: string): Promise<string> {
+    async buildPreferenceModel(username: string, description: string): Promise<IAIPreference> {
         const model = new OpenAI({});
         const myTemplate = 
                 "You are an assistant that extract key characteristics of a description of a house." + 
@@ -228,14 +244,12 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         const res = await llm.call({description: description}) as { text: string};
         const temp = res.text.replace(/[\r\n]/gm, "");
         const characteristics = temp.split("- ");
-        // console.log(characteristics);
-    
 
         const classes = await this.classifyCharateristic(username, characteristics);
-        return "Under construction";
+        return classes;
     }
 
-    async classifyCharateristic(username: string, characteristics: string[]) : Promise<string> {
+    async classifyCharateristic(username: string, characteristics: string[]) : Promise<IAIPreference> {
         const model = new ChatOpenAI({});
         const classifyTemplate = "You are an assistant that classify characteristics of a description of a house. The characteristics are: {characteristics}" + 
         "You will recieve the characteristics as an array of strings." + 
@@ -303,8 +317,6 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             additional: [],
         };
 
-        console.log(classesArray);
-
         classesArray.forEach(element => {
             if(element !== '' && !element.includes('N/A')){
                 if(element.includes("Flooring")){
@@ -335,11 +347,12 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         extractedModel.additional = this.removeFluff(extractedModel.additional);
         extractedModel.buildingStyle = this.removeFluff(extractedModel.buildingStyle);
 
-        const aiPref = await this.buildAIPrefRequest("test", extractedModel);
-        console.log(aiPref);
+        const aiPref = await this.buildAIPrefRequest(username, extractedModel);
+        // console.log(aiPref);
 
         //Query DB Here
         // const userCurrentPref = await this.preferencesRepo.findOne(username);
+        const overwrite = await this.aiPreferenceRepo.overwrite(username, aiPref);
 
         // if(userCurrentPref){
         //     console.log("User already has preferences");
@@ -349,7 +362,7 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
         //     this.aiPreferenceRepo.create(aiPref);
         // }
 
-        return "Under construction";
+        return aiPref;
     }
 
     async buildAIPrefRequest(user: string, labels: IExtractedModel) : Promise<IAIPreference> {
@@ -361,8 +374,8 @@ export class SetChatHandler implements ICommandHandler<SetChatCommand, ISetChatR
             buildingArea: labels.buildingArea,
             buildingFeatures: labels.buildingFeatures,
             materials: labels.materials,
-            additional: labels.additional,
-            colour: "",
+            // additional: labels.additional,
+            // colour: "",
         }
 
         return aiPref;

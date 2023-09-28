@@ -1,5 +1,5 @@
 export interface ISearch {
-    location: string[],
+    location: string,
     budgetMin: number,
     budgetMax: number,
     bedrooms: number,
