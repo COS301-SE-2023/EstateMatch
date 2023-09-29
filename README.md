@@ -15,6 +15,7 @@ it easier to search and find your ideal property match.
 <a href="https://docs.google.com/document/d/1hdnunN5wEQfjHE2OuvKUzH0ivULLOuIpJ9uEmLAMYo8">Technical Instalation</a><br>
 <a href="https://docs.google.com/document/d/1epleAggUqhXkfQHwGLf67TS5sfkBkPydWQ50SCDiOLk">Coding Standards</a><br>
 <a href="https://docs.google.com/document/d/1M2mBsVa6NrrPzIWks3ZPVO44b9arAfCghOxpLcsJ-lM">Testing Policy</a><br>
+<a href="https://github.com/COS301-SE-2023/EstateMatch/blob/main/diagrams/deployment.png">Deployment Diagram</a><br>
 
 
 ### Archived Documentation
