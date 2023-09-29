@@ -6,7 +6,7 @@ import * as puppeteer from 'puppeteer';
 export class PrivatePropertySaleService {
   public async PrivatePropertySalescrape(location: string): Promise<any[]> {
     // Launch Puppeteer and open new page
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({timeout: 0});
     const page = await browser.newPage();
 
     //console.log(location);

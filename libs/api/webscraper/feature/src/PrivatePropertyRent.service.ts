@@ -6,7 +6,7 @@ import * as puppeteer from 'puppeteer';
 export class PrivatePropertyRentService {
   public async PrivatePropertyRentscrape(location: string): Promise<any[]> {
     // Launch Puppeteer and open new page
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({timeout: 0});
     const page = await browser.newPage();
 
     const navigationTimeout = 180000;
