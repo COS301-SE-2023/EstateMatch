@@ -6,7 +6,7 @@ import * as puppeteer from 'puppeteer';
 export class PrivatePropertyRentService {
   public async PrivatePropertyRentscrape(location: string): Promise<any[]> {
     // Launch Puppeteer and open new page
-    const browser = await puppeteer.launch({headless: true, timeout: 0});
+    const browser = await puppeteer.launch({headless: false, timeout: 0});
     const page = await browser.newPage();
 
     const navigationTimeout = 180000;
@@ -15,7 +15,7 @@ export class PrivatePropertyRentService {
     /*await page.goto('https://www.privateproperty.co.za/to-rent/western-cape/cape-town/cape-town-city-bowl/59', {
       timeout: navigationTimeout,
     });*/
-    await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36");
+    // await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36");
     await page.goto('https://www.privateproperty.co.za/to-rent', {
       timeout: navigationTimeout,
     });
