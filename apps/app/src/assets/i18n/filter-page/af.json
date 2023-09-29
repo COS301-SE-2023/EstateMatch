@@ -1,0 +1,25 @@
+{
+  "labels": {
+    "searchFilters": "Soek Filtre",
+    "budget": "Begroting:",
+    "bedrooms": "Slaapkamers",
+    "bathrooms": "Badkamers",
+    "garages": "Motorhuise",
+    "amenities": "Geriewe",
+    "pool": "Swembad",
+    "study": "Studeerkamer",
+    "aircon": "Lugversorging",
+    "furnished": "Gemeubileer",
+    "petFriendly": "Diervriendelik",
+    "lounge": "Sitkamer",
+    "save": "Stoor",
+    "cancel": "Kanselleer"
+  },
+  "navbar": {
+    "home": "Huis",
+    "chat": "Klets",
+    "search": "Soek",
+    "liked": "Geliefdes",
+    "profile": "Profiel"
+  }
+}

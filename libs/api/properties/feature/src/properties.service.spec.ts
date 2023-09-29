@@ -45,6 +45,7 @@ describe('PropertiesService', () => {
     const request: ILikePropertyRequest = { 
         property: {
             user: 'test',
+            title: 'TEst title',
             address: 'test',
             price: 1000,
             bedrooms: 1,
@@ -72,6 +73,7 @@ describe('PropertiesService', () => {
     const request: IDislikePropertyRequest = { 
         property: {
             user: 'test',
+            title: 'TEst title',
             address: 'test',
             price: 1000,
             bedrooms: 1,
@@ -103,6 +105,7 @@ describe('PropertiesService', () => {
     const commandResponse: IGetLikedPropertiesResponse = { 
         properties: [{
             user: 'test',
+            title: 'TEst title',
             address: 'test',
             price: 1000,
             bedrooms: 1,
@@ -114,6 +117,7 @@ describe('PropertiesService', () => {
         },
         {
             user: 'test2',
+            title: 'TEst title',
             address: 'test2',
             price: 1000,
             bedrooms: 1,

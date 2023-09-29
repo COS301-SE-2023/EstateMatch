@@ -1,0 +1,25 @@
+{
+    "subtitle": "Seta Ezifunekayo",
+    "labels": {
+        "area": "Indawo:",
+        "budget": "Uhlahlo lwabiwo-mali:",
+        "bedrooms": "Igumbi lokulala",
+        "bathrooms": "Igumbi lokuhlambela",
+        "garages": "Igaraji",
+        "button.setPreferences": "Seta Ezikhethwayo"
+    },
+    "placeholders": {
+        "area": "Indawo",
+        "bedrooms": "Uhlahlo lwabiwo-mali",
+        "bathrooms": "Igumbi lokulala",
+        "garages": "Igaraji"
+    },
+    "amenities": {
+        "pool": "Iphuli",
+        "study": "Funda",
+        "aircon": "I-Aircon",
+        "furnished": "Inefenitshala",
+        "pet": "izilwanyana-friendly",
+        "lounge": "Indawo yokuphumla"
+    }
+}

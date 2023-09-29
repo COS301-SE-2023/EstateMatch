@@ -89,6 +89,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('@estate-match/app/loading-page/feature').then((m) => m.LoadModule),
   },
+  {
+    path: 'chat',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@estate-match/app/chat/feature').then((m) => m.ChatModule),
+  },
 ];
 
 @NgModule({

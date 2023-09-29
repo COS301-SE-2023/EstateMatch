@@ -4,4 +4,5 @@ export interface IRegister {
     email: string;
     firstName: string;
     lastName: string;
+    languagePref: string;
 }

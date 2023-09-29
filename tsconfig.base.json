@@ -35,7 +35,23 @@
       "@estate-match/api/authentication/util": [
         "libs/api/authentication/util/src/index.ts"
       ],
+      "@estate-match/api/chat/data-access": [
+        "libs/api/chat/data-access/src/index.ts"
+      ],
+      "@estate-match/api/chat/feature": ["libs/api/chat/feature/src/index.ts"],
+      "@estate-match/api/chat/util": ["libs/api/chat/util/src/index.ts"],
       "@estate-match/api/core/feature": ["libs/api/core/feature/src/index.ts"],
+
+      "@estate-match/api/map/feature": ["libs/api/map/feature/src/index.ts"],
+      "@estate-match/api/map/util": ["libs/api/map/util/src/index.ts"],
+
+      "@estate-match/api/matching/feature": [
+        "libs/api/matching/feature/src/index.ts"
+      ],
+      "@estate-match/api/matching/util": [
+        "libs/api/matching/util/src/index.ts"
+      ],
+
       "@estate-match/api/prefrences/data-access": [
         "libs/api/prefrences/data-access/src/index.ts"
       ],
@@ -67,6 +83,12 @@
         "libs/api/search/feature/src/index.ts"
       ],
       "@estate-match/api/search/util": ["libs/api/search/util/src/index.ts"],
+      "@estate-match/api/translation/feature": [
+        "libs/api/translation/feature/src/index.ts"
+      ],
+      "@estate-match/api/translation/util": [
+        "libs/api/translation/util/src/index.ts"
+      ],
       "@estate-match/api/users/data-access": [
         "libs/api/users/data-access/src/index.ts"
       ],
@@ -93,6 +115,7 @@
       "@estate-match/apo/webscaper/util--unit-test-runner=jest": [
         "libs/apo/webscaper/util--unit-test-runner=jest/src/index.ts"
       ],
+      "@estate-match/app/chat/feature": ["libs/app/chat/feature/src/index.ts"],
       "@estate-match/app/core/data-access": [
         "libs/app/core/data-access/src/index.ts"
       ],

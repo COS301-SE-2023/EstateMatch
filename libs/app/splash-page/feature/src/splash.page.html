@@ -4,9 +4,21 @@
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
  <link rel="stylesheet" href="splash.page.scss">
 </head>
-    <div name="buttonContainer">
+<div name="buttonContainer">
     <img name="Logo" src="assets/imageDis.png"> <br>
-    <button name="Login" routerLink="/login" routerDirection="root">Login</button> <br><br><br>
-    <button name="Register" routerLink="/register" routerDirection="root">Register</button>
+    <button name="Login" routerLink="/login" routerDirection="root">{{ 'Login' | translate }}</button> <br><br><br>
+    <button name="Register" routerLink="/register" routerDirection="root">{{ 'Register' | translate }}</button>
+    <div>
+        <select name="languageSelect" #languageSelect>
+            <option value="en">English</option>
+            <option value="af">Afrikaans</option>
+            <option value="zu">Zulu</option>
+            <option value="st">Sotho</option>
+            <option value="tn">Tswana</option>
+            <option value="xh">Xhosa</option>
+        </select>
+        <button name="Apply" (click)="switchLanguage(languageSelect.value)">Apply</button>
     </div>
-</html>    
+</div>
+</html>
+ 

@@ -24,5 +24,6 @@ export class SearchHandler implements IQueryHandler<SearchQuery, ISearchResponse
       amenities: request.filters.amenities
     };   
     return this.repository.getPropertiesByPreferences(searchPropReq);
+    // return this.repository.getUserProperties(request.username);
   }
 }

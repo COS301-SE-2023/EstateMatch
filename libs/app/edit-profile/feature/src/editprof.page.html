@@ -1,48 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="editprof.page.scss">
-  </head>
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="editprof.page.scss">
+</head>
 
-  <header>
-    <app-header></app-header>
-  </header>
+<header>
+  <app-header></app-header>
+</header>
 
-  <body>
-    <ion-content>
-        <div class="main_content_div">
-      
-          <ion-card class="white_div">
-            
-            <ion-label class="small_lbl">First Name</ion-label>
-            <ion-input [(ngModel)]="newFName" type="text" placeholder="First Name"></ion-input>
-      
-            <ion-label class="small_lbl">Last Name</ion-label>
-            <ion-input [(ngModel)]="newLName" type="text" placeholder="Last Name"></ion-input>
-      
-            <ion-label class="small_lbl">Username</ion-label>
-            <ion-input [(ngModel)]="newUsername" type="text" placeholder="Username"></ion-input>
-      
-            <ion-label class="small_lbl">Email</ion-label>
-            <ion-input [(ngModel)]="newEmail" type="text" placeholder="Email"></ion-input>
-      
-            <!-- <ion-label class="small_lbl">Password</ion-label>
-            <ion-input type="text" placeholder="Password" value="password" [disabled]="isDisabled"></ion-input> -->
-            <div class="button_container">
-              <button name ="Edit" (click)="save()" expand="block">
-                {{btnText}}
-              </button>
-              <button name ="Back" expand="block" routerLink="/profile" routerDirection="root">
-                Back to Profile
-              </button>
-            </div>
-          </ion-card>
+<body>
+  <ion-content>
+    <div class="main_content_div">
+      <ion-card class="white_div">
+        <ion-label class="small_lbl">{{ 'labels.firstName' | translate }}</ion-label>
+        <ion-input [(ngModel)]="newFName" type="text" placeholder="{{ 'placeholders.firstName' | translate }}"></ion-input>
+
+        <ion-label class="small_lbl">{{ 'labels.lastName' | translate }}</ion-label>
+        <ion-input [(ngModel)]="newLName" type="text" placeholder="{{ 'placeholders.lastName' | translate }}"></ion-input>
+
+        <ion-label class="small_lbl">{{ 'labels.username' | translate }}</ion-label>
+        <ion-input [(ngModel)]="newUsername" type="text" placeholder="{{ 'placeholders.username' | translate }}"></ion-input>
+
+        <ion-label class="small_lbl">{{ 'labels.email' | translate }}</ion-label>
+        <ion-input [(ngModel)]="newEmail" type="text" placeholder="{{ 'placeholders.email' | translate }}"></ion-input>
+
+        <div class="button_container">
+          <button name="Edit" (click)="save()" expand="block">
+            {{ 'labels.button.save' | translate }}
+          </button>
+          <button name="Back" expand="block" routerLink="/profile" routerDirection="root">
+            {{ 'labels.button.backToProfile' | translate }}
+          </button>
         </div>
-      </ion-content>
-  </body>
+      </ion-card>
+    </div>
+  </ion-content>
+</body>
 
-  <footer>
-    <app-footer></app-footer>
-  </footer>
-</html> 
+<footer>
+  <app-footer></app-footer>
+</footer>
+</html>

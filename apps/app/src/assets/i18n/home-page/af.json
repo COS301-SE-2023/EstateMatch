@@ -1,0 +1,13 @@
+{
+  "navbar": {
+    "home": "Huis",
+    "chat": "Klets",
+    "search": "Soek",
+    "liked": "Geliefdes",
+    "profile": "Profiel"
+  },
+  "moreInfoLabel": "Meer inligting",
+  "matchRatingLabel": "Paswaardering",
+  "readMoreLabel": "Lees meer"
+  
+}

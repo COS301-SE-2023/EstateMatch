@@ -1,0 +1,12 @@
+{
+    "navbar": {
+        "home": "Motse",
+        "chat": "Hlelo",
+        "search": "Tshwanelo",
+        "liked": "O rata",
+        "profile": "Profilo"
+    },
+    "moreInfoLabel": "Tshedza Dilo",
+    "matchRatingLabel": "Go Utlwisa Dinameng",
+    "readMoreLabel": "Di bala fa"
+}

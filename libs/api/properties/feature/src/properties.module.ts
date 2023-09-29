@@ -3,6 +3,7 @@ import { PropertiesController } from './properties.controller';
 import { PropertiesService } from './properties.service';
 import { CqrsModule } from '@nestjs/cqrs';
 import { PropertiesModule as PropertiesDataAccessModule } from '@estate-match/api/properties/data-access';
+import { UserModule as UserDataAccessModule } from '@estate-match/api/users/data-access';
 
 import {
     DislikePropertyHandler,
@@ -13,7 +14,8 @@ import {
 } from './commands';
 
 import {
-    CheckPropertyHandler
+    CheckPropertyHandler,
+    GetUserPropertiesHandler
 } from './queries';
 
 export const CommandHandlers = [
@@ -25,11 +27,12 @@ export const CommandHandlers = [
 ];
 
 export const QueryHandlers = [
-    CheckPropertyHandler
+    CheckPropertyHandler,
+    GetUserPropertiesHandler
 ];
 
 @Module({
-  imports: [CqrsModule, PropertiesDataAccessModule],
+  imports: [CqrsModule, PropertiesDataAccessModule, UserDataAccessModule],
   providers: [PropertiesService, ...CommandHandlers, ...QueryHandlers],
   controllers: [PropertiesController],
   exports: [PropertiesService]

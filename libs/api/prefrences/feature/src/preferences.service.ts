@@ -7,7 +7,9 @@ import {
     SetPreferencesCommand,
     ISetAIPreferencesRequest,
     SetAIPreferencesCommand,
-    ISetAIPreferencesResponse
+    ISetAIPreferencesResponse,
+    IGetAIPreferencesResponse,
+    GetAIPreferencesCommand
 } from '@estate-match/api/prefrences/util';
   import { Injectable } from '@nestjs/common';
   import { CommandBus } from '@nestjs/cqrs';
@@ -41,6 +43,15 @@ import {
             SetAIPreferencesCommand,
             ISetAIPreferencesResponse
         >(new SetAIPreferencesCommand(request));
+    }
+
+    async getAIPreferences(
+        request: IGetPreferencesRequest
+    ): Promise<IGetAIPreferencesResponse> {
+        return await this.commandBus.execute<
+            GetAIPreferencesCommand,
+            IGetAIPreferencesResponse
+        >(new GetAIPreferencesCommand(request));
     }
   }
   

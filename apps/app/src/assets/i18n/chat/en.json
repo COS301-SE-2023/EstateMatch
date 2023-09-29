@@ -1,0 +1,9 @@
+{
+  "navbar": {
+    "home": "Home",
+    "chat": "Chat",
+    "search": "Search",
+    "liked": "Liked",
+    "profile": "Profile"
+  }
+}

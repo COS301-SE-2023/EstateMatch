@@ -1,0 +1,13 @@
+{
+  "navbar": {
+    "home": "Home",
+    "chat": "Chat",
+    "search": "Search",
+    "liked": "Liked",
+    "profile": "Profile"
+  },
+  "moreInfoLabel": "More Info",
+  "matchRatingLabel": "Match Rating",
+  "readMoreLabel": "Read more"
+  
+}

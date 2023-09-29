@@ -1,0 +1,21 @@
+{
+    "labels": {
+      "logout": "Phuma",
+      "editProfile": "Hlengahlengisa iprofayile yakho",
+      "preferences": "Ezikhethwayo",
+      "budget": "Uhlahlo lwabiwo-mali:",
+      "area": "Indawo:",
+      "general": "Ngokubanzi:",
+      "amenities": "Uncedo:",
+      "editPreference": "Hlela izinto ozikhethayo"
+    },
+    "Change": "Guqula",
+    "navbar": {
+      "home": "Ekhaya",
+      "chat": "Ncokola",
+      "search": "Khangela",
+      "liked": "Ithandiwe",
+      "profile": "Iphrofayili"
+  }
+  }
+  

@@ -1,5 +1,6 @@
 import { IAIPreference } from "../interfaces";
 
 export interface ISetAIPreferencesRequest {
-    preferences: IAIPreference;
+    user: string;
+    labels: string[];
 }

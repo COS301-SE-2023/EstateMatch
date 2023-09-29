@@ -1,0 +1,25 @@
+{
+  "labels": {
+    "searchFilters": "Search Filters",
+    "budget": "Budget:",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "garages": "Garages",
+    "amenities": "Amenities",
+    "pool": "Pool",
+    "study": "Study",
+    "aircon": "Aircon",
+    "furnished": "Furnished",
+    "petFriendly": "Pet-Friendly",
+    "lounge": "Lounge",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "navbar": {
+    "home": "Home",
+    "chat": "Chat",
+    "search": "Search",
+    "liked": "Liked",
+    "profile": "Profile"
+  }
+}

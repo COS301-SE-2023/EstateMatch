@@ -1,6 +1,6 @@
 import {Controller, Post, Body, Get} from '@nestjs/common';
 import {UserService} from './user.service';
-import { IGetUserRequest } from '@estate-match/api/users/util';
+import { IGetUserRequest, ISetUserLanguagePrefRequest } from '@estate-match/api/users/util';
 import { ISetUserRequest} from '@estate-match/api/users/util';
 import { IUpdateUserRequest} from '@estate-match/api/users/util';
 @Controller()
@@ -24,5 +24,10 @@ export class UserController {
     @Post('/updateUser')
     async updateUser(@Body() request: IUpdateUserRequest) {
         return await this.userService.updateUser(request);
+    }
+
+    @Post('/setUserLanguagePref')
+    async getUserLanguagePref(@Body() request: ISetUserLanguagePrefRequest) {
+        return await this.userService.SetUserLanguagePref(request);
     }
 }

@@ -6,8 +6,10 @@ import * as puppeteer from 'puppeteer';
 export class PrivatePropertySaleService {
   public async PrivatePropertySalescrape(location: string): Promise<any[]> {
     // Launch Puppeteer and open new page
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({timeout: 0});
     const page = await browser.newPage();
+
+    //console.log(location);
 
     const navigationTimeout = 180000;
 
@@ -22,7 +24,10 @@ export class PrivatePropertySaleService {
 
     await page.waitForSelector('.floatingSearchContainer');
 
-    await page.type('.formWrapper input', "Woodstock");
+    await page.type('.formWrapper input', location);
+
+    const typingDelay = 1000; // 1 second (adjust as needed)
+    await page.waitForTimeout(typingDelay)
 
     await page.waitForSelector('.autocomplete-suggestions');
 
@@ -45,10 +50,11 @@ export class PrivatePropertySaleService {
 
 
     // Wait for the results container to load 
-    await page.waitForSelector('.resultsItemsContainer', {
+    await page.waitForSelector('.resultsContainer', {
       timeout: navigationTimeout,
     });
 
+    const currentURL = await page.url();
 
     const pageLinks = (await page.$$eval('.pagination a.pageNumber', (pagination) => pagination.map((page) => page.getAttribute('href') || ''))).filter(url => url !== "#");
 
@@ -60,12 +66,12 @@ export class PrivatePropertySaleService {
 
     const pages = await browser.newPage();
 
-    for(let i = 1; i <= 5; i++)
+    for(let i = 1; i <= 1; i++)
     {
       if(i === 1)
       {
 
-        await pages.goto("https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59", {
+        await pages.goto(currentURL, {
           timeout: navigationTimeout,
         });
 
@@ -76,7 +82,7 @@ export class PrivatePropertySaleService {
 
       else
       {
-        await pages.goto('https://www.privateproperty.co.za/for-sale/western-cape/cape-town/cape-town-city-bowl/59?page=' + i.toString(), {
+        await pages.goto(currentURL+'?page=' + i.toString(), {
           timeout: navigationTimeout,
         });
 
@@ -183,7 +189,7 @@ export class PrivatePropertySaleService {
   // Close the browser
   await browser.close();
 
-  const filteredPropertyListings = propertyListings.filter((property) => property.price !== "Sold");
+  const filteredPropertyListings = propertyListings.filter((property) => property.price !== "Sold" && property.price !== "POA");
 
   // Return the array of property listings
   return filteredPropertyListings;

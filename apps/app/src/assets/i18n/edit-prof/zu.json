@@ -1,0 +1,24 @@
+{
+    "labels": {
+      "firstName": "Igama",
+      "lastName": "Isibongo",
+      "username": "igama lomsebenzisi",
+      "email": "I-imeyili",
+      "button.save": "Gcina",
+      "button.backToProfile": "Buyela kuphrofayela"
+    },
+    "placeholders": {
+      "firstName": "Igama",
+      "lastName": "Isibongo",
+      "username": "Igama lomsebenzisi",
+      "email": "I-imeyili"
+    },
+    "navbar": {
+      "home": "Ikhaya",
+      "chat": "Xoxa",
+      "search": "Sesha",
+      "liked": "Kuthandiwe",
+      "profile": "Iphrofayela"
+  }
+  }
+  

@@ -1,0 +1,20 @@
+{
+  "labels": {
+    "logout": "Log Out",
+    "editProfile": "Edit Profile Information",
+    "preferences": "Preferences",
+    "budget": "Budget:",
+    "area": "Area:",
+    "general": "General:",
+    "amenities": "Amenities:",
+    "editPreference": "Edit Preferences"
+  },
+  "Change": "Change",
+  "navbar": {
+    "home": "Home",
+    "chat": "Chat",
+    "search": "Search",
+    "liked": "Liked",
+    "profile": "Profile"
+  }
+}

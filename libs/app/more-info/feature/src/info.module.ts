@@ -4,14 +4,27 @@ import { IonicModule } from '@ionic/angular';
 // import { ProfileModule } from '@mp/app/profile/data-access';
 import { InfoPage } from './info.page';
 import { InfoRouting } from './info.routing';
-import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/info-page/', '.json');
+}
 
 @NgModule({
-  imports: [CommonModule, IonicModule, InfoRouting, HttpClientModule, FormsModule],
+  imports: [CommonModule, IonicModule, InfoRouting, 
+    HttpClientModule, 
+    FormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),],
   declarations: [InfoPage, HeaderComponent, FooterComponent],
   exports: [InfoPage],
 })

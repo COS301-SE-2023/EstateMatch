@@ -45,4 +45,27 @@ export class UserRepository {
         }
     }
 
+    async updateLanguagePref(id : string, languagePref : string) : Promise<boolean> {
+        try {
+            const user = await this.findOne(id);
+
+            if(!user){
+                return false;
+            }
+
+            const updateUserData: UserModel = {
+                ...user,
+                languagePref: languagePref,
+    
+            } 
+
+            //perform update
+            await this.userModel.updateOne({username: id}, updateUserData);
+            return true;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+
 }

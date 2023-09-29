@@ -1,0 +1,30 @@
+{
+    "header": {
+      "subtitle": "Register"
+    },
+    "labels": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "username": "Username",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "placeholders": {
+      "firstName": "Enter First Name",
+      "lastName": "Enter Last Name",
+      "username": "Enter Username",
+      "email": "Enter Email Address",
+      "password": "Enter Your Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "buttons": {
+      "createAccount": "Create Account"
+    },
+    "messages": {
+      "login": "Already have an account?",
+      "log_in": "Login."
+    },
+    "Change": "Change"
+  }
+  

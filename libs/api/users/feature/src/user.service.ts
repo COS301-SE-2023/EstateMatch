@@ -1,5 +1,5 @@
 import {Injectable} from '@nestjs/common';
-import { GetUserCommand, IGetUserRequest, IGetUserResponse } from '@estate-match/api/users/util';
+import { GetUserCommand, IGetUserRequest, IGetUserResponse, ISetUserLanguagePrefRequest, ISetUserLanguagePrefResponse, SetUserLanguagePrefCommand } from '@estate-match/api/users/util';
 import { SetUserCommand, ISetUserRequest, ISetUserResponse } from '@estate-match/api/users/util';
 import { UpdateUserCommand, IUpdateUserRequest, IUpdateUserResponse } from '@estate-match/api/users/util';
 import { CommandBus } from '@nestjs/cqrs';
@@ -21,5 +21,10 @@ export class UserService {
     async updateUser(request: IUpdateUserRequest): Promise<IUpdateUserResponse> {
         return await this.commandBus.execute<
             UpdateUserCommand, IUpdateUserResponse>(new UpdateUserCommand(request));
+    }
+
+    async SetUserLanguagePref(request: ISetUserLanguagePrefRequest): Promise<ISetUserLanguagePrefResponse>{
+        return await this.commandBus.execute<
+            SetUserLanguagePrefCommand, ISetUserLanguagePrefResponse>(new SetUserLanguagePrefCommand(request));
     }
 }

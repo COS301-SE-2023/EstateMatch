@@ -28,7 +28,7 @@ export class PreferencesRepository {
         }else{
             updatedPrefrences.budgetMin = prefrences.budgetMin;
             updatedPrefrences.budgetMax = prefrences.budgetMax;
-            updatedPrefrences.location = prefrences.location;
+            updatedPrefrences.location =  JSON.parse(JSON.stringify(prefrences.location));
             updatedPrefrences.bedrooms = prefrences.bedrooms;
             updatedPrefrences.bathrooms = prefrences.bathrooms;
             updatedPrefrences.garages = prefrences.garages;

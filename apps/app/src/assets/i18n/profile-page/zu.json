@@ -1,0 +1,21 @@
+{
+    "labels": {
+      "logout": "Phuma",
+      "editProfile": "Hlela iphrofayela",
+      "preferences": "Izintandokazi",
+      "budget": "Isabelomali:",
+      "area": "Indawo:",
+      "general": "Okujwayelekile:",
+      "amenities": "Okujwayelekile:",
+      "editPreference": "Hlela izintandokazi"
+    },
+    "Change": "Fetola",
+    "navbar": {
+      "home": "Ikhaya",
+      "chat": "Xoxa",
+      "search": "Sesha",
+      "liked": "Kuthandiwe",
+      "profile": "Iphrofayela"
+  }
+  }
+  
