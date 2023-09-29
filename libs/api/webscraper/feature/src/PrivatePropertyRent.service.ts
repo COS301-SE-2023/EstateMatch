@@ -9,7 +9,7 @@ export class PrivatePropertyRentService {
     const browser = await puppeteer.launch({headless: false, timeout: 0});
     const page = await browser.newPage();
 
-    const navigationTimeout = 180000;
+    const navigationTimeout = 0;
 
     // Go to target web page
     /*await page.goto('https://www.privateproperty.co.za/to-rent/western-cape/cape-town/cape-town-city-bowl/59', {
