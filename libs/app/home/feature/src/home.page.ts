@@ -421,8 +421,8 @@ export class HomePage implements AfterViewInit{
       
           // const remaxRent = await this.http.post(remaxRentURL, scraperBody, { headers }).toPromise();
           // const remaxSale = await this.http.post(remaxSaleURL, scraperBody, { headers }).toPromise();
-          // const privatePropertyRent = await this.http.post(privatePropertyRentURL, scraperBody, { headers }).toPromise();
-          const privatePropertySale = await this.http.post(privatePropertySaleURL, scraperBody, { headers }).toPromise();
+          const privatePropertyRent = await this.http.post(privatePropertyRentURL, scraperBody, { headers }).toPromise();
+          // const privatePropertySale = await this.http.post(privatePropertySaleURL, scraperBody, { headers }).toPromise();
         }
 
         //Use location here
