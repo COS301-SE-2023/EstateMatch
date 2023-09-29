@@ -265,11 +265,14 @@ export class HomePage implements AfterViewInit{
         preferences: aiGetPrefResponse.aiPreferences
       }
 
+      const updatedScores = [];
       for(const property of this.properties){
         matchBody.property = property;
         const matchResponse = await this.http.post(matchUrl, matchBody, { headers }).toPromise() as {matchScore: number};
-        this.scores.push(matchResponse.matchScore);
-      }      
+        updatedScores.push(matchResponse.matchScore);
+      }   
+      
+      this.scores = updatedScores;
     }
     // if(sessionStorage.getItem('languagePref') !== 'en'){
     //   const translateUrl = 'api/translate';
@@ -418,7 +421,7 @@ export class HomePage implements AfterViewInit{
       
           // const remaxRent = await this.http.post(remaxRentURL, scraperBody, { headers }).toPromise();
           // const remaxSale = await this.http.post(remaxSaleURL, scraperBody, { headers }).toPromise();
-          // const privatePropertyRent = await this.http.post(privatePropertyRentURL, scraperBody, { headers });
+          // const privatePropertyRent = await this.http.post(privatePropertyRentURL, scraperBody, { headers }).toPromise();
           const privatePropertySale = await this.http.post(privatePropertySaleURL, scraperBody, { headers }).toPromise();
         }
 
