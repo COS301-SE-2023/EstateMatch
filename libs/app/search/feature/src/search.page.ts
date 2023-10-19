@@ -43,6 +43,8 @@ export class SearchPage implements AfterViewInit{
       aiLabel: [],
       rgbColour: [],
       description: ['This is a description of the property'],
+      propertyURL: '',
+      propertyType: '',
       // user: ['TestUsername']
     }
     ];
