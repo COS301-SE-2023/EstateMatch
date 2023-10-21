@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { ILikeProperty } from '@estate-match/api/properties/util';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ms-liked-page',
@@ -13,12 +14,17 @@ import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 export class LikedPage {
   constructor(private http: HttpClient,
     private toastController: ToastController,
+    private router: Router,
     private translate: TranslateService) {
       this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
      }
 
   likedProperties: ILikeProperty[] = [];
   async ngOnInit() {
+    if(!sessionStorage.getItem('username')){
+      this.makeToast('Please login to continue');
+      this.router.navigate(['/login'], { replaceUrl: true});
+    }
     const url = 'api/getLikedProperties';
     const body = {
       user: sessionStorage.getItem('username'),

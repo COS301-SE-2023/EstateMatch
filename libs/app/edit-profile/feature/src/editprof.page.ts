@@ -31,6 +31,13 @@ export class EditProfilePage {
     newFName = '';
     newLName = '';
   
+    ngOnInit() {
+      if(!sessionStorage.getItem('username')){
+        this.makeToast('Please login to continue');
+        this.router.navigate(['/login'], { replaceUrl: true});
+      }
+    }
+
     async save() {
       if (this.btnText === 'Edit Profile') {
         this.btnText = 'Save Profile';
