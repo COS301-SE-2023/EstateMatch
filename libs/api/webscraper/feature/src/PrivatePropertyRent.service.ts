@@ -105,6 +105,8 @@ export class PrivatePropertyRentService {
       const location = await propertyPage.$eval('.previousPage span', (locationElement) => locationElement.textContent?.trim() || '');
       const attributeLabel = await propertyPage.$$eval('.attributeLabel', (attributeLabelElement) => attributeLabelElement.map((attributeLabel) => attributeLabel.textContent?.trim() || ''));
       const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
+
+      const propertyURL = propertyPage.url();
       
       // Initialize variables for storing bedrooms, bathrooms, garages, and amenities 
       let bedrooms;
@@ -154,7 +156,7 @@ export class PrivatePropertyRentService {
         }
       }*/
 
-      const type = 'Rent';
+      const propertyType = 'Rent';
     
       // Close the property page
       await propertyPage.close();
@@ -170,6 +172,8 @@ export class PrivatePropertyRentService {
         imageURLs,
         location,
         amenities, 
+        propertyType,
+        propertyURL
       };
     })
   );
