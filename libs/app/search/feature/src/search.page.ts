@@ -57,6 +57,10 @@ export class SearchPage implements AfterViewInit{
     }
 
     ngOnInit() {
+      if(!sessionStorage.getItem('username')){
+        this.makeToast('Please login to continue');
+        this.router.navigate(['/login'], { replaceUrl: true});
+      }
       this.route.queryParams.subscribe(params => {
         if(params['data'] != null){
           this.properties = JSON.parse(params['data']);
