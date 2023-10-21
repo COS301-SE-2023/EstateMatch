@@ -24,7 +24,10 @@
   <div class="main_content_div">
       <div class="main_list_div">
         <div class="card_div" *ngFor="let property of likedProperties">
-          <img src={{property.image}} alt="Image" class="image_div bg_image" />
+          <a href={{property.propertyURL}}>
+            <img src={{property.image}} alt="Image" class="image_div bg_image" />
+          </a>
+           
           <!-- <div class="image_div bg_image" [style.backgroundImage]="{}"></div> -->
 
           <div class="detail_div">

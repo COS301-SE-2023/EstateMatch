@@ -32,6 +32,7 @@ export class LikedPage {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.likedProperties = await this.http.post(url, body, { headers }).toPromise() as ILikeProperty[];
+    console.log(this.likedProperties[0].propertyURL);
   }
   async makeToast(message: any){
     const toast = await this.toastController.create({

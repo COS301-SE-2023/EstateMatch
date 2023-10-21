@@ -223,7 +223,9 @@ export class HomePage implements AfterViewInit{
       garages: currProperty.garages,
       amenities: currProperty.amenities,
       liked: true,
-      image: currProperty.images[0]
+      image: currProperty.images[0],
+      propertyURL: currProperty.propertyURL
+
     };
     // currProperty.liked = true;
     const body = {
@@ -314,7 +316,8 @@ export class HomePage implements AfterViewInit{
       garages: currProperty.garages,
       amenities: currProperty.amenities,
       liked: true,
-      image: currProperty.images[0]
+      image: currProperty.images[0],
+      propertyURL: currProperty.propertyURL
     };
     const body = {
       property: dislikedProperty
