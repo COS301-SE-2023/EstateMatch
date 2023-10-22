@@ -1,12 +1,11 @@
-import { AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Gesture, GestureController, IonCard, Platform, ToastController } from '@ionic/angular';
-import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
-import { IAIPreference, IPreference } from '@estate-match/api/prefrences/util';
+import { AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+import { IAIPreference, IPreference } from '@estate-match/api/prefrences/util';
+import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
 import { ITranslateResponse } from '@estate-match/api/translation/util';
-import { LoadingController } from '@ionic/angular';
+import { Gesture, GestureController, IonCard, LoadingController, Platform, ToastController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 interface Property {
   user: string;
@@ -364,8 +363,9 @@ export class HomePage implements AfterViewInit{
   async makeToast(message: any){
     const toast = await this.toastController.create({
       message,
-      duration: 2000,
+      duration: 500,
       position: 'top',
+      cssClass: 'custom-toast'
     })
     toast.present();
   }
