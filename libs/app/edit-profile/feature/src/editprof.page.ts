@@ -47,7 +47,7 @@ export class EditProfilePage {
         const body = {
           username: sessionStorage.getItem('username'),
           newUserDetail: {
-            username: this.newUsername,
+            username: sessionStorage.getItem('username'),
             email: this.newEmail,
             firstName: this.newFName,
             lastName: this.newLName
@@ -61,7 +61,6 @@ export class EditProfilePage {
         const updated = await this.http.post(url, body, { headers }).toPromise() as {success: boolean};
         if(updated.success){
           this.makeToast('Profile succesfully updated');
-          sessionStorage.setItem('username', this.newUsername);
           this.router.navigate(['/profile'], { replaceUrl: true });
         }else{
           this.makeToast('Profile update failed, please check that you are logged in');
