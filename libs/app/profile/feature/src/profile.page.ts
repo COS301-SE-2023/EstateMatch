@@ -77,6 +77,10 @@ export class ProfilePage {
   users!: IUser;
 
    async ngOnInit() {
+    if(!sessionStorage.getItem('username')){
+      this.makeToast('Please login to continue');
+      this.router.navigate(['/login'], { replaceUrl: true});
+    }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const profileUrl = 'api/getUser';
     const username = sessionStorage.getItem('username');

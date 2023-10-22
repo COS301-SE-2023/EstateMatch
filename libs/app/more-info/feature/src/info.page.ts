@@ -39,8 +39,20 @@ export class InfoPage {
   fourthColour: number[] = [];
   fifthColour: number[] = [];
   
+  async makeToast(message: any){
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      position: 'top',
+    })
+    toast.present();
+  }
 
   async ngOnInit() {
+    if(!sessionStorage.getItem('username')){
+      this.makeToast('Please login to continue');
+      this.router.navigate(['/login'], { replaceUrl: true});
+    }
     this.route.queryParams.subscribe(async params => {
       if(params['data'] != null){
         this.property = JSON.parse(params['data']);

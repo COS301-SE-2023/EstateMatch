@@ -40,7 +40,9 @@ export class WebScraperController {
               seen : properties[i].seen,
               aiLabel : [],
               rgbColour : [],
-              description : properties[i].description
+              description : properties[i].description,
+              propertyURL : properties[i].propertyURL,
+              propertyType : properties[i].propertyType
 
            // user : properties[i].user
         }
@@ -85,7 +87,9 @@ export class WebScraperController {
             seen : properties[i].seen,
             aiLabel : properties[i].aiLabel,
             rgbColour : properties[i].rgbColour,
-            description : properties[i].description
+            description : properties[i].description,
+            propertyURL : properties[i].propertyURL,
+            propertyType : properties[i].propertyType
 
         //  user : properties[i].user
       }
@@ -122,7 +126,9 @@ export class WebScraperController {
             seen : properties[i].seen,
             aiLabel : properties[i].aiLabel,
             rgbColour : properties[i].rgbColour,
-            description : properties[i].description
+            description : properties[i].description,
+            propertyURL : properties[i].propertyURL,
+            propertyType : properties[i].propertyType
 
          // user : properties[i].user
       }
@@ -162,7 +168,9 @@ export class WebScraperController {
              seen : properties[i].seen,
              aiLabel : properties[i].aiLabel,
              rgbColour : properties[i].rgbColour,
-             description : properties[i].description
+             description : properties[i].description,
+             propertyURL : properties[i].propertyURL,
+             propertyType : properties[i].propertyType
 
            // user : properties[i].user
         }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { LoadingController } from '@ionic/angular';
 import { ElementRef, ViewChild } from '@angular/core';
@@ -18,6 +18,7 @@ export class ChatPage {
     private http: HttpClient,
     private toastController: ToastController,
     private route: ActivatedRoute,
+    private router: Router,
     private translate: TranslateService,
     private loadingController: LoadingController
   ) {
@@ -30,6 +31,10 @@ export class ChatPage {
   messages: { text: string[]; time: string; userType: 'user' | 'bot' }[] = [];
 
   async ngOnInit() {
+    if(!sessionStorage.getItem('username')){
+      this.makeToast('Please login to continue');
+      this.router.navigate(['/login'], { replaceUrl: true});
+    }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = 'api/startChat';
 
@@ -65,6 +70,15 @@ async showLoading() {
     cssClass: 'custom-loading-class' // You can define a custom CSS class for styling
   });
   await this.loading.present();
+}
+
+async makeToast(message: any){
+  const toast = await this.toastController.create({
+    message,
+    duration: 2000,
+    position: 'top',
+  })
+  toast.present();
 }
 
 async hideLoading() {

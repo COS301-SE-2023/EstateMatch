@@ -69,7 +69,9 @@ export class HomePage implements AfterViewInit{
      seen: false, 
      aiLabel: [],
      rgbColour: [],
-     description : ['This is a description of the property.']
+     description : ['This is a description of the property.'],
+     propertyURL : '',
+     propertyType : '',
     // user: ['TestUsername']
   }];
   lastImageIndex = 0;
@@ -86,97 +88,102 @@ export class HomePage implements AfterViewInit{
  // showCross = false; 
 
   async ngOnInit() {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    //Get preferences
-    const prefURL = 'api/getPreferences';
-    const prefBody = {
-      user: sessionStorage.getItem('username')
-    }
-
-    this.userPreferences = await this.http.post(prefURL, prefBody, { headers }).toPromise() as IPreference;
-    //Search
-    // const url = 'api/search';
-    // const body = {
-    //   filters: {
-    //     location: this.userPreferences.location,
-    //     budgetMin: this.userPreferences.budgetMin,
-    //     budgetMax: this.userPreferences.budgetMax,
-    //     bedrooms: this.userPreferences.bedrooms,
-    //     bathrooms: this.userPreferences.bathrooms,
-    //     garages: this.userPreferences.garages,
-    //     amenities: this.userPreferences.extras
-    //   }
-    // } 
-
-    const url = 'api/getUserProperties';
-    const body = {
-      user: sessionStorage.getItem('username')
-    }
-
-    let response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
-
-    if(response.properties.length === 0){
-      try{
-        await this.showLoading();
-        const newProperties = await this.propertyCheck(this.userPreferences.location[0]);
-        response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
-      }finally{
-        await this.hideLoading();
+    if(!sessionStorage.getItem('username')){
+      this.makeToast('Please login to continue');
+      this.router.navigate(['/login'], { replaceUrl: true});
+    }else{
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      //Get preferences
+      const prefURL = 'api/getPreferences';
+      const prefBody = {
+        user: sessionStorage.getItem('username')
       }
-    }
-
-    this.properties = response.properties;
-
-    const aiGetPrefUrl = 'api/getAIPreferences';
-    const aiGetPrefBody = {
-      user: sessionStorage.getItem('username')
-    }
-
-    const aiGetPrefResponse = await this.http.post(aiGetPrefUrl, aiGetPrefBody, { headers }).toPromise() as {aiPreferences: IAIPreference};
-    if(aiGetPrefResponse.aiPreferences){
-      const matchUrl = 'api/match';
-
-      const matchBody = {
-        property: this.properties[this.currentDescriptionIndex],
-        preferences: aiGetPrefResponse.aiPreferences
-      }
-
-      for(const property of this.properties){
-        matchBody.property = property;
-        const matchResponse = await this.http.post(matchUrl, matchBody, { headers }).toPromise() as {matchScore: number};
-        this.scores.push(matchResponse.matchScore);
-      }      
-    }
-
-
-    // this.properties = this.properties.slice(0,3);
-    this.lastImageIndex = this.properties[0].images.length - 1;
-    // this.ngAfterViewInit();
-
-    if(sessionStorage.getItem('languagePref') !== 'en'){
-      const translateUrl = 'api/translate';
-      const translateBody = {
-        title: this.properties[this.currentDescriptionIndex].title,
-        targetLanguage: sessionStorage.getItem('languagePref')
-      };
-
-        // translateBody.text = this.properties[this.currentDescriptionIndex].title;
-        const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as ITranslateResponse;
-        this.properties[this.currentDescriptionIndex].title = translatedTitle.title;    
-    }
-
-    const newProperties = await this.propertyCheck(this.userPreferences.location[0]);
-
-    if(newProperties){
+  
+      this.userPreferences = await this.http.post(prefURL, prefBody, { headers }).toPromise() as IPreference;
+      //Search
+      // const url = 'api/search';
+      // const body = {
+      //   filters: {
+      //     location: this.userPreferences.location,
+      //     budgetMin: this.userPreferences.budgetMin,
+      //     budgetMax: this.userPreferences.budgetMax,
+      //     bedrooms: this.userPreferences.bedrooms,
+      //     bathrooms: this.userPreferences.bathrooms,
+      //     garages: this.userPreferences.garages,
+      //     amenities: this.userPreferences.extras
+      //   }
+      // } 
+  
       const url = 'api/getUserProperties';
       const body = {
         user: sessionStorage.getItem('username')
       }
   
-      const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
-
-      for(const property of response.properties){
-        this.properties.push(property);
+      let response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
+  
+      if(response.properties.length === 0){
+        try{
+          await this.showLoading();
+          const newProperties = await this.propertyCheck(this.userPreferences.location[0]);
+          response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
+        }finally{
+          await this.hideLoading();
+        }
+      }
+  
+      this.properties = response.properties;
+  
+      const aiGetPrefUrl = 'api/getAIPreferences';
+      const aiGetPrefBody = {
+        user: sessionStorage.getItem('username')
+      }
+  
+      const aiGetPrefResponse = await this.http.post(aiGetPrefUrl, aiGetPrefBody, { headers }).toPromise() as {aiPreferences: IAIPreference};
+      if(aiGetPrefResponse.aiPreferences){
+        const matchUrl = 'api/match';
+  
+        const matchBody = {
+          property: this.properties[this.currentDescriptionIndex],
+          preferences: aiGetPrefResponse.aiPreferences
+        }
+  
+        for(const property of this.properties){
+          matchBody.property = property;
+          const matchResponse = await this.http.post(matchUrl, matchBody, { headers }).toPromise() as {matchScore: number};
+          this.scores.push(matchResponse.matchScore);
+        }      
+      }
+  
+  
+      // this.properties = this.properties.slice(0,3);
+      this.lastImageIndex = this.properties[0].images.length - 1;
+      // this.ngAfterViewInit();
+  
+      if(sessionStorage.getItem('languagePref') !== 'en'){
+        const translateUrl = 'api/translate';
+        const translateBody = {
+          title: this.properties[this.currentDescriptionIndex].title,
+          targetLanguage: sessionStorage.getItem('languagePref')
+        };
+  
+          // translateBody.text = this.properties[this.currentDescriptionIndex].title;
+          const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as ITranslateResponse;
+          this.properties[this.currentDescriptionIndex].title = translatedTitle.title;    
+      }
+  
+      const newProperties = await this.propertyCheck(this.userPreferences.location[0]);
+  
+      if(newProperties){
+        const url = 'api/getUserProperties';
+        const body = {
+          user: sessionStorage.getItem('username')
+        }
+    
+        const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
+  
+        for(const property of response.properties){
+          this.properties.push(property);
+        }
       }
     }
   }
@@ -215,7 +222,9 @@ export class HomePage implements AfterViewInit{
       garages: currProperty.garages,
       amenities: currProperty.amenities,
       liked: true,
-      image: currProperty.images[0]
+      image: currProperty.images[0],
+      propertyURL: currProperty.propertyURL
+
     };
     // currProperty.liked = true;
     const body = {
@@ -306,7 +315,8 @@ export class HomePage implements AfterViewInit{
       garages: currProperty.garages,
       amenities: currProperty.amenities,
       liked: true,
-      image: currProperty.images[0]
+      image: currProperty.images[0],
+      propertyURL: currProperty.propertyURL
     };
     const body = {
       property: dislikedProperty

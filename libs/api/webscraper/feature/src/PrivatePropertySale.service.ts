@@ -114,6 +114,7 @@ export class PrivatePropertySaleService {
       const attributeLabel = await propertyPage.$$eval('.attributeLabel', (attributeLabelElement) => attributeLabelElement.map((attributeLabel) => attributeLabel.textContent?.trim() || ''));
       const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
       
+      const propertyURL = propertyPage.url();
       // Initialize variables for storing bedrooms, bathrooms, garages, and amenities 
 
       let bedrooms;
@@ -165,7 +166,7 @@ export class PrivatePropertySaleService {
       }*/
 
 
-      const type = 'Sale';
+      const propertyType = 'Sale';
 
     
       // Close the property page
@@ -182,6 +183,8 @@ export class PrivatePropertySaleService {
         imageURLs,
         location,
         amenities, 
+        propertyType,
+        propertyURL
       };
     })
   );

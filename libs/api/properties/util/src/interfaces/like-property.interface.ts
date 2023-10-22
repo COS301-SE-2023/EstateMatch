@@ -9,4 +9,5 @@ export interface ILikeProperty{
     amenities: string[],
     liked: boolean,
     image: string,
+    propertyURL: string,
 }
