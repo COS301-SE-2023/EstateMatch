@@ -9,21 +9,41 @@ AI, and display it to the user based on their preferences using a Tinder type de
 it easier to search and find your ideal property match.
 
 ## Documentation
-<a href="https://docs.google.com/document/d/17j9_CFlwM2NVPz_qauqig76uo5fEn36K3mzH8n-Rd_E">SRSv4</a><br>
-<a href="https://docs.google.com/document/d/1OnqdLNZF3vlXTRR6o-V9gOcmO8q2w8__zFKaXecAzqM">Architecture v2</a><br>
-<a href="https://docs.google.com/document/d/1yxaZPrCsSth-8nQPAV6Po3-zJgUtS2W4kswBYL72uQg">User Manual v2</a><br>
-<a href="https://docs.google.com/document/d/1hdnunN5wEQfjHE2OuvKUzH0ivULLOuIpJ9uEmLAMYo8">Technical Instalation</a><br>
-<a href="https://docs.google.com/document/d/1epleAggUqhXkfQHwGLf67TS5sfkBkPydWQ50SCDiOLk">Coding Standards</a><br>
-<a href="https://docs.google.com/document/d/1M2mBsVa6NrrPzIWks3ZPVO44b9arAfCghOxpLcsJ-lM">Testing Policy</a><br>
-<a href="https://github.com/COS301-SE-2023/EstateMatch/blob/main/diagrams/deployment.png">Deployment Diagram</a><br>
 
+### Software Requirements Specification
+- :page_facing_up: [SRSv4](https://docs.google.com/document/d/17j9_CFlwM2NVPz_qauqig76uo5fEn36K3mzH8n-Rd_E)
 
-### Archived Documentation
-<a href="https://docs.google.com/document/d/1IPPo0ORLdAqlDpaK2BRLdt88pe27UXzoNSb_TqKFMJ8/edit#heading=h.y9ikcpqx8cfk">SRSv1</a>
-<a href="https://docs.google.com/document/d/1RlTstf5AUX04HHE7UJJ6J_Fwv7FWnpZjaSfp0pe_y6g">SRSv2</a><br>
-<a href="https://docs.google.com/document/d/19Nd-tu3Gl3Qjcs9jFEI0_Y07Pik9ak7F3gTkwPFK7yg">SRSv3</a><br>
-<a href="https://docs.google.com/document/d/1eEZawQQsqDtdPr7PcepF3r3jhFEsvrvVfRbxEUtQ5KE">Architecture v1</a><br>
-<a href="https://docs.google.com/document/d/1qvRzDJuF_YBuy4V8E-jjelcO2OqnoXkK8b9G8zBNcdc">User Manual v1</a><br>
+### Architecture Document
+- :page_facing_up: [Architecture](https://docs.google.com/document/d/1OnqdLNZF3vlXTRR6o-V9gOcmO8q2w8__zFKaXecAzqM)
+  
+### Coding Standards
+- :page_facing_up: [Code Standards](https://docs.google.com/document/d/1epleAggUqhXkfQHwGLf67TS5sfkBkPydWQ50SCDiOLk)
+
+### Testing Policy
+- :page_facing_up: [Testing Policy Document](https://docs.google.com/document/d/1M2mBsVa6NrrPzIWks3ZPVO44b9arAfCghOxpLcsJ-lM)
+
+### Project Management Tools
+- [Project Board](#project-management)
+
+### Github Profiles
+- [Team](#meet-the-team)
+
+### User Manual
+- :page_facing_up: [User Manual](https://docs.google.com/document/d/1yxaZPrCsSth-8nQPAV6Po3-zJgUtS2W4kswBYL72uQg)
+
+### Project Day Demo
+- :camera_flash: [Project Day Demo](https://drive.google.com/file/d/1sAvRFlP-rBPNgUwfPY0lMWgkJdCEyQV4/view?usp=share_link)
+
+### Project Slideshow
+
+### Advertisement
+- :camera_flash: [Video Advertisement](https://drive.google.com/file/d/1IYoLmd_LJ9IY1ATnFLWEAZbCnV_xBYoc/view?usp=share_link)
+
+### Deployment Diagram
+- :framed_picture: [Deployment Diagram](https://github.com/COS301-SE-2023/EstateMatch/blob/main/diagrams/deployment.png)
+
+### Technical Installation Manual
+- :page_facing_up: [Technical Installation Manual](https://docs.google.com/document/d/1hdnunN5wEQfjHE2OuvKUzH0ivULLOuIpJ9uEmLAMYo8)
 
 ## Project Management
 ### Github Boards
