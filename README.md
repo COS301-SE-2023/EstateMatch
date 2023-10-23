@@ -35,6 +35,7 @@ it easier to search and find your ideal property match.
 - :camera_flash: [Project Day Demo](https://drive.google.com/file/d/1sAvRFlP-rBPNgUwfPY0lMWgkJdCEyQV4/view?usp=share_link)
 
 ### Project Slideshow
+- :framed_picture: [Project Slideshow](https://my.visme.co/view/vdpdv18p-capstone-demos)
 
 ### Advertisement
 - :camera_flash: [Video Advertisement](https://drive.google.com/file/d/1IYoLmd_LJ9IY1ATnFLWEAZbCnV_xBYoc/view?usp=share_link)
@@ -44,6 +45,10 @@ it easier to search and find your ideal property match.
 
 ### Technical Installation Manual
 - :page_facing_up: [Technical Installation Manual](https://docs.google.com/document/d/1hdnunN5wEQfjHE2OuvKUzH0ivULLOuIpJ9uEmLAMYo8)
+
+### How to Contribute
+- :page_facing_up: [Contribution Manual](https://docs.google.com/document/d/1hdnunN5wEQfjHE2OuvKUzH0ivULLOuIpJ9uEmLAMYo8)
+
 
 ## Project Management
 ### Github Boards
