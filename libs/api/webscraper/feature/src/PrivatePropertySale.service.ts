@@ -12,9 +12,10 @@ export class PrivatePropertySaleService {
       '--disable-setuid-sandbox',
       '--single-process',
       '--no-zygote',
+      '--disable-features=site-per-process'
     ]});
     const page = await browser.newPage();
-
+    console.log("Page created");
     //console.log(location);
 
     const navigationTimeout = 180000;
@@ -28,7 +29,11 @@ export class PrivatePropertySaleService {
       timeout: navigationTimeout,
     });
 
+    console.log("Navigated");
+
     await page.waitForSelector('.floatingSearchContainer');
+
+    console.log("Selector created");
 
     await page.type('.formWrapper input', location);
 
