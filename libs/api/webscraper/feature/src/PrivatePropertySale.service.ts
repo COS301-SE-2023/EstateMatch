@@ -12,7 +12,7 @@ export class PrivatePropertySaleService {
       '--disable-setuid-sandbox',
       '--single-process',
       '--no-zygote',
-      '--disable-features=site-per-process'
+      // '--disable-features=site-per-process'
     ]});
     const page = await browser.newPage();
     console.log("Page created");
@@ -118,12 +118,12 @@ export class PrivatePropertySaleService {
     propertyURLs.map(async (url) => {
       // Open a new page for each property
       const propertyPage = await browser.newPage();
-      await propertyPage.waitForNavigation();
+      // await propertyPage.waitForNavigation();
       console.log("Property page created");
       await propertyPage.goto("https://www.privateproperty.co.za" +url, {
         timeout: navigationTimeout,
       });
-      await propertyPage.waitForNavigation();
+      // await propertyPage.waitForNavigation();
       console.log("Navigated to listings");
 
       // Wait for the property page to load
