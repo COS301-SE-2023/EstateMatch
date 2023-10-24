@@ -131,7 +131,7 @@ export class PrivatePropertySaleService {
       // }
 
       await propertyPage.goto("https://www.privateproperty.co.za" +url, {
-        timeout: navigationTimeout,
+        timeout: 0,
       });
       await propertyPage.waitForNavigation({ waitUntil: 'domcontentloaded' });
 
