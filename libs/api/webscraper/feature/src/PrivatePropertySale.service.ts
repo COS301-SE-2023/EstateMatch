@@ -117,31 +117,31 @@ export class PrivatePropertySaleService {
   const propertyListings = await Promise.all(
     propertyURLs.map(async (url) => {
       // Open a new page for each property
-      const propertyPage = await browser.newPage();
-      // await propertyPage.waitForNavigation();
+      // const propertyPage = await browser.newPage();
+      // await pages.waitForNavigation();
       // console.log("Property page created");
-      await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+      await pages.goto("https://www.privateproperty.co.za" +url, {
         timeout: navigationTimeout,
       });
-      await propertyPage.waitForNavigation({timeout: navigationTimeout});
+      // await propertyPage.waitForNavigation({timeout: navigationTimeout});
       console.log("Navigated to listings");
 
       // Wait for the property page to load
-      await propertyPage.waitForSelector('.contentWhite');
+      await pages.waitForSelector('.contentWhite');
 
       console.log("Found selector");
 
       // Extract the data we want
-      const title = await propertyPage.$eval('.titleContainer h1', (titleElement) => titleElement.textContent?.trim() || '');
-      const price = await propertyPage.$eval('.titleContainer h2 span.detailsPrice', (priceElement) => priceElement.textContent?.trim() || '');
-      const description = await propertyPage.$$eval('.description p', (descriptionElement) => descriptionElement.map((description) => description.textContent?.trim() || ''));
-      const location = await propertyPage.$eval('.previousPage span', (locationElement) => locationElement.textContent?.trim() || '');
-      const attributeLabel = await propertyPage.$$eval('.attributeLabel', (attributeLabelElement) => attributeLabelElement.map((attributeLabel) => attributeLabel.textContent?.trim() || ''));
-      const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
+      const title = await pages.$eval('.titleContainer h1', (titleElement) => titleElement.textContent?.trim() || '');
+      const price = await pages.$eval('.titleContainer h2 span.detailsPrice', (priceElement) => priceElement.textContent?.trim() || '');
+      const description = await pages.$$eval('.description p', (descriptionElement) => descriptionElement.map((description) => description.textContent?.trim() || ''));
+      const location = await pages.$eval('.previousPage span', (locationElement) => locationElement.textContent?.trim() || '');
+      const attributeLabel = await pages.$$eval('.attributeLabel', (attributeLabelElement) => attributeLabelElement.map((attributeLabel) => attributeLabel.textContent?.trim() || ''));
+      const propAttrValue = await pages.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
       
       console.log("Got info");
 
-      const propertyURL = propertyPage.url();
+      const propertyURL = pages.url();
       // Initialize variables for storing bedrooms, bathrooms, garages, and amenities 
 
       let bedrooms;
@@ -181,7 +181,7 @@ export class PrivatePropertySaleService {
       }
 
       // Extract and process image URLs for the property
-      const imageURLs = (await propertyPage.$$eval('.imageGrid a', (imagesElement) => imagesElement.map((image) => image.dataset['background']))).filter(url => url !== null && url !== undefined);
+      const imageURLs = (await pages.$$eval('.imageGrid a', (imagesElement) => imagesElement.map((image) => image.dataset['background']))).filter(url => url !== null && url !== undefined);
       
       // Modify image URLs to include "_dhd" before the file extension
       /*for (let i = 0; i < imageURLs.length; i++) {
@@ -197,7 +197,7 @@ export class PrivatePropertySaleService {
 
     
       // Close the property page
-      await propertyPage.close();
+      await pages.close();
 
       // Return an object containing all the extracted property details
       return {
