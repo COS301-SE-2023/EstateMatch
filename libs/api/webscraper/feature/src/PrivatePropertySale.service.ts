@@ -72,6 +72,8 @@ export class PrivatePropertySaleService {
 
     const pageLinks = (await page.$$eval('.pagination a.pageNumber', (pagination) => pagination.map((page) => page.getAttribute('href') || ''))).filter(url => url !== "#");
 
+    console.log("Links created");
+
     const lastPageLink = pageLinks[pageLinks.length - 2];
     //const pageNumber = parseInt(lastPageLink.slice(-2));
 
@@ -79,6 +81,8 @@ export class PrivatePropertySaleService {
     let propertyURLs: string[] = [];
 
     const pages = await browser.newPage();
+
+    console.log("New Page");
 
     for(let i = 1; i <= 1; i++)
     {
@@ -109,6 +113,7 @@ export class PrivatePropertySaleService {
     }
 
   // Process each property page
+  console.log("Waiting to process...");
   const propertyListings = await Promise.all(
     propertyURLs.map(async (url) => {
       // Open a new page for each property
@@ -202,6 +207,8 @@ export class PrivatePropertySaleService {
       };
     })
   );
+
+  console.log("Processed");
 
   // Close the browser
   await browser.close();
