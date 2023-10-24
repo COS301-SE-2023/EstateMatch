@@ -41,6 +41,7 @@ export class PrivatePropertySaleService {
     await page.waitForTimeout(typingDelay)
 
     await page.waitForSelector('.autocomplete-suggestions');
+    console.log("Selector found");
 
     const suggestionSelector = '.autocomplete-suggestion';
     await page.evaluate((selector) => {
@@ -55,7 +56,7 @@ export class PrivatePropertySaleService {
       }
     }, suggestionSelector);
 
-    await page.waitForNavigation();
+    // await page.waitForNavigation();
 
     //console.log(page.url());
 
@@ -64,6 +65,8 @@ export class PrivatePropertySaleService {
     await page.waitForSelector('.resultsContainer', {
       timeout: navigationTimeout,
     });
+
+    console.log("Results created");
 
     const currentURL = await page.url();
 
