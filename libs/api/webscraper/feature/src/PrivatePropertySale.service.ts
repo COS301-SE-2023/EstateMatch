@@ -120,19 +120,19 @@ export class PrivatePropertySaleService {
       // Open a new page for each property
 
       const propertyPage = await browser.newPage();
-      // await pages.waitForNavigation();
-      // console.log("Property page created");
-      // try{
-      //   await propertyPage.goto("https://www.privateproperty.co.za" +url, {
-      //     timeout: 240000,
-      //   });
-      // }catch(e){
-      //   console.log(e);
-      // }
+      await pages.waitForNavigation();
+      console.log("Property page created");
+      try{
+        await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+          timeout: 240000,
+        });
+      }catch(e){
+        console.log(e);
+      }
 
-      await propertyPage.goto("https://www.privateproperty.co.za" +url, {
-        timeout: 240000,
-      });
+      // await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+      //   timeout: 240000,
+      // });
 
       // await propertyPage.waitForNavigation({timeout: navigationTimeout});
       console.log("Navigated to listings");
