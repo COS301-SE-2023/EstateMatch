@@ -121,18 +121,18 @@ export class PrivatePropertySaleService {
 
       const propertyPage = await browser.newPage();
       // await pages.waitForNavigation();
-      // console.log("Property page created");
-      // try{
-      //   await propertyPage.goto("https://www.privateproperty.co.za" +url, {
-      //     timeout: 240000,
-      //   });
-      // }catch(e){
-      //   console.log(e);
-      // }
+      console.log("Property page created");
+      try{
+        await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+          timeout: navigationTimeout,
+        });
+      }catch(e){
+        console.log(e);
+      }
 
-      await propertyPage.goto("https://www.privateproperty.co.za" +url, {
-        timeout: 0,
-      });
+      // await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+      //   timeout: 0,
+      // });
       await propertyPage.waitForNavigation({ waitUntil: 'domcontentloaded' });
 
       // await propertyPage.waitForNavigation({timeout: navigationTimeout});
@@ -210,6 +210,7 @@ export class PrivatePropertySaleService {
     
       // Close the property page
       await propertyPage.close();
+      console.log("Closed page");
 
       // Return an object containing all the extracted property details
       return {
