@@ -119,11 +119,11 @@ export class PrivatePropertySaleService {
       // Open a new page for each property
       const propertyPage = await browser.newPage();
       // await propertyPage.waitForNavigation();
-      console.log("Property page created");
+      // console.log("Property page created");
       await propertyPage.goto("https://www.privateproperty.co.za" +url, {
         timeout: navigationTimeout,
       });
-      // await propertyPage.waitForNavigation();
+      await propertyPage.waitForNavigation({timeout: navigationTimeout});
       console.log("Navigated to listings");
 
       // Wait for the property page to load
