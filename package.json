@@ -99,7 +99,7 @@
     "nx": "16.1.0",
     "nx-cloud": "latest",
     "prettier": "^2.6.2",
-    "puppeteer": "19",
+    "puppeteer": "21.4.1",
     "tfjs": "^0.6.0",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
