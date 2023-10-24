@@ -118,12 +118,18 @@ export class PrivatePropertySaleService {
   const propertyListings = await Promise.all(
     propertyURLs.map(async (url) => {
       // Open a new page for each property
+
       const propertyPage = await browser.newPage();
       // await pages.waitForNavigation();
       // console.log("Property page created");
-      await propertyPage.goto("https://www.privateproperty.co.za" +url, {
-        timeout: navigationTimeout,
-      });
+      try{
+        await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+          timeout: navigationTimeout,
+        });
+      }catch(e){
+        console.log(e);
+      }
+
       // await propertyPage.waitForNavigation({timeout: navigationTimeout});
       console.log("Navigated to listings");
 
