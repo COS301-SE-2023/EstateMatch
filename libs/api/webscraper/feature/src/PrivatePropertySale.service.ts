@@ -233,7 +233,8 @@ export class PrivatePropertySaleService {
 
   // Close the browser
   await browser.close();
-
+  
+  console.log(propertyListings);
   const filteredPropertyListings = propertyListings.filter((property) => property.price !== "Sold" && property.price !== "POA");
 
   // Return the array of property listings
