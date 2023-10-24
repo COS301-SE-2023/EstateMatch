@@ -50,6 +50,7 @@ export class WebScraperController {
         }
 
           const aiModel = await this.imageToTextService.analyzeImages(property.images, request.username);
+          console.log("Classified");
 
           property.aiLabel = aiModel.labelDescriptions;
           property.rgbColour = aiModel.rgbValues;
@@ -63,6 +64,7 @@ export class WebScraperController {
 
           // console.log(request);
           this.propertyService.createProperty(req);
+          console.log("Created");
         }
         
         return properties;
