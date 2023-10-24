@@ -23,6 +23,7 @@ export class WebScraperController {
       // console.log(request.location);
         const properties = await this.PrivatePropertySaleService.PrivatePropertySalescrape(request.location);
         console.log("Scraped");
+        console.log(properties);
 
         for(let i = 0; i < properties.length; i++){
           const property: IProperty = {
