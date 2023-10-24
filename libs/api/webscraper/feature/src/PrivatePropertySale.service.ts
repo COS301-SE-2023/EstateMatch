@@ -122,8 +122,12 @@ export class PrivatePropertySaleService {
         timeout: navigationTimeout,
       });
 
+      console.log("Navigated to listings");
+
       // Wait for the property page to load
       await propertyPage.waitForSelector('.contentWhite');
+
+      console.log("Found selector");
 
       // Extract the data we want
       const title = await propertyPage.$eval('.titleContainer h1', (titleElement) => titleElement.textContent?.trim() || '');
@@ -133,6 +137,8 @@ export class PrivatePropertySaleService {
       const attributeLabel = await propertyPage.$$eval('.attributeLabel', (attributeLabelElement) => attributeLabelElement.map((attributeLabel) => attributeLabel.textContent?.trim() || ''));
       const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
       
+      console.log("Got info");
+
       const propertyURL = propertyPage.url();
       // Initialize variables for storing bedrooms, bathrooms, garages, and amenities 
 
