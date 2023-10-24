@@ -114,7 +114,7 @@ export class PrivatePropertySaleService {
 
   // Process each property page
   console.log("Waiting to process...");
-  console.log(propertyURLs);
+  // console.log(propertyURLs);
   const propertyListings = await Promise.all(
     propertyURLs.map(async (url) => {
       // Open a new page for each property
@@ -122,13 +122,17 @@ export class PrivatePropertySaleService {
       const propertyPage = await browser.newPage();
       // await pages.waitForNavigation();
       // console.log("Property page created");
-      try{
-        await propertyPage.goto("https://www.privateproperty.co.za" +url, {
-          timeout: navigationTimeout,
-        });
-      }catch(e){
-        console.log(e);
-      }
+      // try{
+      //   await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+      //     timeout: 240000,
+      //   });
+      // }catch(e){
+      //   console.log(e);
+      // }
+
+      await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+        timeout: 240000,
+      });
 
       // await propertyPage.waitForNavigation({timeout: navigationTimeout});
       console.log("Navigated to listings");
