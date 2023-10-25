@@ -16,7 +16,7 @@ import { ToastController } from '@ionic/angular';
   templateUrl: './map.page.html',
   styleUrls: ['./map.page.scss'],
 })
-  export class MapPage {
+  export class MapPage implements AfterViewInit {
 
       require: any;
 
@@ -121,12 +121,14 @@ import { ToastController } from '@ionic/angular';
     
   }
 
-  // async ngAfterViewInit(){
-  //   console.log('Init');
-  //   const coords = await this.setPropertyLocation(this.propertyLocation);
-  //   // // console.log(coords); 
-  //   this.setPropertyMarker(coords[0],coords[1]);
-  // }
+  async ngAfterViewInit(){
+    if(this.propertyLocation != null){
+      const coords = await this.setPropertyLocation(this.propertyLocation);
+      // // console.log(coords); 
+      this.setPropertyMarker(coords[0],coords[1]);      
+    }
+
+  }
 
   setSchoolMarker(lat: any, long: any, name: string){
     const customIcon = L.icon({
