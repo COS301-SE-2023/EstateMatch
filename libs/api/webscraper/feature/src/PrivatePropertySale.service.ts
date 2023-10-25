@@ -115,7 +115,7 @@ export class PrivatePropertySaleService {
   // Process each property page
   console.log("Waiting to process...");
   // console.log(propertyURLs);
-  propertyURLs = propertyURLs.slice(0,5);
+  // propertyURLs = propertyURLs.slice(0,5);
   console.log(propertyURLs);
   const propertyListings = await Promise.all(propertyURLs.map(async (url) => {
       // Open a new page for each property
@@ -234,7 +234,7 @@ export class PrivatePropertySaleService {
   // Close the browser
   await browser.close();
   
-  console.log(propertyListings);
+  // console.log(propertyListings);
   const filteredPropertyListings = propertyListings.filter((property) => property.price !== "Sold" && property.price !== "POA");
 
   // Return the array of property listings

@@ -23,7 +23,7 @@ export class WebScraperController {
       // console.log(request.location);
         const properties = await this.PrivatePropertySaleService.PrivatePropertySalescrape(request.location);
         console.log("Scraped");
-        console.log(properties);
+        // console.log(properties);
 
         for(let i = 0; i < properties.length; i++){
           const property: IProperty = {
@@ -50,7 +50,7 @@ export class WebScraperController {
         }
 
           const aiModel = await this.imageToTextService.analyzeImages(property.images, request.username);
-          console.log("Classified");
+          // console.log("Classified");
 
           property.aiLabel = aiModel.labelDescriptions;
           property.rgbColour = aiModel.rgbValues;
@@ -64,7 +64,7 @@ export class WebScraperController {
 
           // console.log(request);
           this.propertyService.createProperty(req);
-          console.log("Created");
+          // console.log("Created");
         }
         
         return properties;
