@@ -12,7 +12,8 @@
         "area": "Sebaka",
         "bedrooms": "Kwikiri",
         "bathrooms": "Amabelethi",
-        "garages": "Dintlha tsa phaki"
+        "garages": "Dintlha tsa phaki",
+        "option": "Tsholola kgosi kwa laone"
     },
     "amenities": {
         "pool": "Pula",

@@ -40,4 +40,8 @@ Thumbs.db
 
 .angular
 .env
+<<<<<<< HEAD
 .cache
+=======
+.cache
+>>>>>>> development
