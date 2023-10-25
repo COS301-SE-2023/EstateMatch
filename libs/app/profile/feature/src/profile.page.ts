@@ -58,6 +58,7 @@ export class ProfilePage {
     bathrooms: 2,
     garages: 3,
     extras: [],
+    type: 'Buy',
   };
 
   logout() {
