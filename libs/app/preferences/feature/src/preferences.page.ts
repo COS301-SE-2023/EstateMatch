@@ -26,6 +26,7 @@ export class PreferencesPage {
     bathrooms = 0;
     bedrooms = 0;
     garages = 0;
+    type = '';
     ameneties :string[] = [];
     preference!: IPreference;
     selectedAreas: string[] = [];
@@ -90,7 +91,8 @@ export class PreferencesPage {
         bedrooms: (this.bedrooms),
         bathrooms: (this.bathrooms),
         garages: (this.garages),
-        extras: this.ameneties       
+        extras: this.ameneties,
+        type: this.type,       
       }
     }
 

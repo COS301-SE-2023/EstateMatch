@@ -9,6 +9,7 @@ export const PrefrencesSchema = new mongoose.Schema({
     bathrooms : Number,
     garages : Number,
     extras : [String],
+    type : String,
 });
 
 //our model
@@ -21,6 +22,7 @@ export interface PrefrencesModel  {
     bathrooms : number;
     garages : number;
     extras : string[],
+    type : string;
 }
 
 // import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
