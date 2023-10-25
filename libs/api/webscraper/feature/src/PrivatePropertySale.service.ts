@@ -115,7 +115,7 @@ export class PrivatePropertySaleService {
   // Process each property page
   console.log("Waiting to process...");
   // console.log(propertyURLs);
-  const firstFivePropertyURLs = propertyURLs.slice(0,6);
+  const firstFivePropertyURLs = propertyURLs.slice(0,5);
   console.log(firstFivePropertyURLs);
   const propertyListings = await Promise.all(firstFivePropertyURLs.map(async (url) => {
       // Open a new page for each property
