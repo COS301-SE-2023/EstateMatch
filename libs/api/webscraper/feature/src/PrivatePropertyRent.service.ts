@@ -6,7 +6,14 @@ import * as puppeteer from 'puppeteer';
 export class PrivatePropertyRentService {
   public async PrivatePropertyRentscrape(location: string): Promise<any[]> {
     // Launch Puppeteer and open new page
-    const browser = await puppeteer.launch({timeout: 0});
+    const browser = await puppeteer.launch({timeout: 0,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--single-process',
+        '--no-zygote',
+        // '--disable-features=site-per-process'
+      ]});
     const page = await browser.newPage();
 
     const navigationTimeout = 180000;
@@ -87,8 +94,9 @@ export class PrivatePropertyRentService {
     }
 
   // Process each property page
+  const firstFivePropertyURLs = propertyURLs.slice(0,5);
   const propertyListings = await Promise.all(
-    propertyURLs.map(async (url) => {
+    firstFivePropertyURLs.map(async (url) => {
       // Open a new page for each property
       const propertyPage = await browser.newPage();
       await propertyPage.goto("https://www.privateproperty.co.za" +url, {

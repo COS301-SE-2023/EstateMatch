@@ -118,13 +118,15 @@ export class HomePage implements AfterViewInit{
       const body = {
         user: sessionStorage.getItem('username')
       }
-  
+      
+      const rentBuyPref = this.userPreferences.type;
+
       let response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
   
       if(response.properties.length === 0){
         try{
           await this.showLoading();
-          const newProperties = await this.propertyCheck(this.userPreferences.location[0]);
+          const newProperties = await this.propertyCheck(this.userPreferences.location[0], rentBuyPref);
           response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
         }finally{
           await this.hideLoading();
@@ -171,7 +173,7 @@ export class HomePage implements AfterViewInit{
           this.properties[this.currentDescriptionIndex].title = translatedTitle.title;    
       }
   
-      const newProperties = await this.propertyCheck(this.userPreferences.location[0]);
+      const newProperties = await this.propertyCheck(this.userPreferences.location[0], rentBuyPref);
   
       if(newProperties){
         const url = 'api/getUserProperties';
@@ -406,7 +408,7 @@ export class HomePage implements AfterViewInit{
     }
   }
 
-  async propertyCheck(location: string){
+  async propertyCheck(location: string, rentBuyPref: string){
     const url = 'api/propertyCheck';
     const username = sessionStorage.getItem('username');
     const body = {
@@ -419,6 +421,12 @@ export class HomePage implements AfterViewInit{
       if(newPropertiesNeeded.empty){
         //Somehow check if new user or not
         if (username) {
+          let scrapeUrl = '';
+          if(rentBuyPref === 'Rent'){
+            scrapeUrl = 'api/PrivatePropertyRentScraper';
+          }else{
+            scrapeUrl = 'api/PrivatePropertySaleScraper';
+          }
           const remaxRentURL = 'api/RemaxRentScraper'; //need to add rent/buy to preferences
           const remaxSaleURL = 'api/RemaxSaleScraper';
           const privatePropertyRentURL = 'api/PrivatePropertyRentScraper';
@@ -432,7 +440,7 @@ export class HomePage implements AfterViewInit{
           // const remaxRent = await this.http.post(remaxRentURL, scraperBody, { headers }).toPromise();
           // const remaxSale = await this.http.post(remaxSaleURL, scraperBody, { headers }).toPromise();
           // const privatePropertyRent = await this.http.post(privatePropertyRentURL, scraperBody, { headers }).toPromise();
-          const privatePropertySale = await this.http.post(privatePropertySaleURL, scraperBody, { headers }).toPromise();
+          const privatePropertySale = await this.http.post(scrapeUrl, scraperBody, { headers }).toPromise();
         }
 
         //Use location here
