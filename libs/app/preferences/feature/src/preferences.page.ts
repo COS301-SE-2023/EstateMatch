@@ -136,6 +136,6 @@ export class PreferencesPage {
   }
 
   openMap(){
-    this.router.navigate(['/map'], {replaceUrl: true});
+    this.router.navigate(['/map'], { queryParams: { data: null }, replaceUrl: true});
   }
 }
