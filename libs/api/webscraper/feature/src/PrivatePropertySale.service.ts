@@ -125,7 +125,7 @@ export class PrivatePropertySaleService {
       try{
         await propertyPage.goto("https://www.privateproperty.co.za" +url, {
           timeout: navigationTimeout,
-          waitUntil: 'domcontentloaded'
+          // waitUntil: 'domcontentloaded'
         });
       }catch(e){
         console.log(e);
@@ -136,7 +136,7 @@ export class PrivatePropertySaleService {
       // });
       // 
 
-      await propertyPage.waitForNavigation({timeout: navigationTimeout});
+      // await propertyPage.waitForNavigation({timeout: navigationTimeout});
       console.log("Navigated to listings");
 
       // Wait for the property page to load
@@ -229,6 +229,7 @@ export class PrivatePropertySaleService {
       };
     }));
 
+    console.log("First 5 Processed");
     const secondFivePropertyURLs = propertyURLs.slice(5,10);
     const secondPropertyListings = await Promise.all(secondFivePropertyURLs.map(async (url) => {
       // Open a new page for each property
@@ -239,7 +240,7 @@ export class PrivatePropertySaleService {
       try{
         await propertyPage.goto("https://www.privateproperty.co.za" +url, {
           timeout: navigationTimeout,
-          waitUntil: 'domcontentloaded'
+          // waitUntil: 'domcontentloaded'
         });
       }catch(e){
         console.log(e);
@@ -250,7 +251,7 @@ export class PrivatePropertySaleService {
       // });
       // 
 
-      await propertyPage.waitForNavigation({timeout: navigationTimeout});
+      // await propertyPage.waitForNavigation({timeout: navigationTimeout});
       console.log("Navigated to listings");
 
       // Wait for the property page to load
