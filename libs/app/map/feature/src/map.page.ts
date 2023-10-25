@@ -304,9 +304,7 @@ import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 
     const mark=L.marker([lat,long],
-      {
-        icon: customIcon
-      }).addTo(this.map);
+      ).addTo(this.map);
     mark.bindPopup("<b>Selected Location: "+this.propertyLocation+"</b><br />").openPopup();
   }
 

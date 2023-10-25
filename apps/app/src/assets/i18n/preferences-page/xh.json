@@ -12,7 +12,8 @@
         "area": "Indawo",
         "bedrooms": "Uhlahlo lwabiwo-mali",
         "bathrooms": "Igumbi lokulala",
-        "garages": "Igaraji"
+        "garages": "Igaraji",
+        "option": "Renta okanye Thenga"
     },
     "amenities": {
         "pool": "Iphuli",

@@ -12,7 +12,8 @@
       "area": "Gebied",
       "bedrooms": "Slaapkamers",
       "bathrooms": "Badkamers",
-      "garages": "Motorhuise"
+      "garages": "Motorhuise",
+      "option": "Huur of Koop"
     },
     "amenities": {
       "pool": "Swembad",

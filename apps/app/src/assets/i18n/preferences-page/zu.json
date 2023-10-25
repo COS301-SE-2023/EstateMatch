@@ -12,7 +12,8 @@
         "area": "Indawo",
         "bedrooms": "Igumbi lokulala",
         "bathrooms": "Igumbi lokugezela",
-        "garages": "Igalaji"
+        "garages": "Igalaji",
+        "option": "Qasha noma Thenga"
     },
     "amenities": {
         "pool": "Iphuli",
