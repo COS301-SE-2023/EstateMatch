@@ -16,7 +16,7 @@ import { ToastController } from '@ionic/angular';
   templateUrl: './map.page.html',
   styleUrls: ['./map.page.scss'],
 })
-  export class MapPage implements AfterViewInit {
+  export class MapPage {
 
       require: any;
 
