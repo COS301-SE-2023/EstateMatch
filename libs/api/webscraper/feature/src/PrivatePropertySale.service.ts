@@ -84,7 +84,7 @@ export class PrivatePropertySaleService {
 
     console.log("New Page");
 
-    for(let i = 1; i <= 1; i++)
+    for(let i = 1; i <= 2; i++)
     {
       if(i === 1)
       {
@@ -115,10 +115,10 @@ export class PrivatePropertySaleService {
   // Process each property page
   console.log("Waiting to process...");
   // console.log(propertyURLs);
-  const firstFivePropertyURLs = propertyURLs.slice(0,15);
-  console.log(firstFivePropertyURLs);
+  // const firstFivePropertyURLs = propertyURLs.slice(0,15);
+  // console.log(firstFivePropertyURLs);
   const propertyListings = [];
-  for(const url of firstFivePropertyURLs){
+  for(const url of propertyURLs){
 
     const propertyPage = await browser.newPage();
     // await pages.waitForNavigation();
