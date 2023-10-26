@@ -54,7 +54,8 @@ describe('PreferenceController', () => {
             bedrooms: 1,
             bathrooms: 1,
             garages: 1,
-            extras: []
+            extras: [],
+            type: 'Rent'
         }
       }
 
@@ -77,7 +78,8 @@ describe('PreferenceController', () => {
             bedrooms: 1,
             bathrooms: 1,
             garages: 1,
-            extras: []
+            extras: [],
+            type: 'Rent'
         }
       };
 
@@ -98,7 +100,8 @@ describe('PreferenceController', () => {
             bedrooms: 1,
             bathrooms: 1,
             garages: 1,
-            extras: []
+            extras: [],
+            type: 'Rent'
         }
       };
 
@@ -111,7 +114,8 @@ describe('PreferenceController', () => {
             bedrooms: 1,
             bathrooms: 1,
             garages: 1,
-            extras: []
+            extras: [],
+            type: 'Rent'
         }
       }
 
