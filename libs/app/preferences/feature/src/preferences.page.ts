@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ToastController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 import { IPreference } from '@estate-match/api/prefrences/util';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+import { fail } from 'assert';
 
 @Component({
   selector: 'ms-preferences-page',
@@ -17,6 +18,7 @@ export class PreferencesPage {
     private toastController: ToastController,
     private route: ActivatedRoute,
     private router: Router,
+    private loadingController: LoadingController,
     private translate: TranslateService) {
       this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
      }
@@ -103,8 +105,13 @@ export class PreferencesPage {
 
     this.preference = await this.http.post(url, body, { headers }).toPromise() as IPreference;
     
-    this.makeToast('Scraping for properties in ' + this.area + '...');
-    const newProperties = await this.propertyCheck(this.area, this.type);
+    try{
+      await this.showLoading();
+      const newProperties = await this.propertyCheck(this.area, this.type);
+    }finally{
+      await this.hideLoading();
+    }
+    
   
 
     this.makeToast('Your prefrences are updated!');
@@ -166,5 +173,22 @@ export class PreferencesPage {
       }
 
       return true;
+  }
+  private loading!: HTMLIonLoadingElement;
+  async showLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Please wait while we are finding potential matches...', // You can customize the loading message
+      spinner: 'dots', // Use the 'dots' spinner
+      translucent: true,
+      backdropDismiss: false, // Prevent dismissing by tapping outside
+      cssClass: 'custom-loading-class' // You can define a custom CSS class for styling
+    });
+    await this.loading.present();
+  }
+  
+  async hideLoading() {
+    if (this.loading) {
+      await this.loading.dismiss();
+    }
   }
 }
