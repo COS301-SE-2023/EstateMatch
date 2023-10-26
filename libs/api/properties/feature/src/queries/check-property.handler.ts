@@ -15,7 +15,7 @@ export class CheckPropertyHandler implements IQueryHandler<CheckPropertyQuery, I
     //Query repo
     const user = await this.repository.findOne(username);
     if(user){
-      if(user.properties.length > 6){
+      if(user.properties.length > 3){
         return {empty: false};
       }else{
         return {empty: true};
