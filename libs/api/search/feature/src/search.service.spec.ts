@@ -54,6 +54,8 @@ describe('SearchService', () => {
         aiLabel : ['Hardwood'],
         rgbColour : [1,2,3],
         description :['test description'],
+        propertyURL: 'test url',
+        propertyType: 'Rent',
     }]
     };
 
