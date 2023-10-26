@@ -138,7 +138,7 @@ export class PrivatePropertySaleService {
       });
       // 
 
-      await propertyPage.waitForNavigation();
+      // await propertyPage.waitForNavigation();
       console.log("Navigated to listings");
 
       // Wait for the property page to load
