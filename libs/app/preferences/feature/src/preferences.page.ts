@@ -102,7 +102,8 @@ export class PreferencesPage {
     });
 
     this.preference = await this.http.post(url, body, { headers }).toPromise() as IPreference;
-
+    
+    this.makeToast('Scraping for properties in ' + this.area + '...');
     const newProperties = await this.propertyCheck(this.area, this.type);
   
 
