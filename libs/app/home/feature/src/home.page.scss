@@ -122,20 +122,30 @@ button[name="more-info"]{
     margin-left: 87%;
 }
 
-#dislike-button{
-    position: absolute;
+#button-container{
+    position: relative;
     z-index: 999;
-    left: 32%;
-    top: 77%;
+    top: 50%;
+    display: flex;
+    align-items: center;
+   // justify-content: center;
+
+}
+
+#dislike-button{
+    position: relative;
+    z-index: 999;
+    left: 28%;
+    top: 1%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #like-button{
-    position: absolute;
+    position: relative;
     z-index: 999;
-    left: 52%;
+    left: 32%;
     top: 77%;
     display: flex;
     align-items: center;
