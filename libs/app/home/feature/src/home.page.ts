@@ -421,12 +421,12 @@ export class HomePage implements AfterViewInit{
       if(newPropertiesNeeded.empty){
         //Somehow check if new user or not
         if (username) {
-          // let scrapeUrl = '';
-          // if(rentBuyPref === 'Rent'){
-          //   scrapeUrl = 'api/PrivatePropertyRentScraper';
-          // }else{
-          //   scrapeUrl = 'api/PrivatePropertySaleScraper';
-          // }
+          let scrapeUrl = '';
+          if(rentBuyPref === 'Rent'){
+            scrapeUrl = 'api/PrivatePropertyRentScraper';
+          }else{
+            scrapeUrl = 'api/PrivatePropertySaleScraper';
+          }
           const remaxRentURL = 'api/RemaxRentScraper'; //need to add rent/buy to preferences
           const remaxSaleURL = 'api/RemaxSaleScraper';
           const privatePropertyRentURL = 'api/PrivatePropertyRentScraper';
@@ -440,7 +440,7 @@ export class HomePage implements AfterViewInit{
           // const remaxRent = await this.http.post(remaxRentURL, scraperBody, { headers }).toPromise();
           // const remaxSale = await this.http.post(remaxSaleURL, scraperBody, { headers }).toPromise();
           // const privatePropertyRent = await this.http.post(privatePropertyRentURL, scraperBody, { headers }).toPromise();
-          const privatePropertySale = await this.http.post(remaxSaleURL, scraperBody, { headers }).toPromise();
+          const privatePropertySale = await this.http.post(scrapeUrl, scraperBody, { headers }).toPromise();
         }
 
         //Use location here

@@ -8,10 +8,10 @@ export class PrivatePropertySaleService {
     // Launch Puppeteer and open new page
     const browser = await puppeteer.launch({timeout: 0,
     args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--single-process',
-      '--no-zygote',
+      // '--no-sandbox',
+      // '--disable-setuid-sandbox',
+      // '--single-process',
+      // '--no-zygote',
       // '--disable-features=site-per-process'
     ]});
     const page = await browser.newPage();
@@ -123,22 +123,22 @@ export class PrivatePropertySaleService {
       const propertyPage = await browser.newPage();
       // await pages.waitForNavigation();
       console.log("Property page created");
-      try{
-        await propertyPage.goto("https://www.privateproperty.co.za" +url, {
-          timeout: navigationTimeout,
+      // try{
+      //   await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+      //     timeout: navigationTimeout,
           
-        });
-        await propertyPage.waitForResponse(response => response.url() === "https://www.privateproperty.co.za" +url && response.status() === 200);
-      }catch(e){
-        console.log(e);
-      }
+      //   });
+      //   // await propertyPage.waitForResponse(response => response.url() === "https://www.privateproperty.co.za" +url && response.status() === 200);
+      // }catch(e){
+      //   console.log(e);
+      // }
 
-      // await propertyPage.goto("https://www.privateproperty.co.za" +url, {
-      //   timeout: 0,
-      // });
+      await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+        timeout: navigationTimeout,
+      });
       // 
 
-      // await propertyPage.waitForNavigation({timeout: navigationTimeout});
+      await propertyPage.waitForNavigation();
       console.log("Navigated to listings");
 
       // Wait for the property page to load
