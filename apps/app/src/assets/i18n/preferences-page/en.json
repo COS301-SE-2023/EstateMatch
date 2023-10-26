@@ -12,7 +12,8 @@
       "area": "Area",
       "bedrooms": "Bedrooms",
       "bathrooms": "Bathrooms",
-      "garages": "Parking bays"
+      "garages": "Parking bays",
+      "option": "Rent or Buy"
     },
     "amenities": {
       "pool": "Pool",

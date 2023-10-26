@@ -53,7 +53,8 @@ describe('PropertiesService', () => {
             garages: 1,
             amenities: [],
             liked: true,
-            image: 'test image'
+            image: 'test image',
+            propertyURL: 'test url'
         }
     };
 
@@ -81,7 +82,8 @@ describe('PropertiesService', () => {
             garages: 1,
             amenities: [],
             liked: false,
-            image: 'test image'
+            image: 'test image',
+            propertyURL: 'test url'
         }
     };
 
@@ -113,7 +115,8 @@ describe('PropertiesService', () => {
             garages: 1,
             amenities: [],
             liked: true,
-            image: 'test image'
+            image: 'test image',
+            propertyURL: 'test url'
         },
         {
             user: 'test2',
@@ -125,7 +128,8 @@ describe('PropertiesService', () => {
             garages: 1,
             amenities: [],
             liked: true,
-            image: 'test image'
+            image: 'test image',
+            propertyURL: 'test url'
         },]
     };
 

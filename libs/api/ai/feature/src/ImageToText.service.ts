@@ -454,155 +454,119 @@ export class ImageToTextService {
     this.apiUrl = 'https://vision.googleapis.com/v1/images:annotate';
   }
 
-  async analyzeImages(imageUrls: string[], username :string) { //pass in username
-    const uniqueLabelDescriptions = new Set<string>();
-    let allDominantColors: { red: number; green: number; blue: number;  score: number}[] = [];
+    async analyzeImages(imageUrls: string[], username :string) { //pass in username
+      const uniqueLabelDescriptions = new Set<string>();
+      let allDominantColors: { red: number; green: number; blue: number;  score: number}[] = [];
 
-    for (const imageUri of imageUrls) {
-      try {
-        const response = await axios.post(
-          `${this.apiUrl}?key=${this.apiKey}`,
-          {
-            requests: [
-              {
-                image: {
-                  source: {
-                    imageUri,
+      const apiCalls = imageUrls.map(async (imageUri) => {
+        try {
+          const response = await axios.post(
+            `${this.apiUrl}?key=${this.apiKey}`,
+            {
+              requests: [
+                {
+                  image: {
+                    source: {
+                      imageUri,
+                    },
                   },
+                  features: [
+                    {
+                      type: 'LABEL_DETECTION',
+                      maxResults: 27,
+                    },
+                    {
+                      type: 'IMAGE_PROPERTIES',
+                    },
+                  ],
                 },
-                features: [
-                  {
-                    type: 'LABEL_DETECTION',
-                    maxResults: 27,
-                  },
-                  {
-                    type: 'IMAGE_PROPERTIES',
-                  },
-                ],
-              },
-            ],
-          }
-        );
+              ],
+            }
+          );
 
-        const [result] = response.data.responses;
-        const labels = result.labelAnnotations || [];
-        const imageProperties = result.imagePropertiesAnnotation || {};
+          const [result] = response.data.responses;
+          const labels = result.labelAnnotations || [];
+          const imageProperties = result.imagePropertiesAnnotation || {};
 
-        labels.forEach((label: { description: string }) => {
-          const description = label.description;
-          if (!this.vagueLabels.includes(description)) {
-            uniqueLabelDescriptions.add(description);
-          }
-        });
+          labels
+          .filter((label: { description: string }) => !this.vagueLabels.includes(label.description))
+          .forEach((label: { description: string }) => {
+            uniqueLabelDescriptions.add(label.description);
+          });
 
-        
+          
 
-        // Find and extract the RGB values of the dominant color with the best score
-        const dominantColors = imageProperties.dominantColors?.colors || [];
-        allDominantColors = allDominantColors.concat(
-          dominantColors.map((color: { color: { red: number; green: number; blue: number }; score: number }) => ({
-            red: color.color.red,
-            green: color.color.green,
-            blue: color.color.blue,
-            score: color.score,
-          }))
-        );
-      } catch (error) {
-        console.error('Google Vision API error:', error);
-        throw error;
+          // Find and extract the RGB values of the dominant color with the best score
+          const dominantColors = imageProperties.dominantColors?.colors || [];
+          allDominantColors = allDominantColors.concat(
+            dominantColors.map((color: { color: { red: number; green: number; blue: number }; score: number }) => ({
+              red: color.color.red,
+              green: color.color.green,
+              blue: color.color.blue,
+              score: color.score,
+            }))
+          );
+        } catch (error) {
+          console.error('Google Vision API error:', error);
+          throw error;
+        }
+      });
+
+      await Promise.all(apiCalls);
+
+      allDominantColors.sort((a, b) => b.score - a.score);
+
+      // Take the top 5 dominant colors based on score
+      const topDominantColors = allDominantColors.slice(0, 5);
+
+      const rgbValues: number[] = [];
+
+      topDominantColors.forEach(color => {
+        rgbValues.push(color.red, color.green, color.blue);
+      });
+
+      //Query DB
+      /**
+       * Check if user have ai model by findOne(username)
+       * Create AI pref request interface for now hardcode one
+       * if yes, update update(user, labels)
+       * if no, create, create(labels)
+       */
+
+      const labels = Array.from(uniqueLabelDescriptions);
+
+      const floorTypes = [];
+      const buildingStyles = [];
+      const buildingTypes = [];
+      const buildingAreas = [];
+      const buildingFeatures = [];
+      const materials = [];
+
+      for (const label of labels) {
+        if (label.includes("flooring")) {
+          floorTypes.push(label);
+        }
+        if (label.includes("design")) {
+          buildingStyles.push(label);
+        }
+        if (label === 'Commercial building' || label === 'Penthouse apartment' ) {
+          buildingTypes.push(label);
+        }
+        if (label === 'Neighborhood' || label.includes('Residential') || label === 'Suburb')  {
+          buildingAreas.push(label);
+        }
+        if (label === 'Garden' || label ===  'Courtyard' || label === 'Swimming pool' || label === 'Porch' || label === 'Dining room') {
+          buildingFeatures.push(label);
+        }
+        if (label ===  'Hardwood' || label === 'Plywood' || label === 'Tile' || label === 'Natural material'||  label === 'Cobblestone' ) {
+          materials.push(label);
+        }
       }
-    }
 
-    allDominantColors.sort((a, b) => b.score - a.score);
-
-    // Take the top 5 dominant colors based on score
-    const topDominantColors = allDominantColors.slice(0, 5);
-
-    const rgbValues: number[] = [];
-
-    topDominantColors.forEach(color => {
-      rgbValues.push(color.red, color.green, color.blue);
-    });
-
-    //Query DB
-    /**
-     * Check if user have ai model by findOne(username)
-     * Create AI pref request interface for now hardcode one
-     * if yes, update update(user, labels)
-     * if no, create, create(labels)
-     */
-
-    const labels = Array.from(uniqueLabelDescriptions);
-
-    const floorTypes = [];
-    const buildingStyles = [];
-    const buildingTypes = [];
-    const buildingAreas = [];
-    const buildingFeatures = [];
-    const materials = [];
-
-    for (const label of labels) {
-      if (label.includes("flooring")) {
-        floorTypes.push(label);
-      }
-      if (label.includes("design")) {
-        buildingStyles.push(label);
-      }
-      if (label === 'Commercial building' || label === 'Penthouse apartment' ) {
-        buildingTypes.push(label);
-      }
-      if (label === 'Neighborhood' || label.includes('Residential') || label === 'Suburb')  {
-        buildingAreas.push(label);
-      }
-      if (label === 'Garden' || label ===  'Courtyard' || label === 'Swimming pool' || label === 'Porch' || label === 'Dining room') {
-        buildingFeatures.push(label);
-      }
-      if (label ===  'Hardwood' || label === 'Plywood' || label === 'Tile' || label === 'Natural material'||  label === 'Cobblestone' ) {
-        materials.push(label);
-      }
-    }
-
-    /*const aiPrefRequest: IAIPreference = {
-      user: username,
-      flooring: floorTypes,
-      buildingStyle: buildingStyles,
-      buildingType: buildingTypes,
-      buildingArea: buildingAreas,
-      buildingFeatures: buildingFeatures,
-      materials: materials,
-    };
-
-    const user = await this.aiPreferenceRepo.findOne(username);
-    if (user) {
-      await this.aiPreferenceRepo.update(username, aiPrefRequest);
-    } else {
-      await this.aiPreferenceRepo.create(aiPrefRequest);
-    }*/
-
-    //hard code paramters and call function here
-    // const testPref: IAIPreference = {
-    //   user: 'Dharsh12345',
-    //   flooring: ['Hardwood', 'Tile', 'Plywood'],
-    //   buildingStyle: ['Modern architecture', 'Contemporary architecture', 'Interior design', 'Apartment', 'Building'],
-    //   buildingType: ['Commercial building', 'Penthouse apartment'],
-    //   buildingArea: ['Neighborhood', 'Residential area', 'Suburb'],
-    //   buildingFeatures: ['Garden', 'Courtyard', 'Swimming pool', 'Porch', 'Dining room'],
-    //   materials: ['Hardwood', 'Plywood', 'Tile', 'Natural material', 'Cobblestone'],
-    // };
-
-    // console.log(testPref);
-
-    // const testUser = await this.aiPreferenceRepo.findOne(testPref.user);
-    // console.log(testUser);
-    
-    // if (testUser) {
-    //   const check = await this.aiPreferenceRepo.overwrite(testPref.user, testPref);
-    //   console.log('updated \n' + check);
-    // }
-
-    return {
-      labelDescriptions: Array.from(uniqueLabelDescriptions),
-      rgbValues,
-    };
+      return {
+        labelDescriptions: Array.from(uniqueLabelDescriptions),
+        rgbValues,
+      };
+    }  
   }
-}
+

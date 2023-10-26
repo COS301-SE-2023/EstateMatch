@@ -7,4 +7,5 @@ export interface IPreference {
     bathrooms: number;
     garages: number;
     extras: string[];
+    type: string;
 }

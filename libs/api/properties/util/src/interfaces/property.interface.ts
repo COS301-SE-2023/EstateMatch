@@ -11,6 +11,8 @@ export interface IProperty{
     aiLabel : string[],
     rgbColour : number[],
     description : string[],
+    propertyURL : string,
+    propertyType : string,
 
     // //added user specific fields
     // userId: string,

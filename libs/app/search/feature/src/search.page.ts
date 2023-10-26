@@ -43,6 +43,8 @@ export class SearchPage implements AfterViewInit{
       aiLabel: [],
       rgbColour: [],
       description: ['This is a description of the property'],
+      propertyURL: '',
+      propertyType: '',
       // user: ['TestUsername']
     }
     ];
@@ -55,6 +57,10 @@ export class SearchPage implements AfterViewInit{
     }
 
     ngOnInit() {
+      if(!sessionStorage.getItem('username')){
+        this.makeToast('Please login to continue');
+        this.router.navigate(['/login'], { replaceUrl: true});
+      }
       this.route.queryParams.subscribe(params => {
         if(params['data'] != null){
           this.properties = JSON.parse(params['data']);
@@ -84,7 +90,9 @@ export class SearchPage implements AfterViewInit{
         garages: currProperty.garages,
         amenities: currProperty.amenities,
         liked: true,
-        image: currProperty.images[0]
+        image: currProperty.images[0],
+        propertyURL: currProperty.propertyURL
+
       };
       // currProperty.liked = true;
       const body = {
@@ -118,7 +126,9 @@ export class SearchPage implements AfterViewInit{
         garages: currProperty.garages,
         amenities: currProperty.amenities,
         liked: true,
-        image: currProperty.images[0]
+        image: currProperty.images[0],
+        propertyURL: currProperty.propertyURL
+
       };
       const body = {
         property: dislikedProperty

@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { url } from 'inspector';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -33,6 +34,7 @@ import { TranslateService, TranslatePipe } from '@ngx-translate/core';
       
 
       constructor(private route: ActivatedRoute,
+        private toastController: ToastController,
         private readonly router: Router,private http: HttpClient,private translate: TranslateService) {
           this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
         this.locationLat=0;
@@ -45,6 +47,10 @@ import { TranslateService, TranslatePipe } from '@ngx-translate/core';
       }
 
       async ngOnInit() {
+        if(!sessionStorage.getItem('username')){
+          this.makeToast('Please login to continue');
+          this.router.navigate(['/login'], { replaceUrl: true});
+        }
         this.route.queryParams.subscribe(async (params) =>{
           if(params['data'] != null){
             this.propertyLocation = params['data'];
@@ -116,10 +122,12 @@ import { TranslateService, TranslatePipe } from '@ngx-translate/core';
   }
 
   async ngAfterViewInit(){
-    console.log('Init');
-    const coords = await this.setPropertyLocation(this.propertyLocation);
-    // // console.log(coords); 
-    this.setPropertyMarker(coords[0],coords[1]);
+    if(this.propertyLocation != null){
+      const coords = await this.setPropertyLocation(this.propertyLocation);
+      // // console.log(coords); 
+      this.setPropertyMarker(coords[0],coords[1]);      
+    }
+
   }
 
   setSchoolMarker(lat: any, long: any, name: string){
@@ -226,6 +234,14 @@ import { TranslateService, TranslatePipe } from '@ngx-translate/core';
     this.ngOnInit();
   }
 
+  async makeToast(message: any){
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      position: 'top',
+    })
+    toast.present();
+  }
 
   async setPropertyLocation(address: any){
     // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -304,9 +320,7 @@ import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 
     const mark=L.marker([lat,long],
-      {
-        icon: customIcon
-      }).addTo(this.map);
+      ).addTo(this.map);
     mark.bindPopup("<b>Selected Location: "+this.propertyLocation+"</b><br />").openPopup();
   }
 

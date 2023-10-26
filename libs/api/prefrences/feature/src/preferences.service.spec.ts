@@ -42,7 +42,8 @@ describe('PreferenceService', () => {
             bedrooms: 1,
             bathrooms: 1,
             garages: 1,
-            extras: []
+            extras: [],
+            type: 'Rent'
         }
     };
 
@@ -64,7 +65,8 @@ describe('PreferenceService', () => {
             bedrooms: 1,
             bathrooms: 1,
             garages: 1,
-            extras: []
+            extras: [],
+            type: 'Rent'
         }
      };
     const commandResponse: ISetPreferencesResponse = { 
@@ -76,7 +78,8 @@ describe('PreferenceService', () => {
             bedrooms: 1,
             bathrooms: 1,
             garages: 1,
-            extras: []
+            extras: [],
+            type: 'Rent'
         }
      };
 

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ToastController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 import { IPreference } from '@estate-match/api/prefrences/util';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+import { fail } from 'assert';
 
 @Component({
   selector: 'ms-preferences-page',
@@ -17,6 +18,7 @@ export class PreferencesPage {
     private toastController: ToastController,
     private route: ActivatedRoute,
     private router: Router,
+    private loadingController: LoadingController,
     private translate: TranslateService) {
       this.translate.setDefaultLang(sessionStorage.getItem('languagePref') || 'en');
      }
@@ -26,12 +28,16 @@ export class PreferencesPage {
     bathrooms = 0;
     bedrooms = 0;
     garages = 0;
+    type = '';
     ameneties :string[] = [];
     preference!: IPreference;
     selectedAreas: string[] = [];
 
   ngOnInit() {
-
+    if(!sessionStorage.getItem('username')){
+      this.makeToast('Please login to continue');
+      this.router.navigate(['/login'], { replaceUrl: true});
+    }
     this.route.queryParams.subscribe((params) => {
       this.area = params['data'];
       console.log(this.area);
@@ -87,7 +93,8 @@ export class PreferencesPage {
         bedrooms: (this.bedrooms),
         bathrooms: (this.bathrooms),
         garages: (this.garages),
-        extras: this.ameneties       
+        extras: this.ameneties,
+        type: this.type,       
       }
     }
 
@@ -97,12 +104,15 @@ export class PreferencesPage {
     });
 
     this.preference = await this.http.post(url, body, { headers }).toPromise() as IPreference;
-
-    // this.http.post(url, body, { headers }).subscribe((response) => {
-    //   console.log(response);
-    // });
-
     
+    try{
+      await this.showLoading();
+      const newProperties = await this.propertyCheck(this.area, this.type);
+    }finally{
+      await this.hideLoading();
+    }
+    
+  
 
     this.makeToast('Your prefrences are updated!');
     this.router.navigate(['/home'], {replaceUrl: true});
@@ -133,6 +143,52 @@ export class PreferencesPage {
   }
 
   openMap(){
-    this.router.navigate(['/map'], {replaceUrl: true});
+    this.router.navigate(['/map'], { queryParams: { data: null }, replaceUrl: true});
+  }
+
+  async propertyCheck(location: string, rentBuyPref: string){
+    const url = 'api/propertyCheck';
+    const username = sessionStorage.getItem('username');
+    const body = {
+      user: username,
+    }
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    // const newPropertiesNeeded = await this.http.post(url, body, { headers }).toPromise() as {empty: boolean};
+
+      //Somehow check if new user or not
+      if (username) {
+        let scrapeUrl = '';
+        if(rentBuyPref === 'Rent'){
+          scrapeUrl = 'api/PrivatePropertyRentScraper';
+        }else{
+          scrapeUrl = 'api/PrivatePropertySaleScraper';
+        }
+    
+        const scraperBody = {
+          username: sessionStorage.getItem('username'),
+          location: location,
+        };
+    
+        const privatePropertySale = await this.http.post(scrapeUrl, scraperBody, { headers }).toPromise();
+      }
+
+      return true;
+  }
+  private loading!: HTMLIonLoadingElement;
+  async showLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Please wait while we are finding potential matches...', // You can customize the loading message
+      spinner: 'dots', // Use the 'dots' spinner
+      translucent: true,
+      backdropDismiss: false, // Prevent dismissing by tapping outside
+      cssClass: 'custom-loading-class' // You can define a custom CSS class for styling
+    });
+    await this.loading.present();
+  }
+  
+  async hideLoading() {
+    if (this.loading) {
+      await this.loading.dismiss();
+    }
   }
 }

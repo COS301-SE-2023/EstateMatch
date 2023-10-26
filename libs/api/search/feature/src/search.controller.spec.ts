@@ -61,7 +61,10 @@ describe('SearchController', () => {
                 aiLabel: [],
                 rgbColour: [],
                 description: [],
-                images: ['test image']
+                images: ['test image'],
+                propertyURL: 'test url',
+                propertyType: 'Rent',
+
             },
             {
               title: 'test',
@@ -75,7 +78,9 @@ describe('SearchController', () => {
               aiLabel: [],
               rgbColour: [],
               description: [],
-              images: ['test image']
+              images: ['test image'],
+              propertyURL: 'test url',
+              propertyType: 'Rent',
             },]
         }
 
