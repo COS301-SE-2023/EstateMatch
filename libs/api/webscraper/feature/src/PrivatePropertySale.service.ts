@@ -117,119 +117,123 @@ export class PrivatePropertySaleService {
   // console.log(propertyURLs);
   const firstFivePropertyURLs = propertyURLs.slice(0,5);
   console.log(firstFivePropertyURLs);
-  const propertyListings = await Promise.all(firstFivePropertyURLs.map(async (url) => {
-      // Open a new page for each property
+  const propertyListings = [];
+  for(const url of firstFivePropertyURLs){
 
-      const propertyPage = await browser.newPage();
-      // await pages.waitForNavigation();
-      console.log("Property page created");
-      // try{
-      //   await propertyPage.goto("https://www.privateproperty.co.za" +url, {
-      //     timeout: navigationTimeout,
-          
-      //   });
-      //   // await propertyPage.waitForResponse(response => response.url() === "https://www.privateproperty.co.za" +url && response.status() === 200);
-      // }catch(e){
-      //   console.log(e);
-      // }
+    const propertyPage = await browser.newPage();
+    // await pages.waitForNavigation();
+    console.log("Property page created");
+    // try{
+    //   await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+    //     timeout: navigationTimeout,
+        
+    //   });
+    //   // await propertyPage.waitForResponse(response => response.url() === "https://www.privateproperty.co.za" +url && response.status() === 200);
+    // }catch(e){
+    //   console.log(e);
+    // }
 
-      await propertyPage.goto("https://www.privateproperty.co.za" +url, {
-        timeout: navigationTimeout,
-      });
-      // 
+    await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+      timeout: navigationTimeout,
+    });
+    // 
 
-      // await propertyPage.waitForNavigation();
-      console.log("Navigated to listings");
+    // await propertyPage.waitForNavigation();
+    console.log("Navigated to listings");
 
-      // Wait for the property page to load
-      await propertyPage.waitForSelector('.contentWhite', {timeout: navigationTimeout});
+    // Wait for the property page to load
+    await propertyPage.waitForSelector('.contentWhite', {timeout: navigationTimeout});
 
-      console.log("Found selector");
+    console.log("Found selector");
 
-      // Extract the data we want
-      const title = await propertyPage.$eval('.titleContainer h1', (titleElement) => titleElement.textContent?.trim() || '');
-      const price = await propertyPage.$eval('.titleContainer h2 span.detailsPrice', (priceElement) => priceElement.textContent?.trim() || '');
-      const description = await propertyPage.$$eval('.description p', (descriptionElement) => descriptionElement.map((description) => description.textContent?.trim() || ''));
-      const location = await propertyPage.$eval('.previousPage span', (locationElement) => locationElement.textContent?.trim() || '');
-      const attributeLabel = await propertyPage.$$eval('.attributeLabel', (attributeLabelElement) => attributeLabelElement.map((attributeLabel) => attributeLabel.textContent?.trim() || ''));
-      const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
-      
-      console.log("Got info");
-
-      const propertyURL = propertyPage.url();
-      // Initialize variables for storing bedrooms, bathrooms, garages, and amenities 
-
-      let bedrooms;
-      let bathrooms;
-      let garages;
-      const amenities: string[] = [];
-
-
+    // Extract the data we want
+    const title = await propertyPage.$eval('.titleContainer h1', (titleElement) => titleElement.textContent?.trim() || '');
+    const price = await propertyPage.$eval('.titleContainer h2 span.detailsPrice', (priceElement) => priceElement.textContent?.trim() || '');
+    const description = await propertyPage.$$eval('.description p', (descriptionElement) => descriptionElement.map((description) => description.textContent?.trim() || ''));
+    const location = await propertyPage.$eval('.previousPage span', (locationElement) => locationElement.textContent?.trim() || '');
+    const attributeLabel = await propertyPage.$$eval('.attributeLabel', (attributeLabelElement) => attributeLabelElement.map((attributeLabel) => attributeLabel.textContent?.trim() || ''));
+    const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
     
+    console.log("Got info");
 
-      // Check if the text content matches the desired value
-      for (const attribute of attributeLabel) 
+    const propertyURL = propertyPage.url();
+    // Initialize variables for storing bedrooms, bathrooms, garages, and amenities 
+
+    let bedrooms;
+    let bathrooms;
+    let garages;
+    const amenities: string[] = [];
+
+
+  
+
+    // Check if the text content matches the desired value
+    for (const attribute of attributeLabel) 
+    {
+      if (attribute === 'Bedrooms') 
       {
-        if (attribute === 'Bedrooms') 
-        {
-          
-          bedrooms= propAttrValue[attributeLabel.indexOf(attribute)];
-          
-        }
-
-        if (attribute === 'Bathrooms')
-        {
-          bathrooms= propAttrValue[attributeLabel.indexOf(attribute)];
-          
-        }
-
-        if (attribute === 'Covered Parkings' || attribute === 'Open Parkings' || attribute === 'Garages')
-        {
-          garages= propAttrValue[attributeLabel.indexOf(attribute)];
-          
-        }
-
-        if(attribute !== 'Bedrooms' && attribute !== 'Bathrooms' && attribute !== 'Covered Parkings' && attribute !== 'Open Parkings' && attribute !== 'Garages' && attribute !== 'Lounges')
-        {
-          amenities.push(attribute);
-        }
+        
+        bedrooms= propAttrValue[attributeLabel.indexOf(attribute)];
+        
       }
 
-      // Extract and process image URLs for the property
-      const imageURLs = (await propertyPage.$$eval('.imageGrid a', (imagesElement) => imagesElement.map((image) => image.dataset['background']))).filter(url => url !== null && url !== undefined);
-      
-      // Modify image URLs to include "_dhd" before the file extension
-      /*for (let i = 0; i < imageURLs.length; i++) {
-        const lastDotIndex = imageURLs[i]?.lastIndexOf(".");
-        if (lastDotIndex !== -1) 
-        {
-          imageURLs[i] = imageURLs[i]?.slice(0, lastDotIndex) + "_dhd" + imageURLs[i]?.slice(lastDotIndex);
-        }
-      }*/
+      if (attribute === 'Bathrooms')
+      {
+        bathrooms= propAttrValue[attributeLabel.indexOf(attribute)];
+        
+      }
 
+      if (attribute === 'Covered Parkings' || attribute === 'Open Parkings' || attribute === 'Garages')
+      {
+        garages= propAttrValue[attributeLabel.indexOf(attribute)];
+        
+      }
 
-      const propertyType = 'Sale';
+      if(attribute !== 'Bedrooms' && attribute !== 'Bathrooms' && attribute !== 'Covered Parkings' && attribute !== 'Open Parkings' && attribute !== 'Garages' && attribute !== 'Lounges')
+      {
+        amenities.push(attribute);
+      }
+    }
 
+    // Extract and process image URLs for the property
+    const imageURLs = (await propertyPage.$$eval('.imageGrid a', (imagesElement) => imagesElement.map((image) => image.dataset['background']))).filter(url => url !== null && url !== undefined);
     
-      // Close the property page
-      await propertyPage.close();
-      console.log("Closed page");
+    // Modify image URLs to include "_dhd" before the file extension
+    /*for (let i = 0; i < imageURLs.length; i++) {
+      const lastDotIndex = imageURLs[i]?.lastIndexOf(".");
+      if (lastDotIndex !== -1) 
+      {
+        imageURLs[i] = imageURLs[i]?.slice(0, lastDotIndex) + "_dhd" + imageURLs[i]?.slice(lastDotIndex);
+      }
+    }*/
 
-      // Return an object containing all the extracted property details
-      return {
-        title,
-        price,
-        description,
-        bedrooms,
-        bathrooms,
-        garages,
-        imageURLs,
-        location,
-        amenities, 
-        propertyType,
-        propertyURL
-      };
-    }));
+
+    const propertyType = 'Sale';
+
+  
+    // Close the property page
+    await propertyPage.close();
+    console.log("Closed page");
+
+    // Return an object containing all the extracted property details
+    propertyListings.push( {
+      title,
+      price,
+      description,
+      bedrooms,
+      bathrooms,
+      garages,
+      imageURLs,
+      location,
+      amenities, 
+      propertyType,
+      propertyURL
+    });
+
+  }
+  // const propertyListings = await Promise.all(firstFivePropertyURLs.map(async (url) => {
+  //     // Open a new page for each property
+  //   }));
 
     console.log("First 5 Processed");
     
