@@ -27,7 +27,11 @@ export class PrivatePropertyRentService {
       timeout: navigationTimeout,
     });
 
+    console.log("Navigated");
+
     await page.waitForSelector('.floatingSearchContainer');
+
+    console.log("Selector created");
 
     await page.type('.formWrapper input', location);
 
@@ -35,6 +39,7 @@ export class PrivatePropertyRentService {
     await page.waitForTimeout(typingDelay)
 
     await page.waitForSelector('.autocomplete-suggestions');
+    console.log("Selector found");
 
     const suggestionSelector = '.autocomplete-suggestion';
     await page.evaluate((selector) => {
@@ -55,15 +60,20 @@ export class PrivatePropertyRentService {
       timeout: navigationTimeout,
     });
 
+    console.log("Results created");
+
     const currentURL = await page.url();
 
     const pageLinks = (await page.$$eval('.pagination a.pageNumber', (pagination) => pagination.map((page) => page.getAttribute('href') || ''))).filter(url => url !== "#");
+
+    console.log("Links created");
 
     const lastPageLink = pageLinks[pageLinks.length - 2];
     //const pageNumber = parseInt(lastPageLink.slice(-2));
 
     let propertyURLs: string[] = [];
     const pages = await browser.newPage();
+    console.log("New Page");
 
     for(let i = 1; i <= 1; i++)
     {
@@ -94,17 +104,25 @@ export class PrivatePropertyRentService {
     }
 
   // Process each property page
+  console.log("Waiting to process...");
   const firstFivePropertyURLs = propertyURLs.slice(0,5);
+  console.log(firstFivePropertyURLs);
   const propertyListings = await Promise.all(
     firstFivePropertyURLs.map(async (url) => {
       // Open a new page for each property
       const propertyPage = await browser.newPage();
+      console.log("Property page created");
       await propertyPage.goto("https://www.privateproperty.co.za" +url, {
         timeout: navigationTimeout,
       });
 
       // Wait for the property page to load
+
+      console.log("Navigated to listings");
+
       await propertyPage.waitForSelector('.contentWhite');
+
+      console.log("Found selector");
 
       // Extract the data we want
       const title = await propertyPage.$eval('.titleContainer h1', (titleElement) => titleElement.textContent?.trim() || '');
@@ -113,6 +131,8 @@ export class PrivatePropertyRentService {
       const location = await propertyPage.$eval('.previousPage span', (locationElement) => locationElement.textContent?.trim() || '');
       const attributeLabel = await propertyPage.$$eval('.attributeLabel', (attributeLabelElement) => attributeLabelElement.map((attributeLabel) => attributeLabel.textContent?.trim() || ''));
       const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
+
+      console.log("Got info");
 
       const propertyURL = propertyPage.url();
       
@@ -168,6 +188,7 @@ export class PrivatePropertyRentService {
     
       // Close the property page
       await propertyPage.close();
+      console.log("Closed page");
 
       // Return an object containing all the extracted property details
       return {
@@ -185,6 +206,8 @@ export class PrivatePropertyRentService {
       };
     })
   );
+
+  console.log("Processed");
 
   // Close the browser
   await browser.close();
