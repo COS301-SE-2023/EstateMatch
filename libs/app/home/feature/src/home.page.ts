@@ -1,12 +1,11 @@
-import { AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Gesture, GestureController, IonCard, Platform, ToastController } from '@ionic/angular';
-import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
-import { IAIPreference, IPreference } from '@estate-match/api/prefrences/util';
+import { AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+import { IAIPreference, IPreference } from '@estate-match/api/prefrences/util';
+import { ILikeProperty, IProperty } from '@estate-match/api/properties/util';
 import { ITranslateResponse } from '@estate-match/api/translation/util';
-import { LoadingController } from '@ionic/angular';
+import { Gesture, GestureController, IonCard, LoadingController, Platform, ToastController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 interface Property {
   user: string;
@@ -70,7 +69,9 @@ export class HomePage implements AfterViewInit{
      seen: false, 
      aiLabel: [],
      rgbColour: [],
-     description : ['This is a description of the property.']
+     description : ['This is a description of the property.'],
+     propertyURL : '',
+     propertyType : '',
     // user: ['TestUsername']
   }];
   lastImageIndex = 0;
@@ -87,97 +88,104 @@ export class HomePage implements AfterViewInit{
  // showCross = false; 
 
   async ngOnInit() {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    //Get preferences
-    const prefURL = 'api/getPreferences';
-    const prefBody = {
-      user: sessionStorage.getItem('username')
-    }
-
-    this.userPreferences = await this.http.post(prefURL, prefBody, { headers }).toPromise() as IPreference;
-    //Search
-    // const url = 'api/search';
-    // const body = {
-    //   filters: {
-    //     location: this.userPreferences.location,
-    //     budgetMin: this.userPreferences.budgetMin,
-    //     budgetMax: this.userPreferences.budgetMax,
-    //     bedrooms: this.userPreferences.bedrooms,
-    //     bathrooms: this.userPreferences.bathrooms,
-    //     garages: this.userPreferences.garages,
-    //     amenities: this.userPreferences.extras
-    //   }
-    // } 
-
-    const url = 'api/getUserProperties';
-    const body = {
-      user: sessionStorage.getItem('username')
-    }
-
-    let response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
-
-    if(response.properties.length === 0){
-      try{
-        await this.showLoading();
-        const newProperties = await this.propertyCheck(this.userPreferences.location[0]);
-        response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
-      }finally{
-        await this.hideLoading();
+    if(!sessionStorage.getItem('username')){
+      this.makeToast('Please login to continue');
+      this.router.navigate(['/login'], { replaceUrl: true});
+    }else{
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      //Get preferences
+      const prefURL = 'api/getPreferences';
+      const prefBody = {
+        user: sessionStorage.getItem('username')
       }
-    }
-
-    this.properties = response.properties;
-
-    const aiGetPrefUrl = 'api/getAIPreferences';
-    const aiGetPrefBody = {
-      user: sessionStorage.getItem('username')
-    }
-
-    const aiGetPrefResponse = await this.http.post(aiGetPrefUrl, aiGetPrefBody, { headers }).toPromise() as {aiPreferences: IAIPreference};
-    if(aiGetPrefResponse.aiPreferences){
-      const matchUrl = 'api/match';
-
-      const matchBody = {
-        property: this.properties[this.currentDescriptionIndex],
-        preferences: aiGetPrefResponse.aiPreferences
-      }
-
-      for(const property of this.properties){
-        matchBody.property = property;
-        const matchResponse = await this.http.post(matchUrl, matchBody, { headers }).toPromise() as {matchScore: number};
-        this.scores.push(matchResponse.matchScore);
-      }      
-    }
-
-
-    // this.properties = this.properties.slice(0,3);
-    this.lastImageIndex = this.properties[0].images.length - 1;
-    // this.ngAfterViewInit();
-
-    if(sessionStorage.getItem('languagePref') !== 'en'){
-      const translateUrl = 'api/translate';
-      const translateBody = {
-        title: this.properties[this.currentDescriptionIndex].title,
-        targetLanguage: sessionStorage.getItem('languagePref')
-      };
-
-        // translateBody.text = this.properties[this.currentDescriptionIndex].title;
-        const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as ITranslateResponse;
-        this.properties[this.currentDescriptionIndex].title = translatedTitle.title;    
-    }
-
-    const newProperties = await this.propertyCheck(this.userPreferences.location[0]);
-
-    if(newProperties){
+  
+      this.userPreferences = await this.http.post(prefURL, prefBody, { headers }).toPromise() as IPreference;
+      //Search
+      // const url = 'api/search';
+      // const body = {
+      //   filters: {
+      //     location: this.userPreferences.location,
+      //     budgetMin: this.userPreferences.budgetMin,
+      //     budgetMax: this.userPreferences.budgetMax,
+      //     bedrooms: this.userPreferences.bedrooms,
+      //     bathrooms: this.userPreferences.bathrooms,
+      //     garages: this.userPreferences.garages,
+      //     amenities: this.userPreferences.extras
+      //   }
+      // } 
+  
       const url = 'api/getUserProperties';
       const body = {
         user: sessionStorage.getItem('username')
       }
-  
-      const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
+      
+      const rentBuyPref = this.userPreferences.type;
 
-      for(const property of response.properties){
-        this.properties.push(property);
+      let response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
+  
+      if(response.properties.length === 0){
+        try{
+          await this.showLoading();
+          const newProperties = await this.propertyCheck(this.userPreferences.location[0], rentBuyPref);
+          response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
+        }finally{
+          await this.hideLoading();
+        }
+      }
+  
+      this.properties = response.properties;
+  
+      const aiGetPrefUrl = 'api/getAIPreferences';
+      const aiGetPrefBody = {
+        user: sessionStorage.getItem('username')
+      }
+  
+      const aiGetPrefResponse = await this.http.post(aiGetPrefUrl, aiGetPrefBody, { headers }).toPromise() as {aiPreferences: IAIPreference};
+      if(aiGetPrefResponse.aiPreferences){
+        const matchUrl = 'api/match';
+  
+        const matchBody = {
+          property: this.properties[this.currentDescriptionIndex],
+          preferences: aiGetPrefResponse.aiPreferences
+        }
+  
+        for(const property of this.properties){
+          matchBody.property = property;
+          const matchResponse = await this.http.post(matchUrl, matchBody, { headers }).toPromise() as {matchScore: number};
+          this.scores.push(matchResponse.matchScore);
+        }      
+      }
+  
+  
+      // this.properties = this.properties.slice(0,3);
+      this.lastImageIndex = this.properties[0].images.length - 1;
+      // this.ngAfterViewInit();
+  
+      if(sessionStorage.getItem('languagePref') !== 'en'){
+        const translateUrl = 'api/translate';
+        const translateBody = {
+          title: this.properties[this.currentDescriptionIndex].title,
+          targetLanguage: sessionStorage.getItem('languagePref')
+        };
+  
+          // translateBody.text = this.properties[this.currentDescriptionIndex].title;
+          const translatedTitle = await this.http.post(translateUrl, translateBody, { headers }).toPromise() as ITranslateResponse;
+          this.properties[this.currentDescriptionIndex].title = translatedTitle.title;    
+      }
+  
+      const newProperties = await this.propertyCheck(this.userPreferences.location[0], rentBuyPref);
+  
+      if(newProperties){
+        const url = 'api/getUserProperties';
+        const body = {
+          user: sessionStorage.getItem('username')
+        }
+    
+        const response = await this.http.post(url, body, { headers }).toPromise() as {properties: IProperty[]};
+  
+        for(const property of response.properties){
+          this.properties.push(property);
+        }
       }
     }
   }
@@ -216,7 +224,9 @@ export class HomePage implements AfterViewInit{
       garages: currProperty.garages,
       amenities: currProperty.amenities,
       liked: true,
-      image: currProperty.images[0]
+      image: currProperty.images[0],
+      propertyURL: currProperty.propertyURL
+
     };
     // currProperty.liked = true;
     const body = {
@@ -307,7 +317,8 @@ export class HomePage implements AfterViewInit{
       garages: currProperty.garages,
       amenities: currProperty.amenities,
       liked: true,
-      image: currProperty.images[0]
+      image: currProperty.images[0],
+      propertyURL: currProperty.propertyURL
     };
     const body = {
       property: dislikedProperty
@@ -354,8 +365,9 @@ export class HomePage implements AfterViewInit{
   async makeToast(message: any){
     const toast = await this.toastController.create({
       message,
-      duration: 2000,
+      duration: 500,
       position: 'top',
+      cssClass: 'custom-toast'
     })
     toast.present();
   }
@@ -396,7 +408,7 @@ export class HomePage implements AfterViewInit{
     }
   }
 
-  async propertyCheck(location: string){
+  async propertyCheck(location: string, rentBuyPref: string){
     const url = 'api/propertyCheck';
     const username = sessionStorage.getItem('username');
     const body = {
@@ -409,6 +421,12 @@ export class HomePage implements AfterViewInit{
       if(newPropertiesNeeded.empty){
         //Somehow check if new user or not
         if (username) {
+          // let scrapeUrl = '';
+          // if(rentBuyPref === 'Rent'){
+          //   scrapeUrl = 'api/PrivatePropertyRentScraper';
+          // }else{
+          //   scrapeUrl = 'api/PrivatePropertySaleScraper';
+          // }
           const remaxRentURL = 'api/RemaxRentScraper'; //need to add rent/buy to preferences
           const remaxSaleURL = 'api/RemaxSaleScraper';
           const privatePropertyRentURL = 'api/PrivatePropertyRentScraper';
@@ -422,7 +440,7 @@ export class HomePage implements AfterViewInit{
           // const remaxRent = await this.http.post(remaxRentURL, scraperBody, { headers }).toPromise();
           // const remaxSale = await this.http.post(remaxSaleURL, scraperBody, { headers }).toPromise();
           // const privatePropertyRent = await this.http.post(privatePropertyRentURL, scraperBody, { headers }).toPromise();
-          const privatePropertySale = await this.http.post(privatePropertySaleURL, scraperBody, { headers }).toPromise();
+          const privatePropertySale = await this.http.post(remaxSaleURL, scraperBody, { headers }).toPromise();
         }
 
         //Use location here

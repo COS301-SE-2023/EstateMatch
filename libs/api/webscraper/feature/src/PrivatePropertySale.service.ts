@@ -6,9 +6,16 @@ import * as puppeteer from 'puppeteer';
 export class PrivatePropertySaleService {
   public async PrivatePropertySalescrape(location: string): Promise<any[]> {
     // Launch Puppeteer and open new page
-    const browser = await puppeteer.launch({timeout: 0});
+    const browser = await puppeteer.launch({timeout: 0,
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--single-process',
+      '--no-zygote',
+      // '--disable-features=site-per-process'
+    ]});
     const page = await browser.newPage();
-
+    console.log("Page created");
     //console.log(location);
 
     const navigationTimeout = 180000;
@@ -22,7 +29,11 @@ export class PrivatePropertySaleService {
       timeout: navigationTimeout,
     });
 
+    console.log("Navigated");
+
     await page.waitForSelector('.floatingSearchContainer');
+
+    console.log("Selector created");
 
     await page.type('.formWrapper input', location);
 
@@ -30,6 +41,7 @@ export class PrivatePropertySaleService {
     await page.waitForTimeout(typingDelay)
 
     await page.waitForSelector('.autocomplete-suggestions');
+    console.log("Selector found");
 
     const suggestionSelector = '.autocomplete-suggestion';
     await page.evaluate((selector) => {
@@ -44,7 +56,7 @@ export class PrivatePropertySaleService {
       }
     }, suggestionSelector);
 
-    await page.waitForNavigation();
+    // await page.waitForNavigation();
 
     //console.log(page.url());
 
@@ -54,9 +66,13 @@ export class PrivatePropertySaleService {
       timeout: navigationTimeout,
     });
 
+    console.log("Results created");
+
     const currentURL = await page.url();
 
     const pageLinks = (await page.$$eval('.pagination a.pageNumber', (pagination) => pagination.map((page) => page.getAttribute('href') || ''))).filter(url => url !== "#");
+
+    console.log("Links created");
 
     const lastPageLink = pageLinks[pageLinks.length - 2];
     //const pageNumber = parseInt(lastPageLink.slice(-2));
@@ -65,6 +81,8 @@ export class PrivatePropertySaleService {
     let propertyURLs: string[] = [];
 
     const pages = await browser.newPage();
+
+    console.log("New Page");
 
     for(let i = 1; i <= 1; i++)
     {
@@ -95,16 +113,38 @@ export class PrivatePropertySaleService {
     }
 
   // Process each property page
-  const propertyListings = await Promise.all(
-    propertyURLs.map(async (url) => {
+  console.log("Waiting to process...");
+  // console.log(propertyURLs);
+  const firstFivePropertyURLs = propertyURLs.slice(0,5);
+  console.log(firstFivePropertyURLs);
+  const propertyListings = await Promise.all(firstFivePropertyURLs.map(async (url) => {
       // Open a new page for each property
+
       const propertyPage = await browser.newPage();
-      await propertyPage.goto("https://www.privateproperty.co.za" +url, {
-        timeout: navigationTimeout,
-      });
+      // await pages.waitForNavigation();
+      console.log("Property page created");
+      try{
+        await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+          timeout: navigationTimeout,
+          
+        });
+        await propertyPage.waitForResponse(response => response.url() === "https://www.privateproperty.co.za" +url && response.status() === 200);
+      }catch(e){
+        console.log(e);
+      }
+
+      // await propertyPage.goto("https://www.privateproperty.co.za" +url, {
+      //   timeout: 0,
+      // });
+      // 
+
+      // await propertyPage.waitForNavigation({timeout: navigationTimeout});
+      console.log("Navigated to listings");
 
       // Wait for the property page to load
       await propertyPage.waitForSelector('.contentWhite');
+
+      console.log("Found selector");
 
       // Extract the data we want
       const title = await propertyPage.$eval('.titleContainer h1', (titleElement) => titleElement.textContent?.trim() || '');
@@ -114,6 +154,9 @@ export class PrivatePropertySaleService {
       const attributeLabel = await propertyPage.$$eval('.attributeLabel', (attributeLabelElement) => attributeLabelElement.map((attributeLabel) => attributeLabel.textContent?.trim() || ''));
       const propAttrValue = await propertyPage.$$eval('.propAttrValue', (propAttrValueElement) => propAttrValueElement.map((propAttrValue) => propAttrValue.textContent?.trim() || ''));
       
+      console.log("Got info");
+
+      const propertyURL = propertyPage.url();
       // Initialize variables for storing bedrooms, bathrooms, garages, and amenities 
 
       let bedrooms;
@@ -165,11 +208,12 @@ export class PrivatePropertySaleService {
       }*/
 
 
-      const type = 'Sale';
+      const propertyType = 'Sale';
 
     
       // Close the property page
       await propertyPage.close();
+      console.log("Closed page");
 
       // Return an object containing all the extracted property details
       return {
@@ -182,13 +226,17 @@ export class PrivatePropertySaleService {
         imageURLs,
         location,
         amenities, 
+        propertyType,
+        propertyURL
       };
-    })
-  );
+    }));
+
+    console.log("First 5 Processed");
+    
+  console.log("Processed");
 
   // Close the browser
   await browser.close();
-
   const filteredPropertyListings = propertyListings.filter((property) => property.price !== "Sold" && property.price !== "POA");
 
   // Return the array of property listings

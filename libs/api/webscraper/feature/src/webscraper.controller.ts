@@ -22,6 +22,8 @@ export class WebScraperController {
     async getScrapedPrivatePropertySalesProperties(@Body() request: IWebscraperRequest) {
       // console.log(request.location);
         const properties = await this.PrivatePropertySaleService.PrivatePropertySalescrape(request.location);
+        console.log("Scraped");
+        // console.log(properties);
 
         for(let i = 0; i < properties.length; i++){
           const property: IProperty = {
@@ -40,12 +42,15 @@ export class WebScraperController {
               seen : properties[i].seen,
               aiLabel : [],
               rgbColour : [],
-              description : properties[i].description
+              description : properties[i].description,
+              propertyURL : properties[i].propertyURL,
+              propertyType : properties[i].propertyType
 
            // user : properties[i].user
         }
 
           const aiModel = await this.imageToTextService.analyzeImages(property.images, request.username);
+          // console.log("Classified");
 
           property.aiLabel = aiModel.labelDescriptions;
           property.rgbColour = aiModel.rgbValues;
@@ -59,6 +64,7 @@ export class WebScraperController {
 
           // console.log(request);
           this.propertyService.createProperty(req);
+          // console.log("Created");
         }
         
         return properties;
@@ -85,7 +91,9 @@ export class WebScraperController {
             seen : properties[i].seen,
             aiLabel : properties[i].aiLabel,
             rgbColour : properties[i].rgbColour,
-            description : properties[i].description
+            description : properties[i].description,
+            propertyURL : properties[i].propertyURL,
+            propertyType : properties[i].propertyType
 
         //  user : properties[i].user
       }
@@ -122,7 +130,9 @@ export class WebScraperController {
             seen : properties[i].seen,
             aiLabel : properties[i].aiLabel,
             rgbColour : properties[i].rgbColour,
-            description : properties[i].description
+            description : properties[i].description,
+            propertyURL : properties[i].propertyURL,
+            propertyType : properties[i].propertyType
 
          // user : properties[i].user
       }
@@ -162,7 +172,9 @@ export class WebScraperController {
              seen : properties[i].seen,
              aiLabel : properties[i].aiLabel,
              rgbColour : properties[i].rgbColour,
-             description : properties[i].description
+             description : properties[i].description,
+             propertyURL : properties[i].propertyURL,
+             propertyType : properties[i].propertyType
 
            // user : properties[i].user
         }

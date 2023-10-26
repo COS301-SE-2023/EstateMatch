@@ -235,3 +235,12 @@
       --ion-card-background: #1e1e1e;
     }
   }
+
+  ion-toast {
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif  !important; 
+    font-size: 20px;
+    color: #000 !important;
+    --background: #cdcdcd;
+    text-align: center;
+  }
+  

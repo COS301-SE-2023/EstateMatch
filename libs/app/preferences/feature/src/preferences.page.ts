@@ -26,12 +26,16 @@ export class PreferencesPage {
     bathrooms = 0;
     bedrooms = 0;
     garages = 0;
+    type = '';
     ameneties :string[] = [];
     preference!: IPreference;
     selectedAreas: string[] = [];
 
   ngOnInit() {
-
+    if(!sessionStorage.getItem('username')){
+      this.makeToast('Please login to continue');
+      this.router.navigate(['/login'], { replaceUrl: true});
+    }
     this.route.queryParams.subscribe((params) => {
       this.area = params['data'];
       console.log(this.area);
@@ -87,7 +91,8 @@ export class PreferencesPage {
         bedrooms: (this.bedrooms),
         bathrooms: (this.bathrooms),
         garages: (this.garages),
-        extras: this.ameneties       
+        extras: this.ameneties,
+        type: this.type,       
       }
     }
 
@@ -133,6 +138,6 @@ export class PreferencesPage {
   }
 
   openMap(){
-    this.router.navigate(['/map'], {replaceUrl: true});
+    this.router.navigate(['/map'], { queryParams: { data: null }, replaceUrl: true});
   }
 }

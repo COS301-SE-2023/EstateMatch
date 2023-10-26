@@ -66,6 +66,9 @@
           {{ properties[currentDescriptionIndex].title }}
           <ion-label (click)="moreInfo()" class="read-more">{{ 'readMoreLabel' | translate }}</ion-label>
         </p>     
+        <p class="link">
+          <a href={{properties[currentDescriptionIndex].propertyURL}}>View listing</a>
+        </p>     
       </div>
   </ion-card>
   

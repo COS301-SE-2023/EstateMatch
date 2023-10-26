@@ -32,6 +32,10 @@ export class FilterPage {
 
 
     ngOnInit() {
+      if(!sessionStorage.getItem('username')){
+        this.makeToast('Please login to continue');
+        this.router.navigate(['/login'], { replaceUrl: true});
+      }
       this.route.queryParams.subscribe(params => {
         this.location = params['data'];
       });
