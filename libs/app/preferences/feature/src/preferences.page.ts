@@ -103,11 +103,8 @@ export class PreferencesPage {
 
     this.preference = await this.http.post(url, body, { headers }).toPromise() as IPreference;
 
-    // this.http.post(url, body, { headers }).subscribe((response) => {
-    //   console.log(response);
-    // });
-
-    
+    const newProperties = await this.propertyCheck(this.area, this.type);
+  
 
     this.makeToast('Your prefrences are updated!');
     this.router.navigate(['/home'], {replaceUrl: true});
@@ -139,5 +136,34 @@ export class PreferencesPage {
 
   openMap(){
     this.router.navigate(['/map'], { queryParams: { data: null }, replaceUrl: true});
+  }
+
+  async propertyCheck(location: string, rentBuyPref: string){
+    const url = 'api/propertyCheck';
+    const username = sessionStorage.getItem('username');
+    const body = {
+      user: username,
+    }
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    // const newPropertiesNeeded = await this.http.post(url, body, { headers }).toPromise() as {empty: boolean};
+
+      //Somehow check if new user or not
+      if (username) {
+        let scrapeUrl = '';
+        if(rentBuyPref === 'Rent'){
+          scrapeUrl = 'api/PrivatePropertyRentScraper';
+        }else{
+          scrapeUrl = 'api/PrivatePropertySaleScraper';
+        }
+    
+        const scraperBody = {
+          username: sessionStorage.getItem('username'),
+          location: location,
+        };
+    
+        const privatePropertySale = await this.http.post(scrapeUrl, scraperBody, { headers }).toPromise();
+      }
+
+      return true;
   }
 }
