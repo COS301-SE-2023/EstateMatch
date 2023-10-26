@@ -67,26 +67,30 @@
           <ion-label (click)="moreInfo()" class="read-more">{{ 'readMoreLabel' | translate }}</ion-label>
         </p>     
         <p class="link">
-          <a href={{properties[currentDescriptionIndex].propertyURL}}>View listing</a>
+          <a href={{properties[currentDescriptionIndex].propertyURL}}>{{ 'viewListingLabel' | translate }}</a>
         </p>     
       </div>
+
+      <div id="button-container" style="text-align:center;">
+        <button id="dislike-button" (click) = "dislikeHouse()" style="background-color:#F0422A; height:60px; border-color:#F0422A ;border-radius: 100%; width:60px;">
+          <span style="font-size: 1.7em; color:white">
+            <i class="fas fa-times"></i>
+        </span>
+        </button>
+        &nbsp;
+        <button id="like-button" (click) = "likeHouse()" style="background-color:#67C390; height:60px; border-color: #67C390;border-radius: 100%; width:60px;">
+          <span style="font-size: 1.7em; color:white">
+          <i class="fas fa-heart"></i>
+        </span>
+        </button>
+      </div>
   </ion-card>
+
   
+
   </body>
 
-  <div id="button-container" style="text-align:center;">
-    <button id="dislike-button" (click) = "dislikeHouse()" style="background-color:#F0422A; height:60px; border-color:#F0422A ;border-radius: 100%; width:60px;">
-      <span style="font-size: 1.7em; color:white">
-        <i class="fas fa-times"></i>
-    </span>
-    </button>
-    &nbsp;
-    <button id="like-button" (click) = "likeHouse()" style="background-color:#67C390; height:60px; border-color: #67C390;border-radius: 100%; width:60px;">
-      <span style="font-size: 1.7em; color:white">
-      <i class="fas fa-heart"></i>
-    </span>
-    </button>
-  </div>
+  
 
   <app-footer>
     

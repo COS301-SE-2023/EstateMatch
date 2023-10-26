@@ -97,14 +97,24 @@ export class WebScraperController {
 
         //  user : properties[i].user
       }
-        const req: ICreatePropertyRequest = {
-          username: request.username,
-          property: property
-        };
+      const aiModel = await this.imageToTextService.analyzeImages(property.images, request.username);
+      // console.log("Classified");
 
-        this.propertyService.createProperty(req);
-      }
+      property.aiLabel = aiModel.labelDescriptions;
+      property.rgbColour = aiModel.rgbValues;
       
+      const req: ICreatePropertyRequest = {
+        username: request.username,
+        property: property
+      };
+
+      
+
+      // console.log(request);
+      this.propertyService.createProperty(req);
+      // console.log("Created");
+      }
+    
       return properties;
     }
 
