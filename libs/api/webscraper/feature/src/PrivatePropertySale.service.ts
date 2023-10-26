@@ -142,7 +142,7 @@ export class PrivatePropertySaleService {
       console.log("Navigated to listings");
 
       // Wait for the property page to load
-      await propertyPage.waitForSelector('.contentWhite');
+      await propertyPage.waitForSelector('.contentWhite', {timeout: navigationTimeout});
 
       console.log("Found selector");
 
