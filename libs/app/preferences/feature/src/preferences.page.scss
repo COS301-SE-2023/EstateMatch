@@ -10,7 +10,7 @@ ion-toolbar {
 }
 
 ion-card[name="displayContainer"]{
-    height: 87vh;
+    height: 82vh;
     border-radius: 5%;
     background-color: #fbfcfa;
     overflow-y: scroll;
@@ -170,10 +170,12 @@ ion-select{
 
     .button_container{
       margin-top: 6%;
+      margin-bottom: 6%;
+
     }
 }
 .buttons{
-    height: 50px;
+    height: 10%;
     color: rgb(255, 255, 255);
     background-color: #67C390;
     width: 50%;
